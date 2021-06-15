@@ -1,17 +1,34 @@
 import React from 'react'
+import  { Link } from 'react-router-dom'
 import {Container, Row, Col } from 'react-bootstrap'
+
+import '../styles/footer.css'
 
 const Footer = () => {
 	return (
-		<footer>
-      <Container>
-				<Row>
-					<Col className="text-center py-3">
-						  Copyright &copy;  MMA
-					</Col>
-				</Row>
-			</Container>
-		</footer>
+		<>
+			<Container fluid><hr className="footer-hr"/></Container>
+			<footer className='site-footer'>
+				<Container fluid>
+					<Row>
+						<Col sm={12} md={8} className="copyright">
+							<div class="site-footer-wrapper">
+								<div class="text-wrapper">
+									<span>  &copy; Copyright 2021 Medical Marketing Group </span>
+									<span> Designed & Built by SMRT Digital </span>
+								</div>
+							</div>
+						</Col>
+						<Col sm={12} md={4}>
+							<div className="links">
+								<Link to='#'>Link</Link>
+								<Link to='#'>Link</Link>
+							</div>
+						</Col>
+					</Row>
+				</Container>
+			</footer>
+		</>
 	)
 }
 

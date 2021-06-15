@@ -4,6 +4,10 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Nav, Row, Col, Navbar, NavDropdown  } from 'react-bootstrap'
 import { logout } from '../actions/userActions'
 
+import '../styles/header.css'
+
+import SiteLogo from '../assets/images/Logo.png'
+
 const Header = () => {
   const dispatch = useDispatch()
   
@@ -21,27 +25,36 @@ const Header = () => {
  
 	return (
 		<header>
-		 <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-				<Container>
+		 <Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
+				<Container fluid>
 					<Row>
 					  <Col sm={4} md={3} lg={2}>
 						    <LinkContainer to='/'>
-						       <Navbar.Brand>Logo</Navbar.Brand>
+						       <Navbar.Brand><img className="site-logo" src={SiteLogo} alt='' /></Navbar.Brand>
 						    </LinkContainer>
 						</Col>
-						<Col sm={8} md={9} lg={10}>
+						<Col sm={8} md={9} lg={10} className="response-nav">
 						    <Navbar.Toggle aria-controls='basic-navbar-nav' />
 						    <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
-										<LinkContainer to='/cart'><Nav.Link>Home</Nav.Link></LinkContainer>
-										{userInfo ? (
-											    <NavDropdown title={userInfo.name} id='username'>
-	                           <LinkContainer to='/profile'>
-	                              <NavDropdown.Item>Profile</NavDropdown.Item>
-	                           </LinkContainer>
-	                           <NavDropdown.Item onClick={logoutHandler}>
-	                           		Logout
-	                           </NavDropdown.Item>
-											    </NavDropdown>
+								<LinkContainer to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
+								{userInfo ? (	
+										<LinkContainer to='/dashboard'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
+								) : (<div></div>) }
+								{userInfo ? (
+										<NavDropdown title={userInfo.name} id='username'>
+											<LinkContainer to='/profile'>
+												<NavDropdown.Item>Profile</NavDropdown.Item>
+											</LinkContainer>
+											<LinkContainer to='/profile'>
+												<NavDropdown.Item>Billing History</NavDropdown.Item>
+											</LinkContainer>
+											<LinkContainer to='/profile'>
+												<NavDropdown.Item>Users</NavDropdown.Item>
+											</LinkContainer>
+											<NavDropdown.Item onClick={logoutHandler}>
+													Logout
+											</NavDropdown.Item>
+										</NavDropdown>
 										) : (
 											<LinkContainer to='/login'><Nav.Link>Login</Nav.Link></LinkContainer>
 										)} 

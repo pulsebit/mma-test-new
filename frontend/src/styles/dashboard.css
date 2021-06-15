@@ -1,0 +1,39 @@
+/* Dashboard Sidebar */
+.dashboard-container{
+    padding: 20px 0;
+}
+.sidebar{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+    padding: 10px 20px;    
+    border-radius: 25px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li a {
+    margin-left: 15px;
+}
+.blue-bkg-title {
+    background-color: #3777FF;
+    color: #fff;
+    border-radius: 25px 25px 0 0;
+    padding: 10px;
+}
+.column-shadow {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+    border-radius: 25px;
+}
+.blue-bkg-title span {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* member-list */
+.main-data{
+    padding: 10px;
+}
+.main-data table{
+    width: 100%;
+    line-height: 2.5;
+}

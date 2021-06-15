@@ -1,0 +1,24 @@
+.text-wrapper span:nth-child(1):after{
+	content: "\007C";
+}
+.site-footer {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 40px 0; 
+}
+.site-footer .links{
+    width: max-content;
+    margin-left: auto;
+}
+.site-footer .links a{
+    margin-left: 15px;
+}
+.footer-hr  {
+    border-top: 2px solid #007bff;
+    margin: 0;
+}
+@media only screen and (max-width: 767px){
+    .site-footer .links{
+        margin: 0 auto;
+    }
+}
