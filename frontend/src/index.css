@@ -7,13 +7,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img{
+  width: 100%;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+a:hover{
+  color: #007bff;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 header {
   padding: 20px 0;
-  background: #f5f5f5;
+  background: #f8f9fa
 }
 .top-menu-li {
   list-style: none;
@@ -27,4 +38,11 @@ header {
 }
 .row {
   width: 100%;
+}
+.btn-primary {
+  width: 100%;
+}
+.dpa-tb-60{
+  padding-top: 60px;
+  padding-bottom: 60px;
 }

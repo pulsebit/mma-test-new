@@ -1,0 +1,155 @@
+/* Dashboard Sidebar */
+.dashboard-container{
+    padding: 0;
+}
+.dashboard{
+    margin: 0;
+}
+.sidebar{
+    background-color: #f4f4f4;
+    padding: 20px 0;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li{
+    margin-bottom: 25px;
+}
+
+.sidebar ul li a {
+    margin-left: 15px;
+}
+.blue-bkg-title {
+    background-color: #3777FF;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 20px 10px 10px 10px;
+}
+
+.main-content{
+    padding: 0;
+}
+
+/* member-list */
+.main-data {
+    padding: 10px 10px 30px 10px;
+}
+.main-data table{
+    width: 100%;
+    line-height: 2.5;
+}
+.main-data th{
+    font-weight: 600;
+}
+.delete-btn {
+    background-color: #f44336;
+    margin-left: 10px;
+}
+.delete-btn:hover {
+    background-color: #c2382d;
+    cursor: pointer;
+}
+.view-btn {
+    background-color: #fcae17;
+}
+.view-btn:hover {
+    background-color: #d09013;
+    cursor: pointer;
+}
+.view-btn, .delete-btn {
+    font-size: 12px;
+    border: none;
+    border-radius: 10px;
+    padding: 0px 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* ViewUserScreen */
+.view-user-screen .row{
+    align-items: center;
+}
+.view-user-screen .user-details{
+    padding: 0 35px;
+    border-left: 2px solid #3777ff5e;
+}
+.view-user-screen .user-details label{
+    display: block;
+}
+.view-user-screen .user-details input, .view-user-screen .user-details select {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 45px;
+    padding-left: 15px;
+}
+.view-user-screen .user-details input:focus, .view-user-screen .user-details select:focus{
+    outline-color: #3777FF;
+}
+.view-user-screen .update-btn{
+    width: max-content !important;
+    height: auto !important;
+    padding: 9px 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-weight: 600;
+    margin: 30px auto;
+    display: block
+}
+.choose-file{
+    font-size: 12px;
+}
+.view-user-screen .update-btn:hover{
+    background-color: #3e9241;
+    cursor: pointer;
+}
+.inner-img-wrapper {
+    max-width: 250px;
+}
+
+
+@media screen and (max-width: 991px) {
+    .sidebar ul li a {
+        display: block;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 767px) {
+    .sidebar{
+        padding: 0;
+    }
+    .sidebar ul li {
+        position: relative;
+        margin: 0;
+    }
+    .sidebar ul li a {
+        display: none;
+    }
+    .sidebar ul{
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0;
+    }
+    .img-wrapper {
+        padding-bottom: 25px;
+    }
+}
+@media screen and (max-width: 679px) {
+    .date{
+        display: none;
+    }
+}
+@media screen and (max-width: 581px) {
+    .prename, .surname{
+        display: none;
+    }
+}
+@media screen and (max-width: 449px) {
+    .status, .plan{
+        display: none;
+    }
+}
