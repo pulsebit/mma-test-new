@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import {Container } from 'react-bootstrap'
 import HomeScreen from './screens/HomeScreen'
 import DashboardMemberListScreen from './screens/DashboardMemberListScreen'
+import ViewUserScreen from './screens/ViewUserScreen'
 import ProductScreen from './screens/ProductScreen'
 import LoginScreen from './screens/LoginScreen'
 
@@ -13,12 +14,11 @@ function App() {
     <Router>
         <Header />
         <main>
-          <Container fluid>
             <Route path='/login' component={LoginScreen} />
             <Route path='/product/:id' component={ProductScreen}  />
             <Route path='/dashboard' component={DashboardMemberListScreen} />
+            <Route path='/user-edit' component={ViewUserScreen} />
             <Route path='/' component={HomeScreen} exact />
-          </Container>
         </main>
         <Footer />
     </Router>
