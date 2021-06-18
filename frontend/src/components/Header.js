@@ -29,14 +29,14 @@ const Header = () => {
 				<Container fluid>
 					<Row>
 					  <Col sm={4} md={3} lg={2}>
-						    <LinkContainer to='/'>
+						    <LinkContainer exact={true} to='/'>
 						       <Navbar.Brand><img className="site-logo" src={SiteLogo} alt='' /></Navbar.Brand>
 						    </LinkContainer>
 						</Col>
 						<Col sm={8} md={9} lg={10} className="response-nav">
 						    <Navbar.Toggle aria-controls='basic-navbar-nav' />
 						    <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
-								<LinkContainer to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
+								<LinkContainer exact={true} to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
 								{userInfo ? (	
 										<LinkContainer to='/dashboard'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
 								) : (<div></div>) }
