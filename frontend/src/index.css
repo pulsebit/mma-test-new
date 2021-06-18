@@ -16,6 +16,12 @@ a{
 }
 a:hover{
   color: #007bff;
+  text-decoration: none;
+  font-weight: 700;
+}
+.active {
+  color: #007bff;
+  font-weight: 700;
 }
 
 code {
@@ -23,7 +29,7 @@ code {
     monospace;
 }
 header {
-  padding: 20px 0;
+  padding:  0;
   background: #f8f9fa
 }
 .top-menu-li {
@@ -45,4 +51,24 @@ header {
 .dpa-tb-60{
   padding-top: 60px;
   padding-bottom: 60px;
+}
+
+/* TABLE SCROLL */
+table{
+  width: 100%;
+  line-height: 2;
+}
+th{
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 15px;
+  white-space: nowrap;
+}
+td {
+  text-align: left;
+  padding: 8px 15px;
+  white-space: nowrap;
+}
+tr:nth-child(even){
+  background-color: #3777ff26
 }

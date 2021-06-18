@@ -2,44 +2,40 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faConciergeBell, faUserAlt, faHistory, faBrain, faLink } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUserAlt, faTicketAlt, faKey, faBoxes, faListAlt, faCalendarAlt, faCogs } from '@fortawesome/free-solid-svg-icons'
 import { Row, Col, Container } from 'react-bootstrap'
 
 import '../styles/dashboard.css'
 
-const DashboardContainer = ({ children }) => {
+const AdminDashboard = ({ children }) => {
     return (
         <div className="dashboard-container">
+            <Container fluid>
             <Row className='dashboard'>
                 <Col xs={12} md={2} className="sidebar">
-                    <Container fluid>
-                        <ul>
-                            <li><FontAwesomeIcon icon={faHome} /><NavLink to='/profile'>Dashboard</NavLink></li>
-                            <li><FontAwesomeIcon icon={faConciergeBell} /><NavLink to='/profile'>Services</NavLink></li>
-                            <li><FontAwesomeIcon icon={faUserAlt} /><NavLink to='/profile'>Profile</NavLink></li>
-                            <li><FontAwesomeIcon icon={faHistory} /><NavLink to='/profile'>Payment History</NavLink></li>
-                            <li><FontAwesomeIcon icon={faBrain} /><NavLink to='/profile'>Knowledge Base</NavLink></li>
-                            <li><FontAwesomeIcon icon={faLink} /><NavLink to='/profile'>Link</NavLink></li>
-                            <li><FontAwesomeIcon icon={faLink} /><NavLink to='/profile'>Link</NavLink></li>
-                        </ul>
-                    </Container>
+                    <ul>
+                        <li><NavLink exact={true} to='/dashboard'><FontAwesomeIcon icon={faHome} /><span>Dashboard</span></NavLink></li>
+                        <li><NavLink to='/dashboard/supports'><FontAwesomeIcon icon={faTicketAlt} /><span>Supports</span></NavLink></li>
+                        <li><NavLink to='/dashboard/users'><FontAwesomeIcon icon={faUserAlt} /><span>Users</span></NavLink></li>
+                        <li><NavLink to='/dashboard/permissions'><FontAwesomeIcon icon={faKey} /><span>Permissions</span></NavLink></li>
+                        <li><NavLink to='/dashboard/product'><FontAwesomeIcon icon={faBoxes} /><span>Products</span></NavLink></li>
+                        <li><NavLink to='/dashboard/categories'><FontAwesomeIcon icon={faListAlt} /><span>Categories</span></NavLink></li>
+                        <li><NavLink to='/dashboard/plan'><FontAwesomeIcon icon={faCalendarAlt} /><span>Payment plans</span></NavLink></li>
+                        <li><NavLink to='/dashboard/settings'><FontAwesomeIcon icon={faCogs} /><span>Settings</span></NavLink></li>
+                    </ul>
                 </Col>
                 <Col xs={12} md={10} className="main-content">
-                    <div class="blue-bkg-title">
-                        <span>Member List</span>
-                    </div>                
-                    <Container fluid>
-                        <div class="member-list-wrapper">
-                            
-                            <div className="main-data">
-                                {children}
-                            </div>
+                    
+                    <div className="member-list-wrapper">
+                        <div className="main-data">
+                            {children}
                         </div>
-                    </Container>
+                    </div>
                 </Col>
             </Row>
+            </Container>
         </div>
     )
 }
 
-export default DashboardContainer
+export default AdminDashboard
