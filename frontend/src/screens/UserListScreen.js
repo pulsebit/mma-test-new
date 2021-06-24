@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
+import { listUsers }  from '../actions/userActions'
 
-function UserListScreen() {
+const UserListScreen = ({ history }) => {
+   const dispatch = useDispatch()
+
+   const userList = useSelector( state => state.userList)
+   const {loading, error, users } = userList
+
+   const userLogin = useSelector( state => state.userLogin)
+   const { userInfo } = userLogin
+
+   useEffect(() => {
+       if(userInfo && userInfo.isAdmin) {
+            dispatch(listUsers()) 
+       } else {
+            history.push('/login')
+       }
+        
+   }, [dispatch, history])
+
+    
     return (
-        <div> 
+        <> 
             <DashboardContainer>
                 <div className="blue-bkg-title">
                     <span>User List</span>
@@ -15,131 +36,42 @@ function UserListScreen() {
                         <table>
                             <tbody>
                                 <tr>
-                                    <th className="email">Email</th>
-                                    <th className="status">Status</th>
-                                    <th className="plan">Plan</th>
-                                    <th className="prename">First Name</th>
-                                    <th className="surname">Last Name</th>
-                                    <th className="date">Date</th>
-                                    <th className="action">Action</th>
-                                </tr>				
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Plan</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
                                 </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="email">user@gmail.com</td>
-                                    <td className="status">Active</td>
-                                    <td className="plan">Trainee</td>
-                                    <td className="prename">John</td>
-                                    <td className="surname">Smith</td>
-                                    <td className="date">5 March 2021</td>
-                                    <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
+                                { loading ? ( 
+                                  <Loader /> 
+                                ) : error ? ( 
+                                  <Message variant='danger'>{error}</Message>
+                                ) : (
+                                     <>
+                                        { users.map((user) => (
+                                                <tr>
+                                                    <td className="fullname">{user.name}</td>
+                                                    <td className="email">{user.email}</td>
+                                                    <td className="status">Active</td>
+                                                    <td className="plan">Basic</td>
+                                                    <td className="date"></td>
+                                                    <td>
+                                                       
+                                                        <NavLink to={`/admin/users-view/${user._id}`} className="view-btn">View</NavLink>
+                                                    </td>
+                                                </tr>
+                                         ))}
+                                    </>
+                                )} 
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </DashboardContainer>
-        </div>
-    );
+        </>
+    )
 }
 
 export default UserListScreen

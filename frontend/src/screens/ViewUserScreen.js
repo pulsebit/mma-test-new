@@ -1,26 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getUserDetails }  from '../actions/userActions'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
-import User from '../assets/images/user.png'
+import defaultImage from '../assets/images/user.png'
 import '../styles/dashboard.css'
 
 
-const ViewUserScreen = () => {
+const ViewUserScreen = ({ match }) => {
+    const userId = match.params.id
+    const dispatch = useDispatch()
+  
+    const userDetails = useSelector(state => state.userDetails)
+    const { loading, error, user } = userDetails
+
+    useEffect(() => {
+       dispatch(getUserDetails(userId))
+    }, [dispatch, match])
+     
     return (
-        <div>
+        <>
             <DashboardContainer>
                 <div className="blue-bkg-title">
                     <span>User Information</span>
                 </div>
                 <div className="view-user-screen">
+                { loading ? ( 
+                    <Loader /> 
+                ) : error ? ( 
+                    <Message variant='danger'>{error}</Message>
+                ) : (
                     <Row>
                         <Col md={2}>
                             <div className="img-wrapper">
                                 <div className="inner-img-wrapper">
-                                    <img className="" src={User} alt='' />
+                                    <img className="" src={defaultImage} alt='' />
                                 </div>
                             </div>
                         </Col>
@@ -30,16 +47,20 @@ const ViewUserScreen = () => {
                                 <Row>
                                     <Col md={6}>
                                         <div className="details-wrapper">
+                                            <label>ID</label>
+                                            <span>{user._id }</span>
+                                        </div>
+                                        <div className="details-wrapper">
                                             <label>Full Name</label>
-                                            <span>John Smith</span>
+                                            <span>{user.name}</span>
                                         </div>
                                         <div className="details-wrapper">
                                             <label>Mobile number</label>
-                                            <span>+61 7 7010 1111</span>
+                                            <span></span>
                                         </div>
                                         <div className="details-wrapper">
                                             <label>Email</label>
-                                            <span>user@gmail.com</span>
+                                            <span>{ user.email }</span>
                                         </div>
                                     </Col>
                                     <Col md={6}>
@@ -106,14 +127,15 @@ const ViewUserScreen = () => {
                         </Col>
                         <Col md={12}>
                             <div className="button-wrapper">
-                                <NavLink to="/user-edit" className="edit-btn">Edit Profile</NavLink>
-                                <input type="submit" value="Delete" className="delete-btn"/>
+                                <NavLink to={`/admin/users/${user._id}/edit`} className="edit-btn">Edit Profile</NavLink>
+                                <button className="delete-btn">Delete</button>
                             </div>
                         </Col>
                     </Row>
+                )}
                 </div>
             </DashboardContainer>
-        </div>
+        </>
     )
 }
 export default ViewUserScreen

@@ -15,8 +15,8 @@ const AdminDashboard = ({ children }) => {
                 <Col xs={12} md={2} className="sidebar">
                     <ul>
                         <li><NavLink exact={true} to='/dashboard'><FontAwesomeIcon icon={faHome} /><span>Dashboard</span></NavLink></li>
-                        <li><NavLink to='/dashboard/supports'><FontAwesomeIcon icon={faTicketAlt} /><span>Supports</span></NavLink></li>
                         <li><NavLink to='/dashboard/users'><FontAwesomeIcon icon={faUserAlt} /><span>Users</span></NavLink></li>
+                        <li><NavLink to='/dashboard/supports'><FontAwesomeIcon icon={faTicketAlt} /><span>Supports</span></NavLink></li>
                         <li><NavLink to='/dashboard/permissions'><FontAwesomeIcon icon={faKey} /><span>Permissions</span></NavLink></li>
                         <li><NavLink to='/dashboard/product'><FontAwesomeIcon icon={faBoxes} /><span>Products</span></NavLink></li>
                         <li><NavLink to='/dashboard/categories'><FontAwesomeIcon icon={faListAlt} /><span>Categories</span></NavLink></li>

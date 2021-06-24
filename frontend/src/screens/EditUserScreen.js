@@ -1,13 +1,59 @@
-import React from 'react'
-import { Row, Col } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import  { getUserDetails, updateUser, deleteUser } from '../actions/userActions.js'
+import { Row, Col, Form } from 'react-bootstrap'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'
 import '../styles/dashboard.css'
+import { USER_UPDATE_RESET }  from '../constants/userConstants'
 
 
-const EditUserScreen = () => {
+const EditUserScreen = ({ match, history }) => {
+    const userId = match.params.id
+    const dispatch = useDispatch() 
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const userDetails = useSelector(state => state.userDetails)
+    const { loading, error, user } = userDetails
+
+    const userUpdate = useSelector(state => state.userUpdate)
+    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = userUpdate
+
+
+    const userDelete = useSelector(state => state.userDelete)
+    const { loading:loadingDelete, error:errorDelete, success:successDelete } = userDelete
+
+    useEffect(() => {
+        if(successUpdate || successDelete) {
+            dispatch({ type: USER_UPDATE_RESET})
+            history.push('/dashboard/users')
+        } 
+        else {
+            if( !user.name || user._id !== userId) {
+                dispatch(getUserDetails(userId))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+                setIsAdmin(user.isAdmin)
+            }
+        }
+    }, [dispatch, userId, user, match, history, successUpdate, successDelete])
+
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault()
+        dispatch(updateUser({ _id: userId, name, email, isAdmin}))
+    }
+
+    const onDeleteHandler = (e) => {
+        e.preventDefault()
+        dispatch(deleteUser(userId))
+    }
+
     return (
         <div>
             <DashboardContainer>
@@ -15,7 +61,16 @@ const EditUserScreen = () => {
                     <span>Edit Information</span>
                 </div>
                 <div className="edit-user-screen">
-                    <Row>
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+                { loading ? ( 
+                    <Loader /> 
+                ) : error ? ( 
+                    <Message variant='danger'>{error}</Message>
+                ) : (
+                    <>
+                    <Form onSubmit={onSubmitHandler}>
+                     <Row>
                         <Col md={2}>
                             <div className="img-wrapper">
                                 <div className="inner-img-wrapper">
@@ -32,12 +87,11 @@ const EditUserScreen = () => {
                                         <Col md={6}>
                                             <div className='details-wrapper'>
                                                 <label>Full name:</label>
-                                                <input type="text" />
+                                                <input type="text" name="fullname" value={name} onChange={(e) => setName(e.target.value)} />
                                                 <label>Mobile number:</label>
                                                 <input type="text" />
                                                 <label>Email:</label>
-                                                <input type="text" />
-                                            
+                                                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                                             </div>
                                         </Col>
                                         <Col md={6}>
@@ -96,9 +150,13 @@ const EditUserScreen = () => {
                             </div>
                         </Col>
                         <Col md={12}>
-                            <button className="update-btn">Update</button>
+                            <input type="submit" value="Update" className="update-btn" />
                         </Col>
                     </Row>
+                    </Form>  
+                    <button onClick={onDeleteHandler} className='btn btn-danger'>Delete</button>  
+                    </>
+                )}
                 </div>
             </DashboardContainer>
         </div>

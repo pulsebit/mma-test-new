@@ -31,8 +31,8 @@ function App() {
               <Route path='/dashboard/categories' component={CategoriesScreen} />
               <Route path='/dashboard/plan' component={PlanListScreen} />
               <Route path='/dashboard/settings' component={Settings} />
-              <Route path='/user-view' component={ViewUserScreen} />
-              <Route path='/user-edit' component={EditUserScreen} />
+              <Route path='/admin/users-view/:id' component={ViewUserScreen} />
+              <Route path='/admin/users/:id/edit' component={EditUserScreen} />
               <Route path='/' component={HomeScreen} exact />
           </main>
         <Footer />
