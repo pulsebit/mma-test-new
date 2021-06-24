@@ -1,0 +1,37 @@
+.dashboard-container{
+    padding: 0;
+    background-color: #f4f4f4;
+
+    .dashboard{
+        margin: 0;
+
+        .sidebar {
+
+            .side-navigation-panel {
+                @include resposive(sm-desktop){
+                    display: flex;
+                }
+                
+                ul {
+                    padding: 10px 0;
+
+                    li {
+
+                        .side-navigation-panel-select-option-text {
+                            line-height: 1.8;
+                        }
+                        svg {
+                            @include resposive(custom-2){
+                                display: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+            }
+            
+        .main-content {
+            padding: 25px 0;
+        }
+    }
+}

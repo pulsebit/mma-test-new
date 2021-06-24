@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import DashboardContainer from '../components/DashboardContainer'
 
-function PermissionsScreen() {
+const PermissionsScreen = () => {
     return (
         <div> 
             <DashboardContainer>

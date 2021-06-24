@@ -3,15 +3,15 @@ import { NavLink } from 'react-router-dom'
 
 import DashboardContainer from '../components/DashboardContainer'
 
-function UserListScreen() {
+const UserListScreen = () => {
     return (
         <div> 
             <DashboardContainer>
-                <div className="blue-bkg-title">
-                    <span>User List</span>
-                </div>
-                <div class="member-data">
-                    <div className="table-wrapper">
+                <div className="section-wrapper">
+                    <div className="blue-bkg-title def-padding">
+                        <span>User List</span>
+                    </div>
+                    <div className="table-wrapper def-padding">
                         <table>
                             <tbody>
                                 <tr>
@@ -31,7 +31,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -42,7 +42,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink> 
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -53,7 +53,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -64,7 +64,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -75,7 +75,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,7 +86,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink> 
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -97,7 +97,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -108,7 +108,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -119,7 +119,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,7 +130,7 @@ function UserListScreen() {
                                     <td className="surname">Smith</td>
                                     <td className="date">5 March 2021</td>
                                     <td>
-                                        <NavLink to='/user-view' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                             </tbody>

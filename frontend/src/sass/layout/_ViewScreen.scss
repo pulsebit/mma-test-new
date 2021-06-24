@@ -1,0 +1,33 @@
+.view-screen {
+    .img-wrapper {
+        .inner-img-wrapper{
+            max-width: 200px;
+            padding: 20px 0;
+        }
+    }
+    .user-details {
+        padding-bottom: 30px;
+      
+        .details-wrapper {
+            padding: 25px 0 0 0;
+            border-bottom: 1px solid #00000033;
+            min-height: 75px;
+      
+            label {
+                font-weight: 700;
+                font-size: 12px;
+                margin: 0 0 5px 0;
+            }
+      
+            span {
+                display: inline-block;
+                margin-left: 20px;
+            }
+        }
+    }
+    
+    .button-wrapper {
+        text-align: right;
+    }
+
+}

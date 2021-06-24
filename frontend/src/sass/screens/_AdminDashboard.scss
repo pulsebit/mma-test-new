@@ -1,0 +1,47 @@
+.admin-dashboard {
+    .activity-wrapper {
+        font-size: 15px;
+
+        .activiy-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            .time {
+                position: relative;
+            }
+
+            .icon {
+                position: relative;
+                font-size: 30px;
+            }
+
+            h6 {
+                font-weight: 700;
+            }
+
+            .sub {
+
+                span {
+                    font-weight: 700;
+                    color: #222;
+                }
+            }
+        }
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .info {
+        margin-bottom: 15px;
+    }
+}
+.number {
+    font-size: 45px;
+    font-weight: 900;
+    display: block;
+    text-align: center;
+}

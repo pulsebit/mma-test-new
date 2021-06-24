@@ -1,0 +1,28 @@
+// bootstrap-overide
+.row {
+  width: 100%;
+  margin: 0;
+}
+/* TABLE SCROLL */
+.table-wrapper{
+    overflow-x: auto;
+    
+  table{
+    width: 100%;
+    line-height: 2;
+  }
+  th{
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 15px;
+    white-space: nowrap;
+  }
+  td {
+    text-align: left;
+    padding: 8px 15px;
+    white-space: nowrap;
+  }
+  tr:nth-child(even){
+    background-color: #3777ff26
+  }
+}

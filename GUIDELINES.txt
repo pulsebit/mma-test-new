@@ -1,0 +1,117 @@
+User info
+  Full name
+  Mobile number
+  Email
+  Address
+  Gender
+  Birthdate
+
+Membership info
+  Membership type: Customer, Free, 
+  Payment plan
+  Amount due
+  Renewal date
+
+Activity Log
+  Date      Notes                          Updated By
+            Full name has been updated     July  
+
+
+
+---------------------
+Product info
+  SKU
+  Product Name 
+    SEO, Web development, FB ads
+  Price
+    599 AUD
+  Description
+
+
+Payment Plan
+------------------------
+
+ Silver
+    Name: Gold Silver Platinum
+    Price: 3000 AUD
+
+
+    Products
+      SEO
+      Web development and support
+
+
+ Subscribe clients
+ Name  adsfas
+
+
+
+ SIDEBAR
+ Dashboard
+ Supports
+ Users
+ Permissions
+ Products
+ Categories
+ Payment plans
+ Settings
+
+--------------------------------------------------------------------------------------------------------------
+
+Products
+  /admin/products (view list)
+    ID, Product Name, SKU, Date added, Action
+  /admin/products/:id  (product_view)
+    ID, name, sku, date added, category, reg price, sale price
+    description, short description, image, created by
+
+
+Category
+   /admin/categories (view list)
+      ID, Name, Description, Date created, action      
+
+  View
+     Image, short description, description, name, id, date created, 
+
+
+Payment plans
+  /admin/payment_plans
+   ID, name, Current subscribers, Price, action
+
+  View 
+
+Supports
+   /admin/supports
+    ID, Client Name, Issue, Date created, priority, action
+
+  /admin/supports/:id
+  
+    Support info
+      id, client name, issue, date carated, priority, payment_plan
+      Mobile no., email
+
+    Assigned 
+      Name, Email, Department, Mobile no., date assigned
+
+
+    Notes
+       Id   Added by      Notes                          date
+        2    July         Already sent email to client.  2/3/2021
+
+   
+ Permissions
+   
+ Knowledge base
+    ID, Name, description, date_added, category
+
+
+
+ Settings
+    - Admin email
+    - Site Title
+    - Site description
+    - Default Logo
+    - default role when register
+         - customer
+         - subscriber
+         - admin

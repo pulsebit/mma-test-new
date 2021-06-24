@@ -38,7 +38,7 @@ const Header = () => {
 						    <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
 								<LinkContainer exact={true} to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
 								{userInfo ? (	
-										<LinkContainer to='/dashboard'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
+										<LinkContainer to='/admin'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
 								) : (<div></div>) }
 								{userInfo ? (
 										<NavDropdown title={userInfo.name} id='username'>

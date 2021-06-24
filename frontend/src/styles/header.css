@@ -1,21 +1,4 @@
-.site-logo {
-    width: 250px;
-}
-#basic-navbar-nav a {
-    font-size: 15px;
-    font-weight: 600;
-}
-.active{
-    color: #007bff;    
-}
-.response-nav.col-lg-10.col-md-9.col-sm-8 {
-    display: flex;
-    flex-direction: column;
-    align-content: flex-end;
-    align-items: flex-end;
-}
-.dropdown-menu.show a:hover {
-    background-color: #007bff;
-    color: #fff;
-}
+
+
+
 
