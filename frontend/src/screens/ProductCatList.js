@@ -18,37 +18,65 @@ const ProductCatList = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Current subscribers</th>
-                                    <th>Price</th>
-                                    <th>action</th>
+                                    <th>Description</th>
+                                    <th>Date Created</th>
+                                    <th>Action</th>
                                 </tr>
                                 <tr>
-                                    <td>Gold</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
+                                    <td>321</td>
+                                    <td>Category A</td>
+                                    <td className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                    <td>12/12/12</td>
                                     <td>
-                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/product-categories/view' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Silver</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
+                                    <td>321</td>
+                                    <td>Category A</td>
+                                    <td className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                    <td>12/12/12</td>
                                     <td>
-                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/product-categories/view' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Platinum</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
+                                    <td>321</td>
+                                    <td>Category A</td>
+                                    <td className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                    <td>12/12/12</td>
                                     <td>
-                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/product-categories/view' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>321</td>
+                                    <td>Category A</td>
+                                    <td className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                    <td>12/12/12</td>
+                                    <td>
+                                        <NavLink to='/admin/product-categories/view' className="view-btn">View</NavLink>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>321</td>
+                                    <td>Category A</td>
+                                    <td className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                    <td>12/12/12</td>
+                                    <td>
+                                        <NavLink to='/admin/product-categories/view' className="view-btn">View</NavLink>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>321</td>
+                                    <td>Category A</td>
+                                    <td className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                    <td>12/12/12</td>
+                                    <td>
+                                        <NavLink to='/admin/product-categories/view' className="view-btn">View</NavLink>
+                                    </td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>

@@ -16,7 +16,7 @@ const AdminDashboard = () => {
     return (
         <div> 
             <DashboardContainer>
-                <div className="c-mag-side-neg-15">
+                <div className="c-mar-side-neg-15">
                     <Row>
                         <Col md={3}>
                             <div className="section-wrapper">

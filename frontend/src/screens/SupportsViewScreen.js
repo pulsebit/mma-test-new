@@ -121,7 +121,7 @@ const SupportsViewScreen = () => {
                     </div>
                         
                     <div className="button-wrapper def-padding">
-                        <NavLink to="/admin/supports/edit" className="edit-btn">Edit Profile</NavLink>
+                        <NavLink to="/admin/supports/:id/edit" className="edit-btn">Edit Profile</NavLink>
                         <input type="submit" value="Delete" className="delete-btn"/>
                     </div>
             </DashboardContainer>

@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 import DashboardContainer from '../components/DashboardContainer'
 
-import '../styles/product.css'
-
 const ProductListScreen = () => {
     return (
         <div> 

@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 import DashboardContainer from '../components/DashboardContainer'
 
-import '../styles/plan.css'
-
 const PlanListScreen = () => {
     return (
         <div> 

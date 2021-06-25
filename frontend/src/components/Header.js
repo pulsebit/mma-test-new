@@ -4,8 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Nav, Row, Col, Navbar, NavDropdown  } from 'react-bootstrap'
 import { logout } from '../actions/userActions'
 
-import '../styles/header.css'
-
 import SiteLogo from '../assets/images/Logo.png'
 
 const Header = () => {

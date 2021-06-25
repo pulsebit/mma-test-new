@@ -58,6 +58,18 @@ Payment Plan
 
 --------------------------------------------------------------------------------------------------------------
 
+Dashboard
+  - Numbers
+   - Total Clients
+   - Total Supports
+   - Total Payments
+   - Pending payments   
+
+  - Chart
+    - Tickets
+    - Knowledge base
+Recent activities
+
 Products
   /admin/products (view list)
     ID, Product Name, SKU, Date added, Action
@@ -66,7 +78,7 @@ Products
     description, short description, image, created by
 
 
-Category
+Category ( )
    /admin/categories (view list)
       ID, Name, Description, Date created, action      
 
@@ -80,7 +92,7 @@ Payment plans
 
   View 
 
-Supports
+Supports (Acounting , tech supp , billing support, integration)
    /admin/supports
     ID, Client Name, Issue, Date created, priority, action
 
@@ -101,7 +113,7 @@ Supports
    
  Permissions
    
- Knowledge base
+ Knowledge base ( API, Traking, Acount)
     ID, Name, description, date_added, category
 
 

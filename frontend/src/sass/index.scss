@@ -1,6 +1,6 @@
-@import "./abstracts/functions";
+// @import "./abstracts/functions";
 @import "./abstracts/mixins";
-@import "./abstracts/placeholder";
+// @import "./abstracts/placeholder";
 @import "./abstracts/variables";
 
 @import "./base/reset";
@@ -9,27 +9,26 @@
 
 @import "./components/helpers";
 @import "./components/buttons";
-@import "./components/carousel";
-@import "./components/cover";
-@import "./components/dropdown";
+// @import "./components/carousel";
+// @import "./components/cover";
 @import "./components/overides";
 
 @import "./layout/footer";
-@import "./layout/forms";
-@import "./layout/grid";
+// @import "./layout/forms";
+// @import "./layout/grid";
 @import "./layout/header";
 @import "./layout/navigation";
 @import "./layout/sidebar";
 @import "./layout/ViewScreen";
 @import "./layout/EditScreen";
 
-@import "./pages/contact";
-@import "./pages/home";
+// @import "./pages/contact";
+// @import "./pages/home";
 
 // SCREENS
 @import "./screens/AdminDashboard";
 @import "./screens/LoginScreen";
 @import "./screens/UserEditScreen";
 
-@import "./themes/admin";
-@import "./themes/theme";
+// @import "./themes/admin";
+// @import "./themes/theme";

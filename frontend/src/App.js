@@ -19,6 +19,7 @@ import ProductListScreen from './screens/ProductListScreen'
 import ProductViewScreen from './screens/ProductViewScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import ProductCatList from './screens/ProductCatList'
+import ProductCatViewScreen from './screens/ProductCatViewScreen'
 
 import ProductScreen from './screens/ProductScreen'
 
@@ -38,17 +39,18 @@ function App() {
               <Route path='/login' component={LoginScreen} />
               <Route path='/admin' component={AdminDashboard} exact />
               <Route path='/admin/supports' component={SupportsListScreen} exact/>
-              <Route path='/admin/supports/:id' component={SupportsViewScreen} />
-              <Route path='/admin/supports/edit' component={SupportsEditScreen} />
+              <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>
+              <Route path='/admin/supports/:id/edit' component={SupportsEditScreen} />
               <Route path='/admin/users' component={UserListScreen} exact />
-              <Route path='/admin/users/:id' component={UserViewScreen}  />
               <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
+              <Route path='/admin/users-view/:id' component={UserViewScreen} />
               <Route path='/admin/permissions' component={PermissionsScreen} />
 
               <Route path='/admin/productlist/' component={ProductListScreen} />
               <Route path='/admin/product/:id' component={ProductViewScreen}  />
               <Route path='/admin/product/:id/edit' component={ProductEditScreen}  />
-              <Route path='/admin/product-categories' component={ProductCatList}  />
+              <Route path='/admin/product-categories' component={ProductCatList} exact />
+              <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
               
               <Route path='/product/:id' component={ProductScreen}  />
               <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />

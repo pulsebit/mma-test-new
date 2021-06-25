@@ -138,6 +138,12 @@ p {
   margin-right: -15px;
 }
 
+.button-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .custom-link-button {
   background-color: #007bff;
   color: #fff;
@@ -154,17 +160,15 @@ p {
   padding: 4px 15px;
   display: inline-block;
   border-radius: 5px;
-  font-weight: 400;
-  font-weight: 400;
 }
 
 .view-btn {
   background-color: #3777FF;
   padding: 5px 20px;
-  font-size: 12px;
+  font-size: 17px;
   color: #fff;
   border-radius: 5px;
-  font-weight: 700;
+  font-weight: 400;
   display: block;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -176,6 +180,7 @@ p {
   cursor: pointer;
   color: #fff;
   text-decoration: none;
+  font-weight: 400;
 }
 
 .edit-btn {
@@ -187,28 +192,32 @@ p {
   border: none;
   background-color: #fcae17;
   color: #fff;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 400;
+  font-size: 17px;
   display: inline-block;
-  font-size: 12px;
+  margin-left: auto;
 }
 
 .edit-btn:hover {
   background-color: #d09013;
   color: #fff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .delete-btn {
-  font-size: 12px;
+  font-size: 17px;
   border: none;
   border-radius: 5px;
   padding: 15px 20px;
-  font-weight: 600;
+  font-weight: 400;
   color: #fff;
   background-color: #f44336;
   margin-left: 10px;
+  position: relative;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .delete-btn:hover {
@@ -217,25 +226,28 @@ p {
 }
 
 .update-btn {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  font-size: 12px;
-  border-radius: 10px;
-  padding: 15px 20px;
-  font-weight: 600;
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  font-size: 17px;
+  border-radius: 5px;
+  font-weight: 400;
   color: #fff;
+  padding: 15px 20px;
   background-color: #4CAF50;
   width: max-content !important;
   margin-left: auto;
   border: none;
+  position: relative;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .update-btn:hover {
   background-color: #3e9241;
   cursor: pointer;
   color: #fff;
-  font-weight: 600;
 }
 
 .row {
@@ -264,6 +276,11 @@ p {
   text-align: left;
   padding: 8px 15px;
   white-space: nowrap;
+}
+
+.table-wrapper .description {
+  white-space: normal;
+  max-width: 300px;
 }
 
 .table-wrapper tr:nth-child(even) {
@@ -331,20 +348,6 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   color: #fff;
 }
 
-.top-menu-li {
-  list-style: none;
-  text-align: right;
-}
-
-.top-menu-li li {
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.top-menu-li li a {
-  padding: 5px;
-}
-
 .dashboard-container {
   padding: 0;
   background-color: #f4f4f4;
@@ -389,10 +392,26 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   padding-bottom: 30px;
 }
 
+.view-screen .user-details .title {
+  font-weight: 900;
+  color: #3777ff;
+  font-size: 12px;
+  background-color: #e2e2e2;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 -12px;
+}
+
 .view-screen .user-details .details-wrapper {
   padding: 25px 0 0 0;
   border-bottom: 1px solid #00000033;
   min-height: 75px;
+}
+
+.view-screen .user-details .details-wrapper .inner-img-wrapper {
+  max-width: 200px;
+  margin-left: 15px;
 }
 
 .view-screen .user-details .details-wrapper label {
@@ -424,6 +443,10 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 
 .section-wrapper input:focus {
   outline: none;
+}
+
+.section-wrapper button {
+  display: inline-block;
 }
 
 .section-wrapper textarea {
