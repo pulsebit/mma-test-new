@@ -5,15 +5,30 @@ import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import AdminDashboard from './screens/AdminDashboard'
-import SupportsScreen from './screens/SupportsScreen'
+
+import SupportsListScreen from './screens/SupportsListScreen'
+import SupportsViewScreen from './screens/SupportsViewScreen'
+import SupportsEditScreen from './screens/SupportsEditScreen'
+
 import UserListScreen from './screens/UserListScreen'
-import ViewUserScreen from './screens/ViewUserScreen'
-import EditUserScreen from './screens/EditUserScreen'
+import UserViewScreen from './screens/UserViewScreen'
+import UserEditScreen from './screens/UserEditScreen'
+
 import PermissionsScreen from './screens/PermissionsScreen'
 import ProductListScreen from './screens/ProductListScreen'
+import ProductViewScreen from './screens/ProductViewScreen'
+import ProductEditScreen from './screens/ProductEditScreen'
+import ProductCatList from './screens/ProductCatList'
+import ProductCatViewScreen from './screens/ProductCatViewScreen'
+
 import ProductScreen from './screens/ProductScreen'
-import CategoriesScreen from './screens/CategoriesScreen'
+
+import KnowledgeBaseScreen from './screens/KnowledgeBaseScreen'
+
 import PlanListScreen from './screens/PlanListScreen'
+import PlanEditScreen from './screens/PlanEditScreen'
+import PlanViewScreen from './screens/PlanViewScreen'
+
 import Settings from './screens/Settings'
 
 function App() {
@@ -22,17 +37,27 @@ function App() {
         <Header />
           <main>
               <Route path='/login' component={LoginScreen} />
-              <Route path='/dashboard' component={AdminDashboard} exact/>
-              <Route path='/dashboard/supports' component={SupportsScreen} />
-              <Route path='/dashboard/users' component={UserListScreen} />
-              <Route path='/dashboard/permissions' component={PermissionsScreen} />
-              <Route path='/dashboard/product' component={ProductListScreen} />
+              <Route path='/admin' component={AdminDashboard} exact />
+              <Route path='/admin/supports' component={SupportsListScreen} exact/>
+              <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>
+              <Route path='/admin/supports/:id/edit' component={SupportsEditScreen} />
+              <Route path='/admin/users' component={UserListScreen} exact />
+              <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
+              <Route path='/admin/users-view/:id' component={UserViewScreen} />
+              <Route path='/admin/permissions' component={PermissionsScreen} />
+
+              <Route path='/admin/productlist/' component={ProductListScreen} />
+              <Route path='/admin/product/:id' component={ProductViewScreen}  />
+              <Route path='/admin/product/:id/edit' component={ProductEditScreen}  />
+              <Route path='/admin/product-categories' component={ProductCatList} exact />
+              <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
+              
               <Route path='/product/:id' component={ProductScreen}  />
-              <Route path='/dashboard/categories' component={CategoriesScreen} />
-              <Route path='/dashboard/plan' component={PlanListScreen} />
-              <Route path='/dashboard/settings' component={Settings} />
-              <Route path='/admin/users-view/:id' component={ViewUserScreen} />
-              <Route path='/admin/users/:id/edit' component={EditUserScreen} />
+              <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />
+              <Route path='/admin/plan' component={PlanListScreen} />
+              <Route path='/admin/plan/:id' component={PlanViewScreen} />
+              <Route path='/admin/plan/edit' component={PlanEditScreen} />
+              <Route path='/admin/settings' component={Settings} />
               <Route path='/' component={HomeScreen} exact />
           </main>
         <Footer />

@@ -1,0 +1,33 @@
+.section-wrapper {
+    .choose-file {
+        border: none;
+        padding: 0;
+        overflow: hidden;
+        width: 110px;
+    }
+    input {
+        border: 1px solid #22222226;
+        padding: 10px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+    button {
+        display: inline-block
+    }
+    textarea {
+        width: 100%;
+        height: 200px;
+        padding: 15px;
+    }
+    .short-des{
+        width: 100%;
+        height: 100px;
+        padding: 15px;
+    }
+    select {
+        border: 1px solid #22222226;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,99 @@
+.button-wrapper {
+    display: flex;
+}
+
+.custom-link-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 4px 15px;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 400;
+    border: 1px solid #007bff;
+
+    &:hover {
+        background-color: #fff;
+        color: #007bff;
+        padding: 4px 15px;
+        display: inline-block;
+        border-radius: 5px;
+    }
+}
+
+.view-btn {
+    background-color: #3777FF;
+    padding: 5px 20px;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 400;
+    display: block;
+    width: max-content;
+
+    &:hover {
+        background-color: #2557c2;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 400;
+    }
+}
+
+.edit-btn {
+    width: max-content;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fcae17;
+    color: #fff;
+    font-weight: 400;
+    font-size: 17px;
+    display: inline-block;
+    margin-left: auto;
+
+    &:hover {
+        background-color: #d09013;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 400;
+    }
+}
+
+.delete-btn {
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    font-weight: 400;
+    color: #fff;
+    background-color: #f44336;
+    margin-left: 10px;
+    position: relative;
+    height: max-content;
+
+    &:hover {
+        background-color: #c2382d;
+        cursor: pointer;
+    }
+}    
+
+.update-btn{
+    width: max-content !important;
+    font-size: 17px;
+    border-radius: 5px;
+    font-weight: 400;
+    color: #fff;
+    padding: 15px 20px;
+    background-color: #4CAF50;
+    width: max-content !important;
+    margin-left: auto;
+    border: none;
+    position: relative;
+    height: max-content;
+    
+    &:hover{
+        background-color: #3e9241;
+        cursor: pointer;
+        color: #fff;
+    }
+}

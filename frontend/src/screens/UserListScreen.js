@@ -28,11 +28,11 @@ const UserListScreen = ({ history }) => {
     return (
         <> 
             <DashboardContainer>
-                <div className="blue-bkg-title">
-                    <span>User List</span>
-                </div>
-                <div class="member-data">
-                    <div className="table-wrapper">
+                <div className="section-wrapper">
+                    <div className="blue-bkg-title def-padding">
+                        <span>User List</span>
+                    </div>
+                    <div className="table-wrapper def-padding">
                         <table>
                             <tbody>
                                 <tr>
