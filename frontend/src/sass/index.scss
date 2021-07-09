@@ -9,7 +9,8 @@
 
 @import "./components/helpers";
 @import "./components/buttons";
-// @import "./components/carousel";
+@import "./components/box";
+@import "./components/card";
 // @import "./components/cover";
 @import "./components/overides";
 
@@ -18,9 +19,13 @@
 // @import "./layout/grid";
 @import "./layout/header";
 @import "./layout/navigation";
+@import "./layout/BillingLayout";
+@import "./layout/DashboardContainer";
+@import "./layout/PermissionLayout";
 @import "./layout/sidebar";
 @import "./layout/ViewScreen";
 @import "./layout/EditScreen";
+@import './layout/Client';
 
 // @import "./pages/contact";
 // @import "./pages/home";

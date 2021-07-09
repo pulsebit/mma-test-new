@@ -1,15 +1,8 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-
 import { Row , Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-
 import DashboardContainer from '../components/DashboardContainer'
-import Chart from '../assets/images/chart.png'
-import PieChart from '../assets/images/pie-chart.png'
-import Chart2 from  '../assets/images/chart2.jpg'
-import LineChart from '../components/LineChart'
 
 const AdminDashboard = () => {
     

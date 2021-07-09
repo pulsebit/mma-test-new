@@ -83,7 +83,7 @@ const ProductViewScreen = () => {
                 </div>
 
                 <div className="button-wrapper def-padding">
-                    <NavLink to="/admin/product/edit" className="edit-btn">Edit Product</NavLink>
+                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit Product</NavLink>
                     <input type="submit" value="Delete" className="delete-btn"/>
                 </div>
                     

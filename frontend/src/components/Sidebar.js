@@ -57,7 +57,7 @@ const Sidebar = () => {
               },
               {
                 title: 'Permissions',
-                itemId: '/admin/permissions',
+                itemId: '/admin/permissions/all',
                 elemBefore: () => <FontAwesomeIcon icon={faKey} />,
               },
               {
@@ -97,7 +97,7 @@ const Sidebar = () => {
               },
               {
                 title: 'Settings',
-                itemId: '/admin/settings',
+                itemId: '/admin/settings/account',
                 elemBefore: () => <FontAwesomeIcon icon={faCogs} />,
               },
             ]}

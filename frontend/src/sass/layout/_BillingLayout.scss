@@ -1,0 +1,51 @@
+.billing-layout {
+    background-color: $secondary-bg-color;
+
+    .bill-tab {
+        display: flex;
+
+        li {
+            a {
+                padding: 20px 40px;
+                display: block;
+                color: inherit;
+                font-weight: 700;
+            }
+
+            .active {
+                border-bottom: 1px solid $primary-color;
+            }
+        }
+    }
+
+    .main-content {
+        border-top: 1px solid #00000033;
+        
+
+        .table-wrapper {
+            a {
+                color: $primary-color;
+                font-weight: 700;
+                display: block;
+                text-align: right;
+                padding: 10px;
+                font-size: 12px;
+            }
+            
+            table {
+                th {
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+
+                td {
+                    a {
+                        color: $tertiary-color;
+                        font-weight: 400;
+                        padding: 5px 15px;
+                    }
+                }
+            }
+        }
+    }
+}

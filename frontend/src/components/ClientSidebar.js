@@ -4,7 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUserAlt, faTicketAlt, faKey, faBoxes, faCalendarAlt, faCogs, faBrain } from '@fortawesome/free-solid-svg-icons'
+import { faUserAlt, faTicketAlt, faKey, faBrain, faFile, faUsers } from '@fortawesome/free-solid-svg-icons'
 
 
 const ClientSidebar = () => {
@@ -12,7 +12,7 @@ const ClientSidebar = () => {
     const location = useLocation();
     return (
         <>
-        <Navigation
+        <Navigation 
             // you can use your own router's api to get pathname
             activeItemId={location.pathname}
             onSelect={({itemId}) => {
@@ -21,84 +21,50 @@ const ClientSidebar = () => {
             }}
             items={[
               {
-                title: 'Dashboard',
-                itemId: '/admin',
-                // you can use your own custom Icon component as well
-                // icon is optional
-                elemBefore: () => <FontAwesomeIcon icon={faHome} />,
+                title: 'Reports',
+                itemId: '/portal/reports',
+                elemBefore: () => <FontAwesomeIcon icon={faFile} />,
               },
               {
-                title: 'Supports',
-                itemId: '/admin/supports',
+                title: 'Services',
+                itemId: '/portal/services/basic',
                 elemBefore: () => <FontAwesomeIcon icon={faTicketAlt} />,
-                subNav: [
-                  {
-                    title: 'Acounting',
-                    itemId: '/admin/supports/acounting',
-                  },
-                  {
-                    title: 'Technical Support',
-                    itemId: '/admin/supports/technical',
-                  },
-                  {
-                    title: 'Billing Support',
-                    itemId: '/admin/supports/billing',
-                  },
-                  {
-                    title: 'integration',
-                    itemId: '/management/teams',
-                  },
-                ],
               },
               {
-                title: 'User',
-                itemId: '/admin/users',
+                title: 'Members Portal',
+                itemId: '/portal/membership-info',
                 elemBefore: () => <FontAwesomeIcon icon={faUserAlt} />,
               },
               {
-                title: 'Permissions',
-                itemId: '/admin/permissions',
+                title: 'Support',
+                itemId: '/portal/support',
                 elemBefore: () => <FontAwesomeIcon icon={faKey} />,
               },
               {
-                title: 'Products',
-                itemId: '/admin/productlist',
-                elemBefore: () => <FontAwesomeIcon icon={faBoxes} />,
+                title: 'Knowledge Base',
+                itemId: '/portal/knowlegebase',
+                elemBefore: () => <FontAwesomeIcon icon={faBrain} />, 
                 subNav: [
                   {
                     title: 'Categories',
-                    itemId: '/admin/product-categories',
+                    itemId: '/portal/knowlegebase/categories',
                   },
                 ],
               },
               {
-                title: 'Knowledge Base',
-                itemId: '/admin/knowledge-base',
-                elemBefore: () => <FontAwesomeIcon icon={faBrain} />,
+                title: 'Members',
+                itemId: '/portal/staff',
+                elemBefore: () => <FontAwesomeIcon icon={faUsers} />,
                 subNav: [
                   {
-                    title: 'API',
-                    itemId: '/admin/knowledge-base/api',
+                    title: 'All staff',
+                    itemId: '/portal/staff',
                   },
                   {
-                    title: 'Traking',
-                    itemId: '/admin/knowledge-base/tracking',
-                  },
-                  {
-                    title: 'Acount',
-                    itemId: '/admin/knowledge-base/acount',
+                    title: 'Add new',
+                    itemId: '/portal/add-staff/',
                   },
                 ],
-              },
-              {
-                title: 'Payment Plans',
-                itemId: '/admin/plan',
-                elemBefore: () => <FontAwesomeIcon icon={faCalendarAlt} />,
-              },
-              {
-                title: 'Settings',
-                itemId: '/admin/settings',
-                elemBefore: () => <FontAwesomeIcon icon={faCogs} />,
               },
             ]}
           />

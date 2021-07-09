@@ -1,4 +1,16 @@
+// need to be move
+.profile {
+    background-color: #ececec;
+}
 .view-screen {
+    a {
+        display: block;
+        font-weight: 700;
+        color: $primary-color;
+        padding: 10px 20px;
+        text-align: right;
+    }
+
     .img-wrapper {
         .inner-img-wrapper{
             max-width: 200px;
@@ -38,6 +50,16 @@
             span {
                 display: inline-block;
                 margin-left: 20px;
+            }
+
+            ul {
+                list-style: disc;
+                margin-left: 15px;
+                line-height: 1.5;
+
+                li {
+                    margin-left: 15px;
+                }
             }
         }
     }

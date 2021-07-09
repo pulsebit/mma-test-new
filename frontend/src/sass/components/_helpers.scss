@@ -12,19 +12,64 @@
     margin-bottom: 15px;
 
     .blue-bkg-title {
-        background-color: #3777FF;
+        background-color: $primary-color;
         border-radius: 5px 5px 0 0;
+        display: flex;
+        align-items: center;
         
         span {
             color: #fff;
             font-weight: 600;
+            display: block;
         }
       }
+
+    button {
+        position: relative;
+    }
 }
 .def-padding {
     padding: 20px;
 }
+
+.padding-tb-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.pad-tb-60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.empha {
+    color: $primary-color;
+    font-weight: 700;
+}
+.pad-lr-60 {
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+}
+
+.mar-tb-20 {
+    margin-top: 20px
+}
+
+.mar-t-n-50 {
+    margin-top: -50px
+}
 .c-mar-side-neg-15 {
     margin-left: -15px;
     margin-right: -15px;
+}
+.text-center {
+    text-align: center;
+}
+
+.first-color {
+    color: #3777FF;
+}
+.second-color {
+    color: #fcae17;
+}
+.third-color {
+    color: #4CAF50;
 }

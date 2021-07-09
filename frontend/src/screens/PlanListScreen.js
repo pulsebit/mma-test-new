@@ -17,35 +17,44 @@ const PlanListScreen = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Current subscribers</th>
+                                    <th>Current Subcribers</th>
                                     <th>Price</th>
                                     <th>action</th>
                                 </tr>				
                                 <tr>
+                                    <td>01</td>
                                     <td>Gold</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
+                                    <td>300 subscribers</td>
+                                    <td>20 AUD</td>
                                     <td>
-                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>01</td>
                                     <td>Silver</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
+                                    <td>300 subscribers</td>
+                                    <td>20 AUD</td>
                                     <td>
-                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>01</td>
                                     <td>Platinum</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
-                                    <td>3000 AUD</td>
+                                    <td>300 subscribers</td>
+                                    <td>20 AUD</td>
                                     <td>
-                                        <NavLink to='/admin/users/:id' className="view-btn">View</NavLink>
+                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>01</td>
+                                    <td>Basic</td>
+                                    <td>300 subscribers</td>
+                                    <td>20 AUD</td>
+                                    <td>
+                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
                                     </td>
                                 </tr>
                             </tbody>

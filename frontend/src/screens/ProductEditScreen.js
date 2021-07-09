@@ -7,7 +7,7 @@ import Seo from '../assets/images/seo.jpg'
 
 const ProductEditScreen = () => {
     return (
-        <div className="view-screen">
+        <div className="edit-screen">
             <DashboardContainer>
             <div className="section-wrapper">
                 <div className="blue-bkg-title def-padding">
@@ -90,7 +90,7 @@ const ProductEditScreen = () => {
             </div>
 
             <div className="button-wrapper def-padding">
-                <NavLink to="/admin/product/edit" className="update-btn">Edit Product</NavLink>
+                <NavLink to="/admin/product/edit" className="update-btn">Update Product</NavLink>
             </div>
                 
         </DashboardContainer>

@@ -1,0 +1,11 @@
+.dashboard {
+    display: flex;
+
+    @include resposive(sm-desktop){
+        display: block;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+}

@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'
@@ -33,8 +32,19 @@ const SupportsEditScreen = () => {
                                                 <span><input type="text" placeholder="John Smith" /> </span>
                                             </div>
                                             <div className="details-wrapper">
-                                                <label>Date Created:</label>
-                                                <span><input type="date" /></span>
+                                                <label>Mobile number:</label>
+                                                <span><input type="text" placeholder="+61 7 7010 1111" /></span>
+                                            </div>
+                                            <div className="details-wrapper">
+                                                <label>Email:</label>
+                                                <span><input type="text" placeholder="user@gmail.com" /></span>
+                                            </div>
+                                            
+                                        </Col>
+                                        <Col md={6}>
+                                            <div className="details-wrapper">
+                                                <label>Issue:</label>
+                                                <span><input type="text" /></span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Priority:</label>
@@ -46,25 +56,18 @@ const SupportsEditScreen = () => {
                                                     </select>
                                                 </span>
                                             </div>
-                                        </Col>
-                                        <Col md={6}>
                                             <div className="details-wrapper">
-                                                <label>Payment Plan:</label>
+                                                <label>Status:</label>
                                                 <span>
                                                     <select>
-                                                        <option>Gold</option>
-                                                        <option>Silver</option>
-                                                        <option>Platinum</option>
+                                                        <option>Open</option>
+                                                        <option>Close</option>
                                                     </select>
                                                 </span>
                                             </div>
                                             <div className="details-wrapper">
-                                                <label>Mobile number:</label>
-                                                <span><input type="text" placeholder="+61 7 7010 1111" /></span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Email:</label>
-                                                <span><input type="text" placeholder="user@gmail.com" /></span>
+                                                <label>Date Created:</label>
+                                                <span><input type="date" /></span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -133,7 +136,7 @@ const SupportsEditScreen = () => {
                     </div>
                         
                     <div className="button-wrapper def-padding">
-                        <input type="submit" value="Delete" className="update-btn"/>
+                        <input type="submit" value="Update" className="update-btn"/>
                     </div>
             </DashboardContainer>
         </div>

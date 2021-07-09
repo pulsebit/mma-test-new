@@ -1,0 +1,21 @@
+.card {
+    border: none;
+
+    .card-header {
+        font-size: 18px;
+        font-weight: 500;
+        padding: 25px 15px;
+        color: $primary-color;
+        background-color: #fff;
+
+        &:hover {
+            background-color: rgba(0,0,0,.03);
+            cursor: pointer;
+        }
+    }
+
+    .card-body {
+        padding: 25px 50px;
+        line-height: 2;
+    }
+}

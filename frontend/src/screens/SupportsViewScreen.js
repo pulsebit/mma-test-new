@@ -25,26 +25,12 @@ const SupportsViewScreen = () => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="details-wrapper">
-                                                <label>ID:</label>
+                                                <label>Ticket ID:</label>
                                                 <span>01</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Full Name:</label>
                                                 <span>John Smith</span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Date Created:</label>
-                                                <span>12/12/2021</span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Priority:</label>
-                                                <span>Low</span>
-                                            </div>
-                                        </Col>
-                                        <Col md={6}>
-                                            <div className="details-wrapper">
-                                                <label>Payment Plan:</label>
-                                                <span>Gold</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Mobile number:</label>
@@ -53,6 +39,24 @@ const SupportsViewScreen = () => {
                                             <div className="details-wrapper">
                                                 <label>Email:</label>
                                                 <span>user@gmail.com</span>
+                                            </div>                                            
+                                        </Col>
+                                        <Col md={6}>
+                                            <div className="details-wrapper">
+                                                <label>Issue:</label>
+                                                <span>Plan Issue</span>
+                                            </div>
+                                            <div className="details-wrapper">
+                                                <label>Priority:</label>
+                                                <span>Low</span>
+                                            </div>
+                                            <div className="details-wrapper">
+                                                <label>Status:</label>
+                                                <span>Open</span>
+                                            </div>
+                                            <div className="details-wrapper">
+                                                <label>Date Created:</label>
+                                                <span>12/12/2021</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -121,7 +125,7 @@ const SupportsViewScreen = () => {
                     </div>
                         
                     <div className="button-wrapper def-padding">
-                        <NavLink to="/admin/supports/:id/edit" className="edit-btn">Edit Profile</NavLink>
+                        <NavLink to="/admin/supports/:id/edit" className="edit-btn">Edit</NavLink>
                         <input type="submit" value="Delete" className="delete-btn"/>
                     </div>
             </DashboardContainer>

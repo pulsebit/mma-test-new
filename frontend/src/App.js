@@ -4,6 +4,17 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
+
+import Profile from './screens/Profile'
+import ProfileEdit from './screens/ProfileEdit'
+
+
+import BillingHistory from './screens/BillingHistory'
+import PaymentMethod from './screens/PaymentMethod'
+import PaymentMethodAdd from './screens/PaymentMethodAdd'
+
+import Purchases from './screens/Purchases'
+
 import AdminDashboard from './screens/AdminDashboard'
 
 import SupportsListScreen from './screens/SupportsListScreen'
@@ -14,7 +25,9 @@ import UserListScreen from './screens/UserListScreen'
 import UserViewScreen from './screens/UserViewScreen'
 import UserEditScreen from './screens/UserEditScreen'
 
-import PermissionsScreen from './screens/PermissionsScreen'
+import PerAllAdmin from './screens/PerAllAdmin'
+import PerSuperAdmin from './screens/PerSuperAdmin'
+
 import ProductListScreen from './screens/ProductListScreen'
 import ProductViewScreen from './screens/ProductViewScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
@@ -31,12 +44,47 @@ import PlanViewScreen from './screens/PlanViewScreen'
 
 import Settings from './screens/Settings'
 
+import ClientPortal from './screens/clients/ClientPortal'
+import ClientKnowledgebase from './screens/clients/ClientKnowledgebase'
+
+import ClientServicesBasic from './screens/clients/ClientServicesBasic'
+import ClientServicesSilver from './screens/clients/ClientServicesSilver'
+import ClientServicesGold from './screens/clients/ClientServicesGold'
+import ClientServicesPlatinum from './screens/clients/ClientServicesPlatinum'
+
+import ClientReports from './screens/clients/ClientReports'
+import ClientMembers from './screens/clients/ClientMembers'
+import ClientMembersView from './screens/clients/ClientMembersView'
+import ClientMembersEdit from './screens/clients/ClientMembersEdit'
+
+import ClientStaff from './screens/clients/ClientStaff'
+import ClientStaffAdd from './screens/clients/ClientStaffAdd'
+import ClientStaffView from './screens/clients/ClientStaffView'
+import ClientStaffEdit from './screens/clients/ClientStaffEdit'
+
+import ClientSupport from './screens/clients/ClientSupport'
+import ClientSupportEdit from './screens/clients/ClientSupportEdit'
+import ClientSupportView from './screens/clients/ClientSupportView'
+
+
+
+
 function App() {
   return (
     <Router>
         <Header />
           <main>
               <Route path='/login' component={LoginScreen} />
+              <Route path='/profile' component={Profile} exact/>
+              <Route path='/profile/edit' component={ProfileEdit} />
+              
+
+              
+              <Route path='/billing-history' component={BillingHistory} />
+              <Route path='/payment-method' component={PaymentMethod} />
+              <Route path='/add-payment-method' component={PaymentMethodAdd} />
+              <Route path='/purchases' component={Purchases} />
+
               <Route path='/admin' component={AdminDashboard} exact />
               <Route path='/admin/supports' component={SupportsListScreen} exact/>
               <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>
@@ -44,21 +92,49 @@ function App() {
               <Route path='/admin/users' component={UserListScreen} exact />
               <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
               <Route path='/admin/users-view/:id' component={UserViewScreen} />
-              <Route path='/admin/permissions' component={PermissionsScreen} />
+
+              <Route path='/admin/permissions/all' component={PerAllAdmin} />
+              <Route path='/admin/permissions/super-admin' component={PerSuperAdmin} />
+              
 
               <Route path='/admin/productlist/' component={ProductListScreen} />
-              <Route path='/admin/product/:id' component={ProductViewScreen}  />
+              <Route path='/admin/product/:id' component={ProductViewScreen}  exact/>
               <Route path='/admin/product/:id/edit' component={ProductEditScreen}  />
               <Route path='/admin/product-categories' component={ProductCatList} exact />
               <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
               
               <Route path='/product/:id' component={ProductScreen}  />
               <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />
-              <Route path='/admin/plan' component={PlanListScreen} />
-              <Route path='/admin/plan/:id' component={PlanViewScreen} />
+              <Route path='/admin/plan' component={PlanListScreen} exact />
+              <Route path='/admin/plan/:id' component={PlanViewScreen} exact />
               <Route path='/admin/plan/edit' component={PlanEditScreen} />
               <Route path='/admin/settings' component={Settings} />
               <Route path='/' component={HomeScreen} exact />
+
+              <Route path='/portal' component={ClientPortal} exact />
+              <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
+              <Route path='/portal/services/basic' component={ClientServicesBasic}  />
+              <Route path='/portal/services/silver' component={ClientServicesSilver}  />
+              <Route path='/portal/services/gold' component={ClientServicesGold}  />
+              <Route path='/portal/services/platinum' component={ClientServicesPlatinum}  />
+              <Route path='/portal/reports' component={ClientReports}  />
+
+              <Route path='/portal/membership-info' component={ClientMembers} exact />
+              <Route path='/portal/membership-info/:id' component={ClientMembersView}  exact />
+              <Route path='/portal/membership-info/:id/edit' component={ClientMembersEdit}  />
+              
+              <Route path='/portal/staff' component={ClientStaff} />
+              <Route path='/portal/add-staff/' component={ClientStaffAdd} />
+              <Route path='/portal/view-staff/' component={ClientStaffView} />
+              <Route path='/portal/edit-staff/' component={ClientStaffEdit} />
+              
+
+              <Route path='/portal/support' component={ClientSupport} exact />
+              <Route path='/portal/support/:id' component={ClientSupportView} exact />
+              <Route path='/portal/support/:id/Edit' component={ClientSupportEdit} />
+
+              
+              
           </main>
         <Footer />
     </Router>

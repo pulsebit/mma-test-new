@@ -127,3 +127,51 @@ Supports (Acounting , tech supp , billing support, integration)
          - customer
          - subscriber
          - admin
+
+
+-----------------
+Clients
+Sidebar
+    - Photo
+    - Basic info
+       - Full name
+       - Mobile
+       - Email
+       - Address
+       - Total staffs
+
+    ----------
+    Links
+      - Reports
+      - Services
+      - Members Portal
+      - Support 
+          admin ticket id, clientname, issue, priority, status date created
+          client  ticket id  issue priority assignee status date created
+      - Knowledge base
+      - Members
+          - All staff
+          - Add new
+	
+  Main Content
+    - Reports
+       - Data Studio (embedded)
+    
+    - Services
+        - Plan: Basic
+           - Subscribed services/products 
+              - SEO
+              - Web
+
+        - All Plans
+            Current (Tab)
+            Basic  / Silver / Gold
+    - Members
+        - All staffs
+    - Members portal
+       - WP login
+       - Website links
+       - Data studio link
+       - etc
+    - Knowledge base 
+       - Categories
