@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
@@ -8,16 +8,16 @@ import { faHome, faUserAlt, faTicketAlt, faKey, faBoxes, faCalendarAlt, faCogs, 
 
 
 const Sidebar = () => {
-    const history = useHistory();
-    const location = useLocation();
+    const history = useHistory()
+    const pathname = window.location.pathname
     return (
-        <>
-        <Navigation
+      <>
+          <Navigation
             // you can use your own router's api to get pathname
-            activeItemId={location.pathname}
+            activeItemId={pathname}
             onSelect={({itemId}) => {
               // maybe push to the route
-              history.push(itemId);
+              history.push(itemId)
             }}
             items={[
               {

@@ -10,8 +10,8 @@ const Footer = () => {
 				<Container fluid>
 					<Row>
 						<Col sm={12} md={8} className="copyright">
-							<div class="site-footer-wrapper">
-								<div class="text-wrapper">
+							<div className="site-footer-wrapper">
+								<div className="text-wrapper">
 									<span>  &copy; Copyright 2021 Medical Marketing Group </span>
 									<span> Designed & Built by SMRT Digital </span>
 								</div>

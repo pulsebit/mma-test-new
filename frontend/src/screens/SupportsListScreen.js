@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
+import { listSupports } from '../actions/supportActions'
 
 const SupportsListScreen = () => {
+    const dispatch = useDispatch()
+
+    const supportList = useSelector( state => state.supportList)
+    const {loading, error, supports } = supportList
+
+    useEffect(() => {
+        dispatch(listSupports())
+    },[dispatch])
+
     return (
         <div> 
             <DashboardContainer>
@@ -15,58 +27,33 @@ const SupportsListScreen = () => {
                         <table>
                             <tbody>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Ticket No</th>
                                     <th>Client Name</th>
-                                    <th>Plan</th>
-                                    <th>Issue</th>
-                                    <th>Date created</th>
                                     <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Category</th>
                                     <th>Action</th>
-                                </tr>				
-                                <tr>
-                                    <td>1</td>
-                                    <td>John Smith</td>
-                                    <td>Platinum</td>
-                                    <td>Plan Issue</td>
-                                    <td>22/06/2021</td>
-                                    <td>Low</td>
-                                    <td>
-                                        <NavLink to='/admin/supports/:id' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>John Smith</td>
-                                    <td>Gold</td>
-                                    <td>Plan Issue</td>
-                                    <td>02/02/2021</td>
-                                    <td>Low</td>
-                                    <td>
-                                        <NavLink to='/admin/supports/:id' className="view-btn">View</NavLink> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>John Smith</td>
-                                    <td>Silver</td>
-                                    <td>Plan Issue</td>
-                                    <td>21/03/2021</td>
-                                    <td>Meduim</td>
-                                    <td>
-                                        <NavLink to='/admin/supports/:id' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>John Smith</td>
-                                    <td>Silver</td>
-                                    <td>Plan Issue</td>
-                                    <td>22/06/2021</td>
-                                    <td>High</td>
-                                    <td>
-                                        <NavLink to='/admin/supports/:id' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
+                                </tr>	
+                                { loading ? (
+                                     <Loader />
+                                ) : error ? (
+                                    <Message variant='danger'>{error}</Message>
+                                ) : ( 		   
+                                    supports.map((support) => (
+                                        <tr>
+                                            <td>{ support.ticket_no}</td>
+                                            <td>{ support.created_by }</td>
+                                            <td>{ support.priority }</td>
+                                            <td>{ support.status}</td>
+                                            <td>{ support.category}</td>
+                                            <td>{ support.createdAt}</td>
+                                            <td>
+                                                <NavLink to='/admin/supports/:id' className="view-btn">View</NavLink>
+                                            </td>
+                                        </tr>
+
+                                    ))     
+                                )}	
                             </tbody>
                         </table>
                     </div>

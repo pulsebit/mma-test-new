@@ -15,9 +15,6 @@
   "author": "July",
   "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.3.2",
@@ -26,10 +23,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.10",
-    "react-chartjs-2": "^3.0.3",
-    "react-minimal-side-navigation": "^1.9.2",
-    "react-router-dom": "^5.2.0"
+    "mongoose": "^5.12.10"
   },
   "devDependencies": {
     "concurrently": "^6.1.0",
