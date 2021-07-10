@@ -15,9 +15,7 @@ const SupportsViewScreen = () => {
                         <Row>
                             <Col md={2}>
                                 <div className="img-wrapper">
-                                    <div className="inner-img-wrapper">
-                                        <img className="" src={User} alt='' />
-                                    </div>
+                                    <img className="" src={User} alt='' />
                                 </div>
                             </Col>
                             <Col md={10}>

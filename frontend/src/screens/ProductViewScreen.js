@@ -16,9 +16,7 @@ const ProductViewScreen = () => {
                     <Row>
                         <Col md={2}>
                             <div className="img-wrapper">
-                                <div className="inner-img-wrapper ">
-                                    <img className="" src={Seo} alt='' />
-                                </div>
+                                <img className="" src={Seo} alt='' />
                             </div>
                         </Col>
                         <Col md={10}>

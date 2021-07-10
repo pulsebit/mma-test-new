@@ -163,6 +163,9 @@ const updateUser = asyncHandler(async (req, res) => {
 	if(user) {
 			user.name = req.body.name || user.name
 			user.email = req.body.email || user.email
+			if(req.body.password) {
+				user.password = req.body.password
+			}
       //user.isAdmin = req.body.isAdmin 
 
 			const updatedUser = await user.save()
@@ -182,6 +185,29 @@ const updateUser = asyncHandler(async (req, res) => {
 })
 
 
+// @desc   Update user password
+// @route  PUT /api/users/:id
+// @access Private
+const updateUserPassword = asyncHandler(async (req, res) => {
+  
+	const user = await User.findById(req.params.id )
+
+	if(user) {
+			if(req.body.password) {
+				user.password = req.body.password
+			}
+
+			const updatedUserPassword = await user.save()
+      
+			res.json({ message: 'Password has been successfully updated!'})
+
+	} else {
+			res.status(404)
+			throw new Error('User not found')
+	}
+})
+
+
 
 export {
 	authUser, 
@@ -191,5 +217,6 @@ export {
 	getUserById, 
 	updateUser,
 	deleteUser, 
-	updateUserProfile
+	updateUserProfile,
+	updateUserPassword
 }

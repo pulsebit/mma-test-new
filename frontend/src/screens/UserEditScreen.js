@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import  { getUserDetails, updateUser, deleteUser } from '../actions/userActions.js'
 import { Row, Col, Form } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import  { getUserDetails, updateUser, deleteUser } from '../actions/userActions.js'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
@@ -73,11 +75,12 @@ const UserEditScreen = ({ match, history }) => {
                             <Row>
                                 <Col md={2}>
                                     <div className="img-wrapper">
-                                        <div className="inner-img-wrapper ">
-                                            <img className="" src={User} alt='' />
+                                        <img className="" src={User} alt='' />
+                                        <div className="upload-btn">
+                                            <input type="file" Value="Edit Image" className="choose-file"/>
+                                            <FontAwesomeIcon icon={faCamera} className="camera"></FontAwesomeIcon>
                                         </div>
                                     </div>
-                                    <input type="file" className="choose-file"/>
                                 </Col>
                                 <Col md={10}>
                                     <div className="user-details def-padding">

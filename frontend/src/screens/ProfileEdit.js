@@ -1,6 +1,8 @@
 import React from 'react'
 import { Row, Col , Container } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 const ProfileEdit = () => {
     return (
@@ -11,10 +13,14 @@ const ProfileEdit = () => {
                     <Row>
                         <Col md={4}>
                             <div className="c-box">
-                                <div className="image-wrapper">
+                                <div className="img-wrapper">
                                     <img className="" src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" alt='' />
-                                    <input type="file" Value="Edit Image" className="choose-file"/>
+                                    <div className="upload-btn">
+                                        <input type="file" Value="Edit Image" className="choose-file"/>
+                                        <FontAwesomeIcon icon={faCamera} className="camera"></FontAwesomeIcon>
+                                    </div>
                                 </div>
+                                
                                 <div className="details-wrapper">
                                     <label>ID</label>
                                     <span>1001A</span>

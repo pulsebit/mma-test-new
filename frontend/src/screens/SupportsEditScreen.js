@@ -2,10 +2,12 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 const SupportsEditScreen = () => {
     return (
-        <div className="view-screen">
+        <div className="edit-screen">
             <DashboardContainer>
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
@@ -14,8 +16,10 @@ const SupportsEditScreen = () => {
                         <Row>
                             <Col md={2}>
                                 <div className="img-wrapper">
-                                    <div className="inner-img-wrapper">
-                                        <img className="" src={User} alt='' />
+                                    <img className="" src={User} alt='' />
+                                    <div className="upload-btn">
+                                        <input type="file" Value="Edit Image" className="choose-file"/>
+                                        <FontAwesomeIcon icon={faCamera} className="camera"></FontAwesomeIcon>
                                     </div>
                                 </div>
                             </Col>

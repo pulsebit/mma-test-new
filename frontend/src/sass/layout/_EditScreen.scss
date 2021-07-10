@@ -1,4 +1,5 @@
 .edit-screen {
+        
     a {
         display: block;
         font-weight: 700;
@@ -11,11 +12,6 @@
         padding: 25px 0 0 0;
         border-bottom: 1px solid #00000033;
         min-height: 75px;
-    }
-
-    .inner-img-wrapper {
-        max-width: 200px;
-        margin-left: 15px;
     }
 
     label {
@@ -42,6 +38,7 @@
     input {
         padding: 10px;
         border: none;
+        background-color: transparent;
 
         &:focus {
             outline: none;
@@ -55,6 +52,7 @@
         height: 200px;
         padding: 15px;
         border: 1px solid #22222226;
+        background-color: transparent;
 
         &:focus {
             outline: none;

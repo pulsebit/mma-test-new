@@ -1,6 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import DashboardContainer from '../components/DashboardContainer'
 import Seo from '../assets/images/seo.jpg'
 
@@ -16,10 +18,11 @@ const ProductEditScreen = () => {
                 <Row>
                     <Col md={2}>
                         <div className="img-wrapper">
-                            <div className="inner-img-wrapper ">
-                                <img className="" src={Seo} alt='' />
+                            <img className="" src={Seo} alt='' />
+                            <div className="upload-btn">
+                                <input type="file" Value="Edit Image" className="choose-file"/>
+                                <FontAwesomeIcon icon={faCamera} className="camera"></FontAwesomeIcon>
                             </div>
-                            <input type="file" Value="Edit Image" className="choose-file"/>
                         </div>
                     </Col>
                     <Col md={10}>

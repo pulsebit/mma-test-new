@@ -40,6 +40,11 @@
     padding-top: 60px;
     padding-bottom: 60px;
 }
+
+.pad-tb-30 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 .empha {
     color: $primary-color;
     font-weight: 700;
@@ -72,4 +77,17 @@
 }
 .third-color {
     color: #4CAF50;
+}
+
+
+.img-wrapper {
+    padding-top: 20px;
+    max-width: 250px;
+    position: relative;
+
+    .upload-btn {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+    }
 }

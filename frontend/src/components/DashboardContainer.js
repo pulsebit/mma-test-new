@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Row, Col, Container} from 'react-bootstrap'
 import Sidebar from './Sidebar'
 
 const AdminDashboard = ({ children }) => {

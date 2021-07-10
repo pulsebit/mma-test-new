@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import  { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import { NavLink } from 'react-router-dom'
+import { listProducts } from '../actions/productActions'
 
 import DashboardContainer from '../components/DashboardContainer'
 
 const ProductListScreen = () => {
+    // const dispatch = useDispatch()
+    
+    // const { productList } = useSelector(state => state.productList)
+    // const {loading, error, products } = productList
+    
+    // useEffect(() => {
+    //      dispatch(listProducts())
+    // },[dispatch])
+
     return (
         <div> 
             <DashboardContainer>

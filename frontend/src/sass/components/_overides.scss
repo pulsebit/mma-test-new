@@ -30,7 +30,7 @@
     .button-wrapper {
       text-align: left;
       button {
-        padding: 5px 15px ;
+        padding: 5px 15px !important;
         font-size: 12px;
         margin-left: 0;
         margin-right: 5px;
@@ -41,7 +41,7 @@
       }
     }
     a {
-      padding: 5px 15px;
+      padding: 5px 15px !important;
       font-size: 12px;
       margin-left: 0;
       margin-right: 5px;

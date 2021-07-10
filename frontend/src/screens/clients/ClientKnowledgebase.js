@@ -12,14 +12,16 @@ const ClientKnowledgebase = () => {
 
             <ClientLayout>
 
-                <div className="section-wrapper">
-                    <h1 className="empha text-center">How Can We Help?</h1>
-                    <div className="search-wrapper">
-                        <input type="text" />
-                        <button className="search-btn"><FontAwesomeIcon icon={faSearch} /></button>
+                <div className="section-wrapper def-padding">
+                    <div className="pad-tb-30">
+                        <h1 className="empha text-center">How Can We Help?</h1>
+                        <div className="search-wrapper">
+                            <input type="text" />
+                            <button className="search-btn"><FontAwesomeIcon icon={faSearch} /></button>
+                        </div>
                     </div>
 
-                    <Row className="padding-tb-60">
+                    <Row className="pad-tb-30">
                         <Col lg={4}>
                             <div className="box">
                                 <div className="icon-wrapper second-color">
@@ -49,7 +51,7 @@ const ClientKnowledgebase = () => {
                         </Col>
                     </Row>
 
-                    <div className="padding-tb-60">
+                    <div className="pad-tb-30">
                         <h2>Commonly asked Question</h2>
                         <Accordion defaultActiveKey="0">
                             <Card>
