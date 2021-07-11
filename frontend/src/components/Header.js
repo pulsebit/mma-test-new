@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Nav, Row, Col, Navbar, NavDropdown  } from 'react-bootstrap'
-import { logout } from '../actions/userActions'
+import { logout } from 'store/actions/userActions'
 
 import SiteLogo from '../assets/images/Logo.png'
 

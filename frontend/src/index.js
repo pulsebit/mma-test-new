@@ -2,10 +2,12 @@ import React from 'react'
 import './bootstrap.min.css'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import store from './store.js'
+import store from './store'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+
+store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
   <Provider store={store}>

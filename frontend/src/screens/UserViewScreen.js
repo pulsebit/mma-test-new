@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUserDetails }  from '../actions/userActions'
+import { getUserDetails }  from 'store/actions/userActions'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import Message from '../components/Message'

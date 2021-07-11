@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
-import { listSupports } from '../actions/supportActions'
+import { listSupports } from 'store/actions/supportActions'
 
 const SupportsListScreen = () => {
     const dispatch = useDispatch()

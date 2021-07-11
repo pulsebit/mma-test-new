@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listProductDetails } from '../actions/productActions'
+import { listProductDetails } from 'store/actions/productActions'
 
 
 const ProductScreen = ({ match }) => {

@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
+import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 
 // @desc   Auth user & get token
 // @route  GET /api/users/login
@@ -85,9 +86,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route  GET /api/users/
 // @access Private
 const getUsers = asyncHandler(async (req, res) => {
-  
-   const users = await User.find({})
-   res.json(users)
+	 const page = req.query.page || 1;
+    const userAggregate = User.aggregate();
+    const user = await User.aggregatePaginate(userAggregate, { page, limit: process.env.LIMIT });
+    res.json(user);
 })
 
 // @desc   Update User Profile

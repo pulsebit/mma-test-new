@@ -3,7 +3,7 @@ import  { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { NavLink } from 'react-router-dom'
-import { listProducts } from '../actions/productActions'
+import { listProducts } from 'store/actions/productActions'
 
 import DashboardContainer from '../components/DashboardContainer'
 

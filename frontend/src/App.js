@@ -10,9 +10,7 @@ import SupportsListScreen from './screens/SupportsListScreen'
 import SupportsViewScreen from './screens/SupportsViewScreen'
 import SupportsEditScreen from './screens/SupportsEditScreen'
 
-import UserListScreen from './screens/UserListScreen'
-import UserViewScreen from './screens/UserViewScreen'
-import UserEditScreen from './screens/UserEditScreen'
+import Users from 'screens/Users'
 
 import PermissionsScreen from './screens/PermissionsScreen'
 import ProductListScreen from './screens/ProductListScreen'
@@ -41,9 +39,11 @@ function App() {
               <Route path='/admin/supports' component={SupportsListScreen} exact/>
               <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>
               <Route path='/admin/supports/:id/edit' component={SupportsEditScreen} />
-              <Route path='/admin/users' component={UserListScreen} exact />
-              <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
-              <Route path='/admin/users-view/:id' component={UserViewScreen} />
+
+              <Route path='/admin/users' component={Users} />
+              {/* <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
+              <Route path='/admin/users-view/:id' component={UserViewScreen} /> */}
+              
               <Route path='/admin/permissions' component={PermissionsScreen} />
 
               <Route path='/admin/productlist/' component={ProductListScreen} />

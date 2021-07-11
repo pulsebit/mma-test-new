@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+import aggregatePaginate   from 'mongoose-aggregate-paginate-v2'
 
 const userSchema = mongoose.Schema({
    name: {
@@ -60,6 +61,8 @@ userSchema.pre('save', async function (next) {
    const salt = await bcrypt.genSalt(10)
    this.password = await bcrypt.hash(this.password, salt)
 })
+
+userSchema.plugin(aggregatePaginate )
 
 const User = mongoose.model('User', userSchema)
 
