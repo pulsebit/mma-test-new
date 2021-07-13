@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import DashboardContainer from "components/DashboardContainer";
 import { userLists } from "store/actions/userActions";
 import Error from 'components/Alert'
 
@@ -14,7 +13,7 @@ const UserListScreen = ({ history }) => {
 
   return (
     <>
-      <DashboardContainer>
+      <>
         <div className="section-wrapper">
           {user && user.error ? (
             <Error 
@@ -63,7 +62,7 @@ const UserListScreen = ({ history }) => {
             </>
           )}
         </div>
-      </DashboardContainer>
+      </>
     </>
   );
 };

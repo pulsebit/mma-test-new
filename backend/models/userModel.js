@@ -5,16 +5,13 @@ import aggregatePaginate   from 'mongoose-aggregate-paginate-v2'
 const userSchema = mongoose.Schema({
    name: {
      type: String,
-     required: true
    },
    email: {
     type: String,
-    required: true,
     unique: true
   },
   password: {
     type: String,
-    required: true
   },
   mobile_no: {
      type: String

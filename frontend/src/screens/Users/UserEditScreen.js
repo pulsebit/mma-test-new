@@ -4,7 +4,6 @@ import  { getUserDetails, updateUser, deleteUser } from 'store/actions/userActio
 import { Row, Col, Form } from 'react-bootstrap'
 import Message from 'components/Message'
 import Loader from 'components/Loader'
-import DashboardContainer from 'components/DashboardContainer'
 import User from 'assets/images/user.png'
 import { USER_UPDATE_RESET }  from 'store/constants/userConstants'
 
@@ -62,7 +61,7 @@ const UserEditScreen = ({ match, history }) => {
             ) : error ? ( 
                 <Message variant='danger'>{error}</Message>
             ) : (
-            <DashboardContainer>
+            <>
             
                 <>
                     <Form onSubmit={onSubmitHandler}>
@@ -193,7 +192,7 @@ const UserEditScreen = ({ match, history }) => {
                         </div>
                     </Form>
                 </>
-            </DashboardContainer>
+            </>
              )}
         </div>
     )

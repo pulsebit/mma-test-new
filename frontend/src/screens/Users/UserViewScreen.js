@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import Error from 'components/Alert'
 import Loader from 'components/Loader'
-import DashboardContainer from 'components/DashboardContainer'
 import defaultImage from 'assets/images/user.png'
 
 
@@ -21,7 +20,7 @@ const UserViewScreen = ({ match }) => {
     return (
         <>
         <div className="view-screen">
-            <DashboardContainer>
+            <>
                 {loading && !error && <Loader />}
                 {error && !loading && <Error 
                     type='Error' 
@@ -138,7 +137,7 @@ const UserViewScreen = ({ match }) => {
                         </div>
                     </>
                 )}
-            </DashboardContainer>
+            </>
             </div>
         </>
     )

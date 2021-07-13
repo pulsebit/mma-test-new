@@ -1,7 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
-import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 
 // @desc   Auth user & get token
 // @route  GET /api/users/login

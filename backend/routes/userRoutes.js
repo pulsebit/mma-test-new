@@ -13,7 +13,9 @@ import {
 import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 
 
-router.route('/').post(registerUser).get(protect, adminOnly, getUsers)
+router.route('/')
+  .post(registerUser)
+  .get(getUsers)
 router
      .route('/:id')
      .get(protect, adminOnly, getUserById)
