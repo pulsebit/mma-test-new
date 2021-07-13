@@ -8,6 +8,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   vertical-align: baseline;
 }
 
+main.main {
+  min-height: 100vh;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
@@ -517,21 +521,23 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 
 .login-wrapper .row {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-shadow: 0 3px 10px #00000029;
           box-shadow: 0 3px 10px #00000029;
   background-color: #ffffff;
-  border-radius: 25px;
+  border-radius: 36px;
 }
 
-@media only screen and (max-width: 767px) {
+@media (max-width: 767px) {
   .login-wrapper .row {
     background-color: #ffffff;
     border-radius: 25px;
     padding: 50px 25px;
     margin: 0;
+  }
+
+  .login-right {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
