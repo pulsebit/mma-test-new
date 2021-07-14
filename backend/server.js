@@ -9,6 +9,10 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import supportRoutes from './routes/supportRoutes.js'
 
+import cookieParser from 'cookie-parser';
+
+import { onAuthStateChanged } from './controllers/userController.js';
+
 
 dotenv.config()
 
@@ -17,12 +21,14 @@ connectDB()
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser('secret-shhhhhhhh'));
 
 //Routing
 app.get('/',(req, res) => {
      res.send("API is running")
 })
 
+app.use('/onAuthStateChanged', onAuthStateChanged);
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)

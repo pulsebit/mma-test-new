@@ -2,19 +2,18 @@ import React, {useState} from 'react'
 import { Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { login } from 'store/actions/userActions'
-import FormContainer from 'components/FormContainer'
-import { GoogleLogin } from 'react-google-login'
-import FacebookLogin from 'react-facebook-login';
-import * as env from 'env';
-import { FcGoogle } from "react-icons/fc";
+import Google from './Google'
+import Facebook from './Facebook'
 import * as S from './styled';
 import LoginImage from 'assets/images/login-image.png'
 import Layout from 'components/Layout'
-
+import { isAuthenticated } from 'helpers/auth'
 
 const Login = ({ location }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+  console.log({ isAuthenticated: isAuthenticated() })
 
   const dispatch = useDispatch()
 
@@ -22,16 +21,6 @@ const Login = ({ location }) => {
   	e.preventDefault()
   	dispatch(login(email, password))
   } 
-
-	const responseGoogle = (response) => {
-		console.log(response.googleId);
-		console.log(response);
-	}
-
-	const responseFacebook = (response) => {
-		console.log(response);
-		console.log(response.userID);
-	}
 
 	return (
     <Layout sidebar={false} header={true}>
@@ -71,32 +60,8 @@ const Login = ({ location }) => {
 
                 <S.ThirdPartyWrapper>
                   <S.Divider><span></span>or<span></span></S.Divider>
-                  <GoogleLogin
-                    clientId={env.GOOGLE_CLIENT_ID}
-                    buttonText="Login"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                    render={renderProps => (
-                      <button className="btn" disabled={renderProps.disabled}>
-                        <FcGoogle /> Sign in with Google
-                      </button>
-                    )}
-                  />
-                  <FacebookLogin
-                    appId={env.FACEBOOK_APP_ID}
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    callback={responseFacebook}
-                    cssClass="btn facebook-login"
-                  />
-                  <FacebookLogin
-                    appId={env.FACEBOOK_APP_ID}
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    callback={responseFacebook}
-                    cssClass="btn facebook-login"
-                  />
+                  <Google />
+                  <Facebook />   
                 </S.ThirdPartyWrapper>
 
               </form>

@@ -8,7 +8,8 @@ import {
 	deleteUser,
 	getUserById,
 	updateUser,
-	updateUserPassword
+	updateUserPassword,
+  authGoogle,
 } from '../controllers/userController.js'
 import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 
@@ -24,6 +25,7 @@ router
 		 .patch(protect, updateUserPassword)
 
 router.post('/login', authUser)
+router.post('/auth-google', authGoogle)
 router.route('/profile').get(protect, getUserProfile)
 
 

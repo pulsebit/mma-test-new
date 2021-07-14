@@ -6,15 +6,20 @@ import store from './store'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { onAuthStateChanged } from 'helpers/auth'
+import { authChanges } from 'store/actions/authActions'
 
 store.subscribe(() => console.log(store.getState()))
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+onAuthStateChanged((auth) => {
+  authChanges({ userId: auth?.profile._id, ...auth });
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  );
+});
 
 
 // If you want to start measuring performance in your app, pass a function

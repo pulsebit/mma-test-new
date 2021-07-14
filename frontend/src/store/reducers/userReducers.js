@@ -8,7 +8,6 @@ import {
   USER_LIST_SUCCESS, 
   USER_LIST_FAIL,
 
-  USER_LIST_RESET,
   USER_DELETE_REQUEST, 
   USER_DELETE_SUCCESS, 
   USER_DELETE_FAIL,
@@ -19,9 +18,6 @@ import {
   USER_UPDATE_SUCCESS, 
   USER_UPDATE_FAIL,
   USER_UPDATE_RESET,
-  USER_FETCHING,
-   USER_LISTS,
-   USER_ERROR,
 } from '../constants/userConstants'
 
 const initialState = {
