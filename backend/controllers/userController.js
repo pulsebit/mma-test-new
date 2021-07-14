@@ -1,49 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
-import jwt from 'jsonwebtoken';
-
-export const authGoogle = asyncHandler(async (req, res) => {
-  const { profileObj, accessToken, googleId } = req.body;
-  const user = await User.findOne({ email: profileObj.email });
-  if (user) {
-    const updateUser = await User.findByIdAndUpdate(user._id, { 'google.accessToken': accessToken });
-    res.cookie('access_token', generateToken(user._id), {httpOnly: true, signed: true});
-    res.cookie('profile', updateUser, {httpOnly: true, signed: true});
-    res.json({
-      profile: updateUser,
-      accessToken: generateToken(user._id),
-    });
-    return;
-  }
-  const createUser = await User.create({
-    name: profileObj.name, 
-    email: profileObj.email,
-    'google.googleId': googleId,
-    'google.accessToken': accessToken,
-  });
-  res.cookie('access_token', generateToken(createUser._id), {httpOnly: true, signed: true});
-  res.cookie('profile', createUser, {httpOnly: true, signed: true});
-  res.json({
-    profile: createUser,
-    accessToken: generateToken(createUser._id),
-  });
-});
-
-export const onAuthStateChanged = (req, res) => {
-  const { access_token } = req.signedCookies;
-  if (!access_token) {
-    res.json({ isAuthenticated: false });
-    return;
-  }
-  jwt.verify(access_token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      res.json({ ...req.signedCookies, isAuthenticated: false });
-    } else {
-      res.json({ ...req.signedCookies, isAuthenticated: true });
-    }
-  });
-}
 
 // @desc   Auth user & get token
 // @route  GET /api/users/login

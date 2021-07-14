@@ -12,7 +12,7 @@ import { authChanges } from 'store/actions/authActions'
 store.subscribe(() => console.log(store.getState()))
 
 onAuthStateChanged((auth) => {
-  authChanges({ userId: auth?.profile._id, ...auth });
+  authChanges({ ...auth, user_id: auth.user_id || null });
   ReactDOM.render(
     <Provider store={store}>
       <App />

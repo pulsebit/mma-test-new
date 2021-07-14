@@ -11,7 +11,7 @@ import supportRoutes from './routes/supportRoutes.js'
 
 import cookieParser from 'cookie-parser';
 
-import { onAuthStateChanged } from './controllers/userController.js';
+import { onAuthStateChanged } from './controllers/authController.js';
 
 
 dotenv.config()
@@ -28,7 +28,7 @@ app.get('/',(req, res) => {
      res.send("API is running")
 })
 
-app.use('/onAuthStateChanged', onAuthStateChanged);
+app.post('/onAuthStateChanged', onAuthStateChanged);
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)

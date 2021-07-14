@@ -1,9 +1,10 @@
 import * as constant from '../constants/authConstants';
 
 const initialState = {
-  userId: null,
-  accessToken: null,
-  profile: null,
+  user_id: null,
+  access_token: null,
+  id_token: null,
+  isAuthenticated: false,
 };
 
 export function authReducer(state = initialState, action) {
@@ -11,9 +12,10 @@ export function authReducer(state = initialState, action) {
     case constant.AUTH_DATA:
       return {
         ...state,
-        userId: action.payload.userId,
-        accessToken: action.payload.accessToken,
-        profile: action.payload.profile,
+        user_id: action.payload.user_id,
+        access_token: action.payload.access_token,
+        id_token: action.payload.id_token,
+        isAuthenticated: action.payload.isAuthenticated,
       };
     case constant.AUTH_REMOVE_DATA:
       return {

@@ -1,34 +1,28 @@
 import store from 'store';
-import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 let auth = {};
 
 store.subscribe(() => {
   const { auth: _auth } = store.getState();
-  auth.userId = _auth.userId;
-  auth.accessToken = _auth.accessToken;
-  auth.profile = _auth.profile;
+  auth.userId = _auth.user_id;
+  auth.access_token = _auth.access_token;
+  auth.id_token = _auth.id_token;
+  auth.isAuthenticated = _auth.isAuthenticated;
+  // auth.profile = jwt_decode(auth.id_token);
 });
 
-export function isAuthenticated() {
-  if (auth.accessToken) {
-    const { exp } = jwt_decode(auth.accessToken);
-    if (Date.now() >= exp * 1000) {
-      return false;
-    }
-    return true;
-  }
-  return false;
-}
+console.log({ 'auth.profile': auth.id_token });
+
 
 export function onAuthStateChanged(cb) {
-  axios.get('/onAuthStateChanged')
+  axios.post('/onAuthStateChanged')
     .then(res => {
       cb(res.data)
     })
     .catch(err => {
-      cb(null)
+      cb({})
     });
 }
 

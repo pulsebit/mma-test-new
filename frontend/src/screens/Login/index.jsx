@@ -1,26 +1,25 @@
 import React, {useState} from 'react'
 import { Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { login } from 'store/actions/userActions'
 import Google from './Google'
 import Facebook from './Facebook'
 import * as S from './styled';
 import LoginImage from 'assets/images/login-image.png'
 import Layout from 'components/Layout'
-import { isAuthenticated } from 'helpers/auth'
+import { auth } from 'helpers/auth';
+import { Redirect } from 'react-router-dom';
 
 const Login = ({ location }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-  console.log({ isAuthenticated: isAuthenticated() })
-
-  const dispatch = useDispatch()
-
   const submitHandler = (e) => {
   	e.preventDefault()
-  	dispatch(login(email, password))
   } 
+
+  if (auth.isAuthenticated) {
+    return <Redirect to="/" />
+  }
 
 	return (
     <Layout sidebar={false} header={true}>
