@@ -2,56 +2,103 @@ import User from '../models/userModel.js'
 import jwt from 'jsonwebtoken';
 import generateToken from '../utils/generateToken.js';
 import asyncHandler from 'express-async-handler';
+import { verify } from '../utils/google.js';
+
+export const authSignin = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  let user = await User.findOne({ email });
+  const cookieOptions = { httpOnly: true, signed: true };
+  if (user && (await user.matchPassword(password)) ) {
+    const tokenIdValue = { 
+      user_id: user._id, 
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      picture: user.picture,
+      name: user.name,
+    };
+    const encodedTokenId = generateToken(tokenIdValue);
+    const accessToken = generateToken({ id: user._id });
+    res.cookie('access_token', accessToken, cookieOptions);
+    res.cookie('id_token', encodedTokenId, cookieOptions);
+    res.cookie('user_id', user._id, cookieOptions);
+    req.user_id = user._id;
+    res.json({
+      id_token: encodedTokenId,
+      access_token: accessToken,
+      user_id: user._id,
+      isAuthenticated: true,
+    });
+  } else {
+    res.json({ error: 'Email or Password is incorrect!' });
+  }
+}); 
 
 export const authGoogle = asyncHandler(async (req, res) => {
-  const { profileObj, accessToken, googleId } = req.body;
-  const user = await User.findOne({ email: profileObj.email });
+  const { tokenId } = req.body;
+  const payload = await verify(tokenId); 
+  let user = await User.findOne({ email: payload.email, sub: payload.sub });
+  let tokenIdValue;
+  const cookieOptions = { httpOnly: true, signed: true };
   if (user) {
-    const updateUser = await User.findByIdAndUpdate(user._id, { 'google.accessToken': accessToken });
-    res.cookie('access_token', generateToken({ id: user._id }), {httpOnly: true, signed: true});
-    res.cookie('id_token', generateToken(updateUser), {httpOnly: true, signed: true});
-    res.cookie('user_id', updateUser._id, {httpOnly: true, signed: true});
-    res.json({
-      id_token: generateToken(updateUser),
-      access_token: generateToken({ id: user._id }),
-      user_id: updateUser._id,
-      updateUser
+    tokenIdValue = { 
+      user_id: user._id, 
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      picture: user.picture,
+      name: user.name,
+    };
+  } else {
+    user = await User.create({
+      sub: payload.sub,
+      email: payload.email,
+      first_name: payload.given_name,
+      last_name: payload.family_name,
+      picture: payload.picture,
+      name: payload.name,
     });
-    return;
+    tokenIdValue = { 
+      user_id: user._id, 
+      email: user.email,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      picture: user.picture,
+      name: user.name,
+    };
   }
-  const createUser = await User.create({
-    name: profileObj.name, 
-    email: profileObj.email,
-    'google.googleId': googleId,
-    'google.accessToken': accessToken,
-  });
-  res.cookie('access_token', generateToken({ id: createUser._id }), {httpOnly: true, signed: true});
-  res.cookie('id_token', generateToken(createUser), {httpOnly: true, signed: true});
-  res.cookie('user_id', createUser._id, {httpOnly: true, signed: true});
+  const encodedTokenId = generateToken(tokenIdValue);
+  const accessToken = generateToken({ id: user._id });
+  res.cookie('access_token', accessToken, cookieOptions);
+  res.cookie('id_token', encodedTokenId, cookieOptions);
+  res.cookie('user_id', user._id, cookieOptions);
+  req.user_id = user._id;
   res.json({
-    id_token: generateToken(createUser),
-    access_token: generateToken({ id: createUser._id }),
-    user_id: createUser._id,
-    createUser,
+    id_token: encodedTokenId,
+    access_token: accessToken,
+    user_id: user._id,
+    isAuthenticated: true,
   });
 });
 
 export const onAuthStateChanged = (req, res) => {
   const { access_token } = req.signedCookies;
+  function expCookie() {
+    res.cookie('access_token', '', exp);
+    res.cookie('id_token', '', exp);
+    res.cookie('user_id', '', exp);
+  }
+  const exp = { maxAge: 0 };
   if (!access_token) {
-		res.cookie('access_token', '', { maxAge: 0 });
-    res.cookie('id_token', '', { maxAge: 0 });
-    res.cookie('user_id', '', { maxAge: 0 });
+		expCookie();
     res.json({ isAuthenticated: false });
     return;
   }
   jwt.verify(access_token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      res.cookie('access_token', '', { maxAge: 0 });
-      res.cookie('id_token', '', { maxAge: 0 });
-      res.cookie('user_id', '', { maxAge: 0 });
+      expCookie();
       res.json({ isAuthenticated: false });
-			return
+			return;
     }
 		res.json({ ...req.signedCookies, isAuthenticated: true });
   });
@@ -59,6 +106,8 @@ export const onAuthStateChanged = (req, res) => {
 
 export const authLogout = asyncHandler((req, res) => {
   res.cookie('access_token', '', { maxAge: 0 });
-  res.cookie('profile', '', { maxAge: 0 });
-  res.send({ success: true });
+  res.cookie('id_token', '', { maxAge: 0 });
+  res.cookie('user_id', '', { maxAge: 0 });
+  req.user_id = null;
+  res.json({ success: true });
 });

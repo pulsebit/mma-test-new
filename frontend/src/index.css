@@ -700,4 +700,27 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   max-width: 150px;
   padding: 25px 0;
 }
+
+.nav-profile a:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.nav-profile .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.nav-profile a:first-child:after {
+  display: none;
+}
+
+.nav-profile a:first-child img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #c7d6f5;
+}
+
 /*# sourceMappingURL=index.css.map */

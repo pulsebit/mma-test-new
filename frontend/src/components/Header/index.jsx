@@ -8,10 +8,7 @@ import * as H from './styled'
 import { authLogout } from 'store/actions/authActions';
 import { auth } from 'helpers/auth';
 
-console.log(auth.id_token)
-
 const Header = () => {
-
 	return (
 		<H.Header>
 		 	<Navbar expand='lg' collapseOnSelect>
@@ -61,7 +58,11 @@ function UserNav() {
 	}, [history]);
 
 	return (
-		<NavDropdown title={auth.profile && auth.profile.name} id='username'>
+		<NavDropdown 
+      className="nav-profile" 
+      id='username'
+      title={<img src={auth.profile.picture} />}
+    >
 			<LinkContainer to='/profile'>
 				<NavDropdown.Item>Profile</NavDropdown.Item>
 			</LinkContainer>

@@ -5,6 +5,7 @@ const initialState = {
   access_token: null,
   id_token: null,
   isAuthenticated: false,
+  signInMethod: null,
 };
 
 export function authReducer(state = initialState, action) {
@@ -16,6 +17,7 @@ export function authReducer(state = initialState, action) {
         access_token: action.payload.access_token,
         id_token: action.payload.id_token,
         isAuthenticated: action.payload.isAuthenticated,
+        signInMethod: action.payload.signInMethod,
       };
     case constant.AUTH_REMOVE_DATA:
       return {

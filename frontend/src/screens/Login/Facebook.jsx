@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import * as env from 'env';
 import FacebookLogin from 'react-facebook-login';
 
-export const Facebook = (props) => {
+export const Facebook = () => {
   const responseFacebook = (response) => {
 		console.log(response);
-		console.log(response.userID);
 	}
 
   return (

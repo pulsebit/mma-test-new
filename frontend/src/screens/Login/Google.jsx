@@ -1,37 +1,36 @@
 import React from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { GoogleLogin } from 'react-google-login'
 import { FcGoogle } from "react-icons/fc";
 import * as env from 'env';
 import axios from 'axios';
-import * as constant from 'store/constants/authConstants';
 import { useHistory } from 'react-router-dom';
-
+import { authChanges } from 'store/actions/authActions';
+ 
 export const Google = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const responseGoogle = React.useCallback(async (response) => {
     try {
-      const { googleId, profileObj, accessToken } = response;
-      const { data } = await axios.post('/api/users/auth-google', { googleId, profileObj, accessToken });
-      dispatch({
-        type: constant.AUTH_DATA,
-        payload: {
-          userId: data.user_id,
+      const { tokenId } = response;
+      const { data } = await axios.post('/api/users/auth-google', { tokenId });
+      if (data) {
+        const payload = {
+          user_id: data.user_id,
           access_token: data.access_token,
           id_token: data.id_token,
-          isAuthenticated: data.isAuthenticated,
+          isAuthenticated: data.isAuthenticated || false,
         }
-      });
-      setTimeout(() => {
-        history.push('/admin/dashboard');
-      }, 300);
+        authChanges(payload);
+        setTimeout(() => {
+          history.push('/admin/dashboard');
+        }, 300);
+      }
     }
     catch(err) {
       console.log(err);
     }
-	}, [dispatch, history]);
+	}, [history, authChanges]);
 
   return (
     <GoogleLogin

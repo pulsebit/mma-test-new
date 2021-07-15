@@ -1,23 +1,46 @@
 import React, {useState} from 'react'
 import { Form } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
 import Google from './Google'
 import Facebook from './Facebook'
 import * as S from './styled';
 import LoginImage from 'assets/images/login-image.png'
 import Layout from 'components/Layout'
-import { auth } from 'helpers/auth';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { authChanges } from 'store/actions/authActions';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Login = ({ location }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+  const [disableBtn, setDisableBtn] = useState(false);
+  const [error, setError] = useState(null);
 
-  const submitHandler = (e) => {
-  	e.preventDefault()
-  } 
+  const { isAuthenticated } = useSelector(state => state.auth);
+  const history = useHistory();
 
-  if (auth.isAuthenticated) {
+  const submitHandler = React.useCallback(async (e) => {
+  	e.preventDefault();
+    try {
+      setDisableBtn(true);
+      setError(null);
+      const { data } = await axios.post('/api/users/login', { email, password });
+      setDisableBtn(false);
+      if (!data.error) {
+        authChanges(data);
+        history.push('/admin/dashboard');
+      } else {
+        setError(data.error);
+      }
+    }
+    catch(err) {
+      setDisableBtn(false);
+      setError('Error: ' + err.message);
+    }
+  }, [email, password, history]);
+
+  if (isAuthenticated) {
     return <Redirect to="/" />
   }
 
@@ -40,6 +63,7 @@ const Login = ({ location }) => {
                     placeholder='Enter email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   ></S.Input>
                 </Form.Group>
                 <Form.Group>
@@ -50,12 +74,17 @@ const Login = ({ location }) => {
                     placeholder='Enter password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   ></S.Input>
                 </Form.Group>
 
-                <S.SubmitBtn type='submit' className="btn btn-primary">
+                <S.SubmitBtn disabled={disableBtn} type='submit' className="btn btn-primary">
                   Sign In
                 </S.SubmitBtn>
+
+                <p className="text-danger text-medium text-center mt-4">
+                  {error}
+                </p>
 
                 <S.ThirdPartyWrapper>
                   <S.Divider><span></span>or<span></span></S.Divider>

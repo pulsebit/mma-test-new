@@ -3,13 +3,13 @@ import bcrypt from 'bcryptjs'
 import aggregatePaginate   from 'mongoose-aggregate-paginate-v2'
 
 const userSchema = mongoose.Schema({
-  google: {
-    type: Object,
-    default: {
-      googleId: null,
-      accessToken: null,
-    }
+  sub: {
+    type: String,
+    default: null,
   },
+  first_name: String,
+  last_name: String,
+  picture: String,
    name: {
      type: String,
    },
