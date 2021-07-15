@@ -30,7 +30,7 @@ export const Google = () => {
     catch(err) {
       console.log(err);
     }
-	}, [history, authChanges]);
+	}, [history]);
 
   return (
     <GoogleLogin

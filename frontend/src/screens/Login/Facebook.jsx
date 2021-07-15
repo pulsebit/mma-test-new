@@ -2,16 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as env from 'env';
 import FacebookLogin from 'react-facebook-login';
+import axios from 'axios';
 
 export const Facebook = () => {
-  const responseFacebook = (response) => {
-		console.log(response);
-	}
+
+  const responseFacebook = React.useCallback(async (fbRes) => {
+    const { email, userID, picture, name } = fbRes;
+    const res = await axios.post('/api/users/auth-fb', { email, userID, picture: picture.data.url, name });
+    console.log(res.data);
+  }, []);
 
   return (
     <FacebookLogin
       appId={env.FACEBOOK_APP_ID}
-      autoLoad={true}
       fields="name,email,picture"
       callback={responseFacebook}
       cssClass="btn facebook-login"

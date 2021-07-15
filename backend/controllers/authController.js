@@ -4,10 +4,57 @@ import generateToken from '../utils/generateToken.js';
 import asyncHandler from 'express-async-handler';
 import { verify } from '../utils/google.js';
 
+const cookieOptions = { httpOnly: true, signed: true };
+
+export const authFb = asyncHandler(async (req, res) => {
+  const { email, userID, picture, name } = req.body;
+  let user = await User.findOne({ fb_id: userID });
+  let tokenIdValue;
+  if (!user && email) {
+    user = await User.findOne({ email });
+    if (user) {
+      res.json({ 
+        success: false, 
+        error: 'You can’t create an Account right now. Email Already exists.' 
+      });
+      return;
+    }
+    user = await User.create({
+      fb_id: userID, email, picture, name,
+    });
+  } 
+  else if (!user && !email) {
+    res.json({ 
+      success: false, 
+      error: 'You can’t create an Account right now. Try again later.' 
+    });
+    return;
+  }
+  tokenIdValue = { 
+    user_id: user._id, 
+    email: user.email,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    picture: user.picture,
+    name: user.name,
+  };
+  const encodedTokenId = generateToken(tokenIdValue);
+  const accessToken = generateToken({ id: user._id });
+  res.cookie('access_token', accessToken, cookieOptions);
+  res.cookie('id_token', encodedTokenId, cookieOptions);
+  res.cookie('user_id', user._id, cookieOptions);
+  req.user_id = user._id;
+  res.json({
+    id_token: encodedTokenId,
+    access_token: accessToken,
+    user_id: user._id,
+    isAuthenticated: true,
+  });
+});
+
 export const authSignin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email });
-  const cookieOptions = { httpOnly: true, signed: true };
   if (user && (await user.matchPassword(password)) ) {
     const tokenIdValue = { 
       user_id: user._id, 
@@ -30,7 +77,10 @@ export const authSignin = asyncHandler(async (req, res) => {
       isAuthenticated: true,
     });
   } else {
-    res.json({ error: 'Email or Password is incorrect!' });
+    res.json({ 
+      success: false, 
+      error: 'Email or Password is incorrect!' 
+    });
   }
 }); 
 
@@ -39,17 +89,7 @@ export const authGoogle = asyncHandler(async (req, res) => {
   const payload = await verify(tokenId); 
   let user = await User.findOne({ email: payload.email, sub: payload.sub });
   let tokenIdValue;
-  const cookieOptions = { httpOnly: true, signed: true };
-  if (user) {
-    tokenIdValue = { 
-      user_id: user._id, 
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      picture: user.picture,
-      name: user.name,
-    };
-  } else {
+  if (!user) {
     user = await User.create({
       sub: payload.sub,
       email: payload.email,
@@ -58,15 +98,15 @@ export const authGoogle = asyncHandler(async (req, res) => {
       picture: payload.picture,
       name: payload.name,
     });
-    tokenIdValue = { 
-      user_id: user._id, 
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      picture: user.picture,
-      name: user.name,
-    };
   }
+  tokenIdValue = { 
+    user_id: user._id, 
+    email: user.email,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    picture: user.picture,
+    name: user.name,
+  };
   const encodedTokenId = generateToken(tokenIdValue);
   const accessToken = generateToken({ id: user._id });
   res.cookie('access_token', accessToken, cookieOptions);

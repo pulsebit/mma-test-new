@@ -26,6 +26,7 @@ router
 
 router.post('/login', auth.authSignin)
 router.post('/auth-google', auth.authGoogle)
+router.post('/auth-fb', auth.authFb)
 router.route('/profile').get(protect, getUserProfile)
 router.post('/logout', auth.authLogout)
 

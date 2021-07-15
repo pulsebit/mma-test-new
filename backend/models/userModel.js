@@ -7,9 +7,22 @@ const userSchema = mongoose.Schema({
     type: String,
     default: null,
   },
-  first_name: String,
-  last_name: String,
-  picture: String,
+  fb_id: {
+   type: String,
+   default: null,
+ },
+  first_name: {
+     type: String,
+     default: null,
+  },
+  last_name: {
+   type: String,
+   default: null,
+  },
+  picture: {
+   type: String,
+   default: null,
+  },
    name: {
      type: String,
    },
