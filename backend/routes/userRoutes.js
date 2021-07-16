@@ -17,17 +17,22 @@ import * as auth from '../controllers/authController.js';
 router.route('/')
   .post(registerUser)
   .get(getUsers)
-router
-     .route('/:id')
-     .get(protect, adminOnly, getUserById)
-		 .put(protect, adminOnly, updateUser)
-		 .delete(protect, adminOnly, deleteUser)
-		 .patch(protect, updateUserPassword)
+// router
+//      .route('/:id')
+//      .get(protect, adminOnly, getUserById)
+// 		 .put(protect, adminOnly, updateUser)
+// 		 .delete(protect, adminOnly, deleteUser)
+// 		 .patch(protect, updateUserPassword)
 
 router.post('/login', auth.authSignin)
 router.post('/auth-google', auth.authGoogle)
 router.post('/auth-fb', auth.authFb)
-router.route('/profile').get(protect, getUserProfile)
+
+router.post('/profile', protect, auth.updateProfile)
+
+// router.route('/profile')
+//   .get(protect, getUserProfile)
+//   .get(protect, auth.updateProfile)
 router.post('/logout', auth.authLogout)
 
 export default router

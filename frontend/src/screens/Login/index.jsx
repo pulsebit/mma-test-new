@@ -8,16 +8,15 @@ import Layout from 'components/Layout'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { authChanges } from 'store/actions/authActions';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import useAuth from 'hooks/useAuth';
 
 const Login = ({ location }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
   const [disableBtn, setDisableBtn] = useState(false);
   const [error, setError] = useState(null);
-
-  const { isAuthenticated } = useSelector(state => state.auth);
+  const { isAuthenticated } = useAuth();
   const history = useHistory();
 
   const submitHandler = React.useCallback(async (e) => {
@@ -49,7 +48,7 @@ const Login = ({ location }) => {
       <div className='container login-wrapper dpa-tb-60'>
         <div className="row">
           <div className="col-md-6 col-12 p-0">
-            <img style={{height: '100%'}} src={LoginImage} />
+            <img style={{height: '100%'}} src={LoginImage} alt="Login" />
           </div>
           <div className="col-md-6 col-12">
             <S.LoginRight className="login-right">

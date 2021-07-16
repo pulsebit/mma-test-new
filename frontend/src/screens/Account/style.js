@@ -1,0 +1,45 @@
+import styled from 'styled-components';
+
+export const AccountWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap
+`;
+
+export const Sidebar = styled.div`
+  width: var(--profile-sidebar-width);
+  height: 100%;
+  background: #fff;
+  border-left: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  a {
+    margin-bottom: 5px;
+    height: 40px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #262626;
+    justify-content: space-between;
+    svg {
+      visibility: hidden;
+    }
+    &.active {
+      background: var(--link-active-bg);
+      svg {
+        visibility: visible;
+      }
+    }
+    &:hover {
+      background: var(--link-hover-bg);
+      svg {
+        visibility: visible;
+      }
+    }
+  }
+`;

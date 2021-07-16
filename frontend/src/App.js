@@ -30,6 +30,8 @@ import PlanViewScreen from './screens/PlanViewScreen'
 import Settings from './screens/Settings'
 import LoginScreen from 'screens/Login'
 
+import Account from 'screens/Account'
+
 function App() {
   return (
     <Router>
@@ -57,6 +59,8 @@ function App() {
       <Route path='/admin/plan/:id' component={PlanViewScreen} />
       <Route path='/admin/plan/edit' component={PlanEditScreen} />
       <Route path='/admin/settings' component={Settings} />
+      
+      <Route path="/account" component={Account}/>
       <Route path='/' component={HomeScreen} exact />
     </Router>
   );

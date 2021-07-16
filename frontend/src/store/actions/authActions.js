@@ -18,6 +18,5 @@ export async function authLogout() {
   const { data } = await axios.post('/api/users/logout');
   if (data.success) {
     store.dispatch({ type: constant.AUTH_REMOVE_DATA });
-    window.location.reload();
   }
 }

@@ -6,9 +6,12 @@ import { useHistory } from 'react-router-dom';
 import SiteLogo from 'assets/images/Logo.png'
 import * as H from './styled'
 import { authLogout } from 'store/actions/authActions';
-import { auth } from 'helpers/auth';
+import useAuth from 'hooks/useAuth';
+import Profile from 'assets/images/user.svg';
 
 const Header = () => {
+  const { isAuthenticated } = useAuth();
+
 	return (
 		<H.Header>
 		 	<Navbar expand='lg' collapseOnSelect>
@@ -23,12 +26,12 @@ const Header = () => {
 							<Navbar.Toggle aria-controls='basic-navbar-nav' />
 							<Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
 							<LinkContainer exact={true} to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
-							{auth.isAuthenticated ? (	
+							{isAuthenticated ? (	
 								<LinkContainer to='/admin'>
 									<Nav.Link>Dashboard</Nav.Link>
 								</LinkContainer>
 							) : <div></div> }
-							{auth.isAuthenticated ? (
+							{isAuthenticated ? (
 								<UserNav />
 							) : (
 								<LinkContainer to='/login'>
@@ -44,15 +47,16 @@ const Header = () => {
 	)
 }
 
-export default Header
+export default Header;
 
 
 function UserNav() {
 	const history = useHistory();
-
+  const { profile } = useAuth();
+  
 	const logoutHandler = React.useCallback(() => {
+    authLogout();
 		setTimeout(() => {
-			authLogout();
 			history.push('/login');
 		}, 500);
 	}, [history]);
@@ -61,20 +65,20 @@ function UserNav() {
 		<NavDropdown 
       className="nav-profile" 
       id='username'
-      title={<img src={auth.profile.picture} />}
+      title={profile && <img src={profile.picture || Profile} alt={profile.name || 'No name'} />}
     >
-			<LinkContainer to='/profile'>
+			<LinkContainer to='/account/profile'>
 				<NavDropdown.Item>Profile</NavDropdown.Item>
 			</LinkContainer>
-			<LinkContainer to='/profile'>
+			<LinkContainer to='/profile-2'>
 				<NavDropdown.Item>Billing History</NavDropdown.Item>
 			</LinkContainer>
-			<LinkContainer to='/profile'>
+			<LinkContainer to='/profile3'>
 				<NavDropdown.Item>Users</NavDropdown.Item>
 			</LinkContainer>
-			<NavDropdown.Item onClick={logoutHandler}>
-					Logout
-			</NavDropdown.Item>
+      <button className="dropdown-item" onClick={logoutHandler}>
+        Logout
+      </button>
 		</NavDropdown>
 	)
 }

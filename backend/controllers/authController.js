@@ -1,6 +1,5 @@
 import User from '../models/userModel.js'
-import jwt from 'jsonwebtoken';
-import generateToken from '../utils/generateToken.js';
+import generateToken, { checkToken, decodeIdToken } from '../utils/generateToken.js';
 import asyncHandler from 'express-async-handler';
 import { verify } from '../utils/google.js';
 
@@ -43,7 +42,6 @@ export const authFb = asyncHandler(async (req, res) => {
   res.cookie('access_token', accessToken, cookieOptions);
   res.cookie('id_token', encodedTokenId, cookieOptions);
   res.cookie('user_id', user._id, cookieOptions);
-  req.user_id = user._id;
   res.json({
     id_token: encodedTokenId,
     access_token: accessToken,
@@ -69,7 +67,6 @@ export const authSignin = asyncHandler(async (req, res) => {
     res.cookie('access_token', accessToken, cookieOptions);
     res.cookie('id_token', encodedTokenId, cookieOptions);
     res.cookie('user_id', user._id, cookieOptions);
-    req.user_id = user._id;
     res.json({
       id_token: encodedTokenId,
       access_token: accessToken,
@@ -112,7 +109,6 @@ export const authGoogle = asyncHandler(async (req, res) => {
   res.cookie('access_token', accessToken, cookieOptions);
   res.cookie('id_token', encodedTokenId, cookieOptions);
   res.cookie('user_id', user._id, cookieOptions);
-  req.user_id = user._id;
   res.json({
     id_token: encodedTokenId,
     access_token: accessToken,
@@ -123,24 +119,19 @@ export const authGoogle = asyncHandler(async (req, res) => {
 
 export const onAuthStateChanged = (req, res) => {
   const { access_token } = req.signedCookies;
+  const exp = { maxAge: 0 };
   function expCookie() {
     res.cookie('access_token', '', exp);
     res.cookie('id_token', '', exp);
     res.cookie('user_id', '', exp);
   }
-  const exp = { maxAge: 0 };
-  if (!access_token) {
-		expCookie();
-    res.json({ isAuthenticated: false });
-    return;
-  }
-  jwt.verify(access_token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
+  checkToken(access_token, (isValid) => {
+    if (!isValid) {
       expCookie();
       res.json({ isAuthenticated: false });
-			return;
+      return;
     }
-		res.json({ ...req.signedCookies, isAuthenticated: true });
+    res.json({ ...req.signedCookies, isAuthenticated: true });
   });
 }
 
@@ -150,4 +141,14 @@ export const authLogout = asyncHandler((req, res) => {
   res.cookie('user_id', '', { maxAge: 0 });
   req.user_id = null;
   res.json({ success: true });
+});
+
+export const updateProfile = asyncHandler((req, res) => {
+  const { id_token } = req.signedCookies;
+  const decoded = decodeIdToken(id_token);
+  decoded.picture = 'https://jwt.io/img/pic_logo.svg';
+  delete decoded.exp;
+  delete decoded.iat;
+  res.cookie('id_token', generateToken(decoded), cookieOptions);
+  res.send(generateToken(decoded));
 });
