@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+const linkHeight = '52px';
+const textColor = 'rgb(0 0 0 / 85%)';
+
 export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,14 +39,21 @@ export const Aside = styled.aside`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 52px;
+    height: ${linkHeight};
     cursor: pointer;
     span {
-      color: rgb(0 0 0 / 85%);
+      color: ${textColor};
     }
-    span.title {
+    a.title {
       display: flex;
       align-items: center;
+      margin: 0;
+      width: 100%;
+      justify-content: flex-start;
+      &:hover {
+        background-color: transparent;
+        color: ${textColor};
+      }
     }
     span.caret {
       display: flex;
@@ -68,9 +78,11 @@ export const Aside = styled.aside`
     }
     &:hover {
       background: var(--link-hover-bg);
+      color: ${textColor};
     }
     &.active {
       background: var(--link-active-bg);
+      color: ${textColor};
     }
   }
 `;

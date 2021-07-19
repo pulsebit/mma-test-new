@@ -3,7 +3,7 @@ import * as L from './styled';
 import { MdDashboard, MdPayment } from 'react-icons/md';
 import { BiSupport, BiCog } from 'react-icons/bi';
 import { SiOpenaccess, SiProducthunt } from 'react-icons/si';
-import { BsCaretDownFill, BsCaretUpFill } from 'react-icons/bs';
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 
@@ -17,9 +17,9 @@ const Sidebar = () => {
       </NavLink>
 
       <NavDropdown
+        parentTo="/admin/supports"
         title={<><BiSupport /> <span>Supports</span></>}
       >
-        <NavLink to="/admin/supports">Overview</NavLink>
         <a href="#facebook.com">Acounting</a>
         <a href="#facebook.com">Technical Support</a>
         <a href="#facebook.com">Billing Support</a>
@@ -37,9 +37,9 @@ const Sidebar = () => {
         </span>
       </NavLink>
       <NavDropdown 
+        parentTo="/admin/products"
         title={<><SiProducthunt/> <span>Products</span></>}
       >
-        <NavLink to="/admin/products">Overview</NavLink>
         <a href="#facebn">Categories</a>
       </NavDropdown>
 
@@ -59,7 +59,7 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-function NavDropdown({ title, children }) {
+function NavDropdown({ parentTo, title, children }) {
   const [open, setOpen] = React.useState(false);
   const sub = useRef(null);
   const [subHeight, setSubHeight] = React.useState(0);
@@ -74,11 +74,22 @@ function NavDropdown({ title, children }) {
     }
   }, [open, sub]);
 
+  React.useEffect(() => {
+    let isOpen = false;
+    const elem = sub.current.children;
+    for (let i = 0; i < elem.length; i++) {
+      if (elem[i] && elem[i].classList.contains('active')) {
+        isOpen = true;
+      }
+    }
+    setOpen(isOpen);
+  }, [sub]);
+
   return <>
     <div className="parent-item" onClick={() => setOpen(!open)}>
-      <span className="title">{title}</span>
+      <NavLink to={parentTo} className="title">{title}</NavLink>
       <span className="caret" onClick={() => setOpen(!open)}>
-        {open ? <BsCaretUpFill/> : <BsCaretDownFill/> }
+        {open ? <FaChevronUp/> : <FaChevronDown/> }
       </span>
     </div>
     <L.SubLink ref={sub} style={{ height: subHeight + 'px' }}>

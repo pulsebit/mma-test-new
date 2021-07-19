@@ -7,12 +7,14 @@ import User from 'assets/images/user.svg';
 import axios from 'axios';
 
 export const Profile = (props) => {
+  const { profile } = useAuth();
 
   return (
     <P.ProfileWrapper>
-      
       <ImageForm />
-
+      <Wrapper label="Email">
+        <P.Input placeholder="Email"className="form-control" value={profile && profile.email} />
+      </Wrapper>
       <P.FormGroup className="form-group">
         <div className="row">
           <div className="col-md-6 pl-0">
@@ -25,9 +27,6 @@ export const Profile = (props) => {
           </div>
         </div>
       </P.FormGroup>
-      <Wrapper label="Email">
-        <P.Input placeholder="Email" className="form-control" />
-      </Wrapper>
       <Wrapper label="Contact Number">
         <P.Input placeholder="Contact Number" className="form-control" />
       </Wrapper>
@@ -71,7 +70,6 @@ function ImageForm(props) {
      Authorization: `Bearer ${access_token}`,
     },
  }
-
   const handleChange = React.useCallback(async (e) => {
     const res = await axios.post('/api/users/profile', {}, config);
     console.log(res);
@@ -84,7 +82,6 @@ function ImageForm(props) {
     // }
     // reader.readAsDataURL(file);
   }, []);
-
   return (
     <div className="text-center">
       <P.ImageWrapper 

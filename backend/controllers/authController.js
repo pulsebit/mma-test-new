@@ -3,48 +3,19 @@ import generateToken, { checkToken, decodeIdToken } from '../utils/generateToken
 import asyncHandler from 'express-async-handler';
 import { verify } from '../utils/google.js';
 
-const cookieOptions = { httpOnly: true, signed: true };
-
 export const authFb = asyncHandler(async (req, res) => {
   const { email, userID, picture, name } = req.body;
-  let user = await User.findOne({ fb_id: userID });
-  let tokenIdValue;
-  if (!user && email) {
-    user = await User.findOne({ email });
-    if (user) {
-      res.json({ 
-        success: false, 
-        error: 'You can’t create an Account right now. Email Already exists.' 
-      });
-      return;
-    }
+  let user = await User.findOne({ email, fb_id: userID });
+  if (!user) {
     user = await User.create({
       fb_id: userID, email, picture, name,
     });
-  } 
-  else if (!user && !email) {
-    res.json({ 
-      success: false, 
-      error: 'You can’t create an Account right now. Try again later.' 
-    });
-    return;
   }
-  tokenIdValue = { 
-    user_id: user._id, 
-    email: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    picture: user.picture,
-    name: user.name,
-  };
-  const encodedTokenId = generateToken(tokenIdValue);
-  const accessToken = generateToken({ id: user._id });
-  res.cookie('access_token', accessToken, cookieOptions);
-  res.cookie('id_token', encodedTokenId, cookieOptions);
-  res.cookie('user_id', user._id, cookieOptions);
+  const tokenIdValue = createUserTokenValue(user);
+  const { access_token, id_token } = createToken(res, user._id, tokenIdValue);
   res.json({
-    id_token: encodedTokenId,
-    access_token: accessToken,
+    id_token,
+    access_token,
     user_id: user._id,
     isAuthenticated: true,
   });
@@ -54,22 +25,11 @@ export const authSignin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email });
   if (user && (await user.matchPassword(password)) ) {
-    const tokenIdValue = { 
-      user_id: user._id, 
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      picture: user.picture,
-      name: user.name,
-    };
-    const encodedTokenId = generateToken(tokenIdValue);
-    const accessToken = generateToken({ id: user._id });
-    res.cookie('access_token', accessToken, cookieOptions);
-    res.cookie('id_token', encodedTokenId, cookieOptions);
-    res.cookie('user_id', user._id, cookieOptions);
+    const tokenIdValue = createUserTokenValue(user);
+    const { access_token, id_token } = createToken(res, user._id, tokenIdValue);
     res.json({
-      id_token: encodedTokenId,
-      access_token: accessToken,
+      id_token,
+      access_token,
       user_id: user._id,
       isAuthenticated: true,
     });
@@ -85,7 +45,6 @@ export const authGoogle = asyncHandler(async (req, res) => {
   const { tokenId } = req.body;
   const payload = await verify(tokenId); 
   let user = await User.findOne({ email: payload.email, sub: payload.sub });
-  let tokenIdValue;
   if (!user) {
     user = await User.create({
       sub: payload.sub,
@@ -96,22 +55,11 @@ export const authGoogle = asyncHandler(async (req, res) => {
       name: payload.name,
     });
   }
-  tokenIdValue = { 
-    user_id: user._id, 
-    email: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    picture: user.picture,
-    name: user.name,
-  };
-  const encodedTokenId = generateToken(tokenIdValue);
-  const accessToken = generateToken({ id: user._id });
-  res.cookie('access_token', accessToken, cookieOptions);
-  res.cookie('id_token', encodedTokenId, cookieOptions);
-  res.cookie('user_id', user._id, cookieOptions);
+  const tokenIdValue = createUserTokenValue(user);
+  const { access_token, id_token } = createToken(res, user._id, tokenIdValue);
   res.json({
-    id_token: encodedTokenId,
-    access_token: accessToken,
+    id_token,
+    access_token,
     user_id: user._id,
     isAuthenticated: true,
   });
@@ -119,15 +67,9 @@ export const authGoogle = asyncHandler(async (req, res) => {
 
 export const onAuthStateChanged = (req, res) => {
   const { access_token } = req.signedCookies;
-  const exp = { maxAge: 0 };
-  function expCookie() {
-    res.cookie('access_token', '', exp);
-    res.cookie('id_token', '', exp);
-    res.cookie('user_id', '', exp);
-  }
   checkToken(access_token, (isValid) => {
     if (!isValid) {
-      expCookie();
+      expCookie(res);
       res.json({ isAuthenticated: false });
       return;
     }
@@ -136,10 +78,7 @@ export const onAuthStateChanged = (req, res) => {
 }
 
 export const authLogout = asyncHandler((req, res) => {
-  res.cookie('access_token', '', { maxAge: 0 });
-  res.cookie('id_token', '', { maxAge: 0 });
-  res.cookie('user_id', '', { maxAge: 0 });
-  req.user_id = null;
+  expCookie(res);
   res.json({ success: true });
 });
 
@@ -149,6 +88,50 @@ export const updateProfile = asyncHandler((req, res) => {
   decoded.picture = 'https://jwt.io/img/pic_logo.svg';
   delete decoded.exp;
   delete decoded.iat;
-  res.cookie('id_token', generateToken(decoded), cookieOptions);
+  res.cookie('id_token', generateToken(decoded), { httpOnly: true, signed: true });
   res.send(generateToken(decoded));
 });
+
+
+// private methods
+function createToken(res, userId, idTokenValue) {
+  const id_token = generateToken(idTokenValue);
+  const access_token = generateToken({ id: userId });
+  res.cookie('access_token', access_token, { httpOnly: true, signed: true });
+  res.cookie('id_token', id_token, { httpOnly: true, signed: true });
+  res.cookie('user_id', userId, { httpOnly: true, signed: true });
+  return {
+    access_token,
+    id_token,
+  }
+}
+
+function createUserTokenValue(user) {
+  const tokenIdValue = { 
+    user_id: user._id, 
+    email: user.email,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    picture: user.picture,
+    name: user.name,
+    sub: user.sub || null,
+    fb_id: user.fb_id || null,
+    mobile_no: user.mobile_no || null,
+    gender: user.gender || null,
+    birthdate: user.birthdate || null,
+    address: user.address || null,
+    state: user.state || null,
+    zipcode: user.zipcode || null,
+    country: user.country || null,
+    business_name: user.business_name || null,
+    isAdmin: user.isAdmin || null,
+  };
+  return tokenIdValue;
+}
+
+function expCookie(res) {
+  const exp = { maxAge: 0 };
+  res.cookie('access_token', '', exp);
+  res.cookie('id_token', '', exp);
+  res.cookie('user_id', '', exp);
+}
