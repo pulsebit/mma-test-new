@@ -5,17 +5,28 @@ import { verify } from '../utils/google.js';
 
 export const authFb = asyncHandler(async (req, res) => {
   const { email, userID, picture, name } = req.body;
-  let user = await User.findOne({ email, fb_id: userID });
-  if (!user) {
+  let user = await User.findOne({ fb_id: userID });
+  if (!user && email) {
+    user = await User.findOne({ email });
+    if (user) {
+      res.json({ 
+        error: `Can’t create account with email ${email}. Email already in used.`,
+      });
+      return;
+    }
+    user = await User.create({
+      fb_id: userID, email, picture, name,
+    });
+  }
+  else if (!user && !email) {
     user = await User.create({
       fb_id: userID, email, picture, name,
     });
   }
   const tokenIdValue = createUserTokenValue(user);
-  const { access_token, id_token } = createToken(res, user._id, tokenIdValue);
+  const createdToken = createToken(res, user._id, tokenIdValue);
   res.json({
-    id_token,
-    access_token,
+    ...createdToken,
     user_id: user._id,
     isAuthenticated: true,
   });
@@ -26,18 +37,15 @@ export const authSignin = asyncHandler(async (req, res) => {
   let user = await User.findOne({ email });
   if (user && (await user.matchPassword(password)) ) {
     const tokenIdValue = createUserTokenValue(user);
-    const { access_token, id_token } = createToken(res, user._id, tokenIdValue);
+    const createdToken = createToken(res, user._id, tokenIdValue);
     res.json({
-      id_token,
-      access_token,
+      ...createdToken,
+      success: true,
       user_id: user._id,
       isAuthenticated: true,
     });
   } else {
-    res.json({ 
-      success: false, 
-      error: 'Email or Password is incorrect!' 
-    });
+    res.json({ success: false, message: 'Passwords does not match.' });
   }
 }); 
 
@@ -56,10 +64,9 @@ export const authGoogle = asyncHandler(async (req, res) => {
     });
   }
   const tokenIdValue = createUserTokenValue(user);
-  const { access_token, id_token } = createToken(res, user._id, tokenIdValue);
+  const createdToken = createToken(res, user._id, tokenIdValue);
   res.json({
-    id_token,
-    access_token,
+    ...createdToken,
     user_id: user._id,
     isAuthenticated: true,
   });
@@ -82,6 +89,30 @@ export const authLogout = asyncHandler((req, res) => {
   res.json({ success: true });
 });
 
+export const registerUser = asyncHandler(async (req, res) => {
+  const { name, email, password, confirm_password } = req.body;
+  let user = await User.findOne({ email });
+  if (password !== confirm_password) {
+    res.json({ success: false, message: 'Passwords does not match.' });
+    return;
+  }
+  if (user) {
+    res.json({ success: false, message: 'User already exists.' });
+    return;
+  }
+  user = await User.create({ name, email, password });
+  if (user) {
+    const tokenIdValue = createUserTokenValue(user);
+    const createdToken = createToken(res, user._id, tokenIdValue);
+    res.json({
+      ...createdToken,
+      success: true,
+      user_id: user._id,
+      isAuthenticated: true,
+    });
+  }
+});
+
 export const updateProfile = asyncHandler((req, res) => {
   const { id_token } = req.signedCookies;
   const decoded = decodeIdToken(id_token);
@@ -90,6 +121,21 @@ export const updateProfile = asyncHandler((req, res) => {
   delete decoded.iat;
   res.cookie('id_token', generateToken(decoded), { httpOnly: true, signed: true });
   res.send(generateToken(decoded));
+});
+
+export const checkEmailIfExists = asyncHandler(async (req, res) => {
+  let user = await User.findOne({ email: req.body.email });
+  if (user) {
+    res.json({
+      message: 'Email already exists.',
+      isExists: true,
+    });
+    return;
+  }
+  res.json({
+    message: null,
+    isExists: false,
+  });
 });
 
 
@@ -109,11 +155,11 @@ function createToken(res, userId, idTokenValue) {
 function createUserTokenValue(user) {
   const tokenIdValue = { 
     user_id: user._id, 
-    email: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    picture: user.picture,
-    name: user.name,
+    email: user.email || null,
+    first_name: user.first_name || null,
+    last_name: user.last_name || null,
+    picture: user.picture || null,
+    name: user.name || null,
     sub: user.sub || null,
     fb_id: user.fb_id || null,
     mobile_no: user.mobile_no || null,

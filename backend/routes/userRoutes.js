@@ -15,7 +15,6 @@ import * as auth from '../controllers/authController.js';
 
 
 router.route('/')
-  .post(registerUser)
   .get(getUsers)
 // router
 //      .route('/:id')
@@ -27,8 +26,10 @@ router.route('/')
 router.post('/login', auth.authSignin)
 router.post('/auth-google', auth.authGoogle)
 router.post('/auth-fb', auth.authFb)
+router.post('/register', auth.registerUser)
 
 router.post('/profile', protect, auth.updateProfile)
+router.post('/check-email', auth.checkEmailIfExists)
 
 // router.route('/profile')
 //   .get(protect, getUserProfile)

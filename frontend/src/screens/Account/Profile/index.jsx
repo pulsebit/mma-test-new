@@ -5,6 +5,7 @@ import useAuth from 'hooks/useAuth';
 import { MdModeEdit } from 'react-icons/md';
 import User from 'assets/images/user.svg';
 import axios from 'axios';
+import { Input } from 'components/Form';
 
 export const Profile = (props) => {
   const { profile } = useAuth();
@@ -12,51 +13,47 @@ export const Profile = (props) => {
   return (
     <P.ProfileWrapper>
       <ImageForm />
-      <Wrapper label="Email">
-        <P.Input placeholder="Email"className="form-control" value={profile && profile.email} />
-      </Wrapper>
+      <P.FormGroup>
+        <Input label="Email" placeholder="Email" value={profile && profile.email} />
+      </P.FormGroup>
       <P.FormGroup className="form-group">
         <div className="row">
           <div className="col-md-6 pl-0">
-            <P.Label>First Name</P.Label>
-            <P.Input placeholder="First Name" className="form-control" />
+            <Input label="First Name" placeholder="Email" />
           </div>
           <div className="col-md-6 pr-0">
-            <P.Label>Last Name</P.Label>
-            <P.Input placeholder="Last Name" className="form-control" />
+            <Input label="Last Name" placeholder="Last Name" />
           </div>
         </div>
       </P.FormGroup>
-      <Wrapper label="Contact Number">
-        <P.Input placeholder="Contact Number" className="form-control" />
-      </Wrapper>
+      <P.FormGroup>
+        <Input label="Contact Number" placeholder="Contact Number" />
+      </P.FormGroup>
       <P.FormGroup>
         <div className="row">
           <div className="col-md-6 pl-0">
-            <P.Label>Gender</P.Label>
-            <P.Input placeholder="Gender" className="form-control" />
+            <Input label="Gender" placeholder="Gender" />
           </div>
           <div className="col-md-6 pr-0">
-            <P.Label>Birthdate</P.Label>
-            <P.Input placeholder="Birthdate" className="form-control" />
+            <Input label="Birthdate" placeholder="Birthdate" />
           </div>
         </div>
       </P.FormGroup>
-      <Wrapper label="Address">
-        <P.Input placeholder="Address" className="form-control" />
-      </Wrapper>
-      <Wrapper label="State">
-        <P.Input placeholder="State" className="form-control" />
-      </Wrapper>
-      <Wrapper label="Zip Code">
-        <P.Input placeholder="Zip Code" className="form-control" />
-      </Wrapper>
-      <Wrapper label="Country">
-        <P.Input placeholder="Country" className="form-control" />
-      </Wrapper>
-      <Wrapper>
+      <P.FormGroup>
+        <Input label="Address" placeholder="Address" />
+      </P.FormGroup>
+      <P.FormGroup>
+        <Input label="State" placeholder="State" />
+      </P.FormGroup>
+      <P.FormGroup>
+        <Input label="Zip Code" placeholder="Zip Code" />
+      </P.FormGroup>
+      <P.FormGroup>
+        <Input label="Country" placeholder="Country" />
+      </P.FormGroup>
+      <P.FormGroup>
         <button className="btn btn-primary">save</button>
-      </Wrapper>
+      </P.FormGroup>
     </P.ProfileWrapper>
   )
 }
@@ -95,15 +92,6 @@ function ImageForm(props) {
       </P.ImageWrapper>
     </div>
   )
-}
-
-function Wrapper(props) {
-  return (
-    <P.FormGroup>
-      {props.label && <P.Label>{props.label}</P.Label>}
-      {props.children}
-    </P.FormGroup>
-  );
 }
 
 const mapStateToProps = (state) => ({ })

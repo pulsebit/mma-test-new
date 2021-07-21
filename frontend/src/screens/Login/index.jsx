@@ -1,103 +1,140 @@
-import React, {useState} from 'react'
-import { Form } from 'react-bootstrap'
-import Google from './Google'
-import Facebook from './Facebook'
-import * as S from './styled';
-import LoginImage from 'assets/images/login-image.png'
+import React from 'react'
+import { connect } from 'react-redux'
 import Layout from 'components/Layout'
-import { Redirect } from 'react-router-dom';
+import RegisterBg from 'assets/images/register.jpeg'
+import * as S from './indexStyle';
+import * as G from 'style/global'
+import { useForm } from "react-hook-form";
+import ThirdPartySignIn from 'components/ThirdPartySignIn';
 import axios from 'axios';
+import * as auth from 'store/constants/authConstants';
 import { authChanges } from 'store/actions/authActions';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory, Link } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 
-const Login = ({ location }) => {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-  const [disableBtn, setDisableBtn] = useState(false);
-  const [error, setError] = useState(null);
-  const { isAuthenticated } = useAuth();
+export const Index = (props) => {
+  const { register, handleSubmit } = useForm();
+  const [disableSubmit, setDisableSubmit] = React.useState(false);
   const history = useHistory();
+  const { isAuthenticated } = useAuth();
 
-  const submitHandler = React.useCallback(async (e) => {
-  	e.preventDefault();
+  const onLoginSubmit = React.useCallback(async (form) => {
     try {
-      setDisableBtn(true);
-      setError(null);
-      const { data } = await axios.post('/api/users/login', { email, password });
-      setDisableBtn(false);
-      if (!data.error) {
-        authChanges(data);
-        history.push('/admin/dashboard');
+      setDisableSubmit(true);
+      props.removeAuthMessage();
+      const { data } = await axios.post('/api/users/login', form);
+      if (!data.success) {
+        setDisableSubmit(false);
+        props.changeAuthMessage({ message: data.message, type: 'login' });
       } else {
-        setError(data.error);
+        props.removeAuthMessage();
+        authChanges(data);
+        setTimeout(() => {
+          history.push('/admin/dashboard');
+        }, 300);
       }
     }
     catch(err) {
-      setDisableBtn(false);
-      setError('Error: ' + err.message);
+      setDisableSubmit(false);
+      props.changeAuthMessage({ message: 'Error: ' + err.message, type: 'login'});
     }
-  }, [email, password, history]);
+  }, [history, props]);
 
   if (isAuthenticated) {
     return <Redirect to="/" />
   }
 
-	return (
-    <Layout sidebar={false} header={true}>
-      <div className='container login-wrapper dpa-tb-60'>
-        <div className="row">
-          <div className="col-md-6 col-12 p-0">
-            <img style={{height: '100%'}} src={LoginImage} alt="Login" />
-          </div>
-          <div className="col-md-6 col-12">
-            <S.LoginRight className="login-right">
-              <h3>Sign In</h3>
-              <form onSubmit={submitHandler}> 
-                <Form.Group>
-                  <S.FormLabel className="form-label">Email Address</S.FormLabel>
-                  <S.Input
-                    className="form-control"
-                    type='email'
-                    placeholder='Enter email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  ></S.Input>
-                </Form.Group>
-                <Form.Group>
-                  <S.FormLabel className="form-label">Password</S.FormLabel>
-                  <S.Input
-                    className="form-control"
-                    type='password'
-                    placeholder='Enter password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  ></S.Input>
-                </Form.Group>
-
-                <S.SubmitBtn disabled={disableBtn} type='submit' className="btn btn-primary">
-                  Sign In
-                </S.SubmitBtn>
-
-                <p className="text-danger text-medium text-center mt-4">
-                  {error}
-                </p>
-
-                <S.ThirdPartyWrapper>
-                  <S.Divider><span></span>or<span></span></S.Divider>
-                  <Google />
-                  <Facebook />   
-                </S.ThirdPartyWrapper>
-
-              </form>
-            </S.LoginRight>
-          </div>
+  return (
+    <FormWrapper>
+      <S.Form onSubmit={handleSubmit(onLoginSubmit)}>
+        <Tops/>
+        <FormGroup label="Email Address">
+          <G.Input type="email" className="form-control" placeholder="Email Address" required
+            {...register("email")}
+          />
+        </FormGroup>
+        <FormGroup label="Password">
+          <G.Input type="password" className="form-control" placeholder="Password" required
+            {...register("password")}
+          />
+        </FormGroup>
+        <div className="form-group mt-3">
+          <S.Submit 
+            className="btn btn-primary" 
+            disabled={disableSubmit}
+          >Sign In</S.Submit>
         </div>
-      </div>
-    </Layout>
-	)
+        <S.ErrorWrapper>
+          {props.authMessage && props.authMessage.type === 'login' && props.authMessage.message}
+        </S.ErrorWrapper>
+      </S.Form>
+    </FormWrapper>
+  )
 }
 
-export default Login
+const mapStateToProps = (state) => ({ 
+  authMessage: state.authMessage,
+})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAuthMessage: (payload) => dispatch({ type: auth.CHANGE_MESSAGE, payload }),
+    removeAuthMessage: () => dispatch({ type: auth.REMOVE_MESSAGE }),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
+
+function FormWrapper(props) {
+  return (
+    <Layout sidebar={false}>
+      <div className="container">
+        <S.RegisterWrapper>
+          <div className="row">
+            <div className="col-md-6 p-0">
+              <img src={RegisterBg} alt="Register" className="img img-bg" />
+            </div>
+            <div className="col-md-6 p-0">
+              {props.children}
+            </div>
+          </div>
+        </S.RegisterWrapper>
+      </div>
+    </Layout>
+  )
+}
+
+function FormGroup(props) {
+  return (
+    <div className="form-group"> 
+      <G.FormLabel>{props.label}</G.FormLabel>
+      {props.children}
+    </div>
+  );
+}
+
+function Or(props) {
+  return (
+    <S.Or>
+      <div></div>
+      <span>OR</span>
+      <div></div>
+    </S.Or>
+  );
+}
+
+function Tops(props) {
+  return (
+    <>
+      <div className="tops">
+        <S.Title>Sign in.</S.Title>
+        <S.SubTitle>New User?
+          <Link to="/register"> Sign up here.</Link>
+        </S.SubTitle>
+      </div>
+      <ThirdPartySignIn 
+        googleButtonText="Sign in with Google" 
+        fbButtonText="Sign in with Facebook" 
+      />
+      <Or/>
+    </>
+  )
+}

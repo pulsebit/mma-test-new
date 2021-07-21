@@ -44,7 +44,7 @@ export const Aside = styled.aside`
     span {
       color: ${textColor};
     }
-    a.title {
+    a.title, span.title {
       display: flex;
       align-items: center;
       margin: 0;

@@ -16,6 +16,7 @@ export const Index = ({ match }) => {
           <Route exact path={`${match.url}/subscription`} />
           <Route exact path={`${match.url}/plan`} />
           <Route exact path={`${match.url}/payment-history`} />
+          <Route exact path={`${match.url}/change-password`} />
         </Switch>
       </S.AccountWrapper>
     </Layout>
@@ -47,6 +48,10 @@ function LeftNav({ url }) {
       </NavLink>
       <NavLink to={`${url}/payment-history`}>
         Payment History
+        <BsChevronRight />
+      </NavLink>
+      <NavLink to={`${url}/change-password`}>
+        Change Password
         <BsChevronRight />
       </NavLink>
     </S.Sidebar>

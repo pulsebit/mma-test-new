@@ -10,6 +10,8 @@ const Layout = ({ children, footer = true, header = true, sidebar = true }) => {
   React.useEffect(() => {
     if (!sidebar) {
       document.documentElement.style.setProperty('--sidebar-width', '0px');
+    } else {
+      document.documentElement.style.removeProperty('--sidebar-width');
     }
   }, [sidebar]);
 

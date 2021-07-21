@@ -25,6 +25,7 @@ const userSchema = mongoose.Schema({
   },
    name: {
      type: String,
+     default: null,
    },
    email: {
     type: String,
@@ -34,28 +35,36 @@ const userSchema = mongoose.Schema({
     type: String,
   },
   mobile_no: {
-     type: String
+     type: String,
+     default: null,
   },
   gender: {
-     type: String
+     type: String,
+     default: null,
   },
   birthdate: {
-     type: String
+     type: String,
+     default: null,
   },
   address: {
-     type: String
+     type: String,
+     default: null,
   },
   state: {
-     type: String
+     type: String,
+     default: null,
   },
   zipcode: {
-     type: String
+     type: String,
+     default: null,
   },
   country: {
-     type: String
+     type: String,
+     default: null,
   },
   business_name: {
-     type: String
+     type: String,
+     default: null,
   },
   isAdmin: {
     type: Boolean,

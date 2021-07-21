@@ -6,14 +6,21 @@ import * as env from 'env';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { authChanges } from 'store/actions/authActions';
+import * as auth from 'store/constants/authConstants';
  
 export const Google = (props) => {
   const history = useHistory();
 
   const responseGoogle = React.useCallback(async (response) => {
     try {
+      if (response.error) return;
+      props.removeAuthMessage();
       const { tokenId } = response;
       const { data } = await axios.post('/api/users/auth-google', { tokenId });
+      if (data.error) {
+        props.changeAuthMessage(data.error);
+        return;
+      }
       if (data) {
         const payload = {
           user_id: data.user_id,
@@ -23,12 +30,12 @@ export const Google = (props) => {
         }
         authChanges(payload);
         setTimeout(() => {
-          history.push('/admin/dashboard');
+          history.push(props.redirectTo || '/admin/dashboard');
         }, 300);
       }
     }
     catch(err) {
-      console.log(err);
+      props.changeAuthMessage(err.message);
     }
 	}, [history]);
 
@@ -49,12 +56,13 @@ export const Google = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  
-})
+const mapStateToProps = (state) => ({ })
 
-const mapDispatchToProps = {
-  
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAuthMessage: (payload) => dispatch({ type: auth.CHANGE_MESSAGE, payload }),
+    removeAuthMessage: () => dispatch({ type: auth.REMOVE_MESSAGE }),
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Google)
