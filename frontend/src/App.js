@@ -29,6 +29,7 @@ import PlanViewScreen from './screens/PlanViewScreen'
 
 import Settings from './screens/Settings'
 import LoginScreen from 'screens/Login'
+import Register from 'screens/Register'
 
 import Account from 'screens/Account'
 
@@ -36,6 +37,7 @@ function App() {
   return (
     <Router>
       <Route path='/login' component={LoginScreen} />
+      <Route path='/register' component={Register} />
       <Route path='/admin/dashboard' component={AdminDashboard} exact />
       <Route path='/admin/supports' component={SupportsListScreen} exact/>
       <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>

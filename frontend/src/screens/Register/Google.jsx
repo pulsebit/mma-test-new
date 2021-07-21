@@ -42,7 +42,7 @@ export const Google = (props) => {
         <button type="button" className="btn" 
           onClick={renderProps.onClick}
           disabled={renderProps.disabled}>
-          <FcGoogle /> Sign in with Google
+          <FcGoogle /> {props.buttonText || 'Sign up with Google'}
         </button>
       )}
     />

@@ -6,6 +6,13 @@ import Footer from 'components/Footer';
 import * as L from './styled';
 
 const Layout = ({ children, footer = true, header = true, sidebar = true }) => {
+
+  React.useEffect(() => {
+    if (!sidebar) {
+      document.documentElement.style.setProperty('--sidebar-width', '0px');
+    }
+  }, [sidebar]);
+
     return (
         <L.MainWrapper>
           {header && <Header />}
