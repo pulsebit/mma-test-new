@@ -1,18 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
+import { listPaymentDetails } from '../actions/paymentPlanAction'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 
-const PlanViewScreen = () => {
+const PlanViewScreen = ({match}) => {
+    const paymentPlanId = match.params.id
+    const dispatch = useDispatch()
+    const paymentDetails = useSelector(state => state.paymentDetails)
+    const { 
+        loading, 
+        paymentPlanDetails, 
+        error
+    } = paymentDetails
+
+    useEffect(() => {
+        dispatch(listPaymentDetails(paymentPlanId))
+    },[dispatch, match])
     return (
         <div className="view-screen">
             <DashboardContainer>
+            { loading ? ( 
+                <Loader /> 
+            ) : error ? ( 
+                <Message variant='danger'>{error}</Message>
+            ) : ( 
+                <>
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Payment Information</span>
                         </div>
-
                         <Row>
                             <Col md={2}>
                                 <div className="img-wrapper">
@@ -26,22 +47,22 @@ const PlanViewScreen = () => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="details-wrapper">
-                                                <label>Ticket ID:</label>
-                                                <span>01</span>
+                                                <label>ID:</label>
+                                                <span>{paymentPlanDetails._id}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Name:</label>
-                                                <span>Gold</span>
+                                                <span>{paymentPlanDetails.name}</span>
                                             </div>
                                         </Col>
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Price</label>
-                                                <span>20 AUD</span>
+                                                <span>{paymentPlanDetails.price}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Created: </label>
-                                                <span>20 AUD</span>
+                                                <span>{paymentPlanDetails.createdAt}</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -51,7 +72,7 @@ const PlanViewScreen = () => {
                                 <div className="user-details">
                                     <div className="details-wrapper">
                                         <label>Description:</label>
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
+                                        <p>{paymentPlanDetails.description}</p>
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Features:</label>
@@ -66,6 +87,9 @@ const PlanViewScreen = () => {
                                 </div>
                             </Col>
                         </Row> 
+                        <div className="button-wrapper">
+                            <NavLink to={`/admin/plan/${paymentPlanDetails._id}/edit`} className="edit-btn">Edit</NavLink>
+                        </div> 
                     </div>
 
                     <div className="section-wrapper">
@@ -86,49 +110,13 @@ const PlanViewScreen = () => {
                                                 <th>Action</th>
                                             </tr>				
                                             <tr>
-                                                <td>Seo</td>
-                                                <td><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p></td>
-                                                <td>20 AUD</td>
-                                                <td>2/3/2021</td>
+                                                <td>{paymentPlanDetails.prod_name}</td>
+                                                <td><p>{paymentPlanDetails.prod_short_description}</p></td>
+                                                <td>{paymentPlanDetails.prod_price}</td>
+                                                <td>{paymentPlanDetails.createdAt}</td>
                                                 <td>
                                                 <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Seo</td>
-                                                <td><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p></td>
-                                                <td>20 AUD</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Seo</td>
-                                                <td><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p></td>
-                                                <td>20 AUD</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Seo</td>
-                                                <td><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p></td>
-                                                <td>20 AUD</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
+                                                    <NavLink to={`/admin/product/${paymentPlanDetails._id}/edit`} className="edit-btn">Edit</NavLink>
                                                     <button className='delete-btn'>Delete</button>  
                                                 </div>  
                                                 </td>
@@ -216,6 +204,8 @@ const PlanViewScreen = () => {
                             </Col>
                         </Row>
                     </div>
+                </>
+            )} 
             </DashboardContainer>
         </div>
     )

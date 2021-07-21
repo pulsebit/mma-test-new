@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
+import { listPaymentPlans } from '../actions/paymentPlanAction'
+
 
 const PlanListScreen = () => {
+    const dispatch = useDispatch()
+    const paymentList = useSelector(state => state.paymentList)
+    const { loading, paymentPlans, error } = paymentList
+
+    useEffect(() => {
+        dispatch(listPaymentPlans())
+    },[dispatch])
+
     return (
         <div> 
             <DashboardContainer>
@@ -20,50 +32,31 @@ const PlanListScreen = () => {
                                     <th>Current Subcribers</th>
                                     <th>Price</th>
                                     <th>action</th>
-                                </tr>				
-                                <tr>
-                                    <td>01</td>
-                                    <td>Gold</td>
-                                    <td>300 subscribers</td>
-                                    <td>20 AUD</td>
-                                    <td>
-                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
-                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Silver</td>
-                                    <td>300 subscribers</td>
-                                    <td>20 AUD</td>
-                                    <td>
-                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Platinum</td>
-                                    <td>300 subscribers</td>
-                                    <td>20 AUD</td>
-                                    <td>
-                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>01</td>
-                                    <td>Basic</td>
-                                    <td>300 subscribers</td>
-                                    <td>20 AUD</td>
-                                    <td>
-                                        <NavLink to='/admin/plan/:id' className="view-btn">View</NavLink>
-                                    </td>
-                                </tr>
+                                { loading ? ( 
+                                    <Loader /> 
+                                ) : error ? ( 
+                                    <Message variant='danger'>{error}</Message>
+                                ) : ( paymentPlans.map(payment => (
+                                    <tr>
+                                        <td>{payment._id}</td>
+                                        <td>{payment.name}</td>
+                                        <td>{payment.subscribers}</td>
+                                        <td>{payment.price}</td>
+                                        <td>
+                                            <NavLink to={`/admin/plan/${payment._id}`} className="view-btn">View</NavLink>
+                                        </td>
+                                    </tr>
+                                )))}
+                                
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </DashboardContainer>
         </div>
-    );
+    )
 }
 
 export default PlanListScreen

@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { supportListReducer } from './reducers/supportReducers'
+import { paymentPlanListReducer, paymentPlanDetailsReducer } from './reducers/paymentPlanReducers'
 
 
 const reducer = combineReducers({
@@ -14,7 +15,9 @@ const reducer = combineReducers({
 	 userDelete: userDeleteReducer,
 	 userDetails: userDetailsReducer,
 	 userUpdate: userUpdateReducer,
-	 supportList: supportListReducer
+	 supportList: supportListReducer,
+	 paymentList: paymentPlanListReducer,
+	 paymentDetails: paymentPlanDetailsReducer
 	 
 })
 

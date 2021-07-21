@@ -1,4 +1,5 @@
 import React from 'react'
+import { Editor } from "react-draft-wysiwyg";
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'

@@ -8,7 +8,7 @@ import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import supportRoutes from './routes/supportRoutes.js'
-
+import paymentPlanRoutes from './routes/paymentPlanRoutes.js'
 
 dotenv.config()
 
@@ -26,6 +26,7 @@ app.get('/',(req, res) => {
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)
+app.use('/api/paymentplans', paymentPlanRoutes)
 
 //404 handler
 app.use(notFound)
