@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const ProfileWrapper = styled.div`
+export const ProfileWrapper = styled.form`
   padding: 45px;
   background: #fff;
+  width: 100%;
+  max-width: 700px;
 `;
 
 export const Label = styled.label`
@@ -51,4 +53,15 @@ export const IconWrapper = styled.span`
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+`;
+
+export const DatePickerWrapper = styled.div`
+  .form-control {
+    height: 42px;
+    border-radius: 4px;
+    input {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
 `;

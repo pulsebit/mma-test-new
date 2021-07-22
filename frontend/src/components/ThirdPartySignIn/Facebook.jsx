@@ -37,7 +37,7 @@ export const Facebook = (props) => {
     catch(err) {
       props.changeAuthMessage(err.message);
     }
-  }, [history]);
+  }, [history, props]);
 
   return (
     <FacebookLogin

@@ -37,7 +37,7 @@ export const Google = (props) => {
     catch(err) {
       props.changeAuthMessage(err.message);
     }
-	}, [history]);
+	}, [history, props]);
 
   return (
     <GoogleLogin

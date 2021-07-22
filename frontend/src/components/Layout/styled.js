@@ -11,7 +11,6 @@ export const MainWrapper = styled.div`
 
 export const Aside = styled.aside`
   width: var(--sidebar-width);
-  height: calc(100vh - var(--header-height));
   overflow-y: auto;
   background: #fff;
   padding: 10px;
@@ -90,6 +89,7 @@ export const Aside = styled.aside`
 export const PageManager = styled.div`
   width: calc(100% - var(--sidebar-width));
   position: relative;
+  min-height: calc(100vh - var(--header-height));
 `;
 
 export const PageContent = styled.div`

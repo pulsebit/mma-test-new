@@ -18,7 +18,7 @@ export const Sidebar = styled.div`
   a {
     margin-bottom: 5px;
     height: 40px;
-    border-radius: 7px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     padding: 18px;
@@ -30,7 +30,12 @@ export const Sidebar = styled.div`
       visibility: hidden;
     }
     &.active {
-      background: var(--link-active-bg);
+      background: #316ae4;
+      color: #fff;
+      &:hover {
+        background: #316ae4;
+        opacity: 0.8;
+      }
       svg {
         visibility: visible;
       }

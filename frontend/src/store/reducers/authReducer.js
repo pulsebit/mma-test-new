@@ -24,7 +24,7 @@ export function authReducer(state = initialState, action) {
         ...state,
         ...initialState,
       }
-    case 'Change profile picture':
+    case constant.CHANGE_PROFILE:
       return {
         ...state,
         id_token: action.payload,
