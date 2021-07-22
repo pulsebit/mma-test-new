@@ -142,6 +142,7 @@ function ImageForm(props) {
     try {
       const reader = new FileReader();
       const [file] = e.target.files;
+      if (!file) return;
       const config = { headers: { Authorization: `Bearer ${access_token}` } };
       reader.onload = async (ev) => {
         const { result } = ev.target;
@@ -167,7 +168,9 @@ function ImageForm(props) {
         style={{ backgroundImage: `url(${(profile && profile.picture) || User})` }}
         htmlFor="input-file"
       >
-        <input type="file" id="input-file" onChange={handleChange} />
+        <input type="file" id="input-file" 
+          accept="image/png, image/jpeg, image/jpg, image/jpeg, image/gif"
+          onChange={handleChange} />
         <P.IconWrapper>
           <MdModeEdit/>
         </P.IconWrapper>
