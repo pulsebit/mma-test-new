@@ -29,6 +29,7 @@ router.post('/auth-fb', auth.authFb)
 router.post('/register', auth.registerUser)
 
 router.post('/profile', protect, auth.updateProfile)
+router.post('/update-profile-picture', protect, auth.updateProfilePicture)
 router.post('/check-email', auth.checkEmailIfExists)
 
 // router.route('/profile')

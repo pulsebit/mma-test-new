@@ -2,6 +2,7 @@ import User from '../models/userModel.js'
 import generateToken, { checkToken, decodeIdToken } from '../utils/generateToken.js';
 import asyncHandler from 'express-async-handler';
 import { verify } from '../utils/google.js';
+import { uploadImageBase64 } from '../utils/fs.js';
 
 export const authFb = asyncHandler(async (req, res) => {
   const { email, userID, picture, name } = req.body;
@@ -101,26 +102,41 @@ export const registerUser = asyncHandler(async (req, res) => {
     return;
   }
   user = await User.create({ name, email, password });
-  if (user) {
-    const tokenIdValue = createUserTokenValue(user);
-    const createdToken = createToken(res, user._id, tokenIdValue);
-    res.json({
-      ...createdToken,
-      success: true,
-      user_id: user._id,
-      isAuthenticated: true,
-    });
-  }
+  const tokenIdValue = createUserTokenValue(user);
+  const createdToken = createToken(res, user._id, tokenIdValue);
+  res.json({
+    ...createdToken,
+    success: true,
+    user_id: user._id,
+    isAuthenticated: true,
+  });
 });
 
-export const updateProfile = asyncHandler((req, res) => {
+export const updateProfile = asyncHandler(async (req, res) => {
   const { id_token } = req.signedCookies;
-  const decoded = decodeIdToken(id_token);
-  decoded.picture = 'https://jwt.io/img/pic_logo.svg';
+  let user = await User.findByIdAndUpdate(req.user._id, { ...req.body });
+  user = await User.findById(req.user._id);
+  let decoded = decodeIdToken(id_token);
   delete decoded.exp;
   delete decoded.iat;
-  res.cookie('id_token', generateToken(decoded), { httpOnly: true, signed: true });
-  res.send(generateToken(decoded));
+  decoded = createUserTokenValue(user);
+  const idToken = generateToken(decoded);
+  res.cookie('id_token', idToken, { httpOnly: true, signed: true });
+  res.send(idToken);
+});
+
+export const updateProfilePicture = asyncHandler(async (req, res) => {
+  const { id_token } = req.signedCookies;
+  const decoded = decodeIdToken(id_token);
+  let user = await User.findById(req.user._id);
+  delete decoded.exp;
+  delete decoded.iat;
+  const picture = req.body.picture ? uploadImageBase64(req.body.picture, 'users') : user.picture;
+  decoded.picture = picture;
+  await User.findByIdAndUpdate(req.user._id, { picture });
+  const idToken = generateToken(decoded);
+  res.cookie('id_token', idToken, { httpOnly: true, signed: true });
+  res.send(idToken);
 });
 
 export const checkEmailIfExists = asyncHandler(async (req, res) => {

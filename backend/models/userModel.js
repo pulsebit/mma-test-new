@@ -43,7 +43,7 @@ const userSchema = mongoose.Schema({
      default: null,
   },
   birthdate: {
-     type: String,
+     type: Date,
      default: null,
   },
   address: {
@@ -80,15 +80,12 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
 }
 
 userSchema.pre('save', async function (next) {
-   if(!this.isModified('password')) {
-     next()
-   }
-
+   if(!this.isModified('password')) next()
    const salt = await bcrypt.genSalt(10)
    this.password = await bcrypt.hash(this.password, salt)
 })
 
-userSchema.plugin(aggregatePaginate )
+userSchema.plugin(aggregatePaginate)
 
 const User = mongoose.model('User', userSchema)
 
