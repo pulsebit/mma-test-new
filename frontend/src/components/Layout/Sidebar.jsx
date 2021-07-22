@@ -86,7 +86,7 @@ function NavDropdown({ parentTo, title, children }) {
   }, [sub]);
 
   return <>
-    <div className="parent-item" onClick={() => setOpen(!open)}>
+    <div className="parent-item">
       <NavLink to={parentTo} className="title">{title}</NavLink>
       <span className="caret" onClick={() => setOpen(!open)}>
         {open ? <FaChevronUp/> : <FaChevronDown/> }

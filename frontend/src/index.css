@@ -300,6 +300,7 @@ p {
   font-size: 12px;
   font-weight: 700;
   padding: 20px 0;
+  margin-top: auto;
 }
 
 .site-footer .site-footer-wrapper .text-wrapper span:nth-child(1):after {

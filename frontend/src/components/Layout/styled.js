@@ -14,6 +14,11 @@ export const Aside = styled.aside`
   overflow-y: auto;
   background: #fff;
   padding: 10px;
+  position: fixed;
+  z-index: 1200;
+  height: calc(100vh - var(--header-height));
+  top: var(--header-height);
+  left: 0;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -61,6 +66,9 @@ export const Aside = styled.aside`
       padding: 7px;
       border-radius: 4px;
       height: 32px;
+      &:hover {
+        background: #d4d6dc;
+      }
       svg {
         margin: 0;
         fill: #36424e;
@@ -90,11 +98,15 @@ export const PageManager = styled.div`
   width: calc(100% - var(--sidebar-width));
   position: relative;
   min-height: calc(100vh - var(--header-height));
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PageContent = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-top: var(--header-height);
 `;
 
 export const SubLink = styled.div`

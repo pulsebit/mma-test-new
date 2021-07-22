@@ -64,7 +64,7 @@ export const Profile = (props) => {
     <P.ProfileWrapper onSubmit={handleSubmit(onUpdateProfile)}>
       <ImageForm />
       <P.FormGroup>
-        <Input type="email" label="Email" placeholder="Email" {...register('email')} />
+        <Input type="email" label="Email" placeholder="Email" disabled={true} {...register('email')} />
       </P.FormGroup>
       <P.FormGroup className="form-group">
         <div className="row">

@@ -22,9 +22,9 @@ const Layout = ({ children, footer = true, header = true, sidebar = true }) => {
             {sidebar && <Sidebar/>}
             <L.PageManager>
               {children}
+              {footer && <Footer />}
             </L.PageManager>
           </L.PageContent>
-          {footer && <Footer />}
         </L.MainWrapper>
     )
 }

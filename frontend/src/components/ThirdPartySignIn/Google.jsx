@@ -18,7 +18,7 @@ export const Google = (props) => {
       const { tokenId } = response;
       const { data } = await axios.post('/api/users/auth-google', { tokenId });
       if (data.error) {
-        props.changeAuthMessage(data.error);
+        props.changeAuthMessage({ message: data.error, type: 'login' });
         return;
       }
       if (data) {
@@ -35,7 +35,7 @@ export const Google = (props) => {
       }
     }
     catch(err) {
-      props.changeAuthMessage(err.message);
+      props.changeAuthMessage({ message: err.message, type: 'login' });
     }
 	}, [history, props]);
 
