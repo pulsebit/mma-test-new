@@ -4,23 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
-import { listPaymentDetails } from '../actions/paymentPlanAction'
+import { getPaymentPlanDetails } from '../actions/paymentPlanAction'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
+    
     const dispatch = useDispatch()
-    const paymentDetails = useSelector(state => state.paymentDetails)
-    const { 
-        loading, 
-        paymentPlanDetails, 
-        error
-    } = paymentDetails
+    const paymentPlanDetails = useSelector(state => state.paymentPlanDetails)
+    const { loading, paymentPlansDetails, error } = paymentPlanDetails
 
     useEffect(() => {
-        dispatch(listPaymentDetails(paymentPlanId))
+        dispatch(getPaymentPlanDetails(paymentPlanId))
     },[dispatch, match])
+
+    
+
+
     return (
         <div className="view-screen">
             <DashboardContainer>
@@ -48,21 +49,21 @@ const PlanViewScreen = ({match}) => {
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>ID:</label>
-                                                <span>{paymentPlanDetails._id}</span>
+                                                <span>{paymentPlanId}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Name:</label>
-                                                <span>{paymentPlanDetails.name}</span>
+                                                <span>{paymentPlansDetails.name}</span>
                                             </div>
                                         </Col>
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Price</label>
-                                                <span>{paymentPlanDetails.price}</span>
+                                                <span>{paymentPlansDetails.price}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Created: </label>
-                                                <span>{paymentPlanDetails.createdAt}</span>
+                                                <span>{paymentPlansDetails.createdAt}</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -72,7 +73,7 @@ const PlanViewScreen = ({match}) => {
                                 <div className="user-details">
                                     <div className="details-wrapper">
                                         <label>Description:</label>
-                                        <p>{paymentPlanDetails.description}</p>
+                                        <p>{paymentPlansDetails.description}</p>
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Features:</label>
@@ -88,7 +89,7 @@ const PlanViewScreen = ({match}) => {
                             </Col>
                         </Row> 
                         <div className="button-wrapper">
-                            <NavLink to={`/admin/plan/${paymentPlanDetails._id}/edit`} className="edit-btn">Edit</NavLink>
+                            <NavLink to={`/admin/plan/${paymentPlanId}/edit`} className="edit-btn">Edit</NavLink>
                         </div> 
                     </div>
 

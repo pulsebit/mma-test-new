@@ -353,11 +353,11 @@ span {
   width: -webkit-max-content !important;
   width: -moz-max-content !important;
   width: max-content !important;
-  font-size: 17px;
+  font-size: 12px;
   border-radius: 5px;
   font-weight: 400;
   color: #fff;
-  padding: 15px 20px;
+  padding: 10px;
   background-color: #fcae17;
   width: max-content !important;
   margin-left: auto;
@@ -366,6 +366,7 @@ span {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  white-space: nowrap;
 }
 
 .add-btn:hover {
@@ -991,6 +992,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 .edit-screen span {
   display: inline-block;
   margin-left: 20px;
+  width: 100%;
 }
 
 .edit-screen ul {
@@ -1007,6 +1009,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   padding: 10px;
   border: none;
   background-color: transparent;
+  width: 100%;
 }
 
 .edit-screen input:focus {
@@ -1015,6 +1018,11 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 
 .edit-screen button {
   display: inline-block;
+}
+
+.edit-screen .add-btn {
+  background-color: transparent;
+  padding: 0;
 }
 
 .edit-screen textarea {

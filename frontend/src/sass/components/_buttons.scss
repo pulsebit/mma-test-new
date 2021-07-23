@@ -102,17 +102,18 @@
 
 .add-btn{
     width: max-content !important;
-    font-size: 17px;
+    font-size: 12px;
     border-radius: 5px;
     font-weight: 400;
     color: #fff;
-    padding: 15px 20px;
+    padding: 10px;
     background-color: #fcae17;
     width: max-content !important;
     margin-left: auto;
     border: none;
     position: relative;
     height: max-content;
+    white-space: nowrap;
     
     &:hover{
         background-color: #d09013;

@@ -9,8 +9,8 @@ import { listPaymentPlans } from '../actions/paymentPlanAction'
 
 const PlanListScreen = () => {
     const dispatch = useDispatch()
-    const paymentList = useSelector(state => state.paymentList)
-    const { loading, paymentPlans, error } = paymentList
+    const paymentPlanList = useSelector(state => state.paymentPlanList)
+    const { loading, paymentPlans, error } = paymentPlanList
 
     useEffect(() => {
         dispatch(listPaymentPlans())
@@ -22,9 +22,15 @@ const PlanListScreen = () => {
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Payment Plans</span>
+                        <NavLink to="/admin/plan-add" className="add-btn">Add new</NavLink>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
+                        { loading ? ( 
+                            <Loader /> 
+                        ) : error ? ( 
+                            <Message variant='danger'>{error}</Message>
+                        ) : (
                             <tbody>
                                 <tr>
                                     <th>ID</th>
@@ -33,12 +39,8 @@ const PlanListScreen = () => {
                                     <th>Price</th>
                                     <th>action</th>
                                 </tr>
-                                { loading ? ( 
-                                    <Loader /> 
-                                ) : error ? ( 
-                                    <Message variant='danger'>{error}</Message>
-                                ) : ( paymentPlans.map(payment => (
-                                    <tr>
+                               {paymentPlans.map((payment) => (
+                                   <tr>
                                         <td>{payment._id}</td>
                                         <td>{payment.name}</td>
                                         <td>{payment.subscribers}</td>
@@ -47,10 +49,9 @@ const PlanListScreen = () => {
                                             <NavLink to={`/admin/plan/${payment._id}`} className="view-btn">View</NavLink>
                                         </td>
                                     </tr>
-                                )))}
-                                
-
+                               ))}
                             </tbody>
+                            )}
                         </table>
                     </div>
                 </div>
@@ -58,5 +59,7 @@ const PlanListScreen = () => {
         </div>
     )
 }
+
+
 
 export default PlanListScreen

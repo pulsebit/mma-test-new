@@ -23,6 +23,7 @@
     span {
         display: inline-block;
         margin-left: 20px;
+        width: 100%;
     }
 
     ul {
@@ -39,6 +40,7 @@
         padding: 10px;
         border: none;
         background-color: transparent;
+        width: 100%;
 
         &:focus {
             outline: none;
@@ -46,6 +48,10 @@
     }
     button {
         display: inline-block
+    }
+    .add-btn{
+        background-color: transparent;
+        padding: 0;
     }
     textarea {
         width: 100%;

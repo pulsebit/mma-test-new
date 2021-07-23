@@ -4,21 +4,23 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { supportListReducer } from './reducers/supportReducers'
-import { paymentPlanListReducer, paymentPlanDetailsReducer } from './reducers/paymentPlanReducers'
+import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer} from './reducers/paymentPlanReducers'
 
 
 const reducer = combineReducers({
-	 productList: productListReducer,
-	 productDetails: productDetailsReducer,
-	 userLogin: userLoginReducer,
-	 userList: userListReducer,
-	 userDelete: userDeleteReducer,
-	 userDetails: userDetailsReducer,
-	 userUpdate: userUpdateReducer,
-	 supportList: supportListReducer,
-	 paymentList: paymentPlanListReducer,
-	 paymentDetails: paymentPlanDetailsReducer
-	 
+	productList: productListReducer,
+	productDetails: productDetailsReducer,
+	userLogin: userLoginReducer,
+	userList: userListReducer,
+	userDelete: userDeleteReducer,
+	userDetails: userDetailsReducer,
+	userUpdate: userUpdateReducer,
+	supportList: supportListReducer,
+	paymentPlanList: paymentPlanListReducer,
+	paymentPlanDetails: paymentPlanDetailsReducer,
+	paymentPlanDelete :paymentPlanDeleteReducer,
+	paymentPlanUpdate :paymentPlanUpdateReducer,
+	paymentPlanCreate: paymentPlanCreateReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

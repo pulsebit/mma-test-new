@@ -6,7 +6,14 @@ import {
    PAYMENTPLAN_UPDATE_REQUEST, 
    PAYMENTPLAN_UPDATE_SUCCESS, 
    PAYMENTPLAN_DETAILS_SUCCESS,
-   PAYMENTPLAN_UPDATE_FAIL
+   PAYMENTPLAN_UPDATE_FAIL,
+   PAYMENTPLAN_DELETE_REQUEST,
+   PAYMENTPLAN_DELETE_SUCCESS,
+   PAYMENTPLAN_DELETE_FAIL,
+   PAYMENTPLAN_UPDATE_RESET,
+   PAYMENTPLAN_CREATE_REQUEST,
+   PAYMENTPLAN_CREATE_SUCCESS,
+   PAYMENTPLAN_CREATE_FAIL
 } from '../constants/paymentPlanConstant'
 
 export const listPaymentPlans = () => async (dispatch) => {
@@ -29,10 +36,7 @@ export const listPaymentPlans = () => async (dispatch) => {
    }
 }
 
-
-
-
-export const listPaymentDetails = (id) => async (dispatch) => {
+export const getPaymentPlanDetails = (id) => async (dispatch) => {
    try {
        dispatch({ type: PAYMENTPLAN_LIST_REQUEST })
 
@@ -53,24 +57,13 @@ export const listPaymentDetails = (id) => async (dispatch) => {
    }
 }
 
-export const updatePaymentPlan = (user) => async (dispatch, getState) => {
+export const updatePaymentPlan= (paymentPlan) => async (dispatch, getState) => {
    try {
      dispatch({
         type: PAYMENTPLAN_UPDATE_REQUEST
      })
- 
-     const {
-        userLogin: { userInfo }
-     } = getState()
- 
-     const config = {
-        headers: {
-         'Content-Type': 'application/json',
-         Authorization: `Bearer ${userInfo.token}`,
-        },
-     }
-
-     const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+     
+     const { data } = await axios.put(`/api/paymentplans/${paymentPlan._id}/edit`, paymentPlan)
  
      dispatch({type: PAYMENTPLAN_UPDATE_SUCCESS})
 
@@ -82,6 +75,46 @@ export const updatePaymentPlan = (user) => async (dispatch, getState) => {
    } catch( error ) {
       dispatch({
         type: PAYMENTPLAN_UPDATE_FAIL,
+        payload: error.response && error.response.data.message 
+               ? error.response.data.message 
+               : error.message 
+      })
+   }
+ }
+ 
+
+ export const deletePaymentPlan = (id) => async (dispatch, getState) => {
+   try {
+     dispatch({
+        type: PAYMENTPLAN_DELETE_REQUEST
+     })
+ 
+    await axios.delete(`/api/paymentplans/${id}`)
+ 
+     dispatch({type: PAYMENTPLAN_DELETE_SUCCESS})
+ 
+   } catch( error ) {
+      dispatch({
+        type: PAYMENTPLAN_DELETE_FAIL,
+        payload: error.response && error.response.data.message 
+               ? error.response.data.message 
+               : error.message 
+      })
+   }
+ }
+
+ export const createPaymentPlan = (name, price, image, description, features) => async (dispatch) => {
+   try {
+     dispatch({
+        type: PAYMENTPLAN_CREATE_REQUEST
+     })
+      await axios.post(`/api/paymentplans/`, {name, price, image, description, features} )
+
+      dispatch({type: PAYMENTPLAN_CREATE_SUCCESS})
+ 
+   } catch( error ) {
+      dispatch({
+        type: PAYMENTPLAN_CREATE_FAIL,
         payload: error.response && error.response.data.message 
                ? error.response.data.message 
                : error.message 

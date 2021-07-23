@@ -38,6 +38,7 @@ import ProductScreen from './screens/ProductScreen'
 
 import KnowledgeBaseScreen from './screens/KnowledgeBaseScreen'
 
+import PlanAddScreen from './screens/PlanAddScreen'
 import PlanListScreen from './screens/PlanListScreen'
 import PlanEditScreen from './screens/PlanEditScreen'
 import PlanViewScreen from './screens/PlanViewScreen'
@@ -104,12 +105,19 @@ function App() {
               <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
               
               <Route path='/product/:id' component={ProductScreen}  />
+
               <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />
+
+
+              <Route path='/admin/plan-add/' component={PlanAddScreen} exact />
               <Route path='/admin/plan' component={PlanListScreen} exact />
               <Route path='/admin/plan/:id' component={PlanViewScreen} exact />
-              <Route path='/admin/plan/edit' component={PlanEditScreen} />
+              <Route path='/admin/plan/:id/edit' component={PlanEditScreen} />
+
               <Route path='/admin/settings' component={Settings} />
+
               <Route path='/' component={HomeScreen} exact />
+              
 
               <Route path='/portal' component={ClientPortal} exact />
               <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
