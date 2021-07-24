@@ -30,6 +30,7 @@ import LoginScreen from 'screens/Login'
 import Register from 'screens/Register'
 
 import Account from 'screens/Account'
+import Product from 'screens/Product'
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -54,11 +55,13 @@ function App() {
         
         <Route path='/admin/permissions' component={PermissionsScreen} />
 
-        <Route path='/admin/productlist/' component={ProductListScreen} />
+        <Route path="/admin/products" component={Product} />
+        
+        {/* <Route path='/admin/productlist/' component={ProductListScreen} />
         <Route path='/admin/product/:id' component={ProductViewScreen}  />
         <Route path='/admin/product/:id/edit' component={ProductEditScreen}  />
         <Route path='/admin/product-categories' component={ProductCatList} exact />
-        <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
+        <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  /> */}
         
         <Route path='/product/:id' component={ProductScreen}  />
         <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />

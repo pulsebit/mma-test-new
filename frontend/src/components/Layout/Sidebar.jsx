@@ -40,7 +40,7 @@ const Sidebar = () => {
         parentTo="/admin/products"
         title={<><SiProducthunt/> <span>Products</span></>}
       >
-        <a href="#facebn">Categories</a>
+        <NavLink to="/admin/products/categories">Categories</NavLink>
       </NavDropdown>
 
       <NavLink to="/admin/plan">
@@ -61,14 +61,15 @@ export default Sidebar;
 
 function NavDropdown({ parentTo, title, children }) {
   const [open, setOpen] = React.useState(false);
+  const [hasClassParent, setHasClassParent] = React.useState(false);
   const sub = useRef(null);
   const [subHeight, setSubHeight] = React.useState(0);
-
+  const parentLink = useRef(null);
 
   React.useEffect(() => {
     const { length } = sub.current.children;
     if (open) {
-      setSubHeight((length * 40) + 4);
+      setSubHeight((length * L.subLinkHeight));
     } else {
       setSubHeight(0);
     }
@@ -85,8 +86,19 @@ function NavDropdown({ parentTo, title, children }) {
     setOpen(isOpen);
   }, [sub]);
 
+  React.useEffect(() => {
+    let isActive = false;
+    const elem = parentLink.current.children;
+    for (let i = 0; i < elem.length; i++) {
+      if (elem[i] && elem[i].classList.contains('active')) {
+        isActive = true;
+      }
+    }
+    setHasClassParent(isActive);
+  }, [parentLink]);
+
   return <>
-    <div className="parent-item">
+    <div ref={parentLink} className={`parent-item ${hasClassParent ? 'active' : ''}`}>
       <NavLink to={parentTo} className="title">{title}</NavLink>
       <span className="caret" onClick={() => setOpen(!open)}>
         {open ? <FaChevronUp/> : <FaChevronDown/> }

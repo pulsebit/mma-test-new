@@ -4,8 +4,12 @@
 
   --profile-sidebar-width: 250px;
 
-  --link-hover-bg: #e4e6eba8;
-  --link-active-bg: #e4e6eb;
+  --link-hover-bg: #e4e6eb78;
+  --link-active-bg:#e4e6ebd2;
+}
+
+body {
+  font-size: 16px;
 }
 
 .btn {

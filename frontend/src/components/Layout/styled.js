@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 const linkHeight = '52px';
-const textColor = 'rgb(0 0 0 / 85%)';
+const textColor = '#2c3035';
+const sidebarBg = '#fff';
+
+export const subLinkHeight = 43;
 
 export const MainWrapper = styled.div`
   display: flex;
@@ -12,11 +15,11 @@ export const MainWrapper = styled.div`
 export const Aside = styled.aside`
   width: var(--sidebar-width);
   overflow-y: auto;
-  background: #fff;
-  padding: 10px;
+  background: ${sidebarBg};
+  padding: 10px 0;
   position: fixed;
   z-index: 1200;
-  height: calc(100vh - var(--header-height));
+  height: calc(100% - var(--header-height));
   top: var(--header-height);
   left: 0;
 
@@ -28,17 +31,16 @@ export const Aside = styled.aside`
     border-radius: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background: #bcc0c4; 
+    background: #bcc0c494; 
     border-radius: 10px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
+    background: #bcc0c459; 
   }
-  a, .parent-item {
+  &>a, .parent-item {
     margin-bottom: 4px;
-    padding: 0 5px;
+    padding: 0 10px 0 20px;
     font-weight: 600;
-    border-radius: 7px;
     font-size: 0.95em;
     display: flex;
     align-items: center;
@@ -54,6 +56,7 @@ export const Aside = styled.aside`
       margin: 0;
       width: 100%;
       justify-content: flex-start;
+      height: ${linkHeight};
       &:hover {
         background-color: transparent;
         color: ${textColor};
@@ -64,7 +67,6 @@ export const Aside = styled.aside`
       align-items: center;
       justify-content: center;
       padding: 7px;
-      border-radius: 4px;
       height: 32px;
       &:hover {
         background: #d4d6dc;
@@ -90,6 +92,9 @@ export const Aside = styled.aside`
     &.active {
       background: var(--link-active-bg);
       color: ${textColor};
+      svg {
+        fill: #36424e;
+      }
     }
   }
 `;
@@ -112,10 +117,23 @@ export const PageContent = styled.div`
 export const SubLink = styled.div`
   height: 0;
   overflow: hidden;
-  transition: 0.2s height ease-out;
+  transition: 0.2s height cubic-bezier(0.4, 0, 0.2, 1);
   a {
-    height: 40px;
-    margin-bottom: 0;
-    padding-left: 34px;
+    margin-left: 21px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: ${subLinkHeight}px;
+    font-size: 0.9em;
+    color: #000;
+    &:hover {
+      background: var(--link-hover-bg);
+      color: ${textColor};
+    }
+    &.active {
+      background: var(--link-active-bg);
+      color: ${textColor};
+    }
   }
 `;
