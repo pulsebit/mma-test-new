@@ -24,16 +24,22 @@ import store from 'store'
 
 const token = 'test'
 // const { token } = JSON.parse(localStorage.userInfo)
+
 const config = {
    headers: {
     Authorization: `Bearer ${token}`,
    },
 }
 
-export async function userLists() {
+export async function userLists({ access_token, queries }) {
    try {
       store.dispatch({ type: USER_LOGIN_REQUEST })
-      const { data } = await axios.get('/api/users', config)
+      const params = queries ? `?${queries}` : '';
+      const { data } = await axios.get(`/api/users${params}`, {
+         headers: {
+          Authorization: `Bearer ${access_token}`,
+         },
+      })
       store.dispatch({ type: USER_LIST_SUCCESS,  payload: data })
    }
    catch(error) {

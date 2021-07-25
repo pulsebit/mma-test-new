@@ -15,7 +15,7 @@ import * as auth from '../controllers/authController.js';
 
 
 router.route('/')
-  .get(getUsers)
+  .get(protect, getUsers)
 // router
 //      .route('/:id')
 //      .get(protect, adminOnly, getUserById)

@@ -3,7 +3,7 @@ import * as Style from './form.style';
 
 export const Input = forwardRef(({ label, onChange, onBlur, name, value, id, type, ...rest }, ref) => (
   <>
-    <Style.Label htmlFor={id}>{label}</Style.Label>
+    {label && <Style.Label htmlFor={id}>{label}</Style.Label>}
     <Style.Input 
       type={type} 
       onChange={onChange}

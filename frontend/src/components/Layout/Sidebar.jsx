@@ -6,10 +6,15 @@ import { SiOpenaccess, SiProducthunt } from 'react-icons/si';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
+import SiteLogo from 'assets/images/Logo.png'
 
 const Sidebar = () => {
   return (
     <L.Aside>
+      <L.LogoWrapper>
+        <img src={SiteLogo} alt='MMA' />
+      </L.LogoWrapper>
+
       <NavLink to="/admin/dashboard">
         <span className="title">
           <MdDashboard /> <span>Dashboard</span>

@@ -20,9 +20,10 @@ export const authFb = asyncHandler(async (req, res) => {
     });
   }
   else if (!user && !email) {
-    user = await User.create({
-      fb_id: userID, email, picture, name,
+    res.json({ 
+      error: `Can’t create account. No Email provided.`,
     });
+    return;
   }
   const tokenIdValue = createUserTokenValue(user);
   const createdToken = createToken(res, user._id, tokenIdValue);

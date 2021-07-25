@@ -87,6 +87,21 @@ userSchema.pre('save', async function (next) {
 
 userSchema.plugin(aggregatePaginate)
 
+userSchema.index({ 
+   first_name: 'text',
+   last_name: 'text',
+   name: 'text',
+   email: 'text',
+   mobile_no: 'text',
+   gender: 'text',
+   birthdate: 'text',
+   address: 'text',
+   state: 'text',
+   zipcode: 'text',
+   country: 'text',
+   business_name: 'text',
+});
+
 const User = mongoose.model('User', userSchema)
 
 export default User
