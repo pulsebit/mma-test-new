@@ -6,12 +6,12 @@ export default function Links({ current, totalPages }) {
   const pages =  pagination(current, totalPages);
   const query = useQuery();
 
-  const _pages = pages && pages.map(item => {
-    query.set('page', item);
+  const _pages = pages && pages.map(page => {
+    query.set('page', page);
     const queries = query.toString();
     return {
-      url: item === '...' ? '...'  : `?${queries}`,
-      page: item,
+      url: page === '...' ? '...'  : `?${queries}`,
+      page,
     }
   });
 

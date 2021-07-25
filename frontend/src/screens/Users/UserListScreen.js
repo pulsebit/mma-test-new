@@ -36,7 +36,9 @@ const UserListScreen = ({ history }) => {
       <TableList>
           {user && user.userDocs && user.userDocs.docs && user.userDocs.docs.map((user, key) => (
             <tr key={key}>
-              <td>{user.name}</td>
+              <td>
+                <NavLink to={`/admin/users/${user._id}`}>{user.name}</NavLink>
+              </td>
               <td>{user.email}</td>
               <td>Active</td>
               <td>Basic</td>

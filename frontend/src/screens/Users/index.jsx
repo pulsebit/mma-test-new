@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import UserEditScreen from './UserEditScreen'
-import UserListScreen from './UserListScreen'
-import UserViewScreen from './UserViewScreen'
 import Layout from 'components/Layout';
+
+const UserEditScreen = lazy( () => import('./UserEditScreen') );
+const UserListScreen = lazy( () => import('./UserListScreen') );
+const UserViewScreen = lazy( () => import('./UserViewScreen') );
 
 export const Index = ({ match }) => {
   return (
     <Layout>
-      <Switch>
-        <Route exact path={`${match.url}/:id/edit`} component={UserEditScreen} />
-        <Route exact path={`${match.url}/:id`} component={UserViewScreen} />
-        <Route path={`${match.url}/`} component={UserListScreen} />
-      </Switch>
+      <Suspense fallback={<></>}>
+        <Switch>
+          <Route exact path={`${match.url}/:id/edit`} component={UserEditScreen} />
+          <Route exact path={`${match.url}/:id`} component={UserViewScreen} />
+          <Route path={`${match.url}/`} component={UserListScreen} />
+        </Switch>
+      </Suspense>
     </Layout>
   )
 }

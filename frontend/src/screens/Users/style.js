@@ -10,7 +10,7 @@ export const TableWrapper = styled.div`
 export const TopTable = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 0 15px;
+  padding: 0 0 10px;
   border-bottom: 1px solid #eaecef;
   align-items: center;
   input {
