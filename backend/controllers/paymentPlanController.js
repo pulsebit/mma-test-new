@@ -37,7 +37,7 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
 
 })
 
-// @desc     Read Payment Plans
+// @desc     Read/Fetch Payment Plans
 // @route    GET /api/paymentplans/
 // @access   Public
 const getPaymentPlans = asyncHandler( async (req, res) => {
@@ -46,7 +46,7 @@ const getPaymentPlans = asyncHandler( async (req, res) => {
   res.json(paymentPlans)
 })
 
-// @desc     Read single payment plan
+// @desc     Read/Fetch single Payment Plan
 // @route    GET /api/paymentplans/:id
 // @access   Public
 const getPaymentPlanById = asyncHandler( async (req, res) => {

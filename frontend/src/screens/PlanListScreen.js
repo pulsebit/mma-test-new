@@ -9,6 +9,7 @@ import { listPaymentPlans } from '../actions/paymentPlanAction'
 
 const PlanListScreen = () => {
     const dispatch = useDispatch()
+    
     const paymentPlanList = useSelector(state => state.paymentPlanList)
     const { loading, paymentPlans, error } = paymentPlanList
 
@@ -37,14 +38,14 @@ const PlanListScreen = () => {
                                     <th>Name</th>
                                     <th>Current Subcribers</th>
                                     <th>Price</th>
-                                    <th>action</th>
+                                    <th>Action</th>
                                 </tr>
                                {paymentPlans.map((payment) => (
                                    <tr>
                                         <td>{payment._id}</td>
                                         <td>{payment.name}</td>
                                         <td>{payment.subscribers}</td>
-                                        <td>{payment.price}</td>
+                                        <td>${payment.price}</td>
                                         <td>
                                             <NavLink to={`/admin/plan/${payment._id}`} className="view-btn">View</NavLink>
                                         </td>

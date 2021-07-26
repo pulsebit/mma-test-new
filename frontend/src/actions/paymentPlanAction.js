@@ -13,7 +13,9 @@ import {
    PAYMENTPLAN_UPDATE_RESET,
    PAYMENTPLAN_CREATE_REQUEST,
    PAYMENTPLAN_CREATE_SUCCESS,
-   PAYMENTPLAN_CREATE_FAIL
+   PAYMENTPLAN_CREATE_FAIL,
+   PAYMENTPLAN_DETAILS_FAIL,
+   PAYMENTPLAN_DETAILS_REQUEST
 } from '../constants/paymentPlanConstant'
 
 export const listPaymentPlans = () => async (dispatch) => {
@@ -37,19 +39,20 @@ export const listPaymentPlans = () => async (dispatch) => {
 }
 
 export const getPaymentPlanDetails = (id) => async (dispatch) => {
-   try {
-       dispatch({ type: PAYMENTPLAN_LIST_REQUEST })
+   try { 
+      
+      dispatch({ type: PAYMENTPLAN_DETAILS_REQUEST })
 
        const { data } = await axios.get(`/api/paymentplans/${id}`)
-
-       dispatch({
-               type: PAYMENTPLAN_LIST_SUCCESS,
-               payload: data
-       })
+       console.log(data)
+      dispatch({
+         type: PAYMENTPLAN_DETAILS_SUCCESS,
+         payload: data
+      })
 
    } catch (error) {
        dispatch({
-            type: PAYMENTPLAN_LIST_FAIL,
+            type: PAYMENTPLAN_DETAILS_FAIL,
             payload: error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message
@@ -68,7 +71,7 @@ export const updatePaymentPlan= (paymentPlan) => async (dispatch, getState) => {
      dispatch({type: PAYMENTPLAN_UPDATE_SUCCESS})
 
      dispatch({
-       type: PAYMENTPLAN_DETAILS_SUCCESS,
+       type: PAYMENTPLAN_UPDATE_SUCCESS,
        payload: data
      })
  

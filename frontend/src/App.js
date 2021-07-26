@@ -28,11 +28,13 @@ import UserEditScreen from './screens/UserEditScreen'
 import PerAllAdmin from './screens/PerAllAdmin'
 import PerSuperAdmin from './screens/PerSuperAdmin'
 
+import ProductAddScreen from './screens/ProductAddScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductViewScreen from './screens/ProductViewScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import ProductCatList from './screens/ProductCatList'
 import ProductCatViewScreen from './screens/ProductCatViewScreen'
+
 
 import ProductScreen from './screens/ProductScreen'
 
@@ -75,6 +77,9 @@ function App() {
     <Router>
         <Header />
           <main>
+
+              <Route path='/' component={HomeScreen} exact />
+              
               <Route path='/login' component={LoginScreen} />
               <Route path='/profile' component={Profile} exact/>
               <Route path='/profile/edit' component={ProfileEdit} />
@@ -98,8 +103,10 @@ function App() {
               <Route path='/admin/permissions/super-admin' component={PerSuperAdmin} />
               
 
+              {/* Products */}
               <Route path='/admin/productlist/' component={ProductListScreen} />
-              <Route path='/admin/product/:id' component={ProductViewScreen}  exact/>
+              <Route path='/admin/product/:id/' component={ProductViewScreen}  exact/>
+              <Route path='/admin/product-add' component={ProductAddScreen}  />
               <Route path='/admin/product/:id/edit' component={ProductEditScreen}  />
               <Route path='/admin/product-categories' component={ProductCatList} exact />
               <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
@@ -109,14 +116,17 @@ function App() {
               <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />
 
 
+              {/* Paymeny Plans */}
               <Route path='/admin/plan-add/' component={PlanAddScreen} exact />
               <Route path='/admin/plan' component={PlanListScreen} exact />
               <Route path='/admin/plan/:id' component={PlanViewScreen} exact />
-              <Route path='/admin/plan/:id/edit' component={PlanEditScreen} />
+              {/* <Route path='/admin/plan/:id/edit' component={PlanEditScreen} /> */}
+
+
 
               <Route path='/admin/settings' component={Settings} />
 
-              <Route path='/' component={HomeScreen} exact />
+              
               
 
               <Route path='/portal' component={ClientPortal} exact />

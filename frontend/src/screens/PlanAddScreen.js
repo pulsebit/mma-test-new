@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import { Row, Col, Form, NavLink } from 'react-bootstrap'
 import { createPaymentPlan } from '../actions/paymentPlanAction'
 import DashboardContainer from '../components/DashboardContainer'
@@ -18,7 +21,6 @@ const PlanAddScreen = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         dispatch(createPaymentPlan(name, price, image, description, features))
-
     }
 
     return (
@@ -63,11 +65,49 @@ const PlanAddScreen = () => {
                             <div className="user-details">
                                 <div className="details-wrapper">
                                     <label>Description:</label>
-                                    <p><input type="text>" onChange={(e)=>setDescription(e.target.value)} /></p>
+                                    {/* <p><input type="text>" onChange={(e)=>setDescription(e.target.value)} /></p> */}
+                                    <CKEditor
+                                        editor={ ClassicEditor }
+                                        data=""
+                                        onReady={ editor => {
+                                            // You can store the "editor" and use when it is needed.
+                                            console.log( 'Editor is ready to use!', editor );
+                                        } }
+                                        onChange={(e, editor)=>{
+                                            const data = editor.getData();
+                                            setDescription(data)
+                                            console.log(setDescription);
+                                        }}
+                                        onBlur={ ( event, editor ) => {
+                                            console.log( 'Blur.', editor );
+                                        } }
+                                        onFocus={ ( event, editor ) => {
+                                            console.log( 'Focus.', editor );
+                                        } }
+                                    />
                                 </div>
                                 <div className="details-wrapper">
                                     <label>Features:</label>
-                                    <p><input type="text>" onChange={(e)=>setFeatures(e.target.value)} /></p>
+                                    {/* <p><input type="text>" onChange={(e)=>setFeatures(e.target.value)} /></p> */}
+                                    <CKEditor
+                                        editor={ ClassicEditor }
+                                        data=""
+                                        onReady={ editor => {
+                                            // You can store the "editor" and use when it is needed.
+                                            console.log( 'Editor is ready to use!', editor );
+                                        } }
+                                        onChange={(e, editor)=>{
+                                            const data = editor.getData();
+                                            setFeatures(data)
+                                            console.log(setFeatures);
+                                        }}
+                                        onBlur={ ( event, editor ) => {
+                                            console.log( 'Blur.', editor );
+                                        } }
+                                        onFocus={ ( event, editor ) => {
+                                            console.log( 'Focus.', editor );
+                                        } }
+                                    />
                                 </div>
                             </div>
                         </Col>

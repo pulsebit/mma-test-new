@@ -55,7 +55,7 @@ const UserListScreen = ({ history }) => {
                                                     <td className="email">{user.email}</td>
                                                     <td className="status">Active</td>
                                                     <td className="plan">Basic</td>
-                                                    <td className="date"></td>
+                                                    <td className="date">{user.createdAt}</td>
                                                     <td>
                                                        
                                                         <NavLink to={`/admin/users-view/${user._id}`} className="view-btn">View</NavLink>

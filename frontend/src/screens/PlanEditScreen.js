@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+
 import { NavLink } from 'react-router-dom'
 import { Row, Col, Form } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
@@ -117,18 +120,53 @@ const PlanEditScreen = ({ match, history }) => {
                                 <div className="user-details">
                                     <div className="details-wrapper">
                                         <label>Description:</label>
-                                        <p><input type="text>" onChange={(e)=>setDescription(e.target.value)} value={description}/></p>
+                                        <CKEditor
+                                            editor={ ClassicEditor }
+                                            data= {description}
+                                            onReady={ editor => {
+                                            } }
+                                            onChange={(e, editor)=>{
+                                                const data = editor.getData();
+                                                setDescription(data)
+                                                console.log(setDescription);
+                                            }}
+                                            onBlur={ ( event, editor ) => {
+                                                console.log( 'Blur.', editor );
+                                            } }
+                                            onFocus={ ( event, editor ) => {
+                                                console.log( 'Focus.', editor );
+                                            } }
+                                        />
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Features:</label>
-                                        <p><input type="text>" onChange={(e)=>setFeatures(e.target.value)} value={features}/></p>
+                                        <CKEditor
+                                            editor={ ClassicEditor }
+                                            data= {features}
+                                            onReady={ editor => {
+                                                // You can store the "editor" and use when it is needed.
+                                                console.log( 'Editor is ready to use!', editor );
+                                            } }
+                                            onChange={(e, editor)=>{
+                                                const data = editor.getData();
+                                                setFeatures(data)
+                                                console.log(setFeatures);
+                                            }}
+                                            onBlur={ ( event, editor ) => {
+                                                console.log( 'Blur.', editor );
+                                            } }
+                                            onFocus={ ( event, editor ) => {
+                                                console.log( 'Focus.', editor );
+                                            } }
+                                        />
                                     </div>
                                 </div>
                             </Col>
                         </Row> 
                         <div className="button-wrapper def-padding">
                             <button type="submit" value="Update" className='update-btn'>Update</button>
-                            <button onClick={onDeleteHandler} className='delete-btn'>Delete</button>  
+                            <button onClick={onDeleteHandler} className='delete-btn'>Delete</button>
+                            <NavLink to={`/admin/plan/${paymentPlanId}`}>Cancel</NavLink>
                         </div>
                     </div>
 
@@ -155,10 +193,10 @@ const PlanEditScreen = ({ match, history }) => {
                                                 <td><input type="text>" onChange={(e)=>setProdPrice(e.target.value)} value={prod_price}/></td>
                                                 <td><input type="text>"  value={paymentPlanDetails.createdAt}/></td>
                                                 <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
+                                                    <div className="button-wrapper">
+                                                        <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
+                                                        <button className='delete-btn'>Delete</button>  
+                                                    </div>  
                                                 </td>
                                             </tr>
                                         </tbody>

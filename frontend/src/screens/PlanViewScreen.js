@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
@@ -12,15 +12,22 @@ const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
     
     const dispatch = useDispatch()
-    const paymentPlanDetails = useSelector(state => state.paymentPlanDetails)
-    const { loading, paymentPlansDetails, error } = paymentPlanDetails
-
-    useEffect(() => {
-        dispatch(getPaymentPlanDetails(paymentPlanId))
-    },[dispatch, match])
+    const{ loading, paymentPlan, error } = useSelector(state => state.paymentPlanDetails)
 
     
 
+    useEffect(() => {
+        dispatch(getPaymentPlanDetails(paymentPlanId))
+    },[dispatch, paymentPlanId])
+
+    
+    function descriptionMarkup() {
+        return {__html: paymentPlan.description};
+    }   
+
+    function featuresMarkup() {
+        return {__html: paymentPlan.features};
+    }
 
     return (
         <div className="view-screen">
@@ -53,17 +60,17 @@ const PlanViewScreen = ({match}) => {
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Name:</label>
-                                                <span>{paymentPlansDetails.name}</span>
+                                                <span>{paymentPlan.name}</span>
                                             </div>
                                         </Col>
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Price</label>
-                                                <span>{paymentPlansDetails.price}</span>
+                                                <span>{paymentPlan.price}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Created: </label>
-                                                <span>{paymentPlansDetails.createdAt}</span>
+                                                <span>{paymentPlan.createdAt}</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -73,17 +80,11 @@ const PlanViewScreen = ({match}) => {
                                 <div className="user-details">
                                     <div className="details-wrapper">
                                         <label>Description:</label>
-                                        <p>{paymentPlansDetails.description}</p>
+                                        <div dangerouslySetInnerHTML={descriptionMarkup()} />
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Features:</label>
-                                        <ul>
-                                            <li>Proin ac ipsum non lectus blandit tristique.</li>
-                                            <li>Duis ut nisi tempus, varius quam sit amet, convallis tortor.</li>
-                                            <li>Duis rutrum velit et aliquam vestibulum.</li>
-                                            <li>Proin rhoncus ante nec erat egestas luctus.</li>
-                                            <li>Morbi quis eros vel eros pellentesque volutpat.</li>
-                                        </ul>
+                                        <div dangerouslySetInnerHTML={featuresMarkup()} />
                                     </div>
                                 </div>
                             </Col>
@@ -111,13 +112,13 @@ const PlanViewScreen = ({match}) => {
                                                 <th>Action</th>
                                             </tr>				
                                             <tr>
-                                                <td>{paymentPlanDetails.prod_name}</td>
-                                                <td><p>{paymentPlanDetails.prod_short_description}</p></td>
-                                                <td>{paymentPlanDetails.prod_price}</td>
-                                                <td>{paymentPlanDetails.createdAt}</td>
+                                                <td>{paymentPlan.prod_name}</td>
+                                                <td><p>{paymentPlan.prod_short_description}</p></td>
+                                                <td>{paymentPlan.prod_price}</td>
+                                                <td>{paymentPlan.createdAt}</td>
                                                 <td>
                                                 <div className="button-wrapper">
-                                                    <NavLink to={`/admin/product/${paymentPlanDetails._id}/edit`} className="edit-btn">Edit</NavLink>
+                                                    <NavLink to={`/admin/product/${paymentPlan._id}/edit`} className="edit-btn">Edit</NavLink>
                                                     <button className='delete-btn'>Delete</button>  
                                                 </div>  
                                                 </td>

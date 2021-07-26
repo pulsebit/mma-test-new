@@ -522,6 +522,7 @@ span {
 /* TABLE SCROLL */
 .table-wrapper {
   overflow-x: auto;
+  font-size: 14px;
 }
 
 .table-wrapper table {
@@ -965,6 +966,16 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   margin-left: 15px;
 }
 
+.view-screen .user-details .details-wrapper ol {
+  list-style: decimal;
+  margin-left: 15px;
+  line-height: 1.5;
+}
+
+.view-screen .user-details .details-wrapper ol li {
+  margin-left: 15px;
+}
+
 .view-screen .button-wrapper {
   text-align: right;
 }
@@ -1002,6 +1013,16 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 
 .edit-screen ul li {
+  margin-left: 15px;
+}
+
+.edit-screen ol {
+  list-style: decimal;
+  margin-left: 15px;
+  line-height: 1.5;
+}
+
+.edit-screen ol li {
   margin-left: 15px;
 }
 
