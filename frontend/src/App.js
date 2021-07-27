@@ -107,7 +107,7 @@ function App() {
               <Route path='/admin/productlist/' component={ProductListScreen} />
               <Route path='/admin/product/:id/' component={ProductViewScreen}  exact/>
               <Route path='/admin/product-add' component={ProductAddScreen}  />
-              <Route path='/admin/product/:id/edit' component={ProductEditScreen}  />
+              <Route path='/admin/product-edit/:id/' component={ProductEditScreen}  />
               <Route path='/admin/product-categories' component={ProductCatList} exact />
               <Route path='/admin/product-categories/view' component={ProductCatViewScreen}  />
               
@@ -120,13 +120,11 @@ function App() {
               <Route path='/admin/plan-add/' component={PlanAddScreen} exact />
               <Route path='/admin/plan' component={PlanListScreen} exact />
               <Route path='/admin/plan/:id' component={PlanViewScreen} exact />
-              {/* <Route path='/admin/plan/:id/edit' component={PlanEditScreen} /> */}
+              <Route path='/admin/plan/:id/edit' component={PlanEditScreen} />
 
 
 
               <Route path='/admin/settings' component={Settings} />
-
-              
               
 
               <Route path='/portal' component={ClientPortal} exact />

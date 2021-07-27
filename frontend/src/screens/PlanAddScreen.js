@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-import { Row, Col, Form, NavLink } from 'react-bootstrap'
-import { createPaymentPlan } from '../actions/paymentPlanAction'
+import { Row, Col, Form } from 'react-bootstrap'
+import { getProductDetails } from '../actions/productActions'
+import { createPaymentPlan, paymentPlanAddProduct } from '../actions/paymentPlanAction'
+import { listProducts } from '../actions/productActions'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
 
@@ -17,20 +19,38 @@ const PlanAddScreen = () => {
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [features, setFeatures] = useState('')
+    const [product, setProduct] = useState('')
+    
+
+    const productList = useSelector( state => state.productList)
+    const { products } = productList
+
+    useEffect(() => {
+        dispatch(listProducts())
+    }, [dispatch])
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(createPaymentPlan(name, price, image, description, features))
+        dispatch(createPaymentPlan(name, price, image, description, features, product))
+        console.log(product)
+
     }
+    
+    const addTableHandler = (e) => {
+        e.preventDefault()
+        console.log(product)
+        // setProduct(e.target.value)
+        dispatch(getProductDetails(setProduct))
+    } 
 
     return (
         <div className="edit-screen">
             <DashboardContainer>
+                <Form onSubmit={onSubmitHandler}>
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Payment Information</span>
                     </div>
-                    <Form onSubmit={onSubmitHandler}>
                     <Row>
                         <Col md={2}>
                             <div className="img-wrapper">
@@ -55,7 +75,7 @@ const PlanAddScreen = () => {
                                     <Col md={6}>
                                         <div className="details-wrapper">
                                             <label>Price</label>
-                                            <span><input type="text" onChange={(e)=>setPrice(e.target.value)}/></span>
+                                            <span><input type="number" onChange={(e)=>setPrice(e.target.value)}/></span>
                                         </div>
                                     </Col>
                                 </Row>
@@ -65,7 +85,6 @@ const PlanAddScreen = () => {
                             <div className="user-details">
                                 <div className="details-wrapper">
                                     <label>Description:</label>
-                                    {/* <p><input type="text>" onChange={(e)=>setDescription(e.target.value)} /></p> */}
                                     <CKEditor
                                         editor={ ClassicEditor }
                                         data=""
@@ -88,7 +107,6 @@ const PlanAddScreen = () => {
                                 </div>
                                 <div className="details-wrapper">
                                     <label>Features:</label>
-                                    {/* <p><input type="text>" onChange={(e)=>setFeatures(e.target.value)} /></p> */}
                                     <CKEditor
                                         editor={ ClassicEditor }
                                         data=""
@@ -112,12 +130,55 @@ const PlanAddScreen = () => {
                             </div>
                         </Col>
                     </Row> 
-                        <div className="button-wrapper def-padding">
-                            <button type="submit" className='update-btn'>Save</button>
-                        </div>
-                    </Form>
-                    
                 </div>
+
+                <div className="section-wrapper">
+                    <div className="blue-bkg-title def-padding">
+                        <span>Products Included</span>
+                        
+                        <div className="button-wrapper">
+                            <select value={product} onChange={addTableHandler}>
+                                <option value="">Select Product</option>
+                                {products.map((product) => (
+                                    <option value={product._id}>{product.name}</option>
+                                ))}
+                            </select>
+                            <button type="submit">+</button>
+                        </div>
+                    </div>
+                    <Row>
+                        <Col md={12}>
+                            <div className="table-wrapper def-padding">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Short Description</th>
+                                            <th>Price</th>
+                                            <th>Date Added</th>
+                                            <th>Action</th>
+                                        </tr>				
+                                        <tr>
+                                            <td><input type="text>"/></td>
+                                            <td><input type="text>"/></td>
+                                            <td><input type="text>"/></td>
+                                            <td><input type="text>"/></td>
+                                            <td>
+                                                <div className="button-wrapper">
+                                                    <button className='delete-btn'>Delete</button>  
+                                                </div>  
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </Col>
+                    </Row>
+                </div>
+                <div className="button-wrapper def-padding">
+                    <button type="submit" className='update-btn'>Save</button>
+                </div>
+                </Form>
             </DashboardContainer>
         </div>
     )

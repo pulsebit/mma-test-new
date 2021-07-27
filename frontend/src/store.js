@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { productCreateReducer, productListReducer, productDetailsReducer, productUpdateReducer, productDeleteReducer } from './reducers/productReducers'
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { supportListReducer } from './reducers/supportReducers'
-import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer} from './reducers/paymentPlanReducers'
+import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer} from './reducers/paymentPlanReducers'
 
 
 const reducer = combineReducers({
@@ -23,7 +23,8 @@ const reducer = combineReducers({
 	paymentPlanDetails: paymentPlanDetailsReducer,
 	paymentPlanDelete :paymentPlanDeleteReducer,
 	paymentPlanUpdate :paymentPlanUpdateReducer,
-	paymentPlanCreate: paymentPlanCreateReducer
+	paymentPlanCreate: paymentPlanCreateReducer,
+	paymentPlanProductUpdate: paymentPlanProductUpdateReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

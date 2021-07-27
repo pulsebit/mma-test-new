@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
+import PaymentPlan from '../models/paymentPlanModel.js'
 
 
 // @desc   Create Product
@@ -33,7 +34,7 @@ const createProduct = asyncHandler( async (req, res) => {
     description,
     numReviews, 
     price, 
-    countInStock
+    countInStock,
   })
 
   if(product) {

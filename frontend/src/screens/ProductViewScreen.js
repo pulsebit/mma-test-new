@@ -102,7 +102,7 @@ const ProductViewScreen = ({match}) => {
                 </div>
 
                 <div className="button-wrapper def-padding">
-                    <NavLink to={`/admin/product/${product._id}/edit`} className="edit-btn">Edit Product</NavLink>
+                    <NavLink to={`/admin/product-edit/${product._id}/`} className="edit-btn">Edit Product</NavLink>
                 </div>
                     
             </DashboardContainer>

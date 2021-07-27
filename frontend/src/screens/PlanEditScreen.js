@@ -10,6 +10,7 @@ import DashboardContainer from '../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import defaultImage from '../assets/images/user.png'
 import { getPaymentPlanDetails, updatePaymentPlan, deletePaymentPlan } from '../actions/paymentPlanAction'
+import { listProducts } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { PAYMENTPLAN_UPDATE_RESET }  from '../constants/paymentPlanConstant'
@@ -24,12 +25,9 @@ const PlanEditScreen = ({ match, history }) => {
     const [features, setFeatures] = useState('')
     const [subscribers, setSubcribers] = useState('')
     const [createdAt, setDate] = useState('')
-    const [prod_name, setProdName] = useState('')
-    const [prod_short_description, setProdShortDescription] = useState('')
-    const [prod_price, setProdPrice] = useState('')
 
     const paymentPlanDetails = useSelector(state => state.paymentPlanDetails)
-    const { loading, paymentPlansDetails, error } = paymentPlanDetails
+    const { loading, paymentPlan, error } = paymentPlanDetails
 
     const paymentPlanUpdate = useSelector(state => state.paymentPlanUpdate)
     const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = paymentPlanUpdate
@@ -38,29 +36,30 @@ const PlanEditScreen = ({ match, history }) => {
     const paymentPlanDelete = useSelector(state => state.paymentPlanDelete)
     const { loading:loadingDelete, error:errorDelete, success:successDelete } = paymentPlanDelete
 
+    const productList = useSelector( state => state.productList)
+    const { products } = productList
+
 
     useEffect(() => {
         if(successUpdate || successDelete) {
             dispatch({ type: PAYMENTPLAN_UPDATE_RESET})
-            history.push('/admin')
+            history.push('/admin')  
         } 
         else {
-            if( !paymentPlansDetails.name || paymentPlansDetails._id !== paymentPlanId) {
+            if( !paymentPlan.name || paymentPlan._id !== paymentPlanId) {
                 dispatch(getPaymentPlanDetails(paymentPlanId))
             } else {
-                setName(paymentPlansDetails.name)
-                setPrice(paymentPlansDetails.price)
-                setImage(paymentPlansDetails.image)
-                setDescription(paymentPlansDetails.description)
-                setFeatures(paymentPlansDetails.features)
-                setSubcribers(paymentPlansDetails.subscribers)
-                setDate(paymentPlansDetails.createdAt)
-                setProdName(paymentPlansDetails.prod_name)
-                setProdShortDescription(paymentPlansDetails.prod_short_description)
-                setProdPrice(paymentPlansDetails.prod_price)
+                setName(paymentPlan.name)
+                setPrice(paymentPlan.price)
+                setImage(paymentPlan.image)
+                setDescription(paymentPlan.description)
+                setFeatures(paymentPlan.features)
+                setSubcribers(paymentPlan.subscribers)
+                setDate(paymentPlan.createdAt)
             }
         }
-    }, [dispatch, paymentPlanId, paymentPlansDetails, match, history, successUpdate, successDelete])
+        dispatch(listProducts())
+    }, [dispatch, paymentPlanId, paymentPlan, match, history, successUpdate, successDelete])
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -72,6 +71,8 @@ const PlanEditScreen = ({ match, history }) => {
         e.preventDefault()
         dispatch(deletePaymentPlan(paymentPlanId))
     }
+
+    
 
 
     return (
@@ -173,7 +174,15 @@ const PlanEditScreen = ({ match, history }) => {
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Products Included</span>
-                            <button type="submit" value="Add" className='add-btn'>Add New</button>
+                            
+                            <div className="button-wrapper">
+                                <select name="listproducts" id="listproducts">
+                                    {products.map((product) => (
+                                        <option value={product._id}>{product.name}</option>
+                                    ))}
+                                </select>
+                                <button type="submit" className='add-btn'>Add New</button>
+                            </div>
                         </div>
                         <Row>
                             <Col md={12}>
@@ -188,13 +197,12 @@ const PlanEditScreen = ({ match, history }) => {
                                                 <th>Action</th>
                                             </tr>				
                                             <tr>
-                                                <td><input type="text>" onChange={(e)=>setProdName(e.target.value)} value={prod_name}/></td>
-                                                <td><p><input type="text>" onChange={(e)=>setProdShortDescription(e.target.value)} value={prod_short_description}/></p></td>
-                                                <td><input type="text>" onChange={(e)=>setProdPrice(e.target.value)} value={prod_price}/></td>
-                                                <td><input type="text>"  value={paymentPlanDetails.createdAt}/></td>
+                                                <td><input type="text>"/></td>
+                                                <td><input type="text>"/></td>
+                                                <td><input type="text>"/></td>
+                                                <td><input type="text>"/></td>
                                                 <td>
                                                     <div className="button-wrapper">
-                                                        <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
                                                         <button className='delete-btn'>Delete</button>  
                                                     </div>  
                                                 </td>

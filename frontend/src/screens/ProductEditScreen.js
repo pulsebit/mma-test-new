@@ -28,6 +28,7 @@ const ProductEditScreen = ({match, history}) => {
     const [numReviews, setNumReviews] = useState('')
     const [price, setPrice] = useState('')
     const [countInStock, setCountInStock] = useState('')
+    const [paymentplan, setPaymentplan] = useState('')
 
     const productDetails = useSelector(state => state.productDetails)
     const { loading, product, error } = productDetails
@@ -57,6 +58,7 @@ const ProductEditScreen = ({match, history}) => {
                 setNumReviews(product.numReviews)
                 setPrice(product.price)
                 setCountInStock(product.countInStock)
+                setPaymentplan(product.paymentPlans)
             }
         }
     }, [dispatch, productId, product, match, history, successUpdate, successDelete])
@@ -126,7 +128,7 @@ const ProductEditScreen = ({match, history}) => {
                                             </div>
                                         </Col>
                                         <Col md={6}>
-                                        <div className="details-wrapper">
+                                            <div className="details-wrapper">
                                                 <label>Category:</label>
                                                 <span><input type="text" value={category} onChange={(e)=>setCategory(e.target.value)}/></span>
                                             </div>
@@ -137,6 +139,10 @@ const ProductEditScreen = ({match, history}) => {
                                             <div className="details-wrapper">
                                                 <label>Sale Price:</label>
                                                 <span><input type="text" placeholder="599 AUD"/></span>
+                                            </div>
+                                            <div className="details-wrapper">
+                                                <label>Add to Plan:</label>
+                                                <span><input type="text" /></span>
                                             </div>
                                         </Col>
                                     </Row>

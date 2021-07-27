@@ -7,6 +7,8 @@ import defaultImage from '../assets/images/user.png'
 import { getPaymentPlanDetails } from '../actions/paymentPlanAction'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
@@ -97,7 +99,7 @@ const PlanViewScreen = ({match}) => {
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Products Included</span>
-                            <button type="submit" value="Add" className='add-btn'>Add New</button>
+                            
                         </div>
                         <Row>
                             <Col md={12}>
@@ -112,7 +114,7 @@ const PlanViewScreen = ({match}) => {
                                                 <th>Action</th>
                                             </tr>				
                                             <tr>
-                                                <td>{paymentPlan.prod_name}</td>
+                                                <td>{paymentPlan.product}</td>
                                                 <td><p>{paymentPlan.prod_short_description}</p></td>
                                                 <td>{paymentPlan.prod_price}</td>
                                                 <td>{paymentPlan.createdAt}</td>

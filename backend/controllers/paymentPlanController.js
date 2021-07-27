@@ -1,17 +1,14 @@
 import asyncHandler from 'express-async-handler'
 import PaymentPlan from '../models/paymentPlanModel.js'
+import Product from '../models/productModel.js'
 
 // @desc   Create Payment Plan
 // @route  POST /api/paymentplans/
 // @access private
 const createPaymentPlan = asyncHandler( async (req, res) => {
-  const { 
-    name, 
-    image, 
-    price, 
-    description, 
-    features
-  } = req.body
+  const { name , product } = req.body
+
+  const objectProduct = await Product.findById ({ product })
 
   const paymentPlanExists = await PaymentPlan.findOne({ name })
 
@@ -20,13 +17,13 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
     throw new Error('Payment Plan already exists')
   } 
 
-  const paymentPlan = await PaymentPlan.create({
-    name, 
-    image, 
-    price, 
-    description, 
-    features
-  })
+  //create 
+  const newPlan = new PaymentPlan(req.body)
+
+  //add products
+  newPlan.product.push(objectProduct) 
+
+  const paymentPlan = newPlan.save()
 
   if(paymentPlan) {
     res.status(201).json('Payment Plan has been created')
@@ -66,6 +63,7 @@ const getPaymentPlanById = asyncHandler( async (req, res) => {
 const updatePaymentPlan = asyncHandler(async (req, res) => {
   
 	const paymentPlan = await PaymentPlan.findById(req.params.id )
+
 
 	if(paymentPlan) {
     paymentPlan.name = req.body.name || paymentPlan.name
@@ -107,4 +105,49 @@ const deletePaymentPlan = asyncHandler(async (req, res) => {
 	}
 })
 
-export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan }
+// @desc   Update Payment Plan
+// @route  PUT /api/paymentPlan/:id
+// @access Private
+const paymentPlanAddProduct = asyncHandler(async (req, res) => {
+   
+  // Pass payment plan ID & Product ID
+  const paymentPlanId = req.params.id
+  const productId = req.body.productId 
+
+  //verify payment plan
+	const paymentPlan = await PaymentPlan.findById(paymentPlanId)
+  
+  //if payment plan exist
+	if(paymentPlan) {
+    paymentPlan.name = paymentPlan.name
+    paymentPlan.price = paymentPlan.price
+    paymentPlan.image = paymentPlan.image
+    paymentPlan.description = paymentPlan.description
+    paymentPlan.features = paymentPlan.features
+    
+
+    // Get products from the payment plan
+    let products = paymentPlan.products 
+
+    //Merge products with the new one
+    products.push(productId)
+    
+    const updatedPaymentPlan = await paymentPlan.save()
+
+    res.json({
+      _id: updatedPaymentPlan._id,
+      name: updatedPaymentPlan.name,
+      price: updatedPaymentPlan.price,
+      image: updatedPaymentPlan.image,
+      description: updatedPaymentPlan.description,
+      features: updatedPaymentPlan.features,
+      products: updatedPaymentPlan.products,
+    })
+
+	} else {
+			res.status(404)
+			throw new Error('Payment Plan not found')
+	}
+})
+
+export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan, paymentPlanAddProduct }

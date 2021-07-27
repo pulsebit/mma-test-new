@@ -60,7 +60,11 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: false,
     default: 0
-  }
+  },
+  paymentPlan: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PaymentPlan'
+  },
 
 }, {
   timestamps: true

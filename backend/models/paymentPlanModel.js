@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Product from './productModel.js'
 
 const paymentPlanSchema = mongoose.Schema({
   name: {
@@ -25,7 +26,13 @@ const paymentPlanSchema = mongoose.Schema({
   subscribers: {
     type: Number,
     required: false
-  }
+  },
+  product: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    }
+  ]
 }, {
   timestamps: true
 })

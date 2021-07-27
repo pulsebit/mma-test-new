@@ -26,10 +26,12 @@ const ProductAddScreen = () => {
     const [numReviews, setNumReviews] = useState('')
     const [price, setPrice] = useState('')
     const [countInStock, setCountInStock] = useState('')
+    const [paymentPlan, setPaymentPlan] = useState('')
+    
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(createProduct(name, image, brand, category, description, numReviews, price, countInStock))
+        dispatch(createProduct(name, image, brand, category, description, numReviews, price, countInStock, paymentPlan))
 
     }
 
@@ -70,6 +72,10 @@ const ProductAddScreen = () => {
                                             <div className="details-wrapper">
                                                 <label>Price:</label>
                                                 <span><input type="text" onChange={(e)=>setPrice(e.target.value)}/></span>
+                                            </div>
+                                            <div className="details-wrapper">
+                                                <label>Plan:</label>
+                                                <span><input type="text" onChange={(e)=>setPaymentPlan(e.target.value)}/></span>
                                             </div>
                                         </Col>
                                     </Row>
