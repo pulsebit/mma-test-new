@@ -176,7 +176,7 @@ const PlanEditScreen = ({ match, history }) => {
                             <span>Products Included</span>
                             
                             <div className="button-wrapper">
-                                <select name="listproducts" id="listproducts">
+                                <select name="listproducts" id="listproducts" multiple>
                                     {products.map((product) => (
                                         <option value={product._id}>{product.name}</option>
                                     ))}
@@ -232,45 +232,6 @@ const PlanEditScreen = ({ match, history }) => {
                                                 <th>Date Due</th>
                                                 <th>Action</th>
                                             </tr>				
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
                                             <tr>
                                                 <td>John Smith</td>
                                                 <td>john@mma.com</td>

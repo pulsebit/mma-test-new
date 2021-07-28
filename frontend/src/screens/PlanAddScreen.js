@@ -5,9 +5,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Row, Col, Form } from 'react-bootstrap'
-import { getProductDetails } from '../actions/productActions'
 import { createPaymentPlan, paymentPlanAddProduct } from '../actions/paymentPlanAction'
-import { listProducts } from '../actions/productActions'
+import { listProducts, getProductDetails, listTempProducts } from '../actions/productActions'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
 
@@ -19,29 +18,41 @@ const PlanAddScreen = () => {
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [features, setFeatures] = useState('')
-    const [product, setProduct] = useState('')
+    const [allProducts, setAllProducts] = useState('')
+    const [tempProduct, setTempProduct] = useState('')
     
 
-    const productList = useSelector( state => state.productList)
-    const { products } = productList
+    const { tempProductHolder } = useSelector( state => state.tempProducts)
+
+    const { products } = useSelector( state => state.productList)
+    
+    
+    const { product } = useSelector(state => state.productDetails)
+
 
     useEffect(() => {
         dispatch(listProducts())
-    }, [dispatch])
+        if(!tempProductHolder.length) {
+            setAllProducts([...allProducts, tempProductHolder])
+            console.log(tempProductHolder)
+        }
+    }, [dispatch, tempProductHolder])
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(createPaymentPlan(name, price, image, description, features, product))
-        console.log(product)
-
+        dispatch(createPaymentPlan(name, price, image, description, features, allProducts))
     }
     
-    const addTableHandler = (e) => {
+    const addProductHandler = (e) => {
         e.preventDefault()
-        console.log(product)
-        // setProduct(e.target.value)
-        dispatch(getProductDetails(setProduct))
-    } 
+        //Add temp product on the list
+        //Dispatch Get Product By ID 
+        dispatch(listTempProducts(tempProduct))
+    }
+
+    // function productDescriptionMarkup() {
+    //     return {__html: product.description};
+    // }
 
     return (
         <div className="edit-screen">
@@ -88,21 +99,10 @@ const PlanAddScreen = () => {
                                     <CKEditor
                                         editor={ ClassicEditor }
                                         data=""
-                                        onReady={ editor => {
-                                            // You can store the "editor" and use when it is needed.
-                                            console.log( 'Editor is ready to use!', editor );
-                                        } }
                                         onChange={(e, editor)=>{
                                             const data = editor.getData();
                                             setDescription(data)
-                                            console.log(setDescription);
                                         }}
-                                        onBlur={ ( event, editor ) => {
-                                            console.log( 'Blur.', editor );
-                                        } }
-                                        onFocus={ ( event, editor ) => {
-                                            console.log( 'Focus.', editor );
-                                        } }
                                     />
                                 </div>
                                 <div className="details-wrapper">
@@ -110,21 +110,10 @@ const PlanAddScreen = () => {
                                     <CKEditor
                                         editor={ ClassicEditor }
                                         data=""
-                                        onReady={ editor => {
-                                            // You can store the "editor" and use when it is needed.
-                                            console.log( 'Editor is ready to use!', editor );
-                                        } }
                                         onChange={(e, editor)=>{
                                             const data = editor.getData();
                                             setFeatures(data)
-                                            console.log(setFeatures);
                                         }}
-                                        onBlur={ ( event, editor ) => {
-                                            console.log( 'Blur.', editor );
-                                        } }
-                                        onFocus={ ( event, editor ) => {
-                                            console.log( 'Focus.', editor );
-                                        } }
                                     />
                                 </div>
                             </div>
@@ -137,43 +126,50 @@ const PlanAddScreen = () => {
                         <span>Products Included</span>
                         
                         <div className="button-wrapper">
-                            <select value={product} onChange={addTableHandler}>
+                            <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
                                 <option value="">Select Product</option>
                                 {products.map((product) => (
-                                    <option value={product._id}>{product.name}</option>
+                                    <option value={product._id} id={product.name}>{product.name}</option>
                                 ))}
                             </select>
-                            <button type="submit">+</button>
+                            <button onClick={addProductHandler} type="submit">+</button>
                         </div>
                     </div>
-                    <Row>
-                        <Col md={12}>
-                            <div className="table-wrapper def-padding">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Short Description</th>
-                                            <th>Price</th>
-                                            <th>Date Added</th>
-                                            <th>Action</th>
-                                        </tr>				
-                                        <tr>
-                                            <td><input type="text>"/></td>
-                                            <td><input type="text>"/></td>
-                                            <td><input type="text>"/></td>
-                                            <td><input type="text>"/></td>
-                                            <td>
-                                                <div className="button-wrapper">
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div> 
-                        </Col>
-                    </Row>
+                    
+                    <div className="table-wrapper def-padding">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Short Description</th>
+                                    <th>Price</th>
+                                    <th>Date Added</th>
+                                    <th>Action</th>
+                                </tr>				
+                                
+                                
+                             { allProducts ? (
+                                allProducts.map((product) => (
+                                    <tr>
+                                        <td>{product.name}</td>
+                                        <td><p>{product.description}</p></td>
+                                        <td>{product.price}</td>
+                                        <td>{product.createdAt}</td>
+                                        <td>
+                                            <div className="button-wrapper">
+                                                <button className='delete-btn'>Delete</button>  
+                                            </div>  
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <h3>No Products found</h3>
+                            )} 
+                                    
+                                
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div className="button-wrapper def-padding">
                     <button type="submit" className='update-btn'>Save</button>

@@ -6,24 +6,32 @@ import Product from '../models/productModel.js'
 // @route  POST /api/paymentplans/
 // @access private
 const createPaymentPlan = asyncHandler( async (req, res) => {
-  const { name , product } = req.body
-
-  const objectProduct = await Product.findById ({ product })
+  const { name, price, image, description, features, allProduct } = req.body
+ 
 
   const paymentPlanExists = await PaymentPlan.findOne({ name })
+  console.log(paymentPlanExists)
 
   if(paymentPlanExists) {
     res.status(400)
-    throw new Error('Payment Plan already exists')
-  } 
-
+    throw new Error("Payment Plan already exist..")
+  }
+  
   //create 
-  const newPlan = new PaymentPlan(req.body)
+  const newPlan = new PaymentPlan({name, price, image, description, features, allProduct})
 
   //add products
-  newPlan.product.push(objectProduct) 
+  // newPlan.product.push(product) 
 
-  const paymentPlan = newPlan.save()
+  const paymentPlan = newPlan.save() 
+  // const paymentPlan = await PaymentPlan.create({
+  //   name, 
+  //   image, 
+  //   price, 
+  //   description, 
+  //   features,
+  //   product
+  // })
 
   if(paymentPlan) {
     res.status(201).json('Payment Plan has been created')

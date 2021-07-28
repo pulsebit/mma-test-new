@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
+import PaymentProduct from '../components/PaymentProduct'
 import defaultImage from '../assets/images/user.png'
 import { getPaymentPlanDetails } from '../actions/paymentPlanAction'
+import { getProductDetails } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,8 +15,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
     
+    
     const dispatch = useDispatch()
     const{ loading, paymentPlan, error } = useSelector(state => state.paymentPlanDetails)
+    const productId = paymentPlan.product
 
     
 
@@ -114,15 +118,18 @@ const PlanViewScreen = ({match}) => {
                                                 <th>Action</th>
                                             </tr>				
                                             <tr>
-                                                <td>{paymentPlan.product}</td>
-                                                <td><p>{paymentPlan.prod_short_description}</p></td>
-                                                <td>{paymentPlan.prod_price}</td>
-                                                <td>{paymentPlan.createdAt}</td>
+                                                {productId ? (
+                                                    productId.map((product) => (
+                                                        <PaymentProduct key={product} id={product}/>
+                                                    ))
+                                                ) : (
+                                                    <Loader /> 
+                                                )}
                                                 <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to={`/admin/product/${paymentPlan._id}/edit`} className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
+                                                    <div className="button-wrapper">
+                                                        <NavLink to={`/admin/product/${paymentPlan._id}/edit`} className="edit-btn">Edit</NavLink>
+                                                        <button className='delete-btn'>Delete</button>  
+                                                    </div>  
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -198,7 +205,7 @@ const PlanViewScreen = ({match}) => {
                                                 <td>
                                                 <div className="button-wrapper">
                                                     <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
+                                                    <button className='delete-btn'>Delete</button>      
                                                 </div>  
                                                 </td>
                                             </tr>

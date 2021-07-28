@@ -5,6 +5,7 @@ import { productCreateReducer, productListReducer, productDetailsReducer, produc
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { supportListReducer } from './reducers/supportReducers'
 import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer} from './reducers/paymentPlanReducers'
+import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
 
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
 	productCreate: productCreateReducer,
 	productUpdate: productUpdateReducer,
 	productDelete: productDeleteReducer,
+	tempProducts: tempProductHolderReducer,
 	userLogin: userLoginReducer,
 	userList: userListReducer,
 	userDelete: userDeleteReducer,
@@ -25,6 +27,7 @@ const reducer = combineReducers({
 	paymentPlanUpdate :paymentPlanUpdateReducer,
 	paymentPlanCreate: paymentPlanCreateReducer,
 	paymentPlanProductUpdate: paymentPlanProductUpdateReducer
+	
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

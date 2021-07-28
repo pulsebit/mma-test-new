@@ -134,13 +134,11 @@ export const updatePaymentPlan= (paymentPlan) => async (dispatch, getState) => {
  }
 
  export const createPaymentPlan = (name, price, image, description, features, product) => async (dispatch) => {
-
    try {
      dispatch({
         type: PAYMENTPLAN_CREATE_REQUEST
      })
       await axios.post(`/api/paymentplans/`, {name, price, image, description, features, product} )
-      
 
       dispatch({type: PAYMENTPLAN_CREATE_SUCCESS})
  
