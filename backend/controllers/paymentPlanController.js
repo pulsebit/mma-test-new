@@ -2,13 +2,16 @@ import asyncHandler from 'express-async-handler'
 import PaymentPlan from '../models/paymentPlanModel.js'
 import Product from '../models/productModel.js'
 
-// @desc   Create Payment Plan
-// @route  POST /api/paymentplans/
-// @access private
-const createPaymentPlan = asyncHandler( async (req, res) => {
-  const { name, price, image, description, features, allProduct } = req.body
- 
 
+
+// @desc   Create Payment Plan     
+// @route  POST /api/paymentplans/ 
+// @access private                 
+const createPaymentPlan = asyncHandler( async (req, res) => {
+
+
+  const { name, price, image, description, features } = req.body
+ 
   const paymentPlanExists = await PaymentPlan.findOne({ name })
   console.log(paymentPlanExists)
 
@@ -18,20 +21,13 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
   }
   
   //create 
-  const newPlan = new PaymentPlan({name, price, image, description, features, allProduct})
+  const newPlan = new PaymentPlan({name, price, image, description, features})
 
   //add products
   // newPlan.product.push(product) 
 
   const paymentPlan = newPlan.save() 
-  // const paymentPlan = await PaymentPlan.create({
-  //   name, 
-  //   image, 
-  //   price, 
-  //   description, 
-  //   features,
-  //   product
-  // })
+
 
   if(paymentPlan) {
     res.status(201).json('Payment Plan has been created')
@@ -39,7 +35,32 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
     res.status(401)
     throw new error('Invalid...')
   }
+})
 
+
+
+// @desc   Update or Add Payment Plan Product only 
+// @route  PUT /api/paymentPlan/product-update/:id 
+// @access Private                                 
+const paymentPlanAddProduct = asyncHandler(async (req, res) => {
+  
+  const paymentPlan = await PaymentPlan.findById(req.params.id )
+  const product = req.body.tempProduct
+
+	if(paymentPlan) {
+    paymentPlan.product.push(product)
+    paymentPlan.save()
+  }
+
+  res.json({
+    _id: paymentPlan._id,
+    name: paymentPlan.name,
+    price: paymentPlan.price,
+    image: paymentPlan.image,
+    description: paymentPlan.description,
+    features: paymentPlan.features,
+    product: paymentPlan.product
+  })
 })
 
 // @desc     Read/Fetch Payment Plans
@@ -55,7 +76,7 @@ const getPaymentPlans = asyncHandler( async (req, res) => {
 // @route    GET /api/paymentplans/:id
 // @access   Public
 const getPaymentPlanById = asyncHandler( async (req, res) => {
-  const paymentPlan = await PaymentPlan.findById(req.params.id)
+  const paymentPlan = await PaymentPlan.findById(req.params.id).populate('product')
   
   if(paymentPlan) {
     res.json(paymentPlan)
@@ -113,49 +134,6 @@ const deletePaymentPlan = asyncHandler(async (req, res) => {
 	}
 })
 
-// @desc   Update Payment Plan
-// @route  PUT /api/paymentPlan/:id
-// @access Private
-const paymentPlanAddProduct = asyncHandler(async (req, res) => {
-   
-  // Pass payment plan ID & Product ID
-  const paymentPlanId = req.params.id
-  const productId = req.body.productId 
 
-  //verify payment plan
-	const paymentPlan = await PaymentPlan.findById(paymentPlanId)
-  
-  //if payment plan exist
-	if(paymentPlan) {
-    paymentPlan.name = paymentPlan.name
-    paymentPlan.price = paymentPlan.price
-    paymentPlan.image = paymentPlan.image
-    paymentPlan.description = paymentPlan.description
-    paymentPlan.features = paymentPlan.features
-    
-
-    // Get products from the payment plan
-    let products = paymentPlan.products 
-
-    //Merge products with the new one
-    products.push(productId)
-    
-    const updatedPaymentPlan = await paymentPlan.save()
-
-    res.json({
-      _id: updatedPaymentPlan._id,
-      name: updatedPaymentPlan.name,
-      price: updatedPaymentPlan.price,
-      image: updatedPaymentPlan.image,
-      description: updatedPaymentPlan.description,
-      features: updatedPaymentPlan.features,
-      products: updatedPaymentPlan.products,
-    })
-
-	} else {
-			res.status(404)
-			throw new Error('Payment Plan not found')
-	}
-})
 
 export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan, paymentPlanAddProduct }

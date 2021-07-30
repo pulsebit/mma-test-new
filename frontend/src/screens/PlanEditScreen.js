@@ -171,7 +171,7 @@ const PlanEditScreen = ({ match, history }) => {
                         </div>
                     </div>
 
-                    <div className="section-wrapper">
+                    {/* <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Products Included</span>
                             
@@ -212,9 +212,9 @@ const PlanEditScreen = ({ match, history }) => {
                                 </div> 
                             </Col>
                         </Row>
-                    </div>
+                    </div> */}
 
-                    <div className="section-wrapper">
+                    {/* <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Subcribers</span>
                             <button type="submit" value="Add" className='add-btn'>Add New</button>
@@ -250,7 +250,7 @@ const PlanEditScreen = ({ match, history }) => {
                                 </div> 
                             </Col>
                         </Row>
-                    </div>
+                    </div> */}
                 </Form>
             </DashboardContainer>
         </div>

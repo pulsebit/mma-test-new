@@ -16,10 +16,12 @@ import {
    PAYMENTPLAN_CREATE_FAIL,
    PAYMENTPLAN_DETAILS_FAIL,
    PAYMENTPLAN_DETAILS_REQUEST,
-   PAYMENTPLANPRODUCT_UPDATE_REQUEST,
-   PAYMENTPLANPRODUCT_UPDATE_SUCCESS,
-   PAYMENTPLANPRODUCT_UPDATE_FAIL
+   PAYMENTPLAN_PRODUCT_UPDATE_REQUEST,
+   PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS,
+   PAYMENTPLAN_PRODUCT_UPDATE_FAIL,
 } from '../constants/paymentPlanConstant'
+import { getProductDetails } from './productActions'
+
 
 export const listPaymentPlans = () => async (dispatch) => {
    try {
@@ -52,6 +54,7 @@ export const getPaymentPlanDetails = (id) => async (dispatch) => {
          type: PAYMENTPLAN_DETAILS_SUCCESS,
          payload: data 
       })
+
    } catch (error) {
        dispatch({
             type: PAYMENTPLAN_DETAILS_FAIL,
@@ -88,23 +91,24 @@ export const updatePaymentPlan= (paymentPlan) => async (dispatch, getState) => {
  }
 
  export const paymentPlanAddProduct= (paymentPlan) => async (dispatch, getState) => {
+    
    try {
      dispatch({
-        type: PAYMENTPLANPRODUCT_UPDATE_REQUEST
+        type: PAYMENTPLAN_PRODUCT_UPDATE_REQUEST
      })
      
-     const { data } = await axios.put(`/api/paymentplans/update-products/${paymentPlan._id}/`, paymentPlan)
+     const { data } = await axios.put(`/api/paymentplans/update-products/${paymentPlan._id}`, paymentPlan)
  
-     dispatch({type: PAYMENTPLANPRODUCT_UPDATE_SUCCESS})
+     dispatch({type: PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS})
 
      dispatch({
-       type: PAYMENTPLANPRODUCT_UPDATE_SUCCESS,
+       type: PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS,
        payload: data
      })
  
    } catch( error ) {
       dispatch({
-        type: PAYMENTPLANPRODUCT_UPDATE_FAIL,
+        type: PAYMENTPLAN_PRODUCT_UPDATE_FAIL,
         payload: error.response && error.response.data.message 
                ? error.response.data.message 
                : error.message 

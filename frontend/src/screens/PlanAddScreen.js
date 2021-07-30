@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Row, Col, Form } from 'react-bootstrap'
-import { createPaymentPlan, paymentPlanAddProduct } from '../actions/paymentPlanAction'
-import { listProducts, getProductDetails, listTempProducts } from '../actions/productActions'
+import { createPaymentPlan } from '../actions/paymentPlanAction'
+import { listProducts, listTempProducts } from '../actions/productActions'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
 
@@ -20,6 +21,7 @@ const PlanAddScreen = () => {
     const [features, setFeatures] = useState('')
     const [allProducts, setAllProducts] = useState('')
     const [tempProduct, setTempProduct] = useState('')
+    const [productsData, setProductsData] = useState('')
     
 
     const { tempProductHolder } = useSelector( state => state.tempProducts)
@@ -29,29 +31,30 @@ const PlanAddScreen = () => {
     
     const { product } = useSelector(state => state.productDetails)
 
-
-    useEffect(() => {
-        dispatch(listProducts())
-        if(!tempProductHolder.length) {
-            setAllProducts([...allProducts, tempProductHolder])
-            console.log(tempProductHolder)
-        }
-    }, [dispatch, tempProductHolder])
+    // useEffect(() => {
+    //     dispatch(listProducts())
+        
+    //     console.log("useEffect:" + tempProduct)
+    //     if(tempProduct){
+    //         setAllProducts([...allProducts, tempProductHolder])
+    //         console.log(productsData)
+            
+    //     }
+        
+    // }, [dispatch, tempProductHolder])
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(createPaymentPlan(name, price, image, description, features, allProducts))
+        dispatch(createPaymentPlan(name, price, image, description, features, productsData))
     }
     
-    const addProductHandler = (e) => {
-        e.preventDefault()
-        //Add temp product on the list
-        //Dispatch Get Product By ID 
-        dispatch(listTempProducts(tempProduct))
-    }
+    // const addProductHandler = (e) => {
+    //     e.preventDefault()
 
-    // function productDescriptionMarkup() {
-    //     return {__html: product.description};
+    //     dispatch(listTempProducts(tempProduct))
+    //     setProductsData([...productsData, tempProduct])
+            
+        
     // }
 
     return (
@@ -125,7 +128,7 @@ const PlanAddScreen = () => {
                     <div className="blue-bkg-title def-padding">
                         <span>Products Included</span>
                         
-                        <div className="button-wrapper">
+                        {/* <div className="button-wrapper">
                             <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
                                 <option value="">Select Product</option>
                                 {products.map((product) => (
@@ -133,7 +136,7 @@ const PlanAddScreen = () => {
                                 ))}
                             </select>
                             <button onClick={addProductHandler} type="submit">+</button>
-                        </div>
+                        </div> */}
                     </div>
                     
                     <div className="table-wrapper def-padding">
@@ -145,14 +148,13 @@ const PlanAddScreen = () => {
                                     <th>Price</th>
                                     <th>Date Added</th>
                                     <th>Action</th>
-                                </tr>				
-                                
-                                
+                                </tr>	
                              { allProducts ? (
                                 allProducts.map((product) => (
-                                    <tr>
+                                    <tr>   
+                                        
                                         <td>{product.name}</td>
-                                        <td><p>{product.description}</p></td>
+                                        <td>{ReactHtmlParser(product.description)}</td>
                                         <td>{product.price}</td>
                                         <td>{product.createdAt}</td>
                                         <td>

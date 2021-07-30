@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'
+import { getSupportDetails } from '../actions/supportActions'
 
-const SupportsViewScreen = () => {
+const SupportsViewScreen = ({match}) => {
+    const supportId = match.params.id
+    console.log(supportId)
+
+    const dispatch = useDispatch()
+
+    const { support } = useSelector( state => state.supportDetails) 
+
+    useEffect(() => {
+        dispatch(getSupportDetails(supportId))
+
+    },[dispatch, supportId])
+
     return (
         <div className="view-screen">
             <DashboardContainer>
@@ -24,11 +38,11 @@ const SupportsViewScreen = () => {
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Ticket ID:</label>
-                                                <span>01</span>
+                                                <span>{support._id}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Full Name:</label>
-                                                <span>John Smith</span>
+                                                <span>{support.name}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Mobile number:</label>
@@ -42,19 +56,19 @@ const SupportsViewScreen = () => {
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Issue:</label>
-                                                <span>Plan Issue</span>
+                                                <span>{support.problem_description}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Priority:</label>
-                                                <span>Low</span>
+                                                <span>{support.priority}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Status:</label>
-                                                <span>Open</span>
+                                                <span>{support.status}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Created:</label>
-                                                <span>12/12/2021</span>
+                                                <span>{support.createdAt}</span>
                                             </div>
                                         </Col>
                                     </Row>

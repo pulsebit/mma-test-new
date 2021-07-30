@@ -6,9 +6,22 @@ import Support from '../models/supportModel.js'
 // @route  GET /api/supports
 // @access private
 const getSupports = asyncHandler( async (req, res) => {
-  
     const supports = await Support.find({})
     res.json(supports)
+})
+
+// @desc   Get single support tickets
+// @route  GET /api/supports/:id
+// @access private
+const getSupportById = asyncHandler( async (req, res) => {
+  const supports = await Support.findById(req.params.id)
+  
+  if(supports) {
+    res.json(supports)
+  } else {
+    res.status(404)
+    throw new Error('Support not found')
+  }
 })
 
 // @desc   Add new support
@@ -68,4 +81,4 @@ const deleteSupport = asyncHandler( async (req, res) => {
 })
 
 
-export { getSupports, createSupport, deleteSupport }
+export { getSupports, createSupport, deleteSupport, getSupportById }

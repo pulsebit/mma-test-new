@@ -1,40 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import PaymentProduct from '../components/PaymentProduct'
 import defaultImage from '../assets/images/user.png'
-import { getPaymentPlanDetails } from '../actions/paymentPlanAction'
-import { getProductDetails } from '../actions/productActions'
+import { getPaymentPlanDetails, paymentPlanAddProduct } from '../actions/paymentPlanAction'
+import { getProductDetails, listProducts } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
-    
+    const [tempProduct, setTempProduct] = useState('')
     
     const dispatch = useDispatch()
-    const{ loading, paymentPlan, error } = useSelector(state => state.paymentPlanDetails)
-    const productId = paymentPlan.product
-
     
+    const{ loading, paymentPlan, error } = useSelector(state => state.paymentPlanDetails)
+    const productsIncluded = paymentPlan.product 
+
+    const { products } = useSelector( state => state.productList)
+
 
     useEffect(() => {
-        dispatch(getPaymentPlanDetails(paymentPlanId))
+        dispatch(getPaymentPlanDetails(paymentPlanId))        
+        dispatch(listProducts())
+
     },[dispatch, paymentPlanId])
 
-    
-    function descriptionMarkup() {
-        return {__html: paymentPlan.description};
-    }   
 
-    function featuresMarkup() {
-        return {__html: paymentPlan.features};
+    const addProductHandler = (e) => {
+        e.preventDefault()
+        dispatch(paymentPlanAddProduct({ _id: paymentPlanId, tempProduct}))
     }
 
+    
     return (
         <div className="view-screen">
             <DashboardContainer>
@@ -86,11 +88,11 @@ const PlanViewScreen = ({match}) => {
                                 <div className="user-details">
                                     <div className="details-wrapper">
                                         <label>Description:</label>
-                                        <div dangerouslySetInnerHTML={descriptionMarkup()} />
+                                        {ReactHtmlParser(paymentPlan.description)}
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Features:</label>
-                                        <div dangerouslySetInnerHTML={featuresMarkup()} />
+                                        {ReactHtmlParser(paymentPlan.features)}
                                     </div>
                                 </div>
                             </Col>
@@ -103,35 +105,49 @@ const PlanViewScreen = ({match}) => {
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Products Included</span>
-                            
+                                <div className="button-wrapper">
+                                    <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
+                                        <option value="">Select Product</option>
+                                        {products ? (
+                                            products.map((product) => (
+                                                <option value={product._id} id={product.name}>{product.name}</option>
+                                            ))
+                                        ) : (
+                                            <h3>No Products Available</h3>
+                                        )}
+                                    </select>
+                                    <button onClick={addProductHandler} type="submit">+</button>
+                                </div>
                         </div>
                         <Row>
                             <Col md={12}>
+                            
                                 <div className="table-wrapper def-padding">
                                     <table>
                                         <tbody>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Short Description</th>
                                                 <th>Price</th>
                                                 <th>Date Added</th>
                                                 <th>Action</th>
-                                            </tr>				
-                                            <tr>
-                                                {productId ? (
-                                                    productId.map((product) => (
-                                                        <PaymentProduct key={product} id={product}/>
-                                                    ))
-                                                ) : (
-                                                    <Loader /> 
-                                                )}
-                                                <td>
-                                                    <div className="button-wrapper">
-                                                        <NavLink to={`/admin/product/${paymentPlan._id}/edit`} className="edit-btn">Edit</NavLink>
-                                                        <button className='delete-btn'>Delete</button>  
-                                                    </div>  
-                                                </td>
                                             </tr>
+                                            
+                                            {productsIncluded ? (
+                                                productsIncluded.map((product) => ( 
+                                                    <tr key={product._id}>
+                                                        <td>{product.name}</td>
+                                                        <td>${product.price}</td>
+                                                        <td>{product.createdAt}</td>
+                                                        <td>
+                                                            <div className="button-wrapper">
+                                                                <button className='delete-btn'>Delete</button>  
+                                                            </div>  
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            ) : (
+                                                <Loader /> 
+                                            )}
                                         </tbody>
                                     </table>
                                 </div> 
@@ -139,7 +155,8 @@ const PlanViewScreen = ({match}) => {
                         </Row>
                     </div>
 
-                    <div className="section-wrapper">
+                   
+                    {/* <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Subcribers</span>
                             <button type="submit" value="Add" className='add-btn'>Add New</button>
@@ -214,7 +231,7 @@ const PlanViewScreen = ({match}) => {
                                 </div> 
                             </Col>
                         </Row>
-                    </div>
+                    </div> */}
                 </>
             )} 
             </DashboardContainer>

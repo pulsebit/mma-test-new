@@ -160,6 +160,32 @@ span {
   display: block;
 }
 
+.section-wrapper .blue-bkg-title .button-wrapper {
+  margin-left: auto;
+}
+
+.section-wrapper .blue-bkg-title .button-wrapper select {
+  padding: 5px;
+  margin-right: 7px;
+  border-radius: 5px;
+}
+
+.section-wrapper .blue-bkg-title .button-wrapper button {
+  background-color: transparent;
+  border: none;
+  font-size: 35px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.section-wrapper .blue-bkg-title .button-wrapper button:focus {
+  outline: none;
+}
+
+.section-wrapper .blue-bkg-title .button-wrapper button:hover {
+  cursor: pointer;
+}
+
 .section-wrapper button {
   position: relative;
 }

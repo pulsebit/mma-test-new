@@ -32,6 +32,7 @@ const SupportsListScreen = () => {
                                     <th>Priority</th>
                                     <th>Status</th>
                                     <th>Category</th>
+                                    <th>Assignee</th>
                                     <th>Action</th>
                                 </tr>	
                                 { loading ? (
@@ -40,15 +41,15 @@ const SupportsListScreen = () => {
                                     <Message variant='danger'>{error}</Message>
                                 ) : ( 		   
                                     supports.map((support) => (
-                                        <tr>
-                                            <td>{ support.ticket_no}</td>
-                                            <td>{ support.created_by }</td>
-                                            <td>{ support.priority }</td>
-                                            <td>{ support.status}</td>
-                                            <td>{ support.category}</td>
-                                            <td>{ support.createdAt}</td>
+                                        <tr key={support._id}>
+                                            <td>{support._id}</td>
+                                            <td>Full name</td>
+                                            <td>{support.priority}</td>
+                                            <td>{support.status}</td>
+                                            <td>{support.category}</td>
+                                            <td>{support.created_by}</td>
                                             <td>
-                                                <NavLink to='/admin/supports/:id' className="view-btn">View</NavLink>
+                                                <NavLink to={`/admin/supports/${support._id}`} className="view-btn">View</NavLink>
                                             </td>
                                         </tr>
                                     ))     
