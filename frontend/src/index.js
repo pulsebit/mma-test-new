@@ -7,6 +7,7 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { onAuthStateChanged } from 'helpers/auth'
 import { authChanges } from 'store/actions/authActions'
+import * as serviceWorker from './serviceWorker'
 
 store.subscribe(() => console.log(store.getState()))
 
@@ -25,3 +26,4 @@ onAuthStateChanged((auth) => {
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorker.register();
