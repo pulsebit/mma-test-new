@@ -4,11 +4,12 @@ import {
 	getSupports,
   createSupport,
   deleteSupport,
-  getSupportById
+  getSupportById,
+  updateSupport
 } from '../controllers/supportController.js'
 import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 
 router.route('/').post(createSupport ).get(getSupports)  
-router.route('/:id').delete(deleteSupport).get(getSupportById)
+router.route('/:id').delete(deleteSupport).get(getSupportById).put(updateSupport)
 
 export default router

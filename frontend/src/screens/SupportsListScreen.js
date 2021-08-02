@@ -18,21 +18,21 @@ const SupportsListScreen = () => {
 
     return (
         <div> 
-            <DashboardContainer>
+            <DashboardContainer >
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Supports List</span>
+                        <NavLink to="/admin/add-support/">Add</NavLink>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
                             <tbody>
                                 <tr>
                                     <th>Ticket No</th>
-                                    <th>Client Name</th>
                                     <th>Priority</th>
                                     <th>Status</th>
                                     <th>Category</th>
-                                    <th>Assignee</th>
+                                    <th>Date Created</th>
                                     <th>Action</th>
                                 </tr>	
                                 { loading ? (
@@ -42,12 +42,11 @@ const SupportsListScreen = () => {
                                 ) : ( 		   
                                     supports.map((support) => (
                                         <tr key={support._id}>
-                                            <td>{support._id}</td>
-                                            <td>Full name</td>
+                                            <td>{support.ticket_no}</td>
                                             <td>{support.priority}</td>
                                             <td>{support.status}</td>
                                             <td>{support.category}</td>
-                                            <td>{support.created_by}</td>
+                                            <td>{support.createdAt}</td>
                                             <td>
                                                 <NavLink to={`/admin/supports/${support._id}`} className="view-btn">View</NavLink>
                                             </td>

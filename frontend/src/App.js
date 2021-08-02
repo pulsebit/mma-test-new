@@ -68,6 +68,7 @@ import ClientStaffEdit from './screens/clients/ClientStaffEdit'
 import ClientSupport from './screens/clients/ClientSupport'
 import ClientSupportEdit from './screens/clients/ClientSupportEdit'
 import ClientSupportView from './screens/clients/ClientSupportView'
+import SupportsAddScreen from './screens/SupportsAddScreen'
 
 
 
@@ -92,9 +93,14 @@ function App() {
               <Route path='/purchases' component={Purchases} />
 
               <Route path='/admin' component={AdminDashboard} exact />
+
+              {/* SUPPORTS */}
+              <Route path='/admin/add-support/' component={SupportsAddScreen} />
               <Route path='/admin/supports' component={SupportsListScreen} exact/>
               <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>
-              <Route path='/admin/supports/:id/edit' component={SupportsEditScreen} />
+              <Route path='/admin/supports-edit/:id' component={SupportsEditScreen} />
+
+              {/* USERS */}
               <Route path='/admin/users' component={UserListScreen} exact />
               <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
               <Route path='/admin/users-view/:id' component={UserViewScreen} />

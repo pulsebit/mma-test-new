@@ -72,9 +72,6 @@ const PlanEditScreen = ({ match, history }) => {
         dispatch(deletePaymentPlan(paymentPlanId))
     }
 
-    
-
-
     return (
         <div className="edit-screen">
             <DashboardContainer>

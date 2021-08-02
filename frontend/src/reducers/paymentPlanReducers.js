@@ -17,6 +17,7 @@ import {
     PAYMENTPLAN_PRODUCT_UPDATE_REQUEST,
     PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS,
     PAYMENTPLAN_PRODUCT_UPDATE_FAIL,
+    PAYMENTPLAN_UPDATE_RESET,
 } from '../constants/paymentPlanConstant'
 
 export const paymentPlanListReducer = (state = { paymentPlans: [] }, action) => {
@@ -59,28 +60,30 @@ export const paymentPlanDetailsReducer = (state = { paymentPlan: {} }, action) =
 }
 
 export const paymentPlanUpdateReducer = (state = { paymentPlan: {} }, action) => {
-    switch(action.type) {
-           case PAYMENTPLAN_UPDATE_REQUEST:
-              return { loading: true }
-           case PAYMENTPLAN_UPDATE_SUCCESS:   
-              return  { loading: false, success: true }
-           case PAYMENTPLAN_UPDATE_FAIL:
-              return { loading: false, error: action.payload }  
-           default:
-              return state   
-    }
+   switch(action.type) {
+      case PAYMENTPLAN_UPDATE_REQUEST:
+         return { loading: true }
+      case PAYMENTPLAN_UPDATE_SUCCESS:   
+         return  { loading: false, success: true }
+      case PAYMENTPLAN_UPDATE_FAIL:
+         return { loading: false, error: action.payload }
+      case PAYMENTPLAN_UPDATE_RESET:
+         return { loading: false, paymentPlan: {} }  
+      default:
+         return state   
+   }
  }
 
- export const paymentPlanProductUpdateReducer = (state = { paymentPlan: {} }, action) => {
+export const paymentPlanProductUpdateReducer = (state = { paymentPlan: {} }, action) => {
    switch(action.type) {
-          case PAYMENTPLAN_PRODUCT_UPDATE_REQUEST:
-             return { loading: true }
-          case PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS:   
-             return  { loading: false, success: true }
-          case PAYMENTPLAN_PRODUCT_UPDATE_FAIL:
-             return { loading: false, error: action.payload }  
-          default:
-             return state   
+      case PAYMENTPLAN_PRODUCT_UPDATE_REQUEST:
+         return { loading: true }
+      case PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS:   
+         return  { loading: false, success: true }
+      case PAYMENTPLAN_PRODUCT_UPDATE_FAIL:
+         return { loading: false, error: action.payload }
+      default:
+         return state   
    }
 }
 

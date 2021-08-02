@@ -8,15 +8,14 @@ import { getSupportDetails } from '../actions/supportActions'
 
 const SupportsViewScreen = ({match}) => {
     const supportId = match.params.id
-    console.log(supportId)
 
     const dispatch = useDispatch()
 
-    const { support } = useSelector( state => state.supportDetails) 
+    const { support } = useSelector( state => state.supportDetails)
+    const { client = {} , created_by = {}, assignee = {} } = support || {}
 
     useEffect(() => {
         dispatch(getSupportDetails(supportId))
-
     },[dispatch, supportId])
 
     return (
@@ -37,27 +36,23 @@ const SupportsViewScreen = ({match}) => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="details-wrapper">
-                                                <label>Ticket ID:</label>
-                                                <span>{support._id}</span>
+                                                <label>Ticket Number:</label>
+                                                <span>{support.ticket_no}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Full Name:</label>
-                                                <span>{support.name}</span>
+                                                <span>{client.name}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Mobile number:</label>
-                                                <span>+61 7 7010 1111</span>
+                                                <span>{client.mobile_no}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Email:</label>
-                                                <span>user@gmail.com</span>
+                                                <span>{client.email}</span>
                                             </div>                                            
                                         </Col>
                                         <Col md={6}>
-                                            <div className="details-wrapper">
-                                                <label>Issue:</label>
-                                                <span>{support.problem_description}</span>
-                                            </div>
                                             <div className="details-wrapper">
                                                 <label>Priority:</label>
                                                 <span>{support.priority}</span>
@@ -71,6 +66,12 @@ const SupportsViewScreen = ({match}) => {
                                                 <span>{support.createdAt}</span>
                                             </div>
                                         </Col>
+                                        <Col md={12}>
+                                            <div className="details-wrapper">
+                                                <label>Issue:</label>
+                                                <span><textarea value={support.problem_description} readOnly/></span>
+                                            </div>
+                                        </Col>
                                     </Row>
                                 </div>
                             </Col>
@@ -79,7 +80,7 @@ const SupportsViewScreen = ({match}) => {
 
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
-                            <span>Assigned</span>
+                            <span>Assignee</span>
                         </div>
                         <Row>
                             <Col md={12}>
@@ -91,14 +92,40 @@ const SupportsViewScreen = ({match}) => {
                                                 <th>Email</th>
                                                 <th>Department</th>
                                                 <th>Mobile Number</th>
-                                                <th>Date Assigned</th>
                                             </tr>				
                                             <tr>
-                                                <td>July</td>
-                                                <td>july@mma.com</td>
+                                                <td>{assignee.name}</td>
+                                                <td>{assignee.email}</td>
                                                 <td>Sample Dept.</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
+                                                <td>{assignee.mobile_no}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            </Col>
+                        </Row>
+                    </div>
+
+                    <div className="section-wrapper">
+                        <div className="blue-bkg-title def-padding">
+                            <span>Created by: </span>
+                        </div>
+                        <Row>
+                            <Col md={12}>
+                                <div className="table-wrapper def-padding">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Department</th>
+                                                <th>Mobile Number</th>
+                                            </tr>				
+                                            <tr>
+                                                <td>{created_by.name}</td>
+                                                <td>{created_by.email}</td>
+                                                <td>Sample Dept.</td>
+                                                <td>{created_by.mobile_no}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -137,8 +164,7 @@ const SupportsViewScreen = ({match}) => {
                     </div>
                         
                     <div className="button-wrapper def-padding">
-                        <NavLink to="/admin/supports/:id/edit" className="edit-btn">Edit</NavLink>
-                        <input type="submit" value="Delete" className="delete-btn"/>
+                        <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
                     </div>
             </DashboardContainer>
         </div>

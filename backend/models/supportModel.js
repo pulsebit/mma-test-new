@@ -5,6 +5,10 @@ const supportSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  ticket_no: {
+      type: String,
+      required: true
+  },
   problem_description: {
     type: String,
     required: true
@@ -25,15 +29,16 @@ const supportSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  assigned_by: {
-    type: String,
-    required: false
+  assignee: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
   created_by: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
-},{
+
+}, {
   timestamps: true
 })
 
