@@ -54,6 +54,10 @@ const SupportsViewScreen = ({match}) => {
                                         </Col>
                                         <Col md={6}>
                                             <div className="details-wrapper">
+                                                <label>Category:</label>
+                                                <span>{support.category}</span>
+                                            </div>
+                                            <div className="details-wrapper">
                                                 <label>Priority:</label>
                                                 <span>{support.priority}</span>
                                             </div>

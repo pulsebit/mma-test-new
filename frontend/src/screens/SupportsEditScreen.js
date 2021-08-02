@@ -21,6 +21,7 @@ const SupportsEditScreen = ({match, history}) => {
     const { support } = useSelector( state => state.supportDetails)
 
     const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = useSelector(state => state.suppportUpdate)
+    //const { loading:loadingUpdate, error:errorUpdate, success:successDelete } = useSelector(state => state.suppportDelete)
     
     const { client = {} , created_by = {}, assignee = {} } = support || {}
 
