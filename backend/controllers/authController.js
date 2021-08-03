@@ -29,7 +29,6 @@ export const authFb = asyncHandler(async (req, res) => {
   const createdToken = createToken(res, user._id, tokenIdValue);
   res.json({
     ...createdToken,
-    user_id: user._id,
     isAuthenticated: true,
   });
 });
@@ -43,7 +42,6 @@ export const authSignin = asyncHandler(async (req, res) => {
     res.json({
       ...createdToken,
       success: true,
-      user_id: user._id,
       isAuthenticated: true,
     });
   } else {
@@ -69,22 +67,29 @@ export const authGoogle = asyncHandler(async (req, res) => {
   const createdToken = createToken(res, user._id, tokenIdValue);
   res.json({
     ...createdToken,
-    user_id: user._id,
     isAuthenticated: true,
   });
 });
 
-export const onAuthStateChanged = (req, res) => {
+export const authToken = asyncHandler(async (req, res) => {
   const { access_token } = req.signedCookies;
-  checkToken(access_token, (isValid) => {
+  checkToken(access_token, async (isValid) => {
     if (!isValid) {
       expCookie(res);
       res.json({ isAuthenticated: false });
       return;
     }
-    res.json({ ...req.signedCookies, isAuthenticated: true });
+    const { id } = decodeIdToken(access_token);
+    const user = await User.findById(id, { password: 0 });
+    const tokenIdValue = createUserTokenValue(user);
+    const { id_token } = createToken(res, user._id, tokenIdValue);
+    res.json({ 
+      id_token,
+      access_token, 
+      isAuthenticated: true 
+    });
   });
-}
+});
 
 export const authLogout = asyncHandler((req, res) => {
   expCookie(res);
@@ -108,36 +113,21 @@ export const registerUser = asyncHandler(async (req, res) => {
   res.json({
     ...createdToken,
     success: true,
-    user_id: user._id,
     isAuthenticated: true,
   });
 });
 
 export const updateProfile = asyncHandler(async (req, res) => {
-  const { id_token } = req.signedCookies;
   let user = await User.findByIdAndUpdate(req.user._id, { ...req.body });
-  user = await User.findById(req.user._id);
-  let decoded = decodeIdToken(id_token);
-  delete decoded.exp;
-  delete decoded.iat;
-  decoded = createUserTokenValue(user);
-  const idToken = generateToken(decoded);
-  res.cookie('id_token', idToken, { httpOnly: true, signed: true });
-  res.send(idToken);
+  user = await User.findById(req.user._id, { password: 0 });
+  res.send(user);
 });
 
 export const updateProfilePicture = asyncHandler(async (req, res) => {
-  const { id_token } = req.signedCookies;
-  const decoded = decodeIdToken(id_token);
   let user = await User.findById(req.user._id);
-  delete decoded.exp;
-  delete decoded.iat;
   const picture = req.body.picture ? uploadImageBase64(req.body.picture, 'users') : user.picture;
-  decoded.picture = picture;
   await User.findByIdAndUpdate(req.user._id, { picture });
-  const idToken = generateToken(decoded);
-  res.cookie('id_token', idToken, { httpOnly: true, signed: true });
-  res.send(idToken);
+  res.send(picture);
 });
 
 export const checkEmailIfExists = asyncHandler(async (req, res) => {
@@ -160,9 +150,11 @@ export const checkEmailIfExists = asyncHandler(async (req, res) => {
 function createToken(res, userId, idTokenValue) {
   const id_token = generateToken(idTokenValue);
   const access_token = generateToken({ id: userId });
-  res.cookie('access_token', access_token, { httpOnly: true, signed: true });
-  res.cookie('id_token', id_token, { httpOnly: true, signed: true });
-  res.cookie('user_id', userId, { httpOnly: true, signed: true });
+  res.cookie('access_token', access_token, { 
+    httpOnly: true, 
+    signed: true,
+    path: '/token'
+  });
   return {
     access_token,
     id_token,
@@ -193,8 +185,5 @@ function createUserTokenValue(user) {
 }
 
 function expCookie(res) {
-  const exp = { maxAge: 0 };
-  res.cookie('access_token', '', exp);
-  res.cookie('id_token', '', exp);
-  res.cookie('user_id', '', exp);
+  res.cookie('access_token', '', { path: '/token', maxAge: 0 });
 }

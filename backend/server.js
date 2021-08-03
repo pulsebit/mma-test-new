@@ -10,7 +10,7 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import supportRoutes from './routes/supportRoutes.js'
 import cookieParser from 'cookie-parser';
-import { onAuthStateChanged } from './controllers/authController.js';
+import { authToken } from './controllers/authController.js';
 
 const PORT = process.env.PORT || 5000;
 
@@ -25,7 +25,7 @@ app.use(cookieParser('secret-shhhhhhhh'));
 app.use('/storage', express.static(path.join(__dirname, 'backend/storage')));
 //Routing
 app.get('/',(req, res) => res.send("API is running"))
-app.post('/onAuthStateChanged', onAuthStateChanged);
+app.post('/token', authToken);
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)
