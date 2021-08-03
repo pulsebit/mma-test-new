@@ -31,31 +31,10 @@ const PlanAddScreen = () => {
     
     const { product } = useSelector(state => state.productDetails)
 
-    // useEffect(() => {
-    //     dispatch(listProducts())
-        
-    //     console.log("useEffect:" + tempProduct)
-    //     if(tempProduct){
-    //         setAllProducts([...allProducts, tempProductHolder])
-    //         console.log(productsData)
-            
-    //     }
-        
-    // }, [dispatch, tempProductHolder])
-
     const onSubmitHandler = (e) => {
         e.preventDefault()
         dispatch(createPaymentPlan(name, price, image, description, features, productsData))
     }
-    
-    // const addProductHandler = (e) => {
-    //     e.preventDefault()
-
-    //     dispatch(listTempProducts(tempProduct))
-    //     setProductsData([...productsData, tempProduct])
-            
-        
-    // }
 
     return (
         <div className="edit-screen">
@@ -127,16 +106,6 @@ const PlanAddScreen = () => {
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Products Included</span>
-                        
-                        {/* <div className="button-wrapper">
-                            <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
-                                <option value="">Select Product</option>
-                                {products.map((product) => (
-                                    <option value={product._id} id={product.name}>{product.name}</option>
-                                ))}
-                            </select>
-                            <button onClick={addProductHandler} type="submit">+</button>
-                        </div> */}
                     </div>
                     
                     <div className="table-wrapper def-padding">

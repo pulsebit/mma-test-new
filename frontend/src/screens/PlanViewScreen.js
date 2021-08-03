@@ -10,7 +10,8 @@ import defaultImage from '../assets/images/user.png'
 import { getPaymentPlanDetails, paymentPlanAddProduct } from '../actions/paymentPlanAction'
 import { getProductDetails, listProducts } from '../actions/productActions'
 import Message from '../components/Message'
-import Loader from '../components/Loader'
+import Loader2 from '../components/Loader2'
+import date from 'date-and-time'
 
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
@@ -41,7 +42,7 @@ const PlanViewScreen = ({match}) => {
         <div className="view-screen">
             <DashboardContainer>
             { loading ? ( 
-                <Loader /> 
+                <Loader2 /> 
             ) : error ? ( 
                 <Message variant='danger'>{error}</Message>
             ) : ( 
@@ -78,7 +79,7 @@ const PlanViewScreen = ({match}) => {
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Created: </label>
-                                                <span>{paymentPlan.createdAt}</span>
+                                                <span>{date.format(new Date(paymentPlan.createdAt), 'ddd, MMM DD YYYY')}</span>
                                             </div>
                                         </Col>
                                     </Row>
@@ -137,7 +138,7 @@ const PlanViewScreen = ({match}) => {
                                                     <tr key={product._id}>
                                                         <td>{product.name}</td>
                                                         <td>${product.price}</td>
-                                                        <td>{product.createdAt}</td>
+                                                        <td>{date.format(new Date(product.createdAt), 'ddd, MMM DD YYYY')}</td>
                                                         <td>
                                                             <div className="button-wrapper">
                                                                 <button className='delete-btn'>Delete</button>  
@@ -146,7 +147,7 @@ const PlanViewScreen = ({match}) => {
                                                     </tr>
                                                 ))
                                             ) : (
-                                                <Loader /> 
+                                                <Loader2 /> 
                                             )}
                                         </tbody>
                                     </table>

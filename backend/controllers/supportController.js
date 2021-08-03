@@ -10,6 +10,9 @@ import User from '../models/userModel.js'
 const getSupports = asyncHandler( async (req, res) => {
     const supports = await Support
     .find({})
+    .populate('client')
+    .populate('created_by')
+    .populate('assignee')
     res.json(supports)
 })
 

@@ -5,6 +5,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
 import { listPaymentPlans } from '../actions/paymentPlanAction'
+import date from 'date-and-time'
 
 
 const PlanListScreen = () => {
@@ -34,18 +35,21 @@ const PlanListScreen = () => {
                         ) : (
                             <tbody>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Current Subcribers</th>
                                     <th>Price</th>
+                                    <th>Date Created</th>
+                                    <th>Last Update</th>
                                     <th>Action</th>
+                                    
                                 </tr>
                                {paymentPlans.map((payment) => (
                                    <tr>
-                                        <td>{payment._id}</td>
                                         <td>{payment.name}</td>
                                         <td>{payment.subscribers}</td>
                                         <td>${payment.price}</td>
+                                        <td>{date.format(new Date(payment.createdAt), 'ddd, MMM DD YYYY')}</td>
+                                        <td>{date.format(new Date(payment.updatedAt), 'ddd, MMM DD YYYY')}</td>
                                         <td>
                                             <NavLink to={`/admin/plan/${payment._id}`} className="view-btn">View</NavLink>
                                         </td>

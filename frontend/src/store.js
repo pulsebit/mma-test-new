@@ -6,6 +6,7 @@ import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReduce
 import { supportCreateReducer, supportDeleteReducer, supportDetailsReducer, supportListReducer, suppportUpdateReducer } from './reducers/supportReducers'
 import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer} from './reducers/paymentPlanReducers'
 import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
+import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './reducers/noteReducers'
 
 
 const reducer = combineReducers({
@@ -25,6 +26,9 @@ const reducer = combineReducers({
 	supportDetails: supportDetailsReducer,
 	suppportUpdate: suppportUpdateReducer,
 	supportDelete: supportDeleteReducer,
+	noteCreate: noteCreateReducer,
+	supportNotes: supportNotesReducer,
+	noteDelete: noteDeleteReducer,
 	paymentPlanList: paymentPlanListReducer,
 	paymentPlanDetails: paymentPlanDetailsReducer,
 	paymentPlanDelete :paymentPlanDeleteReducer,

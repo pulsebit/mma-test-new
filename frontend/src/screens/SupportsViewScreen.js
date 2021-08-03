@@ -5,34 +5,60 @@ import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'
 import { getSupportDetails } from '../actions/supportActions'
+import date from 'date-and-time'
+import Message from '../components/Message'
+//import Loader from '../components/Loader'
+import Loader2 from '../components/Loader2'
+import AddNote from '../components/AddNote'
+
+
+
 
 const SupportsViewScreen = ({match}) => {
     const supportId = match.params.id
 
     const dispatch = useDispatch()
 
-    const { support } = useSelector( state => state.supportDetails)
+    const { loading, error, support } = useSelector( state => state.supportDetails)
     const { client = {} , created_by = {}, assignee = {} } = support || {}
+
+    {date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}
+
+    
 
     useEffect(() => {
         dispatch(getSupportDetails(supportId))
+        
     },[dispatch, supportId])
+
+    const addNotehandler = (e) => {
+        e.preventDefault()
+
+    }
 
     return (
         <div className="view-screen">
-            <DashboardContainer>
+            { loading ? (
+                	<Loader2/>
+            ) : error ? (
+                <Message variant='danger'>{error}</Message>
+            ) : (
+                <DashboardContainer>
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Support Information</span>
+                            <div className="button-wrapper">
+                                <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
+                            </div>
                         </div>
-                        <Row>
-                            <Col md={2}>
-                                <div className="img-wrapper">
-                                    <img className="" src={User} alt='' />
-                                </div>
-                            </Col>
-                            <Col md={10}>
-                                <div className="user-details def-padding">
+                        <div className="user-details def-padding">
+                            <Row>
+                                <Col md={2}>
+                                    <div className="img-wrapper">
+                                        <img className="" src={User} alt='' />
+                                    </div>
+                                </Col>
+                                <Col md={10}>
                                     <Row>
                                         <Col md={6}>
                                             <div className="details-wrapper">
@@ -42,7 +68,9 @@ const SupportsViewScreen = ({match}) => {
                                             <div className="details-wrapper">
                                                 <label>Full Name:</label>
                                                 <span>{client.name}</span>
-                                            </div>
+                                            </div>                                          
+                                        </Col>
+                                        <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Mobile number:</label>
                                                 <span>{client.mobile_no}</span>
@@ -50,36 +78,38 @@ const SupportsViewScreen = ({match}) => {
                                             <div className="details-wrapper">
                                                 <label>Email:</label>
                                                 <span>{client.email}</span>
-                                            </div>                                            
-                                        </Col>
-                                        <Col md={6}>
-                                            <div className="details-wrapper">
-                                                <label>Category:</label>
-                                                <span>{support.category}</span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Priority:</label>
-                                                <span>{support.priority}</span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Status:</label>
-                                                <span>{support.status}</span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Date Created:</label>
-                                                <span>{support.createdAt}</span>
-                                            </div>
-                                        </Col>
-                                        <Col md={12}>
-                                            <div className="details-wrapper">
-                                                <label>Issue:</label>
-                                                <span><textarea value={support.problem_description} readOnly/></span>
-                                            </div>
+                                            </div>  
                                         </Col>
                                     </Row>
-                                </div>
-                            </Col>
-                        </Row>
+                                </Col>
+                                <Col md={6}>
+                                    <div className="details-wrapper">
+                                        <label>Category:</label>
+                                        <span>{support.category}</span>
+                                    </div>
+                                    <div className="details-wrapper">
+                                        <label>Priority:</label>
+                                        <span>{support.priority}</span>
+                                    </div>
+                                    </Col>
+                                    <Col md={6}>
+                                    <div className="details-wrapper">
+                                        <label>Status:</label>
+                                        <span>{support.status}</span>
+                                    </div>
+                                    <div className="details-wrapper">
+                                        <label>Date Created:</label>
+                                        <span>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</span>
+                                    </div>
+                                </Col>
+                                <Col md={12}>
+                                    <div className="details-wrapper">
+                                        <label>Issue:</label>
+                                        <span><textarea value={support.problem_description} readOnly/></span>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
                     </div>
 
                     <div className="section-wrapper">
@@ -138,39 +168,13 @@ const SupportsViewScreen = ({match}) => {
                         </Row>
                     </div>
 
-                    <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Notes</span>
-                        </div>
-                        <Row>
-                            <Col md={12}>
-                                <div className="table-wrapper def-padding">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Added by</th>
-                                                <th>Notes</th>
-                                                <th>date</th>
-                                                
-                                            </tr>				
-                                            <tr>
-                                                <td>2</td>
-                                                <td>July</td>
-                                                <td>Already sent email to client.</td>
-                                                <td>2/3/2021</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> 
-                            </Col>
-                        </Row>
-                    </div>
-                        
-                    <div className="button-wrapper def-padding">
-                        <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
-                    </div>
-            </DashboardContainer>
+                    <AddNote 
+                        supportInfo={supportId} 
+                        clientInfo={client._id}
+                        assigneeInfo={assignee._id}
+                    />
+                </DashboardContainer>
+            )}
         </div>
     )
 }

@@ -17,7 +17,8 @@ router.route('/').post(registerUser).get(getUsers)
 router
 	.route('/:id')
 	.get(protect, adminOnly, getUserById)
-	.put(protect, adminOnly, updateUser)
+	//.put(protect, adminOnly, updateUser)
+	.put(updateUser)
 	.delete(protect, adminOnly, deleteUser)
 	.patch(protect, updateUserPassword)
 
