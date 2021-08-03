@@ -14,7 +14,7 @@ import { DatePicker } from 'antd';
 import moment from 'moment'
 
 export const Profile = (props) => {
-  const { profile } = useAuth();
+  const { user } = useAuth();
   const { register, handleSubmit, setValue } = useForm();
   const { access_token } = useAuth();
   const [disableSubmit, setDisableSubmit] = useState(false);
@@ -46,17 +46,17 @@ export const Profile = (props) => {
   }, []);
 
   useEffect(() => {
-    if (profile) {
-      setValue('email', profile.email);
-      setValue('first_name', profile.first_name);
-      setValue('last_name', profile.last_name);
-      setValue('mobile_no', profile.mobile_no);
-      setValue('gender', profile.gender);
-      setValue('birthdate', profile.birthdate);
-      setValue('address', profile.address);
-      setValue('state', profile.state);
-      setValue('zipcode', profile.zipcode);
-      setValue('country', profile.country);
+    if (user) {
+      setValue('email', user.email);
+      setValue('first_name', user.first_name);
+      setValue('last_name', user.last_name);
+      setValue('mobile_no', user.mobile_no);
+      setValue('gender', user.gender);
+      setValue('birthdate', user.birthdate);
+      setValue('address', user.address);
+      setValue('state', user.state);
+      setValue('zipcode', user.zipcode);
+      setValue('country', user.country);
     }
   });
 
@@ -96,7 +96,7 @@ export const Profile = (props) => {
                 placeholder="Birthdate"
                 label="Birthdate"
                 format={"MMM D, YYYY"}
-                defaultValue={profile && moment.utc(profile.birthdate || new Date())}
+                defaultValue={user && moment.utc(user.birthdate || new Date())}
                 onChange={(date) => setBirthdate(date)}
               />
             </P.DatePickerWrapper>
@@ -135,7 +135,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
 
 function ImageForm(props) {
-  const { profile, access_token } = useAuth();
+  const { user, access_token } = useAuth();
   const dispatch = useDispatch();
 
   const handleChange = React.useCallback(async (e) => {
@@ -165,7 +165,7 @@ function ImageForm(props) {
   return (
     <div className="text-center">
       <P.ImageWrapper 
-        style={{ backgroundImage: `url(${(profile && profile.picture) || User})` }}
+        style={{ backgroundImage: `url(${(user && user.picture) || User})` }}
         htmlFor="input-file"
       >
         <input type="file" id="input-file" 

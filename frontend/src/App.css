@@ -3,9 +3,10 @@
   --sidebar-width: 290px;
 
   --profile-sidebar-width: 250px;
+}
 
-  --link-hover-bg: rgb(255 255 255 / 8%);
-  --link-active-bg:rgb(255 255 255 / 9%);
+html.light {
+  --sidebar-link-color: #68707c;
 }
 
 body {

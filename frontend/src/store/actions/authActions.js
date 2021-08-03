@@ -1,14 +1,15 @@
 import * as constant from '../constants/authConstants';
 import store from 'store';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 export function authChanges(auth) {
+  const user = auth.id_token ? jwtDecode(auth.id_token) : null;
   store.dispatch({ 
     type: constant.AUTH_DATA, 
     payload: {
-      user_id: auth.user_id || null,
       access_token: auth.access_token || null,
-      id_token: auth.id_token || null,
+      user,
       isAuthenticated: auth.isAuthenticated || false,
     }
   });

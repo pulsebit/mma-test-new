@@ -1,13 +1,10 @@
 import { useSelector } from 'react-redux';
-import jwt_decode from 'jwt-decode';
 
 export default function useAuth() {
-  const { access_token, user_id, isAuthenticated, id_token } = useSelector(state => state.auth);
-  const profile = id_token && jwt_decode(id_token);
+  const { access_token, isAuthenticated, user } = useSelector(state => state.auth);
   return {
     access_token,
-    user_id,
     isAuthenticated,
-    profile,
+    user,
   }
 }

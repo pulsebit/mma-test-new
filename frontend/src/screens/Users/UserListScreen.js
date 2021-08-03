@@ -20,10 +20,7 @@ const UserListScreen = ({ history }) => {
   const queries = query.toString();
 
   useEffect(() => {
-    userLists({
-      access_token, 
-      queries,
-    })
+    userLists(queries)
   }, [access_token, queries])
 
   function dateCreated(date) {

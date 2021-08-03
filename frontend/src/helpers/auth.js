@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function onAuthStateChanged(cb) {
-  axios.post('/onAuthStateChanged')
+  axios.post('/token')
     .then(res => {
       cb(res.data)
     })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Sidebar from './Sidebar';
-import Header from 'components/Header';
+import DashboardHeader from 'components/Header/DashboardHeader';
 import Footer from 'components/Footer';
 import * as L from './styled';
 
@@ -17,7 +17,7 @@ const Layout = ({ children, footer = true, header = true, sidebar = true }) => {
 
     return (
         <L.MainWrapper>
-          {header && <Header />}
+          {header && <DashboardHeader />}
           <L.PageContent>
             {sidebar && <Sidebar/>}
             <L.PageManager>

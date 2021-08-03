@@ -23,10 +23,9 @@ export const Google = (props) => {
       }
       if (data) {
         const payload = {
-          user_id: data.user_id,
           access_token: data.access_token,
           id_token: data.id_token,
-          isAuthenticated: data.isAuthenticated || false,
+          isAuthenticated: data.isAuthenticated,
         }
         authChanges(payload);
         setTimeout(() => {

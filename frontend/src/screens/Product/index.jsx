@@ -6,6 +6,7 @@ import List from './List'
 import Categories from './Categories'
 
 export const Index = ({ match }) => {
+  console.log(match.url)
   return (
     <Layout>
       <Switch>

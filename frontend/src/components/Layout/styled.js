@@ -1,12 +1,14 @@
 import styled from 'styled-components';
-import sidebarBgImage from 'assets/images/sidebar-bg.png';
 
 const linkHeight = '52px';
-const textColor = 'rgb(255 255 255 / 80%)';
-const sidebarBg = '#051e34';
-const caretBgHover = 'rgb(255 255 255 / 12%)';
-const linkBg = 'rgb(255 255 255 / 8%)';
-const linkActiveBg = 'rgb(255 255 255 / 9%)';
+const textColor = '#68707c';
+const sidebarBg = '#fff';
+const caretBgHover = '#68707c14';
+const linkBgHover = '#68707c0f';
+const linkActiveBg = '#68707c1c';
+const sidebarPadding = '0 10px';
+const linkRadius = '7px';
+const scrollbarBg = '#68707c57';
 
 export const subLinkHeight = 43;
 
@@ -20,7 +22,6 @@ export const Aside = styled.aside`
   width: var(--sidebar-width);
   overflow-y: auto;
   background: ${sidebarBg};
-  background-image: url(${sidebarBgImage});
   background-size: cover;
   padding-bottom: 10px;
   position: fixed;
@@ -29,16 +30,15 @@ export const Aside = styled.aside`
   top: 0;
   left: 0;
   transition: width 0.2s ease;
+  padding: ${sidebarPadding};
+  border-right: 1px solid #f1f1f1;
 
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 9px;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgb(255 255 255 / 22%); 
+    background: ${scrollbarBg}; 
     border-radius: 10px;
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgb(255 255 255 / 23%); 
   }
   &>a, .parent-item {
     padding: 0 10px 0 20px;
@@ -50,6 +50,7 @@ export const Aside = styled.aside`
     justify-content: space-between;
     height: ${linkHeight};
     cursor: pointer;
+    border-radius: ${linkRadius};
     span {
       color: ${textColor};
     }
@@ -92,7 +93,7 @@ export const Aside = styled.aside`
       fill: ${textColor};
     }
     &:hover {
-      background: ${linkBg};
+      background: ${linkBgHover};
       color: ${textColor};
     }
     &.active {
@@ -107,7 +108,7 @@ export const Aside = styled.aside`
 
 export const LogoWrapper = styled.div`
   height: var(--header-height);
-  border-bottom: 1px solid ${linkBg};
+  border-bottom: 1px solid ${linkBgHover};
   margin-bottom: 15px;
   display: flex;
   align-items: center;
@@ -145,12 +146,13 @@ export const SubLink = styled.div`
     height: ${subLinkHeight}px;
     font-size: 0.9em;
     color: ${textColor};
+    border-radius: ${linkRadius};
     &:hover {
-      background: var(--link-hover-bg);
+      background: ${linkBgHover};
       color: ${textColor};
     }
     &.active {
-      background: var(--link-active-bg);
+      background: ${linkActiveBg};
       color: ${textColor};
     }
   }

@@ -20,6 +20,8 @@ import {
   USER_UPDATE_RESET
 } from '../constants/userConstants'
 
+import http from "helpers/http";
+
 import store from 'store'
 
 const token = 'test'
@@ -31,15 +33,11 @@ const config = {
    },
 }
 
-export async function userLists({ access_token, queries }) {
+export async function userLists(queries) {
    try {
       store.dispatch({ type: USER_LOGIN_REQUEST })
       const params = queries ? `?${queries}` : '';
-      const { data } = await axios.get(`/api/users${params}`, {
-         headers: {
-          Authorization: `Bearer ${access_token}`,
-         },
-      })
+      const { data } = await http.get(`/api/users${params}`)
       store.dispatch({ type: USER_LIST_SUCCESS,  payload: data })
    }
    catch(error) {

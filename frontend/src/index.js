@@ -11,7 +11,7 @@ import { authChanges } from 'store/actions/authActions'
 store.subscribe(() => console.log(store.getState()))
 
 onAuthStateChanged((auth) => {
-  authChanges({ ...auth, user_id: auth.user_id || null });
+  authChanges(auth);
   ReactDOM.render(
     <Provider store={store}>
       <App />
