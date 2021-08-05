@@ -2,39 +2,67 @@ import React, { useEffect, useState } from 'react'
 import { Col, Form, Row } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { createSupport } from '../actions/supportActions'
+import { deleteSupport, getSupportDetails, updateSupport } from '../actions/supportActions'
 import { listUsers } from '../actions/userActions'
+import { SUPPORT_UPDATE_RESET } from '../constants/supportConstants'
 
-
-const SupportsAddScreen = () => {
-
+const KnowledgeBaseEditScreen = ({match, history}) => {
+    const supportId = match.params.id
     const dispatch = useDispatch()
-    const [client, setClient] = useState('')
     const [ticket_no, setTicket_no] = useState('')
     const [problem_description, setProblem_description] = useState('')
     const [priority, setPriority] = useState('')
     const [status, setStatus] = useState('')
     const [category, setCategory] = useState('')
-    const [assignee, setAssignee] = useState('')
+    const [assigneeInfo, setAssigneeInfo] = useState('')
 
     const { users } = useSelector( state => state.userList)
 
+    const { support } = useSelector( state => state.supportDetails)
+
+    const { success:successUpdate } = useSelector(state => state.suppportUpdate)
+    
+    const { client = {} , assignee = {} } = support || {}
+
+
     useEffect(() => {
+        if(successUpdate) {
+            dispatch({ type: SUPPORT_UPDATE_RESET})
+            history.push('/admin/supports')  
+        } 
+        else {
+            if(!support.ticket_no || support._id !== supportId) {
+                dispatch(getSupportDetails(supportId))
+            } else {
+                setTicket_no(support.ticket_no)
+                setProblem_description(support.problem_description)
+                setPriority(support.priority)
+                setStatus(support.status)
+                setCategory(support.category)
+                setAssigneeInfo(assignee._id)
+            }
+        }
         dispatch(listUsers())
          
-    }, [dispatch])
+    }, [dispatch, supportId, support, match, history, successUpdate, assignee._id] )
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-       dispatch(createSupport(client, ticket_no, problem_description, status, priority, category, assignee))
+        dispatch(updateSupport({_id: supportId, problem_description, status, priority, category, assigneeInfo}))
     }
+
+    const onDeleteHandler = (e) => {
+        e.preventDefault()
+        dispatch(deleteSupport(supportId))
+    }
+
     return (
         <div className="edit-screen">
             <Form onSubmit={onSubmitHandler}>
                 <DashboardContainer>
                         <div className="section-wrapper">
                             <div className="blue-bkg-title def-padding">
-                                <span>Add Support</span>
+                                <span>Edit Support</span>
                             </div>
                             <Row>
                                 <Col md={12}>
@@ -46,19 +74,8 @@ const SupportsAddScreen = () => {
                                                     <span><input type="text" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/></span>
                                                 </div>
                                                 <div className="details-wrapper">
-                                                    <label>Select Client:</label>
-                                                    <span>
-                                                        <select id="listClients" value={client} onChange={(e)=>setClient(e.target.value)}>
-                                                            <option value="">Select Client</option>
-                                                            {users ? (
-                                                                users.map((user) => (
-                                                                    <option value={user._id} id={user.name}>{user.name}</option>
-                                                                ))
-                                                            ) : (
-                                                                <h3>No Users Available</h3>
-                                                            )}
-                                                        </select>
-                                                    </span>
+                                                    <label>Client Name:</label>
+                                                    <span><input type="text" value={client.name} readOnly/></span>
                                                 </div>
                                                 <div className="details-wrapper">
                                                     <label>Category:</label>
@@ -71,18 +88,17 @@ const SupportsAddScreen = () => {
                                                             <option value="Integration">Integration</option>
                                                         </select>
                                                     </span>
-                                                    
                                                 </div>                                      
                                             </Col>
                                             <Col md={6}>
                                                 <div className="details-wrapper">
-                                                    <label>Select Assignee:</label>
+                                                    <label>Enter Assignee ID:</label>
                                                     <span>
-                                                        <select id="listAssignees" value={assignee} onChange={(e)=>setAssignee(e.target.value)}>
+                                                        <select id="listAssignees" value={assigneeInfo} onChange={(e)=>setAssigneeInfo(e.target.value)}>
                                                             <option value="">Select Assignee</option>
                                                             {users ? (
                                                                 users.map((user) => (
-                                                                    <option value={user._id} id={user.name}>{user.name}</option>
+                                                                    <option value={user._id} id={user._id}>{user.name}</option>
                                                                 ))
                                                             ) : (
                                                                 <h3>No Users Available</h3>
@@ -126,6 +142,7 @@ const SupportsAddScreen = () => {
 
                         <div className="button-wrapper def-padding">
                             <button type="submit" className='update-btn'>Save</button>
+                            <button onClick={onDeleteHandler} className="delete-btn">Delete</button>
                         </div>
 
                 </DashboardContainer>
@@ -133,5 +150,4 @@ const SupportsAddScreen = () => {
         </div>
     )
 }
-
-export default SupportsAddScreen
+export default KnowledgeBaseEditScreen

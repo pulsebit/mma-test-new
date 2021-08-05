@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension' 
 import { productCreateReducer, productListReducer, productDetailsReducer, productUpdateReducer, productDeleteReducer } from './reducers/productReducers'
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
-import { supportCreateReducer, supportDeleteReducer, supportDetailsReducer, supportListReducer, suppportUpdateReducer } from './reducers/supportReducers'
+import { supportCreateReducer, supportDeleteReducer, supportDetailsByStatusReducer, supportDetailsReducer, supportListReducer, suppportUpdateReducer } from './reducers/supportReducers'
 import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer} from './reducers/paymentPlanReducers'
 import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
 import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './reducers/noteReducers'
@@ -24,6 +24,7 @@ const reducer = combineReducers({
 	supportCreate: supportCreateReducer,
 	supportList: supportListReducer,
 	supportDetails: supportDetailsReducer,
+	supportDetailsByStatus: supportDetailsByStatusReducer,
 	suppportUpdate: suppportUpdateReducer,
 	supportDelete: supportDeleteReducer,
 	noteCreate: noteCreateReducer,

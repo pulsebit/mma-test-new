@@ -10,7 +10,6 @@ import {
    PAYMENTPLAN_DELETE_REQUEST,
    PAYMENTPLAN_DELETE_SUCCESS,
    PAYMENTPLAN_DELETE_FAIL,
-   PAYMENTPLAN_UPDATE_RESET,
    PAYMENTPLAN_CREATE_REQUEST,
    PAYMENTPLAN_CREATE_SUCCESS,
    PAYMENTPLAN_CREATE_FAIL,
@@ -20,7 +19,6 @@ import {
    PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS,
    PAYMENTPLAN_PRODUCT_UPDATE_FAIL,
 } from '../constants/paymentPlanConstant'
-import { getProductDetails } from './productActions'
 
 
 export const listPaymentPlans = () => async (dispatch) => {

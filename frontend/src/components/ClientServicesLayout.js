@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, NavLink } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 import ClientLayout from './ClientLayout'
 import ClientServicesTab from './ClientServicesTab'

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import Loader from '../components/Loader'
+import Loader2 from '../components/Loader2'
 import DashboardContainer from '../components/DashboardContainer'
 import { listPaymentPlans } from '../actions/paymentPlanAction'
 import date from 'date-and-time'
@@ -29,7 +29,7 @@ const PlanListScreen = () => {
                     <div className="table-wrapper def-padding">
                         <table>
                         { loading ? ( 
-                            <Loader /> 
+                            <Loader2 /> 
                         ) : error ? ( 
                             <Message variant='danger'>{error}</Message>
                         ) : (

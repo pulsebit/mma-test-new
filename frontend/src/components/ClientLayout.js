@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container} from 'react-bootstrap'
+import { Container} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocationArrow, faPhone, faUsers } from '@fortawesome/free-solid-svg-icons'
 import ClientSidebar from './ClientSidebar'

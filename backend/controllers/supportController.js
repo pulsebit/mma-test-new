@@ -34,6 +34,20 @@ const getSupportById = asyncHandler( async (req, res) => {
   }
 })
 
+const getSupportsByStatus = asyncHandler( async (req, res) => {
+  const supports = await Support.find({"status": "Closed"})
+  .populate('client')
+  .populate('created_by')
+  .populate('assignee')
+  
+  if(supports) {
+    res.json(supports)
+  } else {
+    res.status(404)
+    throw new Error('Support not found')
+  }
+})
+
 // @desc   Add new support
 // @route  POST /api/supports
 // @access private
@@ -108,4 +122,4 @@ const updateSupport = asyncHandler(async (req, res) => {
 })
 
 
-export { getSupports, createSupport, deleteSupport, getSupportById, updateSupport }
+export { getSupports, createSupport, deleteSupport, getSupportById, updateSupport, getSupportsByStatus }

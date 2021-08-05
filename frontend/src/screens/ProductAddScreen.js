@@ -7,10 +7,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Row, Col, Form } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import DashboardContainer from '../components/DashboardContainer'
-import Seo from '../assets/images/seo.jpg'
 
 import { createProduct } from '../actions/productActions'
 
@@ -47,10 +44,6 @@ const ProductAddScreen = () => {
                             <Col md={2}>
                                 <div className="img-wrapper">
                                     <img className="" src={image} alt='' />
-                                    {/* <div className="upload-btn">
-                                        <input type="text" onChange={(e)=>setName(e.target.value)}/>
-                                        <FontAwesomeIcon icon={faCamera} className="camera"></FontAwesomeIcon>
-                                    </div> */}
                                 </div>
                                 <label>image:</label>
                                 <input type="text" onChange={(e)=>setImage(e.target.value)}/>

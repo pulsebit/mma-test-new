@@ -14,7 +14,10 @@ import {
    SUPPORT_UPDATE_FAIL,
    SUPPORT_DELETE_SUCCESS,
    SUPPORT_DELETE_FAIL,
-   SUPPORT_DELETE_REQUEST} from '../constants/supportConstants'
+   SUPPORT_DELETE_REQUEST,
+   SUPPORT_DETAILS_BY_STATUS_REQUEST,
+   SUPPORT_DETAILS_BY_STATUS_SUCCESS,
+   SUPPORT_DETAILS_BY_STATUS_FAIL} from '../constants/supportConstants'
 
 
 export const listSupports = () => async (dispatch, getState) => {
@@ -68,6 +71,28 @@ export const getSupportDetails = (id) => async (dispatch) => {
             ? error.response.data.message 
             : error.message
        })
+   }
+}
+
+export const getSupportByStatusDetails = () => async (dispatch) => {
+   try {
+      dispatch({ type: SUPPORT_DETAILS_BY_STATUS_REQUEST })
+
+      const { data } = await axios.get('/api/supports/knowledge-base')
+
+      dispatch({
+         type: SUPPORT_DETAILS_BY_STATUS_SUCCESS,
+         payload: data
+      })
+
+
+   } catch(error) {
+      dispatch({
+         type: SUPPORT_DETAILS_BY_STATUS_FAIL,
+         payload: error.response && error.response.data.message 
+         ? error.response.data.message 
+         : error.message
+      })
    }
 }
 

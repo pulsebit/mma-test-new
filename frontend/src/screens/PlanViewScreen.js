@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+import ReactHtmlParser from 'react-html-parser'
 
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import PaymentProduct from '../components/PaymentProduct'
 import defaultImage from '../assets/images/user.png'
-import { getPaymentPlanDetails, paymentPlanAddProduct } from '../actions/paymentPlanAction'
-import { getProductDetails, listProducts } from '../actions/productActions'
+import { getPaymentPlanDetails } from '../actions/paymentPlanAction'
+import { listProducts } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader2 from '../components/Loader2'
 import date from 'date-and-time'
 
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
-    const [tempProduct, setTempProduct] = useState('')
     
     const dispatch = useDispatch()
     
     const{ loading, paymentPlan, error } = useSelector(state => state.paymentPlanDetails)
-    const productsIncluded = paymentPlan.product 
-
-    const { products } = useSelector( state => state.productList)
-
+    const includeProducts = paymentPlan.product
 
     useEffect(() => {
         dispatch(getPaymentPlanDetails(paymentPlanId))        
         dispatch(listProducts())
 
     },[dispatch, paymentPlanId])
-
-
-    const addProductHandler = (e) => {
-        e.preventDefault()
-        dispatch(paymentPlanAddProduct({ _id: paymentPlanId, tempProduct}))
-    }
 
     
     return (
@@ -103,136 +93,7 @@ const PlanViewScreen = ({match}) => {
                         </div> 
                     </div>
 
-                    <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Products Included</span>
-                                <div className="button-wrapper">
-                                    <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
-                                        <option value="">Select Product</option>
-                                        {products ? (
-                                            products.map((product) => (
-                                                <option value={product._id} id={product.name}>{product.name}</option>
-                                            ))
-                                        ) : (
-                                            <h3>No Products Available</h3>
-                                        )}
-                                    </select>
-                                    <button onClick={addProductHandler} type="submit">+</button>
-                                </div>
-                        </div>
-                        <Row>
-                            <Col md={12}>
-                            
-                                <div className="table-wrapper def-padding">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Price</th>
-                                                <th>Date Added</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            
-                                            {productsIncluded ? (
-                                                productsIncluded.map((product) => ( 
-                                                    <tr key={product._id}>
-                                                        <td>{product.name}</td>
-                                                        <td>${product.price}</td>
-                                                        <td>{date.format(new Date(product.createdAt), 'ddd, MMM DD YYYY')}</td>
-                                                        <td>
-                                                            <div className="button-wrapper">
-                                                                <button className='delete-btn'>Delete</button>  
-                                                            </div>  
-                                                        </td>
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <Loader2 /> 
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div> 
-                            </Col>
-                        </Row>
-                    </div>
-
-                   
-                    {/* <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Subcribers</span>
-                            <button type="submit" value="Add" className='add-btn'>Add New</button>
-                        </div>
-                        <Row>
-                            <Col md={12}>
-                                <div className="table-wrapper def-padding">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Mobile Number</th>
-                                                <th>Date Added</th>
-                                                <th>Date Due</th>
-                                                <th>Action</th>
-                                            </tr>				
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>  
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>john@mma.com</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
-                                                <td>2/3/2021</td>
-                                                <td>
-                                                <div className="button-wrapper">
-                                                    <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                    <button className='delete-btn'>Delete</button>      
-                                                </div>  
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> 
-                            </Col>
-                        </Row>
-                    </div> */}
+                    <PaymentProduct id={paymentPlanId} includeProducts={includeProducts}/>
                 </>
             )} 
             </DashboardContainer>

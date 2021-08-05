@@ -49,6 +49,7 @@ Payment Plan
  SIDEBAR
  Dashboard
  Supports
+  category = Accounting, Technical Support, Billing Support, Integration
  Users
  Permissions
  Products

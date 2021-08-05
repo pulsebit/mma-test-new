@@ -38,7 +38,10 @@ import ProductCatViewScreen from './screens/ProductCatViewScreen'
 
 import ProductScreen from './screens/ProductScreen'
 
-import KnowledgeBaseScreen from './screens/KnowledgeBaseScreen'
+import KnowledgeBaseListScreen from './screens/KnowledgeBaseListScreen'
+import KnowledgeBaseAddScreen from './screens/KnowledgeBaseAddScreen'
+import KnowledgeBaseEditScreen from './screens/KnowledgeBaseEditScreen'
+import KnowledgeBaseViewScreen from './screens/KnowledgeBaseViewScreen'
 
 import PlanAddScreen from './screens/PlanAddScreen'
 import PlanListScreen from './screens/PlanListScreen'
@@ -119,7 +122,11 @@ function App() {
               
               <Route path='/product/:id' component={ProductScreen}  />
 
-              <Route path='/admin/knowledge-base' component={KnowledgeBaseScreen} />
+              {/* Knowledge-base */}
+              <Route path='/admin/knowledge-base' component={KnowledgeBaseListScreen} exact/>
+              <Route path='/admin/knowledge-base-add' component={KnowledgeBaseAddScreen} exact/>
+              <Route path='/admin/knowledge-base/:id/' component={KnowledgeBaseViewScreen} exact/>
+              <Route path='/admin/knowledge-base-edit/:id' component={KnowledgeBaseEditScreen} exact/>
 
 
               {/* Paymeny Plans */}

@@ -6,14 +6,14 @@ import { createSupport } from '../actions/supportActions'
 import { listUsers } from '../actions/userActions'
 
 
-const SupportsAddScreen = () => {
+const KnowledgeBaseAddScreen = () => {
 
     const dispatch = useDispatch()
     const [client, setClient] = useState('')
     const [ticket_no, setTicket_no] = useState('')
     const [problem_description, setProblem_description] = useState('')
     const [priority, setPriority] = useState('')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('Closed')
     const [category, setCategory] = useState('')
     const [assignee, setAssignee] = useState('')
 
@@ -101,7 +101,7 @@ const SupportsAddScreen = () => {
                                                             </select>
                                                         </span>
                                                     </div>
-                                                    <div className="details-wrapper">
+                                                    {/* <div className="details-wrapper">
                                                         <label>Status:</label>
                                                         <span>
                                                             <select value={status} onChange={(e)=>setStatus(e.target.value)}>
@@ -110,7 +110,7 @@ const SupportsAddScreen = () => {
                                                                 <option value="Closed">Closed</option>
                                                             </select>
                                                         </span>
-                                                    </div>
+                                                    </div> */}
                                             </Col>
                                             <Col md={12}>
                                                 <div className="details-wrapper">
@@ -134,4 +134,4 @@ const SupportsAddScreen = () => {
     )
 }
 
-export default SupportsAddScreen
+export default KnowledgeBaseAddScreen

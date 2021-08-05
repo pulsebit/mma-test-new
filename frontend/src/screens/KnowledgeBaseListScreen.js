@@ -4,18 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader2 from '../components/Loader2'
 import DashboardContainer from '../components/DashboardContainer'
-import { listSupports } from '../actions/supportActions'
+import { getSupportByStatusDetails } from '../actions/supportActions'
 import date from 'date-and-time'
 
 
-const SupportsListScreen = () => {
+const KnowledgeBaseListScreen = () => {
     const dispatch = useDispatch()
     
-    const supportList = useSelector( state => state.supportList)
-    const {loading, error, supports } = supportList
+    const {loading, error, supports } = useSelector( state => state.supportDetailsByStatus)
 
     useEffect(() => {
-        dispatch(listSupports())
+        dispatch(getSupportByStatusDetails())
     },[dispatch])
 
     return (
@@ -23,8 +22,8 @@ const SupportsListScreen = () => {
             <DashboardContainer >
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
-                        <span>Supports List</span>
-                        <NavLink to="/admin/add-support/">Add</NavLink>
+                        <span>Knowledge Base</span>
+                        <NavLink to="/admin/knowledge-base-add/">Add</NavLink>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
@@ -56,7 +55,7 @@ const SupportsListScreen = () => {
                                             <td>{support.created_by.name}</td>
                                             <td>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</td>
                                             <td>
-                                                <NavLink to={`/admin/supports/${support._id}`} className="view-btn">View</NavLink>
+                                                <NavLink to={`/admin/knowledge-base/${support._id}`} className="view-btn">View</NavLink>
                                             </td>
                                         </tr>
                                     ))     
@@ -70,4 +69,4 @@ const SupportsListScreen = () => {
     );
 }
 
-export default SupportsListScreen
+export default KnowledgeBaseListScreen

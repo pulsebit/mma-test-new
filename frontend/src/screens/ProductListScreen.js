@@ -36,7 +36,6 @@ const ProductListScreen = () => {
                         <table>
                             <tbody>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Product Name</th>
                                     <th>SKU</th>
                                     <th>Date added</th>
@@ -45,7 +44,6 @@ const ProductListScreen = () => {
                                 </tr>
                                 {products.map((product) => (
                                     <tr>
-                                        <td>{product._id}</td>
                                         <td>{product.name}</td>
                                         <td>A123</td>
                                         <td>{product.createdAt}</td>

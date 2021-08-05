@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Col, Form, Row } from 'react-bootstrap'
-import { createNote, deleteNote, getSupportNotes } from '../actions/noteAction'
+import { createNote, getSupportNotes } from '../actions/noteAction'
 import Loader2 from './Loader2'
 import Message from './Message'
 import date from 'date-and-time'
@@ -25,12 +25,6 @@ const AddNote = ({supportInfo, clientInfo, assigneeInfo}) => {
         dispatch(createNote(supportInfo, clientInfo, assigneeInfo, note))
         dispatch(getSupportNotes(supportInfo))
         setNote('')
-    }
-
-    const onDeleteHandler = (e) => {
-        e.preventDefault()
-        dispatch(deleteNote(this.note._id))
-        console.log(this.note._id)
     }
 
 

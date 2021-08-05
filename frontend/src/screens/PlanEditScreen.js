@@ -23,21 +23,18 @@ const PlanEditScreen = ({ match, history }) => {
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [features, setFeatures] = useState('')
-    const [subscribers, setSubcribers] = useState('')
     const [createdAt, setDate] = useState('')
 
     const paymentPlanDetails = useSelector(state => state.paymentPlanDetails)
     const { loading, paymentPlan, error } = paymentPlanDetails
 
     const paymentPlanUpdate = useSelector(state => state.paymentPlanUpdate)
-    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = paymentPlanUpdate
+    const { success:successUpdate } = paymentPlanUpdate
 
 
     const paymentPlanDelete = useSelector(state => state.paymentPlanDelete)
-    const { loading:loadingDelete, error:errorDelete, success:successDelete } = paymentPlanDelete
+    const { success:successDelete } = paymentPlanDelete
 
-    const productList = useSelector( state => state.productList)
-    const { products } = productList
 
 
     useEffect(() => {
@@ -54,7 +51,6 @@ const PlanEditScreen = ({ match, history }) => {
                 setImage(paymentPlan.image)
                 setDescription(paymentPlan.description)
                 setFeatures(paymentPlan.features)
-                setSubcribers(paymentPlan.subscribers)
                 setDate(paymentPlan.createdAt)
             }
         }
@@ -180,85 +176,3 @@ const PlanEditScreen = ({ match, history }) => {
 }
 
 export default PlanEditScreen
-
-
-{/* <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Products Included</span>
-                                
-                                <div className="button-wrapper">
-                                    <select name="listproducts" id="listproducts" multiple>
-                                        {products.map((product) => (
-                                            <option value={product._id}>{product.name}</option>
-                                        ))}
-                                    </select>
-                                    <button type="submit" className='add-btn'>Add New</button>
-                                </div>
-                            </div>
-                            <Row>
-                                <Col md={12}>
-                                    <div className="table-wrapper def-padding">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Short Description</th>
-                                                    <th>Price</th>
-                                                    <th>Date Added</th>
-                                                    <th>Action</th>
-                                                </tr>				
-                                                <tr>
-                                                    <td><input type="text>"/></td>
-                                                    <td><input type="text>"/></td>
-                                                    <td><input type="text>"/></td>
-                                                    <td><input type="text>"/></td>
-                                                    <td>
-                                                        <div className="button-wrapper">
-                                                            <button className='delete-btn'>Delete</button>  
-                                                        </div>  
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> 
-                                </Col>
-                            </Row>
-                        </div> */}
-    
-                        {/* <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Subcribers</span>
-                                <button type="submit" value="Add" className='add-btn'>Add New</button>
-                            </div>
-                            <Row>
-                                <Col md={12}>
-                                    <div className="table-wrapper def-padding">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Mobile Number</th>
-                                                    <th>Date Added</th>
-                                                    <th>Date Due</th>
-                                                    <th>Action</th>
-                                                </tr>				
-                                                <tr>
-                                                    <td>John Smith</td>
-                                                    <td>john@mma.com</td>
-                                                    <td>+61 7 7010 1111</td>
-                                                    <td>2/3/2021</td>
-                                                    <td>2/3/2021</td>
-                                                    <td>
-                                                    <div className="button-wrapper">
-                                                        <NavLink to="/admin/product/:id/edit" className="edit-btn">Edit</NavLink>
-                                                        <button className='delete-btn'>Delete</button>  
-                                                    </div>  
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> 
-                                </Col>
-                            </Row>
-                        </div> */}

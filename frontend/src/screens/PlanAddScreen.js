@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Row, Col, Form } from 'react-bootstrap'
 import { createPaymentPlan } from '../actions/paymentPlanAction'
-import { listProducts, listTempProducts } from '../actions/productActions'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
 
@@ -19,21 +17,10 @@ const PlanAddScreen = () => {
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
     const [features, setFeatures] = useState('')
-    const [allProducts, setAllProducts] = useState('')
-    const [tempProduct, setTempProduct] = useState('')
-    const [productsData, setProductsData] = useState('')
-    
-
-    const { tempProductHolder } = useSelector( state => state.tempProducts)
-
-    const { products } = useSelector( state => state.productList)
-    
-    
-    const { product } = useSelector(state => state.productDetails)
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(createPaymentPlan(name, price, image, description, features, productsData))
+        dispatch(createPaymentPlan(name, price, image, description, features))
     }
 
     return (
@@ -102,49 +89,7 @@ const PlanAddScreen = () => {
                         </Col>
                     </Row> 
                 </div>
-
-                <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Products Included</span>
-                    </div>
-                    
-                    <div className="table-wrapper def-padding">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Short Description</th>
-                                    <th>Price</th>
-                                    <th>Date Added</th>
-                                    <th>Action</th>
-                                </tr>	
-                             { allProducts ? (
-                                allProducts.map((product) => (
-                                    <tr>   
-                                        
-                                        <td>{product.name}</td>
-                                        <td>{ReactHtmlParser(product.description)}</td>
-                                        <td>{product.price}</td>
-                                        <td>{product.createdAt}</td>
-                                        <td>
-                                            <div className="button-wrapper">
-                                                <button className='delete-btn'>Delete</button>  
-                                            </div>  
-                                        </td>
-                                    </tr>
-                                ))
-                            ) : (
-                                <h3>No Products found</h3>
-                            )} 
-                                    
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div className="button-wrapper def-padding">
-                    <button type="submit" className='update-btn'>Save</button>
-                </div>
+                
                 </Form>
             </DashboardContainer>
         </div>

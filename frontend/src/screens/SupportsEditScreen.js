@@ -21,7 +21,6 @@ const SupportsEditScreen = ({match, history}) => {
     const { support } = useSelector( state => state.supportDetails)
 
     const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = useSelector(state => state.suppportUpdate)
-    //const { loading:loadingUpdate, error:errorUpdate, success:successDelete } = useSelector(state => state.suppportDelete)
     
     const { client = {} , created_by = {}, assignee = {} } = support || {}
 
@@ -80,7 +79,15 @@ const SupportsEditScreen = ({match, history}) => {
                                                 </div>
                                                 <div className="details-wrapper">
                                                     <label>Category:</label>
-                                                    <span><input type="text" value={category} onChange={(e)=>setCategory(e.target.value)}/></span>
+                                                    <span>
+                                                        <select value={category} onChange={(e)=>setCategory(e.target.value)}>
+                                                            <option value="N/A">Select Category</option>
+                                                            <option value="Accounting">Accounting</option>
+                                                            <option value="Technical Support">Technical Support</option>
+                                                            <option value="Billing Support">Billing Support</option>
+                                                            <option value="Integration">Integration</option>
+                                                        </select>
+                                                    </span>
                                                 </div>                                      
                                             </Col>
                                             <Col md={6}>
