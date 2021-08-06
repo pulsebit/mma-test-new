@@ -1003,6 +1003,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   padding: 15px;
   border: 1px solid #22222226;
   background-color: transparent;
+  line-height: 1.5;
 }
 
 .view-screen .user-details .details-wrapper textarea:focus {
@@ -1109,6 +1110,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   padding: 15px;
   border: 1px solid #22222226;
   background-color: transparent;
+  line-height: 1.5;
 }
 
 .edit-screen textarea:focus {

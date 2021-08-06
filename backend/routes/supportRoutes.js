@@ -5,8 +5,7 @@ import {
   createSupport,
   deleteSupport,
   getSupportById,
-  updateSupport,
-  getSupportsByStatus
+  updateSupport
 } from '../controllers/supportController.js'
 import { 
   createNote,
@@ -17,8 +16,6 @@ import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 router.route('/')
 .post(createSupport )
 .get(getSupports)
-
-router.route('/knowledge-base').get(getSupportsByStatus) 
 
 router.route('/:id')
 .delete(deleteSupport)

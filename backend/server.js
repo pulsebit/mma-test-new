@@ -10,6 +10,8 @@ import userRoutes from './routes/userRoutes.js'
 import supportRoutes from './routes/supportRoutes.js'
 import paymentPlanRoutes from './routes/paymentPlanRoutes.js'
 import noteRoutes from './routes/noteRoutes.js'
+import knowledgeBaseRoutes from './routes/knowledgeBaseRoutes.js'
+
 
 dotenv.config()
 
@@ -29,6 +31,7 @@ app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)
 app.use('/api/paymentplans', paymentPlanRoutes)
 app.use('/api/notes', noteRoutes)
+app.use('/api/knowledge-base', knowledgeBaseRoutes)
 
 //404 handler
 app.use(notFound)

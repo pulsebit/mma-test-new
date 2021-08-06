@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader2 from '../components/Loader2'
 import DashboardContainer from '../components/DashboardContainer'
-import { getSupportByStatusDetails } from '../actions/supportActions'
 import date from 'date-and-time'
+import { listKnowledgeBase } from '../actions/knowlegeBaseAction'
 
 
 const KnowledgeBaseListScreen = () => {
     const dispatch = useDispatch()
     
-    const {loading, error, supports } = useSelector( state => state.supportDetailsByStatus)
+    const {loading, error, knowledgeBaseList } = useSelector( state => state.knowledgeBaseList)
 
     useEffect(() => {
-        dispatch(getSupportByStatusDetails())
+        dispatch(listKnowledgeBase())
     },[dispatch])
 
     return (
@@ -29,12 +29,10 @@ const KnowledgeBaseListScreen = () => {
                         <table>
                             <tbody>
                                 <tr>
-                                    <th>Ticket No</th>
-                                    <th>Client</th>
-                                    <th>Priority</th>
-                                    <th>Status</th>
+                                    <th>Issue</th>
+                                    <th>Solution</th>
                                     <th>Category</th>
-                                    <th>Assignee</th>
+                                    <th>Resolved By</th>
                                     <th>Created By</th>
                                     <th>Date Created</th>
                                     <th>Action</th>
@@ -44,18 +42,17 @@ const KnowledgeBaseListScreen = () => {
                                 ) : error ? (
                                     <Message variant='danger'>{error}</Message>
                                 ) : ( 		   
-                                    supports.map((support) => (
-                                        <tr key={support._id}>
-                                            <td>{support.ticket_no}</td>
-                                            <td>{support.client.name}</td>
-                                            <td>{support.priority}</td>
-                                            <td>{support.status}</td>
-                                            <td>{support.category}</td>
-                                            <td>{support.assignee.name}</td>
-                                            <td>{support.created_by.name}</td>
-                                            <td>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</td>
+                                    knowledgeBaseList.map((knowledgeBase) => (
+                                        <tr key={knowledgeBase._id}>
+                                            <td>{knowledgeBase.problem_description}</td>
+                                            <td>{knowledgeBase.solution}</td>
+                                            <td>{knowledgeBase.category}</td>
+                                            <td>{knowledgeBase.resolve_by.name}</td>
+                                            <td>{knowledgeBase.created_by.name}</td>
+                                            <td>{date.format(new Date(knowledgeBase.createdAt), 'ddd, MMM DD YYYY')}</td>
+                                            
                                             <td>
-                                                <NavLink to={`/admin/knowledge-base/${support._id}`} className="view-btn">View</NavLink>
+                                                <NavLink to={`/admin/knowledge-base/${knowledgeBase._id}`} className="view-btn">View</NavLink>
                                             </td>
                                         </tr>
                                     ))     

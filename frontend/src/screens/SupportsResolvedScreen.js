@@ -7,17 +7,18 @@ import User from '../assets/images/user.png'
 import { getSupportDetails } from '../actions/supportActions'
 import date from 'date-and-time'
 import Message from '../components/Message'
-//import Loader from '../components/Loader'
 import Loader2 from '../components/Loader2'
 import AddNote from '../components/AddNote'
 
 
 
 
-const SupportsViewScreen = ({match}) => {
+const SupportsResolvedScreen = ({match}) => {
     const supportId = match.params.id
 
     const dispatch = useDispatch()
+
+    const [resolvedDescription, setResolvedDescription] = useState('')
 
     const { loading, error, support } = useSelector( state => state.supportDetails)
     const { client = {} , created_by = {}, assignee = {} } = support || {}
@@ -31,11 +32,6 @@ const SupportsViewScreen = ({match}) => {
         
     },[dispatch, supportId])
 
-    const addNotehandler = (e) => {
-        e.preventDefault()
-
-    }
-
     return (
         <div className="view-screen">
             { loading ? (
@@ -47,10 +43,6 @@ const SupportsViewScreen = ({match}) => {
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Support Information</span>
-                            <div className="button-wrapper">
-                                <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
-                                <NavLink to={`/admin/supports-resolve/${support._id}/`} className="update-btn">Resolve</NavLink>
-                            </div>
                         </div>
                         <div className="user-details def-padding">
                             <Row>
@@ -92,6 +84,10 @@ const SupportsViewScreen = ({match}) => {
                                         <label>Priority:</label>
                                         <span>{support.priority}</span>
                                     </div>
+                                    <div className="details-wrapper">
+                                        <label>Assignee:</label>
+                                        <span>{assignee.name}</span>
+                                    </div>
                                     </Col>
                                     <Col md={6}>
                                     <div className="details-wrapper">
@@ -102,11 +98,9 @@ const SupportsViewScreen = ({match}) => {
                                         <label>Date Created:</label>
                                         <span>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</span>
                                     </div>
-                                </Col>
-                                <Col md={12}>
                                     <div className="details-wrapper">
-                                        <label>Issue:</label>
-                                        <span><textarea value={support.problem_description} readOnly/></span>
+                                        <label>Created by:</label>
+                                        <span>{created_by.name}</span>
                                     </div>
                                 </Col>
                             </Row>
@@ -114,69 +108,40 @@ const SupportsViewScreen = ({match}) => {
                     </div>
 
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Assignee</span>
-                        </div>
                         <Row>
-                            <Col md={12}>
-                                <div className="table-wrapper def-padding">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-                                                <th>Mobile Number</th>
-                                            </tr>				
-                                            <tr>
-                                                <td>{assignee.name}</td>
-                                                <td>{assignee.email}</td>
-                                                <td>Sample Dept.</td>
-                                                <td>{assignee.mobile_no}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> 
+                            <Col md={6}>
+                                <div className="blue-bkg-title def-padding">
+                                    <span>Issue</span>
+                                </div>
+                                <div className="view-screen">
+                                    <div className="user-details">
+                                        <div className="details-wrapper">
+                                            <textarea value={support.problem_description} readOnly/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col md={6}>
+                                <div className="blue-bkg-title def-padding">
+                                    <span>Solution</span>
+                                </div>
+                                <div className="edit-screen">
+                                    <div className="user-details">
+                                        <div className="details-wrapper">
+                                            <textarea value={resolvedDescription} onChange={(e)=>setResolvedDescription(e.target.value)}/>
+                                        </div>
+                                    </div>
+                                </div>
                             </Col>
                         </Row>
                     </div>
 
-                    <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Created by: </span>
-                        </div>
-                        <Row>
-                            <Col md={12}>
-                                <div className="table-wrapper def-padding">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-                                                <th>Mobile Number</th>
-                                            </tr>				
-                                            <tr>
-                                                <td>{created_by.name}</td>
-                                                <td>{created_by.email}</td>
-                                                <td>Sample Dept.</td>
-                                                <td>{created_by.mobile_no}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> 
-                            </Col>
-                        </Row>
+                    <div className="button-wrapper def-padding">
+                            <button type="submit" value="Update" className='update-btn'>Submit</button>
                     </div>
-
-                    <AddNote 
-                        supportInfo={supportId} 
-                        clientInfo={client._id}
-                        assigneeInfo={assignee._id}
-                    />
                 </DashboardContainer>
             )}
         </div>
     )
 }
-export default SupportsViewScreen
+export default SupportsResolvedScreen

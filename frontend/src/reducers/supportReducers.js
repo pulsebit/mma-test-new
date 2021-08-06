@@ -46,19 +46,6 @@ export const supportDetailsReducer = (state = { support: {} }, action) => {
    }
 }
 
-export const supportDetailsByStatusReducer = (state = {supports: []}, action) => {
-   switch(action.type) {
-      case SUPPORT_DETAILS_BY_STATUS_REQUEST:
-         return { loading: true, ...state}
-      case SUPPORT_DETAILS_BY_STATUS_SUCCESS:
-         return { loading: false, supports: action.payload } 
-      case SUPPORT_DETAILS_BY_STATUS_FAIL:
-         return { loading: false, error: action.payload }   
-      default:
-         return state     
-   }
-}
-
 export const supportCreateReducer = (state = {}, action) => {
    switch(action.type) {
           case SUPPORT_CREATE_REQUEST:

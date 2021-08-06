@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Col, Form, Row } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { createSupport } from '../actions/supportActions'
 import { listUsers } from '../actions/userActions'
+import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
 
 
 const KnowledgeBaseAddScreen = () => {
 
     const dispatch = useDispatch()
-    const [client, setClient] = useState('')
-    const [ticket_no, setTicket_no] = useState('')
     const [problem_description, setProblem_description] = useState('')
-    const [priority, setPriority] = useState('')
-    const [status, setStatus] = useState('Closed')
+    const [solution, setSolution] = useState('')
     const [category, setCategory] = useState('')
-    const [assignee, setAssignee] = useState('')
+    const [resolve_by, setResolve_by] = useState('')
 
     const { users } = useSelector( state => state.userList)
 
@@ -26,7 +23,7 @@ const KnowledgeBaseAddScreen = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-       dispatch(createSupport(client, ticket_no, problem_description, status, priority, category, assignee))
+       dispatch(createKnowledgeBase(problem_description, solution, category, resolve_by))
     }
     return (
         <div className="edit-screen">
@@ -42,13 +39,21 @@ const KnowledgeBaseAddScreen = () => {
                                         <Row>
                                             <Col md={6}>
                                                 <div className="details-wrapper">
-                                                    <label>Ticket Number:</label>
-                                                    <span><input type="text" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/></span>
+                                                    <label>Issue:</label>
+                                                    <textarea value={problem_description} onChange={(e)=>setProblem_description(e.target.value)}/>
                                                 </div>
+                                            </Col>
+                                            <Col md={6}>
                                                 <div className="details-wrapper">
-                                                    <label>Select Client:</label>
+                                                    <label>Solution:</label>
+                                                    <textarea value={solution} onChange={(e)=>setSolution(e.target.value)}/>
+                                                </div>
+                                            </Col>
+                                            <Col md={6}>
+                                                <div className="details-wrapper">
+                                                    <label>Resolve By:</label>
                                                     <span>
-                                                        <select id="listClients" value={client} onChange={(e)=>setClient(e.target.value)}>
+                                                        <select value={resolve_by} onChange={(e)=>setResolve_by(e.target.value)}>
                                                             <option value="">Select Client</option>
                                                             {users ? (
                                                                 users.map((user) => (
@@ -59,7 +64,9 @@ const KnowledgeBaseAddScreen = () => {
                                                             )}
                                                         </select>
                                                     </span>
-                                                </div>
+                                                </div>                                  
+                                            </Col>
+                                            <Col md={6}>
                                                 <div className="details-wrapper">
                                                     <label>Category:</label>
                                                     <span>
@@ -71,52 +78,7 @@ const KnowledgeBaseAddScreen = () => {
                                                             <option value="Integration">Integration</option>
                                                         </select>
                                                     </span>
-                                                    
-                                                </div>                                      
-                                            </Col>
-                                            <Col md={6}>
-                                                <div className="details-wrapper">
-                                                    <label>Select Assignee:</label>
-                                                    <span>
-                                                        <select id="listAssignees" value={assignee} onChange={(e)=>setAssignee(e.target.value)}>
-                                                            <option value="">Select Assignee</option>
-                                                            {users ? (
-                                                                users.map((user) => (
-                                                                    <option value={user._id} id={user.name}>{user.name}</option>
-                                                                ))
-                                                            ) : (
-                                                                <h3>No Users Available</h3>
-                                                            )}
-                                                        </select>
-                                                    </span>
-                                                </div> 
-                                                <div className="details-wrapper">
-                                                        <label>Priority:</label>
-                                                        <span>
-                                                            <select value={priority} onChange={(e)=>setPriority(e.target.value)}>
-                                                                <option value="">Select Level</option>
-                                                                <option value="Low">Low</option>
-                                                                <option value="Medium">Medium</option>
-                                                                <option value="High">High</option>
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                    {/* <div className="details-wrapper">
-                                                        <label>Status:</label>
-                                                        <span>
-                                                            <select value={status} onChange={(e)=>setStatus(e.target.value)}>
-                                                                <option value="">Select Status</option>
-                                                                <option value="Open">Open</option>
-                                                                <option value="Closed">Closed</option>
-                                                            </select>
-                                                        </span>
-                                                    </div> */}
-                                            </Col>
-                                            <Col md={12}>
-                                                <div className="details-wrapper">
-                                                    <label>Explain Issue:</label>
-                                                    <span><textarea value={problem_description} onChange={(e)=>setProblem_description(e.target.value)}/></span>
-                                                </div>
+                                                </div>    
                                             </Col>
                                         </Row>
                                     </div>

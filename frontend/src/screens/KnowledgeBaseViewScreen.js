@@ -3,29 +3,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
-import User from '../assets/images/user.png'
-import { getSupportDetails } from '../actions/supportActions'
 import date from 'date-and-time'
 import Message from '../components/Message'
-//import Loader from '../components/Loader'
 import Loader2 from '../components/Loader2'
-import AddNote from '../components/AddNote'
+import { getKnowledgeBaseDetails } from '../actions/knowlegeBaseAction'
 
 
 
 
 const KnowledgeBaseViewScreen = ({match}) => {
-    const supportId = match.params.id
+    const knowledgeBastId = match.params.id
 
     const dispatch = useDispatch()
 
-    const { loading, error, support } = useSelector( state => state.supportDetails)
-    const { client = {} , created_by = {}, assignee = {} } = support || {}
+    const { loading, error, knowledgeBase } = useSelector( state => state.knowledgeBaseDetails)
 
     useEffect(() => {
-        dispatch(getSupportDetails(supportId))
+        dispatch(getKnowledgeBaseDetails(knowledgeBastId))
         
-    },[dispatch, supportId])
+    },[dispatch, knowledgeBastId])
 
     return (
         <div className="view-screen">
@@ -39,36 +35,48 @@ const KnowledgeBaseViewScreen = ({match}) => {
                         <div className="blue-bkg-title def-padding">
                             <span>Support Information</span>
                             <div className="button-wrapper">
-                                <NavLink to={`/admin/knowledge-base-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
+                                <NavLink to={`/admin/knowledge-base-edit/${knowledgeBase._id}/`} className="edit-btn">Edit</NavLink>
                             </div>
                         </div>
                         <div className="user-details def-padding">
                             <Row>
-                                <Col md={2}>
-                                    <div className="img-wrapper">
-                                        <img className="" src={User} alt='' />
+                                <Col md={6}>
+                                    <div className="details-wrapper">
+                                        <label>Issue:</label>
+                                        <textarea value={knowledgeBase.problem_description} readOnly/>
                                     </div>
+                                    <div className="details-wrapper">
+                                        <label>Category:</label>
+                                        <span>{knowledgeBase.category}</span>
+                                    </div> 
+                                </Col>
+                                <Col md={6}>
+                                    <div className="details-wrapper">
+                                        <label>Solution:</label>
+                                       <textarea value={knowledgeBase.solution} readOnly/>
+                                    </div>
+                                    <div className="details-wrapper">
+                                        <label>Full Name:</label>
+                                        <span>{knowledgeBase._id}</span>
+                                    </div> 
                                 </Col>
                                 <Col md={10}>
                                     <Row>
                                         <Col md={6}>
-                                            <div className="details-wrapper">
-                                                <label>Ticket Number:</label>
-                                                <span>{support.ticket_no}</span>
-                                            </div>
+                                            
                                             <div className="details-wrapper">
                                                 <label>Full Name:</label>
-                                                <span>{client.name}</span>
+                                                <span>{knowledgeBase._id}</span>
                                             </div>                                          
                                         </Col>
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Mobile number:</label>
-                                                <span>{client.mobile_no}</span>
+                                                <span>{knowledgeBase._id}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Email:</label>
-                                                <span>{client.email}</span>
+                                                <span>{knowledgeBase._id}</span>
                                             </div>  
                                         </Col>
                                     </Row>
@@ -76,27 +84,27 @@ const KnowledgeBaseViewScreen = ({match}) => {
                                 <Col md={6}>
                                     <div className="details-wrapper">
                                         <label>Category:</label>
-                                        <span>{support.category}</span>
+                                        <span>{knowledgeBase._id}</span>
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Priority:</label>
-                                        <span>{support.priority}</span>
+                                        <span>{knowledgeBase._id}</span>
                                     </div>
                                     </Col>
                                     <Col md={6}>
                                     <div className="details-wrapper">
                                         <label>Status:</label>
-                                        <span>{support.status}</span>
+                                        <span>{knowledgeBase._id}</span>
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Date Created:</label>
-                                        <span>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</span>
+                                        <span>{date.format(new Date(knowledgeBase._id), 'ddd, MMM DD YYYY')}</span>
                                     </div>
                                 </Col>
                                 <Col md={12}>
                                     <div className="details-wrapper">
                                         <label>Issue:</label>
-                                        <span><textarea value={support.problem_description} readOnly/></span>
+                                        <span><textarea value={knowledgeBase._id} readOnly/></span>
                                     </div>
                                 </Col>
                             </Row>
@@ -118,11 +126,11 @@ const KnowledgeBaseViewScreen = ({match}) => {
                                                 <th>Department</th>
                                                 <th>Mobile Number</th>
                                             </tr>				
-                                            <tr key={assignee._id}>
-                                                <td>{assignee.name}</td>
-                                                <td>{assignee.email}</td>
+                                            <tr key={knowledgeBase._id}>
+                                                <td>{knowledgeBase._id}</td>
+                                                <td>{knowledgeBase._id}</td>
                                                 <td>Sample Dept.</td>
-                                                <td>{assignee.mobile_no}</td>
+                                                <td>{knowledgeBase._id}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -147,10 +155,10 @@ const KnowledgeBaseViewScreen = ({match}) => {
                                                 <th>Mobile Number</th>
                                             </tr>				
                                             <tr>
-                                                <td>{created_by.name}</td>
-                                                <td>{created_by.email}</td>
+                                                <td>{knowledgeBase._id}</td>
+                                                <td>{knowledgeBase._id}</td>
                                                 <td>Sample Dept.</td>
-                                                <td>{created_by.mobile_no}</td>
+                                                <td>{knowledgeBase._id}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -159,11 +167,6 @@ const KnowledgeBaseViewScreen = ({match}) => {
                         </Row>
                     </div>
 
-                    <AddNote 
-                        supportInfo={supportId} 
-                        clientInfo={client._id}
-                        assigneeInfo={assignee._id}
-                    />
                 </DashboardContainer>
             )}
         </div>

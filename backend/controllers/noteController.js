@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler'
-import Note from '../models/NoteModel.js'
+import Note from '../models/noteModel.js'
 
 // @desc   Create Note
 // @route  POST /api/note/

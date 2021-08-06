@@ -20,6 +20,8 @@ import AdminDashboard from './screens/AdminDashboard'
 import SupportsListScreen from './screens/SupportsListScreen'
 import SupportsViewScreen from './screens/SupportsViewScreen'
 import SupportsEditScreen from './screens/SupportsEditScreen'
+import SupportsResolvedScreen from './screens/SupportsResolvedScreen'
+
 
 import UserListScreen from './screens/UserListScreen'
 import UserViewScreen from './screens/UserViewScreen'
@@ -102,6 +104,7 @@ function App() {
               <Route path='/admin/supports' component={SupportsListScreen} exact/>
               <Route path='/admin/supports/:id' component={SupportsViewScreen} exact/>
               <Route path='/admin/supports-edit/:id' component={SupportsEditScreen} />
+              <Route path='/admin/supports-resolve/:id' component={SupportsResolvedScreen} />
 
               {/* USERS */}
               <Route path='/admin/users' component={UserListScreen} exact />

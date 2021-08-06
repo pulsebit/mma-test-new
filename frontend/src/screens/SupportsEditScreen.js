@@ -123,7 +123,8 @@ const SupportsEditScreen = ({match, history}) => {
                                                             <select value={status} onChange={(e)=>setStatus(e.target.value)}>
                                                                 <option value="">Select Status</option>
                                                                 <option value="Open">Open</option>
-                                                                <option value="Closed">Closed</option>
+                                                                <option value="In Progress">In Progress</option>
+                                                                <option value="Completed">Completed</option>
                                                             </select>
                                                         </span>
                                                     </div>
