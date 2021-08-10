@@ -85,19 +85,19 @@ const updateKnowledgeBase = asyncHandler(async (req, res) => {
 	}
 })
 
-// @desc   Delete Payment Plan
-// @route  Delete /api/paymentplans/:id
+// @desc   Delete knowledge-base 
+// @route  Delete /api/knowledge-base/:id
 // @access Private
 const deleteKnowledgeBase = asyncHandler(async (req, res) => {
   
-	const paymentPlan = await PaymentPlan.findById(req.params.id)
+	const knowledgeBase = await KnowledgeBase.findById(req.params.id)
 
-	if(paymentPlan) {
-		  await paymentPlan.remove()
-			res.json({ message: 'Payment Plan removed successfully!'})
+	if(knowledgeBase) {
+		  await knowledgeBase.remove()
+			res.json({ message: 'knowledge-base removed successfully!'})
 	} else {
 			res.status(404)
-			throw new Error('Payment Plan not found')
+			throw new Error('knowledge-base not found')
 	}
 })
 

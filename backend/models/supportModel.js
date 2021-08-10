@@ -13,6 +13,10 @@ const supportSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  solution: {
+    type: String,
+    required: true
+  },
   status: {
     type: String,
     required: true

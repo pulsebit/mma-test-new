@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { KNOWLEDGE_BASE_CREATE_FAIL, KNOWLEDGE_BASE_CREATE_REQUEST, KNOWLEDGE_BASE_CREATE_SUCCESS, KNOWLEDGE_BASE_DETAILS_FAIL, KNOWLEDGE_BASE_DETAILS_REQUEST, KNOWLEDGE_BASE_DETAILS_SUCCESS, KNOWLEDGE_BASE_LIST_FAIL, KNOWLEDGE_BASE_LIST_REQUEST, KNOWLEDGE_BASE_LIST_SUCCESS, KNOWLEDGE_BASE_UPDATE_FAIL, KNOWLEDGE_BASE_UPDATE_REQUEST, KNOWLEDGE_BASE_UPDATE_SUCCESS } from '../constants/knowledgeBaseConstant'
+import { KNOWLEDGE_BASE_CREATE_FAIL, KNOWLEDGE_BASE_CREATE_REQUEST, KNOWLEDGE_BASE_CREATE_SUCCESS, KNOWLEDGE_BASE_DELETE_FAIL, KNOWLEDGE_BASE_DELETE_REQUEST, KNOWLEDGE_BASE_DELETE_SUCCESS, KNOWLEDGE_BASE_DETAILS_FAIL, KNOWLEDGE_BASE_DETAILS_REQUEST, KNOWLEDGE_BASE_DETAILS_SUCCESS, KNOWLEDGE_BASE_LIST_FAIL, KNOWLEDGE_BASE_LIST_REQUEST, KNOWLEDGE_BASE_LIST_SUCCESS, KNOWLEDGE_BASE_UPDATE_FAIL, KNOWLEDGE_BASE_UPDATE_REQUEST, KNOWLEDGE_BASE_UPDATE_SUCCESS } from '../constants/knowledgeBaseConstant'
 
 export const listKnowledgeBase = () => async (dispatch) => {
     try {
@@ -76,7 +76,7 @@ export const listKnowledgeBase = () => async (dispatch) => {
         type: KNOWLEDGE_BASE_UPDATE_REQUEST
      })
      
-     const { data } = await axios.put(`/api/knowledge-Base/${knowledgeBase._id}/edit`, knowledgeBase)
+     const { data } = await axios.put(`/api/knowledge-base/${knowledgeBase._id}`, knowledgeBase)
  
      dispatch({type: KNOWLEDGE_BASE_UPDATE_SUCCESS})
 
@@ -94,3 +94,23 @@ export const listKnowledgeBase = () => async (dispatch) => {
       })
    }
  }
+
+export const deleteKnowledgeBase = (id) => async (dispatch, getState) => {
+try {
+   dispatch({
+      type: KNOWLEDGE_BASE_DELETE_REQUEST
+   })
+
+   await axios.delete(`/api/knowledge-base/${id}`)
+
+   dispatch({type: KNOWLEDGE_BASE_DELETE_SUCCESS})
+
+} catch( error ) {
+   dispatch({
+      type: KNOWLEDGE_BASE_DELETE_FAIL,
+      payload: error.response && error.response.data.message 
+         ? error.response.data.message 
+         : error.message 
+   })
+}
+}

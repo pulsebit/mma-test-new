@@ -171,11 +171,12 @@ span {
 }
 
 .section-wrapper .blue-bkg-title .button-wrapper button {
-  background-color: transparent;
   border: none;
-  font-size: 35px;
-  font-weight: 700;
-  color: #fff;
+  padding: 10px 20px !important;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 50px;
+  margin-left: 10px;
 }
 
 .section-wrapper .blue-bkg-title .button-wrapper button:focus {
@@ -186,9 +187,12 @@ span {
   cursor: pointer;
 }
 
-.section-wrapper .blue-bkg-title a {
-  margin-left: auto;
-  color: #fff;
+.section-wrapper .blue-bkg-title .button-wrapper a {
+  padding: 10px 20px !important;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 50px;
+  margin-left: 10px;
 }
 
 .section-wrapper button {
@@ -1038,12 +1042,23 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   text-align: right;
 }
 
-.edit-screen a {
+.edit-screen .button-wrapper {
+  place-content: flex-end;
+}
+
+.edit-screen .button-wrapper a {
   display: block;
   font-weight: 700;
   color: #3777FF;
   padding: 10px 20px;
-  text-align: right;
+  margin: 0 5px;
+}
+
+.edit-screen .button-wrapper button {
+  display: block;
+  padding: 15px 20px;
+  font-size: 17px;
+  margin: 0 5px;
 }
 
 .edit-screen .details-wrapper {
@@ -1093,15 +1108,6 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 
 .edit-screen input:focus {
   outline: none;
-}
-
-.edit-screen button {
-  display: inline-block;
-}
-
-.edit-screen .add-btn {
-  background-color: transparent;
-  padding: 0;
 }
 
 .edit-screen textarea {

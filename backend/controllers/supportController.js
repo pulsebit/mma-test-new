@@ -104,6 +104,7 @@ const updateSupport = asyncHandler(async (req, res) => {
 
 	if(support) {
     support.problem_description = req.body.problem_description || support.problem_description
+    support.solution = req.body.solution || support.solution
     support.priority = req.body.priority || support.priority
     support.status = req.body.status || support.status
     support.category = req.body.category || support.category

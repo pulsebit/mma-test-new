@@ -24,7 +24,9 @@ const SupportsListScreen = () => {
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Supports List</span>
-                        <NavLink to="/admin/add-support/">Add</NavLink>
+                        <div className="button-wrapper">
+                            <NavLink to="/admin/add-support/" className="add-btn">Add</NavLink>
+                        </div>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>

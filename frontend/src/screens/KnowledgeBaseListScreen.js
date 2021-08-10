@@ -23,7 +23,9 @@ const KnowledgeBaseListScreen = () => {
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Knowledge Base</span>
-                        <NavLink to="/admin/knowledge-base-add/">Add</NavLink>
+                        <div className="button-wrapper">
+                            <NavLink to="/admin/knowledge-base-add/" className="add-btn">+ Add</NavLink>
+                        </div>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
@@ -44,8 +46,8 @@ const KnowledgeBaseListScreen = () => {
                                 ) : ( 		   
                                     knowledgeBaseList.map((knowledgeBase) => (
                                         <tr key={knowledgeBase._id}>
-                                            <td>{knowledgeBase.problem_description}</td>
-                                            <td>{knowledgeBase.solution}</td>
+                                            <td><p>{knowledgeBase.problem_description}</p></td>
+                                            <td><p>{knowledgeBase.solution}</p></td>
                                             <td>{knowledgeBase.category}</td>
                                             <td>{knowledgeBase.resolve_by.name}</td>
                                             <td>{knowledgeBase.created_by.name}</td>

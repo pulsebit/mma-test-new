@@ -1,153 +1,142 @@
-// import React, { useEffect, useState } from 'react'
-// import { Col, Form, Row } from 'react-bootstrap'
-// import DashboardContainer from '../components/DashboardContainer'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { deleteSupport, getSupportDetails, updateSupport } from '../actions/supportActions'
-// import { listUsers } from '../actions/userActions'
-// import { SUPPORT_UPDATE_RESET } from '../constants/supportConstants'
-
-// const KnowledgeBaseEditScreen = ({match, history}) => {
-//     const supportId = match.params.id
-//     const dispatch = useDispatch()
-//     const [ticket_no, setTicket_no] = useState('')
-//     const [problem_description, setProblem_description] = useState('')
-//     const [priority, setPriority] = useState('')
-//     const [status, setStatus] = useState('')
-//     const [category, setCategory] = useState('')
-//     const [assigneeInfo, setAssigneeInfo] = useState('')
-
-//     const { users } = useSelector( state => state.userList)
-
-//     const { support } = useSelector( state => state.supportDetails)
-
-//     const { success:successUpdate } = useSelector(state => state.suppportUpdate)
-    
-//     const { client = {} , assignee = {} } = support || {}
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { Row, Col, Form } from 'react-bootstrap'
+import DashboardContainer from '../components/DashboardContainer'
+import date from 'date-and-time'
+import Message from '../components/Message'
+import Loader2 from '../components/Loader2'
+import { deleteKnowledgeBase, getKnowledgeBaseDetails, updateKnowledgeBase } from '../actions/knowlegeBaseAction'
+import { KNOWLEDGE_BASE_UPDATE_RESET } from '../constants/knowledgeBaseConstant'
 
 
-//     useEffect(() => {
-//         if(successUpdate) {
-//             dispatch({ type: SUPPORT_UPDATE_RESET})
-//             history.push('/admin/supports')  
-//         } 
-//         else {
-//             if(!support.ticket_no || support._id !== supportId) {
-//                 dispatch(getSupportDetails(supportId))
-//             } else {
-//                 setTicket_no(support.ticket_no)
-//                 setProblem_description(support.problem_description)
-//                 setPriority(support.priority)
-//                 setStatus(support.status)
-//                 setCategory(support.category)
-//                 setAssigneeInfo(assignee._id)
-//             }
-//         }
-//         dispatch(listUsers())
-         
-//     }, [dispatch, supportId, support, match, history, successUpdate, assignee._id] )
 
-//     const onSubmitHandler = (e) => {
-//         e.preventDefault()
-//         dispatch(updateSupport({_id: supportId, problem_description, status, priority, category, assigneeInfo}))
-//     }
 
-//     const onDeleteHandler = (e) => {
-//         e.preventDefault()
-//         dispatch(deleteSupport(supportId))
-//     }
+const KnowledgeBaseViewScreen = ({match, history}) => {
+    const knowledgeBasetId = match.params.id
 
-//     return (
-//         <div className="edit-screen">
-//             <Form onSubmit={onSubmitHandler}>
-//                 <DashboardContainer>
-//                         <div className="section-wrapper">
-//                             <div className="blue-bkg-title def-padding">
-//                                 <span>Edit Support</span>
-//                             </div>
-//                             <Row>
-//                                 <Col md={12}>
-//                                     <div className="user-details def-padding">
-//                                         <Row>
-//                                             <Col md={6}>
-//                                                 <div className="details-wrapper">
-//                                                     <label>Ticket Number:</label>
-//                                                     <span><input type="text" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/></span>
-//                                                 </div>
-//                                                 <div className="details-wrapper">
-//                                                     <label>Client Name:</label>
-//                                                     <span><input type="text" value={client.name} readOnly/></span>
-//                                                 </div>
-//                                                 <div className="details-wrapper">
-//                                                     <label>Category:</label>
-//                                                     <span>
-//                                                         <select value={category} onChange={(e)=>setCategory(e.target.value)}>
-//                                                             <option value="N/A">Select Category</option>
-//                                                             <option value="Accounting">Accounting</option>
-//                                                             <option value="Technical Support">Technical Support</option>
-//                                                             <option value="Billing Support">Billing Support</option>
-//                                                             <option value="Integration">Integration</option>
-//                                                         </select>
-//                                                     </span>
-//                                                 </div>                                      
-//                                             </Col>
-//                                             <Col md={6}>
-//                                                 <div className="details-wrapper">
-//                                                     <label>Enter Assignee ID:</label>
-//                                                     <span>
-//                                                         <select id="listAssignees" value={assigneeInfo} onChange={(e)=>setAssigneeInfo(e.target.value)}>
-//                                                             <option value="">Select Assignee</option>
-//                                                             {users ? (
-//                                                                 users.map((user) => (
-//                                                                     <option value={user._id} id={user._id}>{user.name}</option>
-//                                                                 ))
-//                                                             ) : (
-//                                                                 <h3>No Users Available</h3>
-//                                                             )}
-//                                                         </select>
-//                                                     </span>
-//                                                 </div> 
-//                                                 <div className="details-wrapper">
-//                                                         <label>Priority:</label>
-//                                                         <span>
-//                                                             <select value={priority} onChange={(e)=>setPriority(e.target.value)}>
-//                                                                 <option value="">Select Level</option>
-//                                                                 <option value="Low">Low</option>
-//                                                                 <option value="Medium">Medium</option>
-//                                                                 <option value="High">High</option>
-//                                                             </select>
-//                                                         </span>
-//                                                     </div>
-//                                                     <div className="details-wrapper">
-//                                                         <label>Status:</label>
-//                                                         <span>
-//                                                             <select value={status} onChange={(e)=>setStatus(e.target.value)}>
-//                                                                 <option value="">Select Status</option>
-//                                                                 <option value="Open">Open</option>
-//                                                                 <option value="Closed">Closed</option>
-//                                                             </select>
-//                                                         </span>
-//                                                     </div>
-//                                             </Col>
-//                                             <Col md={12}>
-//                                                 <div className="details-wrapper">
-//                                                     <label>Explain Issue:</label>
-//                                                     <span><textarea value={problem_description} onChange={(e)=>setProblem_description(e.target.value)}/></span>
-//                                                 </div>
-//                                             </Col>
-//                                         </Row>
-//                                     </div>
-//                                 </Col>
-//                             </Row>
-//                         </div>
+    const dispatch = useDispatch()
+    const [category, setCategory] = useState('')
+    const [problem_description, SetProblem_description] = useState('')
+    const [solution, setSolution] = useState('')
 
-//                         <div className="button-wrapper def-padding">
-//                             <button type="submit" className='update-btn'>Save</button>
-//                             <button onClick={onDeleteHandler} className="delete-btn">Delete</button>
-//                         </div>
+    const { loading, error, knowledgeBase } = useSelector( state => state.knowledgeBaseDetails)
+    const { created_by = {},  } = knowledgeBase || {}
 
-//                 </DashboardContainer>
-//             </Form> 
-//         </div>
-//     )
-// }
-// export default KnowledgeBaseEditScreen
+    const { success:successUpdate }  = useSelector(state => state.knowledgeBaseUpdate)
+
+    useEffect(() => {
+        if(successUpdate) {
+            dispatch({ type: KNOWLEDGE_BASE_UPDATE_RESET})
+            history.push('/knowledge-base')  
+        } 
+        else {
+            if( !knowledgeBase.category || knowledgeBase._id !== knowledgeBasetId) {
+                dispatch(getKnowledgeBaseDetails(knowledgeBasetId))
+            } else {
+                setCategory(knowledgeBase.category)
+                SetProblem_description(knowledgeBase.problem_description)
+                setSolution(knowledgeBase.solution)
+            }
+        }
+        
+    },[dispatch, knowledgeBasetId, knowledgeBase, match, history, successUpdate])
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault()
+        dispatch(updateKnowledgeBase({ _id: knowledgeBasetId, category, problem_description, solution}))
+        history.push('/admin/knowledge-base')  
+    }
+
+    const onDeleteHandler = (e) => {
+        e.preventDefault()
+        dispatch(deleteKnowledgeBase(knowledgeBasetId))
+        history.push('/admin/knowledge-base')  
+    }
+
+    return (
+        <div className="edit-screen">
+            { loading ? (
+                	<Loader2/>
+            ) : error ? (
+                <Message variant='danger'>{error}</Message>
+            ) : (
+                <Form onSubmit={onSubmitHandler}>
+                <DashboardContainer>
+                    <div className="section-wrapper">
+                        <div className="blue-bkg-title def-padding">
+                            <span>Support Information</span>
+                            <div className="button-wrapper">
+                                <button type="submit" value="Update" className='update-btn'>Update</button>
+                                <button onClick={onDeleteHandler} className='delete-btn'>Delete</button>
+                            </div>
+                        </div>
+                        <div className="user-details def-padding">
+                            <Row>
+                                <Col md={6}>
+                                    <div className="details-wrapper">
+                                        <label>Category:</label>
+                                        <span>
+                                            <select value={category} onChange={(e)=>setCategory(e.target.value)}>
+                                                <option value="N/A">Select Category</option>
+                                                <option value="Accounting">Accounting</option>
+                                                <option value="Technical Support">Technical Support</option>
+                                                <option value="Billing Support">Billing Support</option>
+                                                <option value="Integration">Integration</option>
+                                            </select>
+                                        </span>
+                                    </div> 
+                                    <div className="details-wrapper">
+                                        <label>Issue:</label>
+                                        <textarea value={problem_description} onChange={(e)=>SetProblem_description(e.target.value)}/>
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <div className="details-wrapper">
+                                        <label>Solution:</label>
+                                        <textarea value={solution} onChange={(e)=>setSolution(e.target.value)}/>
+                                    </div>
+                                    <div className="details-wrapper">
+                                        <label>Date Created:</label>
+                                        <span>{date.format(new Date(knowledgeBase.createdAt), 'ddd, MMM DD YYYY')}</span>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </div>
+
+                    <div className="section-wrapper">
+                        <div className="blue-bkg-title def-padding">
+                            <span>Created by:</span>
+                        </div>
+                        <Row>
+                            <Col md={12}>
+                                <div className="table-wrapper def-padding">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Department</th>
+                                                <th>Mobile Number</th>
+                                            </tr>				
+                                            <tr key={created_by._id}>
+                                                <td>{created_by.name}</td>
+                                                <td>{created_by.email}</td>
+                                                <td>Sample Dept.</td>
+                                                <td>{created_by._id}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            </Col>
+                        </Row>
+                    </div>
+
+                </DashboardContainer>
+            </Form>
+            )}
+        </div>
+    )
+}
+export default KnowledgeBaseViewScreen

@@ -71,7 +71,7 @@ const SupportsResolvedScreen = ({match}) => {
                                             <div className="details-wrapper">
                                                 <label>Email:</label>
                                                 <span>{client.email}</span>
-                                            </div>  
+                                            </div> 
                                         </Col>
                                     </Row>
                                 </Col>

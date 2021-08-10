@@ -26,7 +26,7 @@ export const supportNotesReducer = (state = { notes: [] }, action) => {
    }
 }
 
-export const noteDeleteReducer = (state = { }, action) => {
+export const noteDeleteReducer = (state = {}, action) => {
    switch(action.type) {
           case NOTE_DELETE_REQUEST:
              return { loading: true }

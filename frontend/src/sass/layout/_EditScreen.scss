@@ -1,11 +1,20 @@
 .edit-screen {
-        
-    a {
-        display: block;
-        font-weight: 700;
-        color: $primary-color;
-        padding: 10px 20px;
-        text-align: right;
+    .button-wrapper {
+        place-content: flex-end;
+        a {
+            display: block;
+            font-weight: 700;
+            color: $primary-color;
+            padding: 10px 20px;
+            margin: 0 5px;
+        }
+    
+        button {
+            display: block;
+            padding: 15px 20px;
+            font-size: 17px;
+            margin: 0 5px;
+        }
     }
     
     .details-wrapper {
@@ -55,13 +64,6 @@
         &:focus {
             outline: none;
         }
-    }
-    button {
-        display: inline-block
-    }
-    .add-btn{
-        background-color: transparent;
-        padding: 0;
     }
     textarea {
         width: 100%;

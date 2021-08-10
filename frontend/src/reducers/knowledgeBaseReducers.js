@@ -1,4 +1,4 @@
-import { KNOWLEDGE_BASE_CREATE_FAIL, KNOWLEDGE_BASE_CREATE_REQUEST, KNOWLEDGE_BASE_CREATE_SUCCESS, KNOWLEDGE_BASE_DETAILS_FAIL, KNOWLEDGE_BASE_DETAILS_REQUEST, KNOWLEDGE_BASE_DETAILS_SUCCESS, KNOWLEDGE_BASE_LIST_FAIL, KNOWLEDGE_BASE_LIST_REQUEST, KNOWLEDGE_BASE_LIST_SUCCESS, KNOWLEDGE_BASE_UPDATE_FAIL, KNOWLEDGE_BASE_UPDATE_REQUEST, KNOWLEDGE_BASE_UPDATE_RESET, KNOWLEDGE_BASE_UPDATE_SUCCESS } from "../constants/knowledgeBaseConstant"
+import { KNOWLEDGE_BASE_CREATE_FAIL, KNOWLEDGE_BASE_CREATE_REQUEST, KNOWLEDGE_BASE_CREATE_SUCCESS, KNOWLEDGE_BASE_DELETE_FAIL, KNOWLEDGE_BASE_DELETE_REQUEST, KNOWLEDGE_BASE_DELETE_SUCCESS, KNOWLEDGE_BASE_DETAILS_FAIL, KNOWLEDGE_BASE_DETAILS_REQUEST, KNOWLEDGE_BASE_DETAILS_SUCCESS, KNOWLEDGE_BASE_LIST_FAIL, KNOWLEDGE_BASE_LIST_REQUEST, KNOWLEDGE_BASE_LIST_SUCCESS, KNOWLEDGE_BASE_UPDATE_FAIL, KNOWLEDGE_BASE_UPDATE_REQUEST, KNOWLEDGE_BASE_UPDATE_RESET, KNOWLEDGE_BASE_UPDATE_SUCCESS } from "../constants/knowledgeBaseConstant"
 
 export const knowledgeBaseListReducer = (state = { knowledgeBaseList: [] }, action) => {
     switch (action.type) {
@@ -53,3 +53,16 @@ export const knowledgeBaseCreateReducer = (state = {}, action) => {
           return state   
     }
   }
+
+export const knowledgeBaseDeleteReducer = (state = { }, action) => {
+   switch(action.type) {
+      case KNOWLEDGE_BASE_DELETE_REQUEST:
+         return { loading: true }
+      case KNOWLEDGE_BASE_DELETE_SUCCESS:
+         return  { loading: false, success: true }
+      case KNOWLEDGE_BASE_DELETE_FAIL:
+         return { loading: false, error: action.payload }  
+      default:
+         return state   
+   }
+}

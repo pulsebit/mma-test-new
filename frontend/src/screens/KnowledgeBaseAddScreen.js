@@ -4,9 +4,10 @@ import DashboardContainer from '../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { listUsers } from '../actions/userActions'
 import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
+import { KNOWLEDGE_BASE_CREATE_RESET } from '../constants/knowledgeBaseConstant'
 
 
-const KnowledgeBaseAddScreen = () => {
+const KnowledgeBaseAddScreen = ({history}) => {
 
     const dispatch = useDispatch()
     const [problem_description, setProblem_description] = useState('')
@@ -16,14 +17,20 @@ const KnowledgeBaseAddScreen = () => {
 
     const { users } = useSelector( state => state.userList)
 
+    const { success } = useSelector( state => state.knowledgeBaseCreate)
+
+    
+
     useEffect(() => {
         dispatch(listUsers())
+        
          
     }, [dispatch])
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
        dispatch(createKnowledgeBase(problem_description, solution, category, resolve_by))
+       history.push('/admin/knowledge-base')  
     }
     return (
         <div className="edit-screen">

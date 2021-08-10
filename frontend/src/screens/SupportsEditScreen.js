@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Col, Form, Row } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
-import { createSupport, deleteSupport, getSupportDetails, updateSupport } from '../actions/supportActions'
+import { deleteSupport, getSupportDetails, updateSupport } from '../actions/supportActions'
 import { listUsers } from '../actions/userActions'
 import { SUPPORT_UPDATE_RESET } from '../constants/supportConstants'
+import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
 
 const SupportsEditScreen = ({match, history}) => {
     const supportId = match.params.id
@@ -15,6 +16,7 @@ const SupportsEditScreen = ({match, history}) => {
     const [status, setStatus] = useState('')
     const [category, setCategory] = useState('')
     const [assigneeInfo, setAssigneeInfo] = useState('')
+    const [solution, setSolution] = useState('')
 
     const { users } = useSelector( state => state.userList)
 
@@ -48,13 +50,22 @@ const SupportsEditScreen = ({match, history}) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateSupport({_id: supportId, problem_description, status, priority, category, assigneeInfo}))
+        dispatch(updateSupport({_id: supportId, problem_description, solution, status, priority, category, assigneeInfo}))
     }
 
     const onDeleteHandler = (e) => {
         e.preventDefault()
         dispatch(deleteSupport(supportId))
     }
+
+    const addToKnowledgeBase = (e) => {
+        e.preventDefault()
+        
+        dispatch(createKnowledgeBase(problem_description, problem_description, category, assigneeInfo))
+        dispatch(updateSupport({_id: supportId, problem_description, solution, status, priority, category, assigneeInfo}))
+    }
+
+    
 
     return (
         <div className="edit-screen">
@@ -130,10 +141,24 @@ const SupportsEditScreen = ({match, history}) => {
                                                     </div>
                                             </Col>
                                             <Col md={12}>
-                                                <div className="details-wrapper">
-                                                    <label>Explain Issue:</label>
-                                                    <span><textarea value={problem_description} onChange={(e)=>setProblem_description(e.target.value)}/></span>
-                                                </div>
+                                                
+                                                { status === 'Completed' ? (
+                                                    <>
+                                                        <div className="details-wrapper">
+                                                            <label>Explain Issue:</label>
+                                                            <textarea value={problem_description} onChange={(e)=>setProblem_description(e.target.value)}/>
+                                                        </div>
+                                                        <div className="details-wrapper">
+                                                            <label>Solution:</label>
+                                                            <textarea value={solution} onChange={(e)=>setSolution(e.target.value)}/>
+                                                        </div>
+                                                    </>
+                                                ) : (
+                                                    <div className="details-wrapper">
+                                                        <label>Explain Issue:</label>
+                                                        <textarea value={problem_description} onChange={(e)=>setProblem_description(e.target.value)}/>
+                                                    </div>
+                                                )}
                                             </Col>
                                         </Row>
                                     </div>
@@ -142,7 +167,14 @@ const SupportsEditScreen = ({match, history}) => {
                         </div>
 
                         <div className="button-wrapper def-padding">
-                            <button type="submit" className='update-btn'>Save</button>
+                            { status === 'Completed' ? (
+                                <>
+                                    <button onClick={addToKnowledgeBase}className='add-btn'>Save and Add to Knowledge Base</button>
+                                    <button type="submit" className='update-btn'>Save Only</button>
+                                </>
+                            ) : (
+                                <button type="submit" className='update-btn'>Save</button>
+                            )}
                             <button onClick={onDeleteHandler} className="delete-btn">Delete</button>
                         </div>
 

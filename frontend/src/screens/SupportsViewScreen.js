@@ -10,6 +10,7 @@ import Message from '../components/Message'
 //import Loader from '../components/Loader'
 import Loader2 from '../components/Loader2'
 import AddNote from '../components/AddNote'
+import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
 
 
 
@@ -31,9 +32,9 @@ const SupportsViewScreen = ({match}) => {
         
     },[dispatch, supportId])
 
-    const addNotehandler = (e) => {
+    const addToKnowledgeBase = (e) => {
         e.preventDefault()
-
+        dispatch(createKnowledgeBase(support.problem_description, support.solution, support.category, assignee._id))
     }
 
     return (
@@ -49,7 +50,13 @@ const SupportsViewScreen = ({match}) => {
                             <span>Support Information</span>
                             <div className="button-wrapper">
                                 <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
-                                <NavLink to={`/admin/supports-resolve/${support._id}/`} className="update-btn">Resolve</NavLink>
+                                { support.status === 'Completed' ? (
+                                    <>
+                                        <button onClick={addToKnowledgeBase}className='update-btn'>Add to Knowledge Base</button>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
                             </div>
                         </div>
                         <div className="user-details def-padding">

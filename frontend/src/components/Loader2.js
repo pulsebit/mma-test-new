@@ -13,9 +13,9 @@ const Loader2 = () => {
             <Loader type="Hearts" color="#00BFFF" height={80} width={80} />
             <Loader type="Oval" color="#00BFFF" height={80} width={80} />
             <Loader type="Puff" color="#00BFFF" height={80} width={80} />
-            <Loader type="Rings" color="#00BFFF" height={80} width={80} />
-            <Loader type="TailSpin" color="#3777FF" height={80} width={80} /> */}
-            <Loader type="ThreeDots" color="#3777FF" height={80} width={80} className="loader2"/>
+            <Loader type="Rings" color="#00BFFF" height={80} width={80} /> */}
+            <Loader type="TailSpin" color="#3777FF" height={80} width={80} />
+            {/* <Loader type="ThreeDots" color="#3777FF" height={80} width={80} className="loader2"/> */}
         </div>
     )
 }

@@ -17,6 +17,7 @@ const KnowledgeBaseViewScreen = ({match}) => {
     const dispatch = useDispatch()
 
     const { loading, error, knowledgeBase } = useSelector( state => state.knowledgeBaseDetails)
+    const { created_by = {},  } = knowledgeBase || {}
 
     useEffect(() => {
         dispatch(getKnowledgeBaseDetails(knowledgeBastId))
@@ -42,13 +43,13 @@ const KnowledgeBaseViewScreen = ({match}) => {
                             <Row>
                                 <Col md={6}>
                                     <div className="details-wrapper">
-                                        <label>Issue:</label>
-                                        <textarea value={knowledgeBase.problem_description} readOnly/>
-                                    </div>
-                                    <div className="details-wrapper">
                                         <label>Category:</label>
                                         <span>{knowledgeBase.category}</span>
                                     </div> 
+                                    <div className="details-wrapper">
+                                        <label>Issue:</label>
+                                        <textarea value={knowledgeBase.problem_description} readOnly/>
+                                    </div>
                                 </Col>
                                 <Col md={6}>
                                     <div className="details-wrapper">
@@ -56,55 +57,8 @@ const KnowledgeBaseViewScreen = ({match}) => {
                                        <textarea value={knowledgeBase.solution} readOnly/>
                                     </div>
                                     <div className="details-wrapper">
-                                        <label>Full Name:</label>
-                                        <span>{knowledgeBase._id}</span>
-                                    </div> 
-                                </Col>
-                                <Col md={10}>
-                                    <Row>
-                                        <Col md={6}>
-                                            
-                                            <div className="details-wrapper">
-                                                <label>Full Name:</label>
-                                                <span>{knowledgeBase._id}</span>
-                                            </div>                                          
-                                        </Col>
-                                        <Col md={6}>
-                                            <div className="details-wrapper">
-                                                <label>Mobile number:</label>
-                                                <span>{knowledgeBase._id}</span>
-                                            </div>
-                                            <div className="details-wrapper">
-                                                <label>Email:</label>
-                                                <span>{knowledgeBase._id}</span>
-                                            </div>  
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col md={6}>
-                                    <div className="details-wrapper">
-                                        <label>Category:</label>
-                                        <span>{knowledgeBase._id}</span>
-                                    </div>
-                                    <div className="details-wrapper">
-                                        <label>Priority:</label>
-                                        <span>{knowledgeBase._id}</span>
-                                    </div>
-                                    </Col>
-                                    <Col md={6}>
-                                    <div className="details-wrapper">
-                                        <label>Status:</label>
-                                        <span>{knowledgeBase._id}</span>
-                                    </div>
-                                    <div className="details-wrapper">
                                         <label>Date Created:</label>
-                                        <span>{date.format(new Date(knowledgeBase._id), 'ddd, MMM DD YYYY')}</span>
-                                    </div>
-                                </Col>
-                                <Col md={12}>
-                                    <div className="details-wrapper">
-                                        <label>Issue:</label>
-                                        <span><textarea value={knowledgeBase._id} readOnly/></span>
+                                        <span>{date.format(new Date(knowledgeBase.createdAt), 'ddd, MMM DD YYYY')}</span>
                                     </div>
                                 </Col>
                             </Row>
@@ -113,7 +67,7 @@ const KnowledgeBaseViewScreen = ({match}) => {
 
                     <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
-                            <span>Assignee</span>
+                            <span>Created by:</span>
                         </div>
                         <Row>
                             <Col md={12}>
@@ -126,39 +80,11 @@ const KnowledgeBaseViewScreen = ({match}) => {
                                                 <th>Department</th>
                                                 <th>Mobile Number</th>
                                             </tr>				
-                                            <tr key={knowledgeBase._id}>
-                                                <td>{knowledgeBase._id}</td>
-                                                <td>{knowledgeBase._id}</td>
+                                            <tr key={created_by._id}>
+                                                <td>{created_by.name}</td>
+                                                <td>{created_by.email}</td>
                                                 <td>Sample Dept.</td>
-                                                <td>{knowledgeBase._id}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> 
-                            </Col>
-                        </Row>
-                    </div>
-
-                    <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Created by: </span>
-                        </div>
-                        <Row>
-                            <Col md={12}>
-                                <div className="table-wrapper def-padding">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-                                                <th>Mobile Number</th>
-                                            </tr>				
-                                            <tr>
-                                                <td>{knowledgeBase._id}</td>
-                                                <td>{knowledgeBase._id}</td>
-                                                <td>Sample Dept.</td>
-                                                <td>{knowledgeBase._id}</td>
+                                                <td>{created_by._id}</td>
                                             </tr>
                                         </tbody>
                                     </table>

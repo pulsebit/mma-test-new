@@ -1,10 +1,10 @@
 import express from 'express'
 const router = express.Router()
-import { createKnowledgeBase, getKnowledgeBase, getKnowledgeBaseById, updateKnowledgeBase } from '../controllers/knowledgeBaseController.js'
+import { createKnowledgeBase, deleteKnowledgeBase, getKnowledgeBase, getKnowledgeBaseById, updateKnowledgeBase } from '../controllers/knowledgeBaseController.js'
 
 
 router.route('/').post(createKnowledgeBase).get(getKnowledgeBase)
 
-router.route('/:id').put(updateKnowledgeBase).get(getKnowledgeBaseById)
+router.route('/:id').put(updateKnowledgeBase).get(getKnowledgeBaseById).delete(deleteKnowledgeBase)
 
 export default router
