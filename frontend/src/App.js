@@ -55,6 +55,10 @@ import Settings from './screens/Settings'
 import ClientPortal from './screens/clients/ClientPortal'
 import ClientKnowledgebase from './screens/clients/ClientKnowledgebase'
 
+
+import ClientServices from './screens/clients/ClientServices'
+import ClientServicesView from './screens/clients/ClientServicesView'
+
 import ClientServicesBasic from './screens/clients/ClientServicesBasic'
 import ClientServicesSilver from './screens/clients/ClientServicesSilver'
 import ClientServicesGold from './screens/clients/ClientServicesGold'
@@ -145,6 +149,11 @@ function App() {
 
               <Route path='/portal' component={ClientPortal} exact />
               <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
+
+              
+              <Route path='/portal/services/' component={ClientServices} exact />
+              <Route path='/portal/services/:id' component={ClientServicesView} exact />
+              
               <Route path='/portal/services/basic' component={ClientServicesBasic}  />
               <Route path='/portal/services/silver' component={ClientServicesSilver}  />
               <Route path='/portal/services/gold' component={ClientServicesGold}  />

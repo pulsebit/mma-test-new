@@ -15,6 +15,7 @@ const UserViewScreen = ({ match }) => {
   
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
+    console.log(user)
 
     useEffect(() => {
        dispatch(getUserDetails(userId))

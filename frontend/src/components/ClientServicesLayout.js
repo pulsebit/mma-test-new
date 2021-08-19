@@ -64,13 +64,9 @@ const ClientServicesLayout = ({children}) => {
             </div>
             
             <div className="section-wrapper pad-lr-60 mar-t-n-50 ">
-                <ClientServicesTab/>
+                
                 <div className="main-content def-padding">
                     {children}
-                    <div className="button-wrapper def-padding">
-                        <button type="submit" value="Update" className='update-btn'>Update</button>
-                        <button className='delete-btn'>Delete</button>  
-                    </div>
                 </div>
             </div>
 

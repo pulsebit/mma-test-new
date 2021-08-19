@@ -43,7 +43,17 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
-  }
+  },
+   planCreated: [
+     {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: 'PaymentPlan'
+     }
+   ],
+   subscribedPlan: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PaymentPlan'
+   }
 }, {
   timestamps: true
 })

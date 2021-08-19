@@ -88,6 +88,9 @@ const PlanAddScreen = () => {
                             </div>
                         </Col>
                     </Row> 
+                    <div className="button-wrapper def-padding">
+                        <button type="submit" value="Update" className='update-btn'>Submit</button>
+                    </div>
                 </div>
                 
                 </Form>

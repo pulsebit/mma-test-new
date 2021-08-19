@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Container, Nav, Row, Col, Navbar, NavDropdown  } from 'react-bootstrap'
 import { logout } from '../actions/userActions'
@@ -8,19 +9,31 @@ import SiteLogo from '../assets/images/Logo.png'
 
 const Header = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   
   const userLogin = useSelector((state) => state.userLogin)
-  const {userInfo} = userLogin
+  const { userInfo } = userLogin
+  const { isAdmin = {} } = userInfo || {}
+
+  const Dashboard = () => {
+	  if (isAdmin == true ){
+		  return (
+			<LinkContainer to='/admin'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
+		  )
+	  } else if (isAdmin == false ){ 
+		  return (
+			<LinkContainer to='/portal/reports'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
+		)
+	  } 
+	
+  }
 
   const logoutHandler = () => {
-  	 console.log('logout')
-  	 dispatch(logout())
-
-  	 if(!userInfo) {
-
-  	 }
+	console.log('logout')
+	dispatch(logout())
+	 history.push("/");
   }
- 
+  
 	return (
 		<header>
 		 	<Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
@@ -36,7 +49,7 @@ const Header = () => {
 						    <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
 								<LinkContainer exact={true} to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
 								{userInfo ? (	
-										<LinkContainer to='/admin'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
+										<Dashboard/ >
 								) : (<div></div>) }
 								{userInfo ? (
 										<NavDropdown title={userInfo.name} id='username'>
@@ -63,6 +76,8 @@ const Header = () => {
 			</Navbar>
 		</header>
 	)
+  
+	
 }
 
 export default Header

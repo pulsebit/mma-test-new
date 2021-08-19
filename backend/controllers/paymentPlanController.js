@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import PaymentPlan from '../models/paymentPlanModel.js'
-import Product from '../models/productModel.js'
+import User from '../models/userModel.js'
 
 
 
@@ -27,6 +27,8 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
   // newPlan.product.push(product) 
 
   const paymentPlan = newPlan.save() 
+
+  User.planCreated.push(paymentPlan._id);
 
 
   if(paymentPlan) {
