@@ -1,17 +1,42 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { listUsers }  from '../actions/userActions'
+import { listSupports } from '../actions/supportActions'
+import { listProducts } from '../actions/productActions'
+import { listPaymentPlans } from '../actions/paymentPlanAction'
 
 import { Row , Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-
 import DashboardContainer from '../components/DashboardContainer'
-import Chart from '../assets/images/chart.png'
-import PieChart from '../assets/images/pie-chart.png'
-import Chart2 from  '../assets/images/chart2.jpg'
-import LineChart from '../components/LineChart'
+import Loader2 from '../components/Loader2'
+
+
+
 
 const AdminDashboard = () => {
+    const dispatch = useDispatch()
+
+    const { users = {} } = useSelector( state => state.userList)
+    const countUsers = users.length
+
+    const { supports = {} } = useSelector( state => state.supportList)
+    const countSupports = supports.length
+
+    const { products = {} } = useSelector( state => state.productList)
+    const countProducts = products.length
+
+    const { paymentPlans = {} } = useSelector(state => state.paymentPlanList)
+    const  countPaymentPlans= paymentPlans.length
+
+    useEffect(() => {
+        dispatch(listUsers())
+        dispatch(listSupports())
+        dispatch(listProducts()) 
+        dispatch(listPaymentPlans())
+         
+    }, [dispatch])
     
     return (
         <div> 
@@ -24,7 +49,13 @@ const AdminDashboard = () => {
                                     <span>Total Clients</span>
                                 </div>
                                 <div className="content-wrapper def-padding">
-                                    <span className="number">1,054</span>
+                                    <span className="number">
+                                        { !countUsers ? (
+                                            <Loader2 />
+                                        ) : (
+                                            countUsers
+                                        ) }
+                                    </span>
                                 </div>
                             </div>
                         </Col>
@@ -34,27 +65,45 @@ const AdminDashboard = () => {
                                     <span>Total Supports</span>
                                 </div>
                                 <div className="content-wrapper def-padding">
-                                    <span className="number">1,054</span>
+                                    <span className="number">
+                                        { !countSupports ? (
+                                            <Loader2 />
+                                        ) : (
+                                            countSupports
+                                        ) }
+                                    </span>
                                 </div>
                             </div>
                         </Col>
                         <Col md={3}>
                             <div className="section-wrapper">
                                 <div className="blue-bkg-title def-padding">
-                                    <span>Total Payments</span>
+                                    <span>Total Products</span>
                                 </div>
                                 <div className="content-wrapper def-padding">
-                                    <span className="number">1,054</span>
+                                    <span className="number">
+                                        { !countProducts ? (
+                                            <Loader2 />
+                                        ) : (
+                                            countProducts
+                                        ) }
+                                    </span>
                                 </div>
                             </div>
                         </Col>
                         <Col md={3}>
                             <div className="section-wrapper">
                                 <div className="blue-bkg-title def-padding">
-                                    <span>Pending payments</span>
+                                    <span>Total Payment Plans</span>
                                 </div>
                                 <div className="content-wrapper def-padding">
-                                    <span className="number">1,054</span>
+                                    <span className="number">
+                                        { !countPaymentPlans ? (
+                                            <Loader2 />
+                                        ) : (
+                                            countPaymentPlans
+                                        ) }
+                                    </span>
                                 </div>
                             </div>
                         </Col>

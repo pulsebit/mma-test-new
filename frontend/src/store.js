@@ -1,21 +1,46 @@
 import {createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension' 
-import { productListReducer, productDetailsReducer } from './reducers/productReducers'
+import { productCreateReducer, productListReducer, productDetailsReducer, productUpdateReducer, productDeleteReducer } from './reducers/productReducers'
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
-import { supportListReducer } from './reducers/supportReducers'
+import { supportCreateReducer, supportDeleteReducer, supportDetailsReducer, supportListReducer, suppportUpdateReducer } from './reducers/supportReducers'
+import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer} from './reducers/paymentPlanReducers'
+import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
+import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './reducers/noteReducers'
+import { knowledgeBaseCreateReducer, knowledgeBaseDeleteReducer, knowledgeBaseDetailsReducer, knowledgeBaseListReducer, knowledgeBaseUpdateReducer } from './reducers/knowledgeBaseReducers'
 
 
 const reducer = combineReducers({
-	 productList: productListReducer,
-	 productDetails: productDetailsReducer,
-	 userLogin: userLoginReducer,
-	 userList: userListReducer,
-	 userDelete: userDeleteReducer,
-	 userDetails: userDetailsReducer,
-	 userUpdate: userUpdateReducer,
-	 supportList: supportListReducer
-	 
+	productList: productListReducer,
+	productDetails: productDetailsReducer,
+	productCreate: productCreateReducer,
+	productUpdate: productUpdateReducer,
+	productDelete: productDeleteReducer,
+	tempProducts: tempProductHolderReducer,
+	userLogin: userLoginReducer,
+	userList: userListReducer,
+	userDelete: userDeleteReducer,
+	userDetails: userDetailsReducer,
+	userUpdate: userUpdateReducer,
+	supportCreate: supportCreateReducer,
+	supportList: supportListReducer,
+	supportDetails: supportDetailsReducer,
+	suppportUpdate: suppportUpdateReducer,
+	supportDelete: supportDeleteReducer,
+	noteCreate: noteCreateReducer,
+	supportNotes: supportNotesReducer,
+	noteDelete: noteDeleteReducer,
+	paymentPlanList: paymentPlanListReducer,
+	paymentPlanDetails: paymentPlanDetailsReducer,
+	paymentPlanDelete :paymentPlanDeleteReducer,
+	paymentPlanUpdate :paymentPlanUpdateReducer,
+	paymentPlanCreate: paymentPlanCreateReducer,
+	paymentPlanProductUpdate: paymentPlanProductUpdateReducer,
+	knowledgeBaseList: knowledgeBaseListReducer,
+	knowledgeBaseCreate: knowledgeBaseCreateReducer,
+	knowledgeBaseUpdate: knowledgeBaseUpdateReducer,
+	knowledgeBaseDetails: knowledgeBaseDetailsReducer,
+	knowledgeBaseDelete: knowledgeBaseDeleteReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

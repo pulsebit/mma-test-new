@@ -12,14 +12,15 @@ import {
 } from '../controllers/userController.js'
 import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 
-
-router.route('/').post(registerUser).get(protect, adminOnly, getUsers)
+//get(protect, adminOnly, getUsers)
+router.route('/').post(registerUser).get(getUsers)
 router
-     .route('/:id')
-     .get(protect, adminOnly, getUserById)
-		 .put(protect, adminOnly, updateUser)
-		 .delete(protect, adminOnly, deleteUser)
-		 .patch(protect, updateUserPassword)
+	.route('/:id')
+	.get(protect, adminOnly, getUserById)
+	//.put(protect, adminOnly, updateUser)
+	.put(updateUser)
+	.delete(protect, adminOnly, deleteUser)
+	.patch(protect, updateUserPassword)
 
 router.post('/login', authUser)
 router.route('/profile').get(protect, getUserProfile)

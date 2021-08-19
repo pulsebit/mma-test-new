@@ -37,22 +37,46 @@ header {
   background: $primary-bg-color;
 }
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   margin-bottom: 40px;
+
+  @include resposive (tablet){
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
 }
+
+h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+
+  @include resposive (tablet){
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+}
+
 h4{
   font-size: 15px;
   font-weight: 400;
   margin-bottom: 10px;
 }
+
 h5{
   font-size: 12px;  
   color: #222222b0;
 }
+
 h6{
   margin-bottom: 5px;
   font-size: 12px;
 }
+
 p{
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+span {
   line-height: 1.5;
 }

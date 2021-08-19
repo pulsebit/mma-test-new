@@ -36,9 +36,7 @@ const UserViewScreen = ({ match }) => {
                     <Row className="def-padding">
                     <Col md={2}>
                         <div className="img-wrapper">
-                            <div className="inner-img-wrapper">
-                                <img className="" src={defaultImage} alt='' />
-                            </div>
+                            <img className="" src={defaultImage} alt='' />
                         </div>
                     </Col>
                     <Col md={10}>

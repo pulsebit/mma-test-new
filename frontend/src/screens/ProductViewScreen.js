@@ -1,11 +1,32 @@
-import React from 'react'
+import React, {useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
+import {Row, Col, Container} from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 import Seo from '../assets/images/seo.jpg'
+import Product from '../components/Product'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import { getProductDetails } from '../actions/productActions'
+import { getUserDetails } from '../actions/userActions'
 
 
-const ProductViewScreen = () => {
+const ProductViewScreen = ({match}) => {
+    const productId = match.params.id
+    const dispatch = useDispatch()
+
+    const productDetails = useSelector(state => state.productDetails)
+    const { loading, product, error } = productDetails
+    
+    useEffect(() => {
+        dispatch(getProductDetails(productId))
+    },[dispatch, match])
+
+    
+    function descriptionMarkup() {
+        return {__html: product.description};
+    }
+
     return (
         <div className="view-screen">
             <DashboardContainer>
@@ -16,9 +37,7 @@ const ProductViewScreen = () => {
                     <Row>
                         <Col md={2}>
                             <div className="img-wrapper">
-                                <div className="inner-img-wrapper ">
-                                    <img className="" src={Seo} alt='' />
-                                </div>
+                                <img className="" src={product.image} alt='' />
                             </div>
                         </Col>
                         <Col md={10}>
@@ -27,11 +46,11 @@ const ProductViewScreen = () => {
                                     <Col md={6}>
                                         <div className="details-wrapper">
                                             <label>ID:</label>
-                                            <span>2</span>
+                                            <span>{productId}</span>
                                         </div>
                                         <div className="details-wrapper">
                                             <label>Name:</label>
-                                            <span>SEO</span>
+                                            <span>{product.name}</span>
                                         </div>
                                         <div className="details-wrapper">
                                             <label>SKU:</label>
@@ -39,17 +58,17 @@ const ProductViewScreen = () => {
                                         </div>
                                         <div className="details-wrapper">
                                             <label>Date Added:</label>
-                                            <span>11/22/2021</span>
+                                            <span>{product.createdAt}</span>
                                         </div>
                                     </Col>
                                     <Col md={6}>
                                     <div className="details-wrapper">
                                             <label>Category:</label>
-                                            <span>Web Development</span>
+                                            <span>{product.category}</span>
                                         </div>
                                         <div className="details-wrapper">
                                             <label>Regular Price:</label>
-                                            <span>599 AUD</span>
+                                            <span>${product.price}</span>
                                         </div>
                                         <div className="details-wrapper">
                                             <label>Sale Price:</label>
@@ -63,7 +82,7 @@ const ProductViewScreen = () => {
                             <div className="user-details def-padding">
                                 <div className="details-wrapper">
                                     <label>Description:</label>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</p>
+                                    <div dangerouslySetInnerHTML={descriptionMarkup()} />
                                 </div>
                             </div>
                         </Col>
@@ -75,7 +94,7 @@ const ProductViewScreen = () => {
                                 </div>
                                 <div className="details-wrapper">
                                     <label>Created by:</label>
-                                    <span>July Cabigas</span>
+                                    <span></span>
                                 </div>
                             </div>
                         </Col>
@@ -83,8 +102,7 @@ const ProductViewScreen = () => {
                 </div>
 
                 <div className="button-wrapper def-padding">
-                    <NavLink to="/admin/product/edit" className="edit-btn">Edit Product</NavLink>
-                    <input type="submit" value="Delete" className="delete-btn"/>
+                    <NavLink to={`/admin/product-edit/${product._id}/`} className="edit-btn">Edit Product</NavLink>
                 </div>
                     
             </DashboardContainer>

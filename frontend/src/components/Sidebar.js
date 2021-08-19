@@ -31,34 +31,11 @@ const Sidebar = () => {
                 title: 'Supports',
                 itemId: '/admin/supports',
                 elemBefore: () => <FontAwesomeIcon icon={faTicketAlt} />,
-                subNav: [
-                  {
-                    title: 'Acounting',
-                    itemId: '/admin/supports/acounting',
-                  },
-                  {
-                    title: 'Technical Support',
-                    itemId: '/admin/supports/technical',
-                  },
-                  {
-                    title: 'Billing Support',
-                    itemId: '/admin/supports/billing',
-                  },
-                  {
-                    title: 'integration',
-                    itemId: '/management/teams',
-                  },
-                ],
               },
               {
                 title: 'User',
                 itemId: '/admin/users',
                 elemBefore: () => <FontAwesomeIcon icon={faUserAlt} />,
-              },
-              {
-                title: 'Permissions',
-                itemId: '/admin/permissions',
-                elemBefore: () => <FontAwesomeIcon icon={faKey} />,
               },
               {
                 title: 'Products',
@@ -75,20 +52,6 @@ const Sidebar = () => {
                 title: 'Knowledge Base',
                 itemId: '/admin/knowledge-base',
                 elemBefore: () => <FontAwesomeIcon icon={faBrain} />,
-                subNav: [
-                  {
-                    title: 'API',
-                    itemId: '/admin/knowledge-base/api',
-                  },
-                  {
-                    title: 'Traking',
-                    itemId: '/admin/knowledge-base/tracking',
-                  },
-                  {
-                    title: 'Acount',
-                    itemId: '/admin/knowledge-base/acount',
-                  },
-                ],
               },
               {
                 title: 'Payment Plans',
@@ -97,7 +60,7 @@ const Sidebar = () => {
               },
               {
                 title: 'Settings',
-                itemId: '/admin/settings',
+                itemId: '/admin/settings/account',
                 elemBefore: () => <FontAwesomeIcon icon={faCogs} />,
               },
             ]}

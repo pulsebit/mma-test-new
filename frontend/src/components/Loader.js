@@ -8,7 +8,6 @@ const Loader = () => {
         role="status"
         style={{
         	width: '100px',
-        	width: '100px',
         	margin: 'auto',
         	display: 'block',
         }}

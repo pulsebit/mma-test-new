@@ -1,0 +1,21 @@
+.per-menu {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    background-color: #e2e2e2;
+
+    li {
+        margin-right: 15px;
+
+        a {
+        font-weight: 700;
+        color: #1b3b80;
+        font-size: 12px;
+        padding: 3px 0;
+        }
+
+        .active {
+        border-bottom: 2px solid #3777FF;
+        }
+    }
+}

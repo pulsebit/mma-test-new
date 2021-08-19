@@ -1,0 +1,46 @@
+.box {
+    padding: 40px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+
+    @include resposive(tablet){
+        padding: 20px 20px;
+    }
+
+    
+
+    .box-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 30px;
+
+        @include resposive(tablet){
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+    }
+
+    p {
+        line-height: 2;
+    }
+
+    .icon-wrapper {
+        font-size: 70px;
+        text-align: center;
+        margin-bottom: 40px;
+
+        @include resposive(tablet){
+            font-size: 70px;
+            margin-bottom: 30px;
+        }
+    }
+}
+
+//// PROFILE BOX
+.c-box {
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #00000033;
+}
+

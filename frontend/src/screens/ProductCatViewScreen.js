@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
-import Seo from '../assets/images/seo.jpg'
 
 
 const ProductCatViewScreen = () => {

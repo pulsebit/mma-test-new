@@ -69,10 +69,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
    if(user) {
    	  res.json({
-          _id: user._id,
-   				name: user.name,
-   				email: user.email, 
-   				isAdmin: user.isAdmin, 
+        _id: user._id,
+   		name: user.name,
+   		email: user.email, 
+   		isAdmin: user.isAdmin, 
    	  })
    } else {
 	   	res.status(404)
@@ -153,7 +153,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 
-// @desc   Update usr
+// @desc   Update user
 // @route  PUT /api/users/:id
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {

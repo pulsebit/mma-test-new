@@ -1,5 +1,6 @@
 .button-wrapper {
     display: flex;
+    align-items: center;
 }
 
 .custom-link-button {
@@ -20,8 +21,9 @@
     }
 }
 
+// <NavLink to='' className="view-btn">View</NavLink>
 .view-btn {
-    background-color: #3777FF;
+    background-color: $primary-color;
     padding: 5px 20px;
     font-size: 17px;
     color: #fff;
@@ -41,12 +43,12 @@
 
 .edit-btn {
     width: max-content;
-    padding: 15px 20px;
+    padding: 15px 20px !important;
     border-radius: 5px;
     border: none;
     background-color: #fcae17;
-    color: #fff;
-    font-weight: 400;
+    color: #fff !important;
+    font-weight: 400 !important;
     font-size: 17px;
     display: inline-block;
     margin-left: auto;
@@ -81,11 +83,10 @@
     width: max-content !important;
     font-size: 17px;
     border-radius: 5px;
-    font-weight: 400;
-    color: #fff;
-    padding: 15px 20px;
+    font-weight: 400 !important;
+    color: #fff !important;
+    padding: 15px 20px !important;
     background-color: #4CAF50;
-    width: max-content !important;
     margin-left: auto;
     border: none;
     position: relative;
@@ -95,5 +96,91 @@
         background-color: #3e9241;
         cursor: pointer;
         color: #fff;
+        font-weight: 400;
+    }
+}
+
+.add-btn{
+    width: max-content !important;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 400;
+    color: #fff;
+    padding: 10px;
+    background-color: #fcae17;
+    width: max-content !important;
+    margin-left: auto;
+    border: none;
+    position: relative;
+    height: max-content;
+    white-space: nowrap;
+    
+    &:hover{
+        background-color: #d09013;
+        cursor: pointer;
+        color: #fff;
+    }
+}
+
+.upload-btn {
+    height: 30px;
+    width: 30px;
+    
+    .choose-file {
+        position: absolute;
+        opacity: 0;
+        height: 30px;
+        width: 30px;
+    }
+
+    .camera {
+        font-size: 30px;
+        color: $tertiary-color;
+    }
+}
+
+.search-wrapper {
+    border: 1px solid #22222226 ;
+    padding: 10px 25px;
+    margin: 50px auto;
+    border-radius: 25px;
+
+    @include resposive(tablet){
+        padding: 5px;
+        border-radius: 15px;
+    }
+
+    input {
+        border-radius: 10px;
+        width: calc(100% - 90px);
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .search-btn{
+        font-size: 17px;
+        border-radius: 5px;
+        font-weight: 400;
+        color: #fff;
+        background-color: #fcae17;
+        margin-left: auto;
+        border: 2px solid #fcae17;
+        position: relative;
+        padding: 10px 0;
+        width: 80px;
+        margin-left: 10px;
+
+        @include resposive(tablet){
+            font-size: 15px;
+        }
+        
+        &:hover{
+            background-color: #d09013;
+            cursor: pointer;
+            color: #fff;
+        }
     }
 }
