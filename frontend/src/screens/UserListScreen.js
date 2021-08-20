@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
-import { listUsers }  from '../actions/userActions'
+import { listUsers }  from 'store/actions/userActions'
 
 const UserListScreen = ({ history }) => {
    const dispatch = useDispatch()

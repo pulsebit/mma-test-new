@@ -85,9 +85,18 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route  GET /api/users/
 // @access Private
 const getUsers = asyncHandler(async (req, res) => {
-  
-   const users = await User.find({})
-   res.json(users)
+	const page = req.query.page || 1;
+	const search = req.query.search;
+	const match = {
+		_id: { $ne: ['$_id', req.user._id] }, 
+		isAdmin: false,
+	};
+	if (search) match.$text  = { $search: search }
+	const userAggregate = User.aggregate([
+		{ $match: match }
+	]);
+	const user = await User.aggregatePaginate(userAggregate, { page, limit: process.env.LIMIT });
+	res.json(user);
 })
 
 // @desc   Update User Profile

@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader2 from '../components/Loader2'
 import DashboardContainer from '../components/DashboardContainer'
-import { listSupports } from '../actions/supportActions'
+// import { listSupports } from '../actions/supportActions'
 import date from 'date-and-time'
 
+import { listSupports } from 'store/actions/supportActions'
 
 const SupportsListScreen = () => {
     const dispatch = useDispatch()

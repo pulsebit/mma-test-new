@@ -14,6 +14,11 @@ import Loader2 from '../components/Loader2'
 
 
 
+import Chart from '../assets/images/chart.png'
+import PieChart from '../assets/images/pie-chart.png'
+import Chart2 from  '../assets/images/chart2.jpg'
+import LineChart from '../components/LineChart'
+import Layout from 'components/Layout'
 
 const AdminDashboard = () => {
     const dispatch = useDispatch()
@@ -40,7 +45,7 @@ const AdminDashboard = () => {
     
     return (
         <div> 
-            <DashboardContainer>
+            <Layout>
                 <div className="c-mar-side-neg-15">
                     <Row>
                         <Col md={3}>
@@ -175,7 +180,7 @@ const AdminDashboard = () => {
                             </Row>
                         </div>
                     </div>
-            </DashboardContainer>
+            </Layout>
         </div>
     );
 }

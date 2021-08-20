@@ -5,8 +5,8 @@ import {Container, Row, Col } from 'react-bootstrap'
 const Footer = () => {
 	return (
 		<>
-			<Container fluid><hr className="footer-hr"/></Container>
 			<footer className='site-footer'>
+				<hr className="footer-hr"/>
 				<Container fluid>
 					<Row>
 						<Col sm={12} md={8} className="copyright">

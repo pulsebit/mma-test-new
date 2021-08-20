@@ -1,0 +1,18 @@
+:root {
+  --header-height: 81px;
+  --sidebar-width: 290px;
+
+  --profile-sidebar-width: 250px;
+}
+
+html.light {
+  --sidebar-link-color: #68707c;
+}
+
+body {
+  font-size: 16px;
+}
+
+.btn {
+  font-weight: 500;
+}

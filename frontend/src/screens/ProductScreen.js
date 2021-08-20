@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getProductDetails } from '../actions/productActions'
+// import { getProductDetails } from '../actions/productActions'
+import { listProductDetails } from 'store/actions/productActions'
 
 
 const ProductScreen = ({ match }) => {
@@ -12,9 +13,9 @@ const ProductScreen = ({ match }) => {
   const productDetails = useSelector(state => state.productDetails)
   const {loading, error, product } = productDetails
 
-  useEffect(() => {
-    dispatch(getProductDetails(match.params.id))
-  }, [dispatch, match])
+  // useEffect(() => {
+  //   dispatch(getProductDetails(match.params.id))
+  // }, [dispatch, match])
 
   return (
     <div>

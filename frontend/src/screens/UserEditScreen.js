@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import  { getUserDetails, updateUser, deleteUser } from 'store/actions/userActions.js'
 import { Row, Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +9,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
 import User from '../assets/images/user.png'
-import { USER_UPDATE_RESET }  from '../constants/userConstants'
+import { USER_UPDATE_RESET }  from 'store/constants/userConstants'
 
 
 const UserEditScreen = ({ match, history }) => {

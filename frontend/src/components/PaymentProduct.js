@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { paymentPlanAddProduct } from '../actions/paymentPlanAction'
-import { listProducts } from '../actions/productActions'
+// import { listProducts } from '../actions/productActions'
 
 
 import { Row, Col } from 'react-bootstrap'
@@ -21,9 +21,9 @@ const PaymentProduct = ({id, includeProducts}) => {
     const { products } = useSelector( state => state.productList)
 
     
-    useEffect(() => {
-        dispatch(listProducts())
-    },[dispatch ])
+    // useEffect(() => {
+    //     dispatch(listProducts())
+    // },[dispatch ])
     
 
     const addProductHandler = (e) => {
