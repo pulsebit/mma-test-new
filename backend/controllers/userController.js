@@ -17,6 +17,17 @@ const authUser = asyncHandler(async (req, res) => {
    				email: user.email, 
    				isAdmin: user.isAdmin, 
    				token: generateToken(user._id),
+				mobile_no: user.mobile_no,
+				gender: user.gender,
+				birthdate: user.birthdate,
+				address: user.address,
+				state: user.state,
+				zipcode: user.zipcode,
+				country: user.country,
+				business_name: user.business_name,
+				isAdmin: user.isAdmin,
+				planCreated: user.planCreated,
+				subscribedPlan: user.subscribedPlan
         })
     } else {
     	res.status(401)
@@ -98,22 +109,22 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.user._id )
 
 	if(user) {
-			user.name = req.body.name || user.name
-			user.email = req.body.email || user.email
-      if(req.body.password) {
-				user.password = req.body.password
-			}
+		user.name = req.body.name || user.name
+		user.email = req.body.email || user.email
+		if(req.body.password) {
+			user.password = req.body.password
+		}
 
-			const updatedUser = await user.save()
-      
+		const updatedUser = await user.save()
 
-			res.json({ 	
-				     _id: updatedUser._id,
-					   name: updatedUser.name,
-				    email: updatedUser.email,
-				  isAdmin: updatedUser.isAdmin,
-					  token: generateToken(updatedUser._id)
-		 })
+
+		res.json({ 	
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+			token: generateToken(updatedUser._id)
+		})
 
 	} else {
 			res.status(404)

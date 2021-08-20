@@ -21,6 +21,7 @@ import SupportsListScreen from './screens/SupportsListScreen'
 import SupportsViewScreen from './screens/SupportsViewScreen'
 import SupportsEditScreen from './screens/SupportsEditScreen'
 import SupportsResolvedScreen from './screens/SupportsResolvedScreen'
+import SupportsAddScreen from './screens/SupportsAddScreen'
 
 
 import UserListScreen from './screens/UserListScreen'
@@ -55,6 +56,10 @@ import Settings from './screens/Settings'
 import ClientPortal from './screens/clients/ClientPortal'
 import ClientKnowledgebase from './screens/clients/ClientKnowledgebase'
 
+
+import ClientServices from './screens/clients/ClientServices'
+import ClientServicesView from './screens/clients/ClientServicesView'
+
 import ClientServicesBasic from './screens/clients/ClientServicesBasic'
 import ClientServicesSilver from './screens/clients/ClientServicesSilver'
 import ClientServicesGold from './screens/clients/ClientServicesGold'
@@ -73,10 +78,6 @@ import ClientStaffEdit from './screens/clients/ClientStaffEdit'
 import ClientSupport from './screens/clients/ClientSupport'
 import ClientSupportEdit from './screens/clients/ClientSupportEdit'
 import ClientSupportView from './screens/clients/ClientSupportView'
-import SupportsAddScreen from './screens/SupportsAddScreen'
-import ClientServices from './screens/clients/ClientServices'
-
-
 
 
 function App() {
@@ -149,6 +150,9 @@ function App() {
 
               
               <Route path='/portal/services/' component={ClientServices} exact />
+
+              <Route path='/portal/services/:id' component={ClientServicesView} exact />
+              
               <Route path='/portal/services/basic' component={ClientServicesBasic}  />
               <Route path='/portal/services/silver' component={ClientServicesSilver}  />
               <Route path='/portal/services/gold' component={ClientServicesGold}  />

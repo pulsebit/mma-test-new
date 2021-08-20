@@ -11,12 +11,12 @@ const ProductListScreen = () => {
 
     const dispatch = useDispatch()
 
-   const productList = useSelector( state => state.productList)
-   const {loading, error, products } = productList
+    const productList = useSelector( state => state.productList)
+    const {loading, error, products } = productList
 
-   useEffect(() => {
+    useEffect(() => {
         dispatch(listProducts()) 
-   }, [dispatch])
+    }, [dispatch])
 
 
     return (

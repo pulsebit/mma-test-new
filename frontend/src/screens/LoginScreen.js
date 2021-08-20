@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import  { Link } from 'react-router-dom'
+import  { Link, useHistory } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -7,30 +7,29 @@ import Loader from '../components/Loader'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 
-const LoginScreen = ({ location, history }) => {
+const LoginScreen = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const history = useHistory()
 
   	const dispatch = useDispatch()
 
-  	const userLogin = useSelector(state => state.userLogin)
-  	const { loading, error, userInfo } = userLogin
-	
-	const { isAdmin = {} } = userInfo || {}
-	console.log(isAdmin)
 
-	
-
-  	const redirect = location.search ? location.search.split('=')[1] : '/admin'
-	const redirectClient = location.search ? location.search.split('=')[1] : '/portal'
+  const userLogin = useSelector(state => state.userLogin)
+  const { loading, error, userInfo = {} } = userLogin || {}
+  const { isAdmin = {} } = userInfo || {}
   
-  	useEffect(() => {
-		if(isAdmin == true) {
-			history.push(redirect)
-		} else if ( isAdmin == false ) {
-			history.push(redirectClient)
-		}
-	}, [history, userInfo, redirect, redirectClient])
+  
+  useEffect(() => {
+	  if (isAdmin == true) {
+		  console.log("true")
+		  history.push("/admin");
+	  } else if (isAdmin == false) {
+		  console.log("false")
+		  history.push("/portal/reports");
+	  }
+  	 
+  }, [history, userInfo])
 
   const submitHandler = (e) => {
   	e.preventDefault()

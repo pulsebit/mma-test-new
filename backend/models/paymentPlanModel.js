@@ -28,8 +28,8 @@ const paymentPlanSchema = mongoose.Schema({
     required: true
   },
   subscribers: {
-    type: Number,
-    required: false
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
   product: [
     {

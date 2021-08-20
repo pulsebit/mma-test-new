@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPaymentPlanDetailsByCreator } from '../../actions/paymentPlanAction'
 import { getUserDetails } from '../../actions/userActions'
+
 import ClientLayout from '../../components/ClientLayout'
 import Loader2 from '../../components/Loader2'
 import Message from '../../components/Message'
@@ -14,9 +15,8 @@ const ClientServices = () => {
     const dispatch = useDispatch()
 
     const {userInfo} = useSelector((state) => state.userLogin)
-    const { user = {} } = useSelector(state => state.userDetails)
-    const { loading, creator = {}, error } = user
-    
+    const {loading, user = {}, error } = useSelector(state => state.userDetails)
+    const { creator = {} } = user
 
     const { paymentPlan } = useSelector(state => state.paymentPlanDetailsByCreator)
     console.log(paymentPlan)

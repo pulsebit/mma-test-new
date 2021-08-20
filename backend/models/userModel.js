@@ -48,8 +48,17 @@ const userSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       required: false,
       ref: 'User'
+   },
+   planCreated: [
+     {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: 'PaymentPlan'
+     }
+   ],
+   subscribedPlan: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PaymentPlan'
    }
-
 }, {
   timestamps: true
 })
