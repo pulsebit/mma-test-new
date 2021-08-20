@@ -127,7 +127,6 @@ const SupportsAddScreen = () => {
                         <div className="button-wrapper def-padding">
                             <button type="submit" className='update-btn'>Save</button>
                         </div>
-
                 </DashboardContainer>
             </Form> 
         </div>

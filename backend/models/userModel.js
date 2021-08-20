@@ -43,7 +43,13 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
-  }
+  },
+   creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: false,
+      ref: 'User'
+   }
+
 }, {
   timestamps: true
 })

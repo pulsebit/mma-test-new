@@ -74,6 +74,7 @@ import ClientSupport from './screens/clients/ClientSupport'
 import ClientSupportEdit from './screens/clients/ClientSupportEdit'
 import ClientSupportView from './screens/clients/ClientSupportView'
 import SupportsAddScreen from './screens/SupportsAddScreen'
+import ClientServices from './screens/clients/ClientServices'
 
 
 
@@ -145,6 +146,9 @@ function App() {
 
               <Route path='/portal' component={ClientPortal} exact />
               <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
+
+              
+              <Route path='/portal/services/' component={ClientServices} exact />
               <Route path='/portal/services/basic' component={ClientServicesBasic}  />
               <Route path='/portal/services/silver' component={ClientServicesSilver}  />
               <Route path='/portal/services/gold' component={ClientServicesGold}  />

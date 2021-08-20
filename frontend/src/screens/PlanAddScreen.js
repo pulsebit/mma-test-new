@@ -30,6 +30,9 @@ const PlanAddScreen = () => {
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Payment Information</span>
+                        <div className="button-wrapper">
+                            <button type="submit" value="Update" className='add-btn'>add</button>
+                        </div>
                     </div>
                     <Row>
                         <Col md={2}>

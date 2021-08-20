@@ -27,7 +27,7 @@ const ClientSidebar = () => {
               },
               {
                 title: 'Services',
-                itemId: '/portal/services/basic',
+                itemId: '/portal/services/',
                 elemBefore: () => <FontAwesomeIcon icon={faTicketAlt} />,
               },
               {

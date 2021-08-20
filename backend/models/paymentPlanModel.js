@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 import Product from './productModel.js'
 
 const paymentPlanSchema = mongoose.Schema({
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   name: {
      type: String,
      required: true

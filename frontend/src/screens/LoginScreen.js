@@ -11,18 +11,26 @@ const LoginScreen = ({ location, history }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-  const dispatch = useDispatch()
+  	const dispatch = useDispatch()
 
-  const userLogin = useSelector(state => state.userLogin)
-  const { loading, error, userInfo } = userLogin
+  	const userLogin = useSelector(state => state.userLogin)
+  	const { loading, error, userInfo } = userLogin
+	
+	const { isAdmin = {} } = userInfo || {}
+	console.log(isAdmin)
 
-  const redirect = location.search ? location.search.split('=')[1] : '/admin'
+	
+
+  	const redirect = location.search ? location.search.split('=')[1] : '/admin'
+	const redirectClient = location.search ? location.search.split('=')[1] : '/portal'
   
-  useEffect(() => {
-  	 if(userInfo) {
-  	 	  history.push(redirect)
-  	 }
-  }, [history, userInfo, redirect])
+  	useEffect(() => {
+		if(isAdmin == true) {
+			history.push(redirect)
+		} else if ( isAdmin == false ) {
+			history.push(redirectClient)
+		}
+	}, [history, userInfo, redirect, redirectClient])
 
   const submitHandler = (e) => {
   	e.preventDefault()
@@ -58,13 +66,13 @@ const LoginScreen = ({ location, history }) => {
 					</Form.Group>
 
 					<Button type='submit' variant='primary'>
-				Sign In
+						Sign In
 					</Button>
 
 					<Row className='py-3'>
 				<Col>
 					New Customer ? {' '}
-					<Link to={redirect ? `/register?redirect=${redirect}`: '/register'}></Link>	
+					{/* <Link to={redirect ? `/register?redirect=${redirect}`: '/register'}></Link>	 */}
 				</Col>			
 					</Row>
 				</Form>

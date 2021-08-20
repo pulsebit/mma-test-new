@@ -15,7 +15,6 @@ const AddNote = ({supportInfo, clientInfo, assigneeInfo}) => {
     const { loading, notes, error } = useSelector(state => state.supportNotes)
     
     useEffect(() => {
-        
         dispatch(getSupportNotes(supportInfo))
     },[dispatch, supportInfo])
     

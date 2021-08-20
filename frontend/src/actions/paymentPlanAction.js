@@ -18,6 +18,9 @@ import {
    PAYMENTPLAN_PRODUCT_UPDATE_REQUEST,
    PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS,
    PAYMENTPLAN_PRODUCT_UPDATE_FAIL,
+   PAYMENTPLAN_DETAILS_BY_CREATOR_REQUEST,
+   PAYMENTPLAN_DETAILS_BY_CREATOR_SUCCESS,
+   PAYMENTPLAN_DETAILS_BY_CREATOR_FAIL,
 } from '../constants/paymentPlanConstant'
 
 
@@ -56,6 +59,28 @@ export const getPaymentPlanDetails = (id) => async (dispatch) => {
    } catch (error) {
        dispatch({
             type: PAYMENTPLAN_DETAILS_FAIL,
+            payload: error.response && error.response.data.message 
+            ? error.response.data.message 
+            : error.message
+       })
+   }
+}
+
+export const getPaymentPlanDetailsByCreator  = () => async (dispatch) => {
+   try { 
+      
+      dispatch({ type: PAYMENTPLAN_DETAILS_BY_CREATOR_REQUEST })
+
+      const { data } = await axios.get(`/api/services/`)
+
+      dispatch({ 
+         type: PAYMENTPLAN_DETAILS_BY_CREATOR_SUCCESS,
+         payload: data 
+      })
+
+   } catch (error) {
+       dispatch({
+            type: PAYMENTPLAN_DETAILS_BY_CREATOR_FAIL,
             payload: error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message
@@ -135,12 +160,18 @@ export const updatePaymentPlan= (paymentPlan) => async (dispatch, getState) => {
    }
  }
 
- export const createPaymentPlan = (name, price, image, description, features, product) => async (dispatch) => {
+ export const createPaymentPlan = (name, price, image, description, features, product) => async (dispatch, getState) => {
+
+   const {
+      userLogin: { userInfo }
+   } = getState()
+
+   const creator = userInfo._id
    try {
      dispatch({
         type: PAYMENTPLAN_CREATE_REQUEST
      })
-      await axios.post(`/api/paymentplans/`, {name, price, image, description, features, product} )
+      await axios.post(`/api/paymentplans/`, {creator, name, price, image, description, features, product} )
 
       dispatch({type: PAYMENTPLAN_CREATE_SUCCESS})
  

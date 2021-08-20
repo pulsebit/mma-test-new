@@ -10,7 +10,7 @@ import Product from '../models/productModel.js'
 const createPaymentPlan = asyncHandler( async (req, res) => {
 
 
-  const { name, price, image, description, features } = req.body
+  const { creator, name, price, image, description, features } = req.body
  
   const paymentPlanExists = await PaymentPlan.findOne({ name })
   console.log(paymentPlanExists)
@@ -21,7 +21,7 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
   }
   
   //create 
-  const newPlan = new PaymentPlan({name, price, image, description, features})
+  const newPlan = new PaymentPlan({creator, name, price, image, description, features})
 
   //add products
   // newPlan.product.push(product) 
@@ -44,7 +44,7 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
 // @access Private                                 
 const paymentPlanAddProduct = asyncHandler(async (req, res) => {
   
-  const paymentPlan = await PaymentPlan.findById(req.params.id )
+  const paymentPlan = await PaymentPlan.findById(req.params.id)
   const product = req.body.tempProduct
 
 	if(paymentPlan) {
@@ -68,7 +68,6 @@ const paymentPlanAddProduct = asyncHandler(async (req, res) => {
 // @access   Public
 const getPaymentPlans = asyncHandler( async (req, res) => {
   const paymentPlans = await PaymentPlan.find({})
-
   res.json(paymentPlans)
 })
 
@@ -77,6 +76,21 @@ const getPaymentPlans = asyncHandler( async (req, res) => {
 // @access   Public
 const getPaymentPlanById = asyncHandler( async (req, res) => {
   const paymentPlan = await PaymentPlan.findById(req.params.id).populate('product')
+  
+  if(paymentPlan) {
+    res.json(paymentPlan)
+  } else {
+    res.status(404)
+    throw new Error('Payment Plan not found')
+  }
+})
+
+// @desc     Read/Fetch single Payment Plan
+// @route    GET /api/services/
+// @access   Public
+const getPaymentPlanByCretorId = asyncHandler( async (req, res) => {
+  const { creatorId } = req.body
+  const paymentPlan = await PaymentPlan.find({ creator: creatorId })
   
   if(paymentPlan) {
     res.json(paymentPlan)
@@ -136,4 +150,4 @@ const deletePaymentPlan = asyncHandler(async (req, res) => {
 
 
 
-export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan, paymentPlanAddProduct }
+export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan, paymentPlanAddProduct, getPaymentPlanByCretorId }

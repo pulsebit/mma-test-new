@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocationArrow, faPhone, faUsers } from '@fortawesome/free-solid-svg-icons'
 import ClientSidebar from './ClientSidebar'
 import ProfileImage from '../assets/images/user.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserDetails } from '../actions/userActions'
 
 const ClientLayout = ({ children }) => {
+    const dispatch = useDispatch()
+  
+    const userLogin = useSelector((state) => state.userLogin)
+    const {userInfo} = userLogin
+
+    const { user = {} } = useSelector(state => state.userDetails)
+
+    useEffect(() => {
+        dispatch(getUserDetails(userInfo._id))
+     }, [dispatch])
+
     return (
         <div className="client-layout">
             <Container fluid>
@@ -17,22 +30,22 @@ const ClientLayout = ({ children }) => {
                     <div className="basic-info">
                         <div className="inner-img-wrapper">
                             <img className="" src={ProfileImage} alt='' />
-                            <span>John Doe</span>
+                            <span>{user.name}</span>
                         </div>
 
                         <div className="details-wrapper">
                             <FontAwesomeIcon icon={faPhone} />
-                            <span>123456789</span>
+                            <span>{user.mobile_no}</span>
                         </div>
 
                         <div className="details-wrapper">
                             <FontAwesomeIcon icon={faEnvelope} />
-                            <span>john@mma.com</span>
+                            <span>{user.email}</span>
                         </div>
 
                         <div className="details-wrapper">
                             <FontAwesomeIcon icon={faLocationArrow} />
-                            <span>24 Sydney Road, WILPINJONG, New South Wales</span>
+                            <span>{user.address}</span>
                         </div>
 
                         <div className="details-wrapper">

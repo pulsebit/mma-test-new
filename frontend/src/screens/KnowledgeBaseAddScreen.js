@@ -18,13 +18,8 @@ const KnowledgeBaseAddScreen = ({history}) => {
     const { users } = useSelector( state => state.userList)
 
     const { success } = useSelector( state => state.knowledgeBaseCreate)
-
-    
-
     useEffect(() => {
         dispatch(listUsers())
-        
-         
     }, [dispatch])
 
     const onSubmitHandler = (e) => {

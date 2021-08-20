@@ -30,7 +30,7 @@ export const listKnowledgeBase = () => async (dispatch) => {
       userLogin: { userInfo }
    } = getState()
 
-   console.log(userInfo)
+
 
    const created_by = userInfo._id
 
