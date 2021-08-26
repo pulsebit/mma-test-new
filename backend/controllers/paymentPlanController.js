@@ -90,7 +90,7 @@ const getPaymentPlanById = asyncHandler( async (req, res) => {
 // @desc     Read/Fetch single Payment Plan
 // @route    GET /api/services/
 // @access   Public
-const getPaymentPlanByCretorId = asyncHandler( async (req, res) => {
+const getPaymentPlansByCretorId = asyncHandler( async (req, res) => {
   const { creatorId } = req.body
   const paymentPlan = await PaymentPlan.find({ creator: creatorId })
   
@@ -152,4 +152,4 @@ const deletePaymentPlan = asyncHandler(async (req, res) => {
 
 
 
-export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan, paymentPlanAddProduct, getPaymentPlanByCretorId }
+export { getPaymentPlans,getPaymentPlanById, updatePaymentPlan, deletePaymentPlan, createPaymentPlan, paymentPlanAddProduct, getPaymentPlansByCretorId }

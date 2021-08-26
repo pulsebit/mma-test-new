@@ -34,6 +34,18 @@ const getSupportById = asyncHandler( async (req, res) => {
   }
 })
 
+const getSupportsByCretorId = asyncHandler( async (req, res) => {
+  // const { creatorId } = req.body
+  const supports = await Support.find({ created_by: "611b1b00f7b94ece004d2ede" })
+  
+  if(supports) {
+    res.json(supports)
+  } else {
+    res.status(404)
+    throw new Error('Support not found')
+  }
+})
+
 const getSupportsByStatus = asyncHandler( async (req, res) => {
   const supports = await Support.find({"status": "Closed"})
   .populate('client')
@@ -123,4 +135,4 @@ const updateSupport = asyncHandler(async (req, res) => {
 })
 
 
-export { getSupports, createSupport, deleteSupport, getSupportById, updateSupport, getSupportsByStatus }
+export { getSupports, createSupport, deleteSupport, getSupportById, updateSupport, getSupportsByStatus, getSupportsByCretorId }

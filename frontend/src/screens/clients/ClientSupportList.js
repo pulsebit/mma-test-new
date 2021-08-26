@@ -3,13 +3,16 @@ import { NavLink } from 'react-router-dom'
 
 import ClientLayout from '../../components/ClientLayout'
 
-const SupportsListScreen = () => {
+const ClientSupportList = () => {
     return (
         <div> 
             <ClientLayout>
                 <div className="section-wrapper">
                     <div className="blue-bkg-title def-padding">
                         <span>Supports List</span>
+                        <div className="button-wrapper">
+                            <NavLink to="/portal/add-support/" className="add-btn">Add</NavLink>
+                        </div>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
@@ -103,4 +106,4 @@ const SupportsListScreen = () => {
     );
 }
 
-export default SupportsListScreen
+export default ClientSupportList

@@ -15,7 +15,7 @@ import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 
 router.route('/')
 .post(createSupport )
-.get(getSupports)
+.get(protect,getSupports)
 
 router.route('/:id')
 .delete(deleteSupport)

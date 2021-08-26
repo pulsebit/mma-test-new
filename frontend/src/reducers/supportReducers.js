@@ -17,7 +17,10 @@ import {
    SUPPORT_DELETE_FAIL,
    SUPPORT_DETAILS_BY_STATUS_REQUEST,
    SUPPORT_DETAILS_BY_STATUS_SUCCESS,
-   SUPPORT_DETAILS_BY_STATUS_FAIL} from '../constants/supportConstants'
+   SUPPORT_DETAILS_BY_STATUS_FAIL,
+   SUPPORT_LIST_BY_CREATOR_REQUEST,
+   SUPPORT_LIST_BY_CREATOR_SUCCESS,
+   SUPPORT_LIST_BY_CREATOR_FAIL} from '../constants/supportConstants'
 
 export const supportListReducer = (state = {supports: []}, action) => {
    switch(action.type) {
@@ -30,7 +33,19 @@ export const supportListReducer = (state = {supports: []}, action) => {
       default:
          return state     
    }
+}
 
+export const supportListByCreatorReducer = (state = { supports: [] }, action) => {
+   switch(action.type) {
+          case SUPPORT_LIST_BY_CREATOR_REQUEST:
+             return { loading: true, supports: [] }
+          case SUPPORT_LIST_BY_CREATOR_SUCCESS:   
+             return  { loading: false, supports: action.payload }
+          case SUPPORT_LIST_BY_CREATOR_FAIL:
+             return { loading: false, error: action.payload }   
+          default:
+             return state   
+   }
 }
 
 export const supportDetailsReducer = (state = { support: {} }, action) => {

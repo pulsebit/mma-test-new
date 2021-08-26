@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPaymentPlanDetailsByCreator } from '../../actions/paymentPlanAction'
+import { getPaymentPlanListByCreator } from '../../actions/paymentPlanAction'
 import { getUserDetails } from '../../actions/userActions'
 
 import ClientLayout from '../../components/ClientLayout'
@@ -10,7 +10,7 @@ import Message from '../../components/Message'
 import date from 'date-and-time'
 import ReactHtmlParser from 'react-html-parser'
 
-const ClientServices = () => {
+const ClientServiceList = () => {
 
     const dispatch = useDispatch()
 
@@ -18,12 +18,12 @@ const ClientServices = () => {
     const {loading, user = {}, error } = useSelector(state => state.userDetails)
     const { creator = {} } = user
 
-    const { paymentPlan } = useSelector(state => state.paymentPlanDetailsByCreator)
+    const { paymentPlan } = useSelector(state => state.paymentPlanListByCreator)
     console.log(paymentPlan)
 
     useEffect(() => {
         dispatch(getUserDetails(userInfo._id))
-        dispatch(getPaymentPlanDetailsByCreator(creator._id))
+        dispatch(getPaymentPlanListByCreator(creator._id))
     },[dispatch])
 
     return (
@@ -118,4 +118,4 @@ const ClientServices = () => {
     )
 }
 
-export default ClientServices
+export default ClientServiceList

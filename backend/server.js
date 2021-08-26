@@ -31,6 +31,7 @@ app.get('/',(req, res) => {
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)
+app.use('/api/client-supports', supportRoutes)
 app.use('/api/paymentplans', paymentPlanRoutes)
 app.use('/api/services', serviceRoutes)
 app.use('/api/notes', noteRoutes)

@@ -107,7 +107,9 @@ const SupportsAddScreen = () => {
                                                             <select value={status} onChange={(e)=>setStatus(e.target.value)}>
                                                                 <option value="">Select Status</option>
                                                                 <option value="Open">Open</option>
-                                                                <option value="Closed">Closed</option>
+                                                                <option value="Assigned">Assigned</option>
+                                                                <option value="In Process">In Process</option>
+                                                                <option value="Declined">Declined</option>
                                                             </select>
                                                         </span>
                                                     </div>

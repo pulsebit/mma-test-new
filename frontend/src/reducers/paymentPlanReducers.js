@@ -18,9 +18,9 @@ import {
     PAYMENTPLAN_PRODUCT_UPDATE_SUCCESS,
     PAYMENTPLAN_PRODUCT_UPDATE_FAIL,
     PAYMENTPLAN_UPDATE_RESET,
-    PAYMENTPLAN_DETAILS_BY_CREATOR_REQUEST,
-    PAYMENTPLAN_DETAILS_BY_CREATOR_SUCCESS,
-    PAYMENTPLAN_DETAILS_BY_CREATOR_FAIL,
+    PAYMENTPLAN_LIST_BY_CREATOR_REQUEST,
+    PAYMENTPLAN_LIST_BY_CREATOR_SUCCESS,
+    PAYMENTPLAN_LIST_BY_CREATOR_FAIL,
 } from '../constants/paymentPlanConstant'
 
 export const paymentPlanListReducer = (state = { paymentPlans: [] }, action) => {
@@ -62,13 +62,13 @@ export const paymentPlanDetailsReducer = (state = { paymentPlan: {} }, action) =
     }
 }
 
-export const paymentPlanDetailsByCreatorReducer = (state = { paymentPlan: [] }, action) => {
+export const paymentPlanListByCreatorReducer = (state = { paymentPlan: [] }, action) => {
    switch(action.type) {
-          case PAYMENTPLAN_DETAILS_BY_CREATOR_REQUEST:
+          case PAYMENTPLAN_LIST_BY_CREATOR_REQUEST:
              return { loading: true, paymentPlan: [] }
-          case PAYMENTPLAN_DETAILS_BY_CREATOR_SUCCESS:   
+          case PAYMENTPLAN_LIST_BY_CREATOR_SUCCESS:   
              return  { loading: false, paymentPlan: action.payload }
-          case PAYMENTPLAN_DETAILS_BY_CREATOR_FAIL:
+          case PAYMENTPLAN_LIST_BY_CREATOR_FAIL:
              return { loading: false, error: action.payload }   
           default:
              return state   

@@ -15,7 +15,7 @@ const supportSchema = mongoose.Schema({
   },
   solution: {
     type: String,
-    required: true
+    required: false
   },
   status: {
     type: String,
@@ -26,10 +26,6 @@ const supportSchema = mongoose.Schema({
     required: false
   },
   category: {
-    type: String,
-    required: false
-  },
-  resolution: {
     type: String,
     required: false
   },

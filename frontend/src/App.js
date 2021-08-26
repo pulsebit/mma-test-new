@@ -57,7 +57,7 @@ import ClientPortal from './screens/clients/ClientPortal'
 import ClientKnowledgebase from './screens/clients/ClientKnowledgebase'
 
 
-import ClientServices from './screens/clients/ClientServices'
+import ClientServiceList from './screens/clients/ClientServiceList'
 import ClientServicesView from './screens/clients/ClientServicesView'
 
 import ClientServicesBasic from './screens/clients/ClientServicesBasic'
@@ -75,7 +75,9 @@ import ClientStaffAdd from './screens/clients/ClientStaffAdd'
 import ClientStaffView from './screens/clients/ClientStaffView'
 import ClientStaffEdit from './screens/clients/ClientStaffEdit'
 
-import ClientSupport from './screens/clients/ClientSupport'
+
+import ClientSupportAdd from './screens/clients/ClientSupportAdd'
+import ClientSupportList from './screens/clients/ClientSupportList'
 import ClientSupportEdit from './screens/clients/ClientSupportEdit'
 import ClientSupportView from './screens/clients/ClientSupportView'
 
@@ -149,7 +151,7 @@ function App() {
               <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
 
               
-              <Route path='/portal/services/' component={ClientServices} exact />
+              <Route path='/portal/services/' component={ClientServiceList} exact />
 
               <Route path='/portal/services/:id' component={ClientServicesView} exact />
               
@@ -169,9 +171,11 @@ function App() {
               <Route path='/portal/edit-staff/' component={ClientStaffEdit} />
               
 
-              <Route path='/portal/support' component={ClientSupport} exact />
+              <Route path='/portal/support' component={ClientSupportList} exact />
               <Route path='/portal/support/:id' component={ClientSupportView} exact />
-              <Route path='/portal/support/:id/Edit' component={ClientSupportEdit} />
+              <Route path='/portal/support/:id/edit' component={ClientSupportEdit} />
+              <Route path='/portal/add-support/' component={ClientSupportAdd} />
+              
 
               
               

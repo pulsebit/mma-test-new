@@ -12,7 +12,7 @@ const SupportsListScreen = () => {
     const dispatch = useDispatch()
     
     const supportList = useSelector( state => state.supportList)
-    const {loading, error, supports } = supportList
+    const {loading, error, supports } = supportList 
 
     useEffect(() => {
         dispatch(listSupports())
@@ -37,8 +37,6 @@ const SupportsListScreen = () => {
                                     <th>Priority</th>
                                     <th>Status</th>
                                     <th>Category</th>
-                                    <th>Assignee</th>
-                                    <th>Created By</th>
                                     <th>Date Created</th>
                                     <th>Action</th>
                                 </tr>	
@@ -54,8 +52,6 @@ const SupportsListScreen = () => {
                                             <td>{support.priority}</td>
                                             <td>{support.status}</td>
                                             <td>{support.category}</td>
-                                            <td>{support.assignee.name}</td>
-                                            <td>{support.created_by.name}</td>
                                             <td>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</td>
                                             <td>
                                                 <NavLink to={`/admin/supports/${support._id}`} className="view-btn">View</NavLink>

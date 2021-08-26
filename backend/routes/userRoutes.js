@@ -12,8 +12,8 @@ import {
 } from '../controllers/userController.js'
 import  { protect, adminOnly } from '../middleware/authMiddleware.js'
 
-//get(protect, adminOnly, getUsers)
-router.route('/').post(registerUser).get(getUsers)
+
+router.route('/').post(registerUser).get(protect, adminOnly, getUsers)
 router
 	.route('/:id')
 	//.get(protect, adminOnly, getUserById)

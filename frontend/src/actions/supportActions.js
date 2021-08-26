@@ -14,7 +14,10 @@ import {
    SUPPORT_UPDATE_FAIL,
    SUPPORT_DELETE_SUCCESS,
    SUPPORT_DELETE_FAIL,
-   SUPPORT_DELETE_REQUEST
+   SUPPORT_DELETE_REQUEST,
+   SUPPORT_LIST_BY_CREATOR_REQUEST,
+   SUPPORT_LIST_BY_CREATOR_SUCCESS,
+   SUPPORT_LIST_BY_CREATOR_FAIL
 } from '../constants/supportConstants'
 
 
@@ -50,6 +53,28 @@ export const listSupports = () => async (dispatch, getState) => {
    }
 }
 
+export const getSupportListByCreator  = () => async (dispatch) => {
+   try { 
+      
+      dispatch({ type: SUPPORT_LIST_BY_CREATOR_REQUEST })
+
+      const { data } = await axios.get(`/api/client-supports/`)
+
+      dispatch({ 
+         type: SUPPORT_LIST_BY_CREATOR_SUCCESS,
+         payload: data 
+      })
+
+   } catch (error) {
+       dispatch({
+            type: SUPPORT_LIST_BY_CREATOR_FAIL,
+            payload: error.response && error.response.data.message 
+            ? error.response.data.message 
+            : error.message
+       })
+   }
+}
+
 export const getSupportDetails = (id) => async (dispatch) => {
    try { 
       
@@ -82,11 +107,20 @@ export const createSupport = (client, ticket_no, problem_description, status, pr
          userLogin: { userInfo }
       } = getState()
 
-      console.log(userInfo)
-
-      const created_by = userInfo._id
       
-      await axios.post(`/api/supports/`, {client, ticket_no, problem_description, status, priority, category, assignee, created_by} )
+      const created_by = userInfo._id
+      if (userInfo.isAdmin == true) {
+         console.log("admin")
+         await axios.post(`/api/supports/`, {client, ticket_no, problem_description, status, priority, category, assignee, created_by} )
+      }
+
+      if (userInfo.isAdmin == false) {
+         
+         const client = userInfo._id
+         const status = "Open"
+         const category = "Not Set"
+         await axios.post(`/api/supports/`, {client, ticket_no, problem_description, status, priority, category, assignee, created_by} )
+      }
 
       dispatch({type: SUPPORT_CREATE_SUCCESS})
 
