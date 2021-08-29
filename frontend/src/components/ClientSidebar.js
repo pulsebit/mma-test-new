@@ -42,7 +42,7 @@ const ClientSidebar = () => {
               },
               {
                 title: 'Knowledge Base',
-                itemId: '/portal/knowlegebase',
+                itemId: '/portal/knowledge-base',
                 elemBefore: () => <FontAwesomeIcon icon={faBrain} />, 
                 subNav: [
                   {

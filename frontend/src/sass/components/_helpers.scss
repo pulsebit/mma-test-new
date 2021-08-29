@@ -6,62 +6,7 @@
     padding-top: 60px;
     padding-bottom: 60px;
 }
-.section-wrapper {
-    background-color: #fff;
-    border-radius: 5px;
-    margin-bottom: 15px;
 
-    .blue-bkg-title {
-        background-color: $primary-color;
-        border-radius: 5px 5px 0 0;
-        display: flex;
-        align-items: center;
-        
-        span {
-            color: #fff;
-            font-weight: 600;
-            display: block;
-        }
-        .button-wrapper {
-            margin-left: auto;
-
-            select {
-                padding: 5px;
-                margin-right: 7px;
-                border-radius: 5px;
-            }
-
-            button {
-                border: none;
-                padding: 10px 20px !important;
-                font-size: 15px;
-                font-weight: 400;
-                border-radius: 50px;
-                margin-left: 10px;
-
-                &:focus {
-                    outline: none;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-
-            a {
-                padding: 10px 20px !important;
-                font-size: 15px;
-                font-weight: 400;
-                border-radius: 50px;
-                margin-left: 10px
-            }
-        }
-    }
-
-    button {
-        position: relative;
-    }
-}
 .def-padding {
     padding: 20px;
 }
@@ -87,6 +32,8 @@
     padding-left: 60px !important;
     padding-right: 60px !important;
 }
+
+
 
 .mar-tb-20 {
     margin-top: 20px

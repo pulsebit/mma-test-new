@@ -6,8 +6,8 @@ import { Row, Col, Form } from 'react-bootstrap'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import { faPaperPlane, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import DashboardContainer from '../components/DashboardContainer'
 import Seo from '../assets/images/seo.jpg'
 
@@ -91,20 +91,15 @@ const ProductEditScreen = ({match, history}) => {
             <Form onSubmit={onSubmitHandler}>
                 <DashboardContainer>
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Basic Information</span>
+                        <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Basic Information</div>
                         </div>
                         <Row>
                             <Col md={2}>
-                                <div className="img-wrapper">
-                                    <img className="" src={image} alt='' />
-                                    {/* <div className="upload-btn">
-                                        <input type="file" Value="Edit Image" className="choose-file"/>
-                                        <FontAwesomeIcon icon={faCamera} className="camera"></FontAwesomeIcon>
-                                    </div> */}
-                                </div>
                                 <label>image:</label>
-                                <input type="text" onChange={(e)=>setImage(e.target.value)}/>
+                                <div className="img-wrapper">
+                                    <img className="" src="https://club.helsemin.dk/wp-content/themes/oria/images/placeholder.png" alt='' />
+                                </div>
                             </Col>
                             <Col md={10}>
                                 <div className="user-details def-padding">
@@ -120,7 +115,7 @@ const ProductEditScreen = ({match, history}) => {
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>SKU:</label>
-                                                <span><input type="text" placeholder="A123"/></span>
+                                                <span><input type="text" /></span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Added:</label>
@@ -138,7 +133,7 @@ const ProductEditScreen = ({match, history}) => {
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Sale Price:</label>
-                                                <span><input type="text" placeholder="599 AUD"/></span>
+                                                <span><input type="text"/></span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Add to Plan:</label>
@@ -196,7 +191,7 @@ const ProductEditScreen = ({match, history}) => {
                                     </div>
                                     <div className="details-wrapper">
                                         <label>Created by:</label>
-                                        <span><input type="text" placeholder="July Cabigas"/></span>
+                                        <span><input type="text" /></span>
                                     </div>
                                 </div>
                             </Col>
@@ -204,8 +199,8 @@ const ProductEditScreen = ({match, history}) => {
                     </div>
 
                     <div className="button-wrapper def-padding">
-                        <button type="submit" value="Update" className='update-btn'>Update</button>
-                        <button onClick={onDeleteHandler} className='delete-btn'>Delete</button> 
+                        <button type="submit" value="Update" className='update-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
+                        <button onClick={onDeleteHandler} className='delete-btn'><FontAwesomeIcon icon={faTrash}/>Delete</button> 
                         <NavLink to={`/admin/product/${productId}`}>Cancel</NavLink> 
                     </div> 
                         

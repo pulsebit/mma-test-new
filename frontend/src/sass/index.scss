@@ -38,3 +38,343 @@
 
 // @import "./themes/admin";
 // @import "./themes/theme";
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//edit screen
+.edit-screen {
+
+    .fill-up{
+        padding-top: 25px;
+    }
+
+    .details-wrapper {
+        padding-bottom: 30px;
+    }
+
+    label {
+        font-weight: 400;
+        font-size: 12px;
+        display: block;
+        padding: 5px 0;
+        color: #aba7a7;
+        text-transform: uppercase;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #b3b3b3;
+        border-radius: 5px;
+        
+        &:focus{
+            border: 2px solid #3777ff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        &::placeholder{
+            border: 1px solid #b3b3b3;
+        }
+    }
+
+    select {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #b3b3b3;
+        border-radius: 5px;
+
+        &:focus{
+            border: 2px solid #3777ff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        &::placeholder{
+            border: 1px solid #b3b3b3;
+        }
+    }
+
+    textarea{
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #b3b3b3;
+        border-radius: 5px;
+        height: 200px;
+
+        &:focus{
+            border: 2px solid #3777ff;
+            border-radius: 5px;
+            outline: none;
+        }
+    }
+}
+
+
+.button-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+button, a {
+    margin: 0 5px;
+}
+
+.custom-link-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 4px 15px;
+    display: inline-block;
+    border-radius: 5px;
+    font-weight: 400;
+    border: 1px solid #007bff;
+
+    &:hover {
+        background-color: #fff;
+        color: #007bff;
+        padding: 4px 15px;
+        display: inline-block;
+        border-radius: 5px;
+    }
+}
+.view-icon-btn {
+    color: #3261c5;
+    background-color: transparent;
+    border: none;
+    padding: 0 !important;
+
+    &:hover {
+        cursor: pointer;
+        color: #4880f8;
+    }
+}
+
+.edit-btn {
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #fff !important; 
+    padding: 10px !important;
+    background-color: #fcae17;
+    border: none;
+    position: relative;
+    height: max-content;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    svg {
+        margin-right: 5px;
+    }
+    &:hover{
+        background-color: #d09013;
+        cursor: pointer;
+        color: #fff;
+    }
+}
+
+.delete-icon-btn {
+    background-color: transparent;
+    border: none;
+    color: #b80000;
+    padding: 0 !important;
+
+    &:hover {
+        cursor: pointer;
+        color: #f72222;
+    }
+}   
+
+.delete-btn{
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #fff !important; 
+    padding: 10px !important;
+    background-color: #b80000;
+    border: none;
+    position: relative;
+    height: max-content;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    svg {
+        margin-right: 5px;
+    }
+    &:hover{
+        background-color: #f72222;
+        cursor: pointer;
+        color: #fff;
+    }
+}
+
+.update-btn{
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #fff !important; 
+    padding: 10px !important;
+    background-color: #4CAF50;
+    border: none;
+    position: relative;
+    height: max-content;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    svg {
+        margin-right: 5px;
+    }
+    
+    &:hover{
+        background-color: #3e9241;
+        cursor: pointer;
+        color: #fff;
+    }
+}
+
+.add-btn{
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px !important;
+    background-color: #fcae17;
+    border: none;
+    position: relative;
+    height: max-content;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+    svg {
+        margin-right: 5px;
+    }
+    &:hover{
+        background-color: #d09013;
+        cursor: pointer;
+        color: #fff;
+    }
+}
+
+
+
+.save-btn{
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px !important;
+    background-color: #1e7e34;
+    border: none;
+    position: relative;
+    height: max-content;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    outline: none;
+    
+    svg {
+        margin-right: 5px;
+    }
+    &:hover{
+        background-color: #30c853;
+        cursor: pointer;
+        color: #fff;
+    }
+}
+
+
+
+// Login
+
+
+// Client
+.client-layout {
+    width: 100%;
+
+    .main-content {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+
+// paymentplan items
+.plan-items {
+    width: calc(25% - 30px);
+    display: inline-block;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+    border: solid 1px #007bff00;
+
+    .img-wrapper {
+        margin: 0 auto;
+        padding-bottom: 30px;
+    }
+
+    .name {
+        text-align: left;
+        font-size: 18px;
+        padding-bottom: 15px;
+        font-weight: 400;
+    }
+
+    .price {
+        text-align: right;
+        font-size: 22px;
+        padding-bottom: 15px;
+        font-weight: 400;
+    }
+    
+    &:hover {
+        border: solid 1px #007bff;
+
+
+    }
+
+}
+
+// helpers
+.dashboard-title-wrapper{
+    padding: 20px 0;
+    border-bottom: 1px solid #08080824;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboard-title {
+    color: #08080896;
+    font-size: 22px;
+}
+
+.dashboard-title-alone {
+    color: #08080896;
+    font-size: 22px;
+    padding: 20px 0;
+}
+
+.section-wrapper {
+    padding: 0 15px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+    background-color: #fff;
+}
+
+.j-c-end{
+    justify-content: flex-end;
+}
+
+.mar-b-50 {
+    margin-bottom: 50px;
+}

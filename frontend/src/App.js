@@ -54,7 +54,8 @@ import PlanViewScreen from './screens/PlanViewScreen'
 import Settings from './screens/Settings'
 
 import ClientPortal from './screens/clients/ClientPortal'
-import ClientKnowledgebase from './screens/clients/ClientKnowledgebase'
+import ClientKnowledgebaseList from './screens/clients/ClientKnowledgebaseList'
+import ClientKnowledgebaseView from './screens/clients/ClientKnowledgebaseView'
 
 
 import ClientServiceList from './screens/clients/ClientServiceList'
@@ -147,8 +148,15 @@ function App() {
               <Route path='/admin/settings' component={Settings} />
               
 
+
+
+
+              {/* CLIENT */}
               <Route path='/portal' component={ClientPortal} exact />
-              <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
+
+
+              <Route path='/portal/knowledge-base' component={ClientKnowledgebaseList} exact />
+              <Route path='/portal/knowledge-base/:id' component={ClientKnowledgebaseView}  />
 
               
               <Route path='/portal/services/' component={ClientServiceList} exact />

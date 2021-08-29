@@ -14,6 +14,8 @@ import { listProducts } from '../actions/productActions'
 import Message from '../components/Message'
 import { PAYMENTPLAN_UPDATE_RESET }  from '../constants/paymentPlanConstant'
 import Loader2 from '../components/Loader2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const PlanEditScreen = ({ match, history }) => {
     const paymentPlanId = match.params.id
@@ -78,8 +80,8 @@ const PlanEditScreen = ({ match, history }) => {
                 <DashboardContainer>
                     <Form onSubmit={onSubmitHandler}>
                         <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Payment Information</span>
+                            <div className="dashboard-title-wrapper">
+                                <div className="dashboard-title">Payment Information</div>
                             </div>
                             <Row>
                                 <Col md={2}>
@@ -163,9 +165,9 @@ const PlanEditScreen = ({ match, history }) => {
                                 </Col>
                             </Row> 
                             <div className="button-wrapper def-padding">
-                                <button type="submit" value="Update" className='update-btn'>Update</button>
-                                <button onClick={onDeleteHandler} className='delete-btn'>Delete</button>
-                                <NavLink to={`/admin/plan/${paymentPlanId}`}>Cancel</NavLink>
+                                <button type="submit" value="Update" className='update-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
+                                <button onClick={onDeleteHandler} className='delete-btn'><FontAwesomeIcon icon={faTrash}/>Delete</button> 
+                                <NavLink to="/admin/supports/">Cancel</NavLink> 
                             </div>
                         </div>
                     </Form>

@@ -53,12 +53,12 @@ export const listSupports = () => async (dispatch, getState) => {
    }
 }
 
-export const getSupportListByCreator  = () => async (dispatch) => {
+export const getSupportListByCreator  = (id) => async (dispatch) => {
    try { 
-      
+      console.log(id)
       dispatch({ type: SUPPORT_LIST_BY_CREATOR_REQUEST })
 
-      const { data } = await axios.get(`/api/client-supports/`)
+      const { data } = await axios.get(`/api/client-supports/${id}` )
 
       dispatch({ 
          type: SUPPORT_LIST_BY_CREATOR_SUCCESS,
@@ -97,7 +97,7 @@ export const getSupportDetails = (id) => async (dispatch) => {
    }
 }
 
-export const createSupport = (client, ticket_no, problem_description, status, priority, category, assignee, created_by) => async (dispatch, getState) => {
+export const createSupport = (client, ticket_no, problem_description, status, priority, category, assignee) => async (dispatch, getState) => {
    try {
       dispatch({
          type: SUPPORT_CREATE_REQUEST
@@ -115,10 +115,8 @@ export const createSupport = (client, ticket_no, problem_description, status, pr
       }
 
       if (userInfo.isAdmin == false) {
+         console.log("false")
          
-         const client = userInfo._id
-         const status = "Open"
-         const category = "Not Set"
          await axios.post(`/api/supports/`, {client, ticket_no, problem_description, status, priority, category, assignee, created_by} )
       }
 

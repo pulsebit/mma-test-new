@@ -10,6 +10,9 @@ import Loader from '../components/Loader'
 import { getProductDetails } from '../actions/productActions'
 import { getUserDetails } from '../actions/userActions'
 
+import { faPaperPlane, faPen, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const ProductViewScreen = ({match}) => {
     const productId = match.params.id
@@ -31,13 +34,16 @@ const ProductViewScreen = ({match}) => {
         <div className="view-screen">
             <DashboardContainer>
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Basic Information</span>
+                    <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Basic Information</div>
+                        <div className="button-wrapper">
+                            <NavLink to={`/admin/product-edit/${product._id}/`} className="edit-btn"><FontAwesomeIcon icon={faPen}/>Edit</NavLink>
+                        </div>
                     </div>
                     <Row>
                         <Col md={2}>
                             <div className="img-wrapper">
-                                <img className="" src={product.image} alt='' />
+                                <img className="" src="https://club.helsemin.dk/wp-content/themes/oria/images/placeholder.png" alt='' />
                             </div>
                         </Col>
                         <Col md={10}>
@@ -99,10 +105,6 @@ const ProductViewScreen = ({match}) => {
                             </div>
                         </Col>
                     </Row>
-                </div>
-
-                <div className="button-wrapper def-padding">
-                    <NavLink to={`/admin/product-edit/${product._id}/`} className="edit-btn">Edit Product</NavLink>
                 </div>
                     
             </DashboardContainer>

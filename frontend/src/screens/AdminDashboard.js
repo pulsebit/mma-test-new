@@ -8,11 +8,9 @@ import { listPaymentPlans } from '../actions/paymentPlanAction'
 
 import { Row , Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faAmbulance, faInfoCircle, faShoppingCart, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons'
 import DashboardContainer from '../components/DashboardContainer'
 import Loader2 from '../components/Loader2'
-
-
 
 
 const AdminDashboard = () => {
@@ -39,98 +37,121 @@ const AdminDashboard = () => {
     }, [dispatch])
     
     return (
-        <div> 
+        <div className="adminDashboard"> 
             <DashboardContainer>
                 <div className="c-mar-side-neg-15">
                     <Row>
                         <Col md={3}>
-                            <div className="section-wrapper">
-                                <div className="blue-bkg-title def-padding">
-                                    <span>Total Clients</span>
-                                </div>
-                                <div className="content-wrapper def-padding">
-                                    <span className="number">
+                            <div className="section-wrapper mar-b-50">
+                                <div className="details">
+                                    <div className="icon-wrapper users-icon">
+                                        <FontAwesomeIcon icon={faUsers}/>
+                                    </div>
+                                    <div className="content-wrapper">
+                                        <div className="title">Total Clients</div>
+                                        <div className="total">
                                         { !countUsers ? (
                                             <Loader2 />
                                         ) : (
                                             countUsers
                                         ) }
-                                    </span>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </Col>
                         <Col md={3}>
-                            <div className="section-wrapper">
-                                <div className="blue-bkg-title def-padding">
-                                    <span>Total Supports</span>
-                                </div>
-                                <div className="content-wrapper def-padding">
-                                    <span className="number">
+                            <div className="section-wrapper mar-b-50">
+                                <div className="details">
+                                    <div className="icon-wrapper supports-icon">
+                                        <FontAwesomeIcon icon={faInfoCircle}/>
+                                    </div>
+                                    <div className="content-wrapper">
+                                        <div className="title">Total Supports</div>
+                                        <div className="total">
                                         { !countSupports ? (
                                             <Loader2 />
                                         ) : (
                                             countSupports
                                         ) }
-                                    </span>
+                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </Col>
                         <Col md={3}>
-                            <div className="section-wrapper">
-                                <div className="blue-bkg-title def-padding">
-                                    <span>Total Products</span>
-                                </div>
-                                <div className="content-wrapper def-padding">
-                                    <span className="number">
+                        <div className="section-wrapper mar-b-50">
+                                <div className="details">
+                                    <div className="icon-wrapper supports-icon">
+                                        <FontAwesomeIcon icon={faShoppingCart}/>
+                                    </div>
+                                    <div className="content-wrapper">
+                                        <div className="title">Total Products</div>
+                                        <div className="total">
                                         { !countProducts ? (
                                             <Loader2 />
                                         ) : (
                                             countProducts
                                         ) }
-                                    </span>
+                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </Col>
                         <Col md={3}>
-                            <div className="section-wrapper">
-                                <div className="blue-bkg-title def-padding">
-                                    <span>Total Payment Plans</span>
-                                </div>
-                                <div className="content-wrapper def-padding">
-                                    <span className="number">
+                        <div className="section-wrapper mar-b-50">
+                                <div className="details">
+                                    <div className="icon-wrapper supports-icon">
+                                        <FontAwesomeIcon icon={faShoppingCart}/>
+                                    </div>
+                                    <div className="content-wrapper">
+                                        <div className="title">Total Payment Plans</div>
+                                        <div className="total">
                                         { !countPaymentPlans ? (
                                             <Loader2 />
                                         ) : (
                                             countPaymentPlans
                                         ) }
-                                    </span>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </Col>
+                        <Col md={6}>
+                            <div className="section-wrapper mar-b-50">
+                                <div className="details">
+                                    <div className="icon-wrapper users-icon">
+                                        <FontAwesomeIcon icon={faUsers}/>
+                                    </div>
+                                    <div className="content-wrapper">
+                                        <div className="title">Total Tickets</div>
+                                        <div className="total">
+                                        1,054
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </Col>
                         <Col md={6}>
-                            <div className="section-wrapper">
-                                <div className="blue-bkg-title def-padding">
-                                    <span>Tickets</span>
-                                </div>
-                                <div className="content-wrapper def-padding">
-                                    <span className="number">1,054</span>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                            <div className="section-wrapper">
-                                <div className="blue-bkg-title def-padding">
-                                    <span>Knowledge base</span>
-                                </div>
-                                <div className="content-wrapper def-padding">
-                                    <span className="number">1,054</span>
+                        <div className="section-wrapper mar-b-50">
+                                <div className="details">
+                                    <div className="icon-wrapper users-icon">
+                                        <FontAwesomeIcon icon={faUsers}/>
+                                    </div>
+                                    <div className="content-wrapper">
+                                        <div className="title">Total Knowledge base</div>
+                                        <div className="total">
+                                        1,054
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </Col>
                     </Row>
                 </div>
                     
-                    <div className="section-wrapper">
+                    <div className="section-wrapper mar-b-50">
                         <div className="blue-bkg-title def-padding">
                             <span>Recent Activities</span>
                         </div>

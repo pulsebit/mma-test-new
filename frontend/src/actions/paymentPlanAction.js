@@ -66,12 +66,12 @@ export const getPaymentPlanDetails = (id) => async (dispatch) => {
    }
 }
 
-export const getPaymentPlanListByCreator  = () => async (dispatch) => {
+export const getPaymentPlanListByCreator  = (id) => async (dispatch) => {
    try { 
-      
+      console.log(id)
       dispatch({ type: PAYMENTPLAN_LIST_BY_CREATOR_REQUEST })
 
-      const { data } = await axios.get(`/api/services/`)
+      const { data } = await axios.get(`/api/services/${id}`)
 
       dispatch({ 
          type: PAYMENTPLAN_LIST_BY_CREATOR_SUCCESS,

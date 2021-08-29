@@ -7,6 +7,8 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
 import defaultImage from '../assets/images/user.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
 const UserViewScreen = ({ match }) => {
@@ -15,7 +17,7 @@ const UserViewScreen = ({ match }) => {
   
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
-    console.log(user)
+    
 
     useEffect(() => {
        dispatch(getUserDetails(userId))
@@ -31,8 +33,11 @@ const UserViewScreen = ({ match }) => {
             ) : (
             <DashboardContainer>
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Basic Information</span>
+                <div className="dashboard-title-wrapper">
+                    <div className="dashboard-title">Basic Information</div>
+                    <div className="button-wrapper">
+                    <NavLink to={`/admin/users/${user._id}/edit`} className="edit-btn"><FontAwesomeIcon icon={faEdit}/>Edit</NavLink>
+                </div>
                     </div>
                     <Row className="def-padding">
                     <Col md={2}>
@@ -82,8 +87,8 @@ const UserViewScreen = ({ match }) => {
                 </div>
             
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Membership Information</span>
+                <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Membership Information</div>
                     </div>
                     <div className="user-details">
                         <Row>
@@ -112,8 +117,8 @@ const UserViewScreen = ({ match }) => {
                 </div>
 
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Activity-log</span>
+                <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Activity-log</div>
                     </div>
                     <div className="table-wrapper">
                         <table>
@@ -129,10 +134,6 @@ const UserViewScreen = ({ match }) => {
                             </tr>
                         </table>
                     </div>
-                </div>
-                            
-                <div className="button-wrapper">
-                    <NavLink to={`/admin/users/${user._id}/edit`} className="edit-btn">Edit Profile</NavLink>
                 </div>
             </DashboardContainer>
             )} 

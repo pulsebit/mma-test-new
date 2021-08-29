@@ -5,6 +5,9 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import DashboardContainer from '../components/DashboardContainer'
 import { listUsers }  from '../actions/userActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+
 
 const UserListScreen = ({ history }) => {
    const dispatch = useDispatch()
@@ -29,8 +32,8 @@ const UserListScreen = ({ history }) => {
         <> 
             <DashboardContainer>
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>User List</span>
+                <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">User List</div>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
@@ -58,7 +61,8 @@ const UserListScreen = ({ history }) => {
                                                     <td className="date">{user.createdAt}</td>
                                                     <td>
                                                        
-                                                        <NavLink to={`/admin/users-view/${user._id}`} className="view-btn">View</NavLink>
+                                                        <NavLink to={`/admin/users-view/${user._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
+                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
                                                     </td>
                                                 </tr>
                                          ))}

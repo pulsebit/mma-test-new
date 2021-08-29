@@ -6,6 +6,8 @@ import { deleteSupport, getSupportDetails, updateSupport } from '../actions/supp
 import { listUsers } from '../actions/userActions'
 import { SUPPORT_UPDATE_RESET } from '../constants/supportConstants'
 import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
+import { faPaperPlane, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SupportsEditScreen = ({match, history}) => {
     const supportId = match.params.id
@@ -72,8 +74,8 @@ const SupportsEditScreen = ({match, history}) => {
             <Form onSubmit={onSubmitHandler}>
                 <DashboardContainer>
                         <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Edit Support</span>
+                            <div className="dashboard-title-wrapper">
+                                <div className="dashboard-title">Edit Support</div>
                             </div>
                             <Row>
                                 <Col md={12}>
@@ -171,13 +173,13 @@ const SupportsEditScreen = ({match, history}) => {
                         <div className="button-wrapper def-padding">
                             { status === 'Completed' ? (
                                 <>
-                                    <button onClick={addToKnowledgeBase}className='add-btn'>Save and Add to Knowledge Base</button>
-                                    <button type="submit" className='update-btn'>Save Only</button>
+                                    <button onClick={addToKnowledgeBase}className='add-btn'><FontAwesomeIcon icon={faPaperPlane}/>Save and Add to Knowledge Base</button>
+                                    <button type="submit" className='update-btn'><FontAwesomeIcon icon={faSave}/>Save Only</button>
                                 </>
                             ) : (
-                                <button type="submit" className='update-btn'>Save</button>
+                                <button type="submit" className='update-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
                             )}
-                            <button onClick={onDeleteHandler} className="delete-btn">Delete</button>
+                            <button onClick={onDeleteHandler} className="delete-btn"><FontAwesomeIcon icon={faTrash}/>Delete</button>
                         </div>
 
                 </DashboardContainer>

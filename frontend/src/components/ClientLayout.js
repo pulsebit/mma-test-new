@@ -12,64 +12,62 @@ const ClientLayout = ({ children }) => {
     const dispatch = useDispatch()
   
     const userLogin = useSelector((state) => state.userLogin)
-    const {userInfo} = userLogin
+    const {userInfo = {} } = userLogin || {}
+    const userID = userInfo._id
 
     const { loading, user = {} } = useSelector(state => state.userDetails)
 
     useEffect(() => {
-        dispatch(getUserDetails(userInfo._id))
+        dispatch(getUserDetails(userID))
      }, [dispatch])
 
     return (
         <div className="client-layout">
-            <Container fluid>
             <div className='layout'>
-
-                    <div className="sidebar def-padding">
-                        <div className="res-sidebar">
-                            <ClientSidebar />
-                        </div>
-                        { loading ? (
-                            <Loader2 />
-                        ) : (
-                            <div className="basic-info">
-                                <div className="inner-img-wrapper">
-                                    <img className="" src={ProfileImage} alt='' />
-                                    <span>{user.name}</span>
-                                </div>
-                        <div className="details-wrapper">
-                            <FontAwesomeIcon icon={faPhone} />
-                            <span>{user.mobile_no}</span>
-                        </div>
-
-                        <div className="details-wrapper">
-                            <FontAwesomeIcon icon={faEnvelope} />
-                            <span>{user.email}</span>
-                        </div>
-
-                        <div className="details-wrapper">
-                            <FontAwesomeIcon icon={faLocationArrow} />
-                            <span>{user.address}</span>
-                        </div>
-
-                                <div className="details-wrapper">
-                                    <FontAwesomeIcon icon={faUsers} />
-                                    <span>100</span>
-                                </div>
-                                
-                            </div>
-                        )}
-                        <div className="des-sidebar">
-                            <ClientSidebar />
-                        </div>
+                <div className="sidebar def-padding">
+                    <div className="res-sidebar">
+                        <ClientSidebar />
                     </div>
-                    <div className="main-content">
-                        <div className="layout-wrapper">
-                            {children}
+                    { loading ? (
+                        <Loader2 />
+                    ) : (
+                        <div className="basic-info">
+                            <div className="inner-img-wrapper">
+                                <img className="" src={ProfileImage} alt='' />
+                                <span>{user.name}</span>
+                            </div>
+                    <div className="details-wrapper">
+                        <FontAwesomeIcon icon={faPhone} />
+                        <span>{user.mobile_no}</span>
+                    </div>
+
+                    <div className="details-wrapper">
+                        <FontAwesomeIcon icon={faEnvelope} />
+                        <span>{user.email}</span>
+                    </div>
+
+                    <div className="details-wrapper">
+                        <FontAwesomeIcon icon={faLocationArrow} />
+                        <span>{user.address}</span>
+                    </div>
+
+                            <div className="details-wrapper">
+                                <FontAwesomeIcon icon={faUsers} />
+                                <span>100</span>
+                            </div>
+                            
                         </div>
+                    )}
+                    <div className="des-sidebar">
+                        <ClientSidebar />
                     </div>
                 </div>
-            </Container>
+                <div className="main-content">
+                    <div className="layout-wrapper pad-lr-60">
+                        {children}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

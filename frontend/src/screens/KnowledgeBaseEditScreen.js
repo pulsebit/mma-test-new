@@ -8,6 +8,8 @@ import Message from '../components/Message'
 import Loader2 from '../components/Loader2'
 import { deleteKnowledgeBase, getKnowledgeBaseDetails, updateKnowledgeBase } from '../actions/knowlegeBaseAction'
 import { KNOWLEDGE_BASE_UPDATE_RESET } from '../constants/knowledgeBaseConstant'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -64,12 +66,8 @@ const KnowledgeBaseViewScreen = ({match, history}) => {
                 <Form onSubmit={onSubmitHandler}>
                 <DashboardContainer>
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Support Information</span>
-                            <div className="button-wrapper">
-                                <button type="submit" value="Update" className='update-btn'>Update</button>
-                                <button onClick={onDeleteHandler} className='delete-btn'>Delete</button>
-                            </div>
+                        <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Support Information</div>
                         </div>
                         <div className="user-details def-padding">
                             <Row>
@@ -132,6 +130,12 @@ const KnowledgeBaseViewScreen = ({match, history}) => {
                             </Col>
                         </Row>
                     </div>
+
+                    <div className="button-wrapper def-padding">
+                        <button type="submit" value="Update" className='update-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
+                        <button onClick={onDeleteHandler} className='delete-btn'><FontAwesomeIcon icon={faTrash}/>Delete</button> 
+                        <NavLink to="/admin/supports/">Cancel</NavLink> 
+                    </div> 
 
                 </DashboardContainer>
             </Form>

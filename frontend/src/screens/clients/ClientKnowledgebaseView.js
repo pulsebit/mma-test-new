@@ -2,18 +2,16 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
-import DashboardContainer from '../components/DashboardContainer'
+import ClientLayout from '../../components/ClientLayout'
 import date from 'date-and-time'
-import Message from '../components/Message'
-import Loader2 from '../components/Loader2'
-import { getKnowledgeBaseDetails } from '../actions/knowlegeBaseAction'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Message from '../../components/Message'
+import Loader2 from '../../components/Loader2'
+import { getKnowledgeBaseDetails } from '../../actions/knowlegeBaseAction'
 
 
 
 
-const KnowledgeBaseViewScreen = ({match}) => {
+const ClientKnowledgebaseView = ({match}) => {
     const knowledgeBastId = match.params.id
 
     const dispatch = useDispatch()
@@ -33,14 +31,11 @@ const KnowledgeBaseViewScreen = ({match}) => {
             ) : error ? (
                 <Message variant='danger'>{error}</Message>
             ) : (
-                <DashboardContainer>
-                    <div className="section-wrapper">
-                        <div className="dashboard-title-wrapper">
-                            <div className="dashboard-title">Support Information</div>
-                            <div className="button-wrapper">
-                                <NavLink to={`/admin/knowledge-base-edit/${knowledgeBase._id}/`} className="edit-btn"><FontAwesomeIcon icon={faPen}/>Edit</NavLink>
-                            </div>
-                        </div>
+                <ClientLayout>
+                    <div className="section-wrapper mar-b-50">
+                    <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Knowledge Base</div>
+                    </div>
                         <div className="user-details def-padding">
                             <Row>
                                 <Col md={6}>
@@ -68,8 +63,8 @@ const KnowledgeBaseViewScreen = ({match}) => {
                     </div>
 
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Created by:</span>
+                        <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Created by</div>
                         </div>
                         <Row>
                             <Col md={12}>
@@ -95,9 +90,9 @@ const KnowledgeBaseViewScreen = ({match}) => {
                         </Row>
                     </div>
 
-                </DashboardContainer>
+                </ClientLayout>
             )}
         </div>
     )
 }
-export default KnowledgeBaseViewScreen
+export default ClientKnowledgebaseView

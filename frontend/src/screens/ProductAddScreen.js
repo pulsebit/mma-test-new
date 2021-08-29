@@ -10,6 +10,8 @@ import { Row, Col, Form } from 'react-bootstrap'
 import DashboardContainer from '../components/DashboardContainer'
 
 import { createProduct } from '../actions/productActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
 
 
 const ProductAddScreen = () => {
@@ -37,16 +39,16 @@ const ProductAddScreen = () => {
             <DashboardContainer>
                 <Form onSubmit={onSubmitHandler}>
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Basic Information</span>
+                        <div className="dashboard-title-wrapper">
+                                <div className="dashboard-title">Add Product</div>
                         </div>
                         <Row>
                             <Col md={2}>
                                 <div className="img-wrapper">
-                                    <img className="" src={image} alt='' />
+                                    <label>image:</label>
+                                    <img className="" src="https://club.helsemin.dk/wp-content/themes/oria/images/placeholder.png" alt='' />
                                 </div>
-                                <label>image:</label>
-                                <input type="text" onChange={(e)=>setImage(e.target.value)}/>
+                                
                             </Col>
                             <Col md={10}>
                                 <div className="user-details def-padding">
@@ -129,8 +131,8 @@ const ProductAddScreen = () => {
                         </Row>
                     </div>
 
-                    <div className="button-wrapper def-padding">
-                        <button type="submit" className='update-btn'>Save</button>
+                    <div className="button-wrapper j-c-end def-padding">
+                        <button type="submit" className='save-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
                         <NavLink to="/admin/productlist/">Cancel</NavLink> 
                     </div>
                 </Form>

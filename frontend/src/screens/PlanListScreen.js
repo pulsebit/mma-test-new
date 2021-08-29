@@ -6,6 +6,8 @@ import Loader2 from '../components/Loader2'
 import DashboardContainer from '../components/DashboardContainer'
 import { listPaymentPlans } from '../actions/paymentPlanAction'
 import date from 'date-and-time'
+import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const PlanListScreen = () => {
@@ -22,9 +24,9 @@ const PlanListScreen = () => {
         <div> 
             <DashboardContainer>
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Payment Plans</span>
-                        <NavLink to="/admin/plan-add" className="add-btn">Add new</NavLink>
+                    <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Payment Plans</div>
+                        <NavLink to="/admin/plan-add" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add New</NavLink>
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
@@ -51,7 +53,8 @@ const PlanListScreen = () => {
                                         <td>{date.format(new Date(payment.createdAt), 'ddd, MMM DD YYYY')}</td>
                                         <td>{date.format(new Date(payment.updatedAt), 'ddd, MMM DD YYYY')}</td>
                                         <td>
-                                            <NavLink to={`/admin/plan/${payment._id}`} className="view-btn">View</NavLink>
+                                            <NavLink to={`/admin/plan/${payment._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
+                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
                                         </td>
                                     </tr>
                                ))}

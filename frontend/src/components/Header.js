@@ -35,7 +35,7 @@ const Header = () => {
   
 	return (
 		<header>
-		 	<Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
+		 	<Navbar expand='lg' collapseOnSelect>
 				<Container fluid>
 					<Row>
 					  <Col sm={4} md={3} lg={2}>

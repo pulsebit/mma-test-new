@@ -6,6 +6,8 @@ import { NavLink } from 'react-router-dom'
 import { listProducts } from '../actions/productActions'
 
 import DashboardContainer from '../components/DashboardContainer'
+import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ProductListScreen = () => {
 
@@ -23,9 +25,9 @@ const ProductListScreen = () => {
         <div> 
             <DashboardContainer>
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Product List</span>
-                        <NavLink to="/admin/product-add" className="add-btn">Add new</NavLink>
+                <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Product List</div>
+                        <NavLink to="/admin/product-add" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add new</NavLink>
                     </div>
                     <div className="table-wrapper def-padding">
                     { loading ? ( 
@@ -49,7 +51,8 @@ const ProductListScreen = () => {
                                         <td>{product.createdAt}</td>
                                         <td>${product.price}</td>
                                         <td>
-                                            <NavLink to={`/admin/product/${product._id}/`} className="view-btn">View</NavLink>
+                                            <NavLink to={`/admin/product/${product._id}/`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
+                                            <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
                                         </td>
                                     </tr>
                                 ))}	

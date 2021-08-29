@@ -7,10 +7,11 @@ import User from '../assets/images/user.png'
 import { getSupportDetails } from '../actions/supportActions'
 import date from 'date-and-time'
 import Message from '../components/Message'
-//import Loader from '../components/Loader'
 import Loader2 from '../components/Loader2'
 import AddNote from '../components/AddNote'
 import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -23,7 +24,7 @@ const SupportsViewScreen = ({match}) => {
     const { loading, error, support } = useSelector( state => state.supportDetails)
     const { client = {} , created_by = {}, assignee = {} } = support || {}
 
-    {date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}
+    
 
     
 
@@ -46,13 +47,13 @@ const SupportsViewScreen = ({match}) => {
             ) : (
                 <DashboardContainer>
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Support Information</span>
+                        <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Support Information</div>
                             <div className="button-wrapper">
-                                <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn">Edit</NavLink>
+                                <NavLink to={`/admin/supports-edit/${support._id}/`} className="edit-btn"><FontAwesomeIcon icon={faEdit}/>Edit</NavLink>
                                 { support.status === 'Completed' ? (
                                     <>
-                                        <button onClick={addToKnowledgeBase}className='update-btn'>Add to Knowledge Base</button>
+                                        <button onClick={addToKnowledgeBase}className='update-btn'><FontAwesomeIcon icon={faPaperPlane}/>Knowledge Base</button>
                                     </>
                                 ) : (
                                     <></>
@@ -113,68 +114,60 @@ const SupportsViewScreen = ({match}) => {
                                 <Col md={12}>
                                     <div className="details-wrapper">
                                         <label>Issue:</label>
-                                        <span><textarea value={support.problem_description} readOnly/></span>
+                                        <textarea value={support.problem_description} readOnly/>
                                     </div>
                                 </Col>
                             </Row>
                         </div>
                     </div>
 
-                    <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Assignee</span>
-                        </div>
-                        <Row>
-                            <Col md={12}>
+                    
+                    
+                    <Row>
+                        <Col md={6}>
+                            <div className="dashboard-title-alone">Assignee</div>
+                            <div className="section-wrapper mar-b-50">
                                 <div className="table-wrapper def-padding">
                                     <table>
                                         <tbody>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Department</th>
                                                 <th>Mobile Number</th>
                                             </tr>				
                                             <tr>
                                                 <td>{assignee.name}</td>
                                                 <td>{assignee.email}</td>
-                                                <td>Sample Dept.</td>
                                                 <td>{assignee.mobile_no}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div> 
-                            </Col>
-                        </Row>
-                    </div>
-
-                    <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Created by: </span>
-                        </div>
-                        <Row>
-                            <Col md={12}>
+                                </div>
+                            </div> 
+                        </Col>
+                        <Col md={6}>
+                            <div className="dashboard-title-alone">Created by</div>
+                            <div className="section-wrapper mar-b-50">
                                 <div className="table-wrapper def-padding">
                                     <table>
                                         <tbody>
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Department</th>
                                                 <th>Mobile Number</th>
                                             </tr>				
                                             <tr>
                                                 <td>{created_by.name}</td>
                                                 <td>{created_by.email}</td>
-                                                <td>Sample Dept.</td>
                                                 <td>{created_by.mobile_no}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div> 
-                            </Col>
-                        </Row>
-                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    
 
                     <AddNote 
                         supportInfo={supportId} 

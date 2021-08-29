@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createSupport } from '../actions/supportActions'
 import { listUsers } from '../actions/userActions'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
+
 
 const SupportsAddScreen = () => {
 
@@ -33,17 +36,17 @@ const SupportsAddScreen = () => {
             <Form onSubmit={onSubmitHandler}>
                 <DashboardContainer>
                         <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Add Support</span>
+                            <div className="dashboard-title-wrapper">
+                                <div className="dashboard-title">Add Support</div>
                             </div>
                             <Row>
                                 <Col md={12}>
-                                    <div className="user-details def-padding">
+                                    <div className="fill-up">
                                         <Row>
                                             <Col md={6}>
                                                 <div className="details-wrapper">
                                                     <label>Ticket Number:</label>
-                                                    <span><input type="text" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/></span>
+                                                    <input type="text" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/>
                                                 </div>
                                                 <div className="details-wrapper">
                                                     <label>Select Client:</label>
@@ -126,8 +129,8 @@ const SupportsAddScreen = () => {
                             </Row>
                         </div>
 
-                        <div className="button-wrapper def-padding">
-                            <button type="submit" className='update-btn'>Save</button>
+                        <div className="button-wrapper j-c-end">
+                            <button type="submit" className='save-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
                         </div>
                 </DashboardContainer>
             </Form> 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faPaperPlane, faSave, faTrash  } from '@fortawesome/free-solid-svg-icons'
 import  { getUserDetails, updateUser, deleteUser } from '../actions/userActions.js'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -191,8 +191,8 @@ const UserEditScreen = ({ match, history }) => {
                         </div>
 
                         <div className="button-wrapper def-padding">
-                            <button type="submit" value="Update" className='update-btn'>Update</button>
-                            <button onClick={onDeleteHandler} className='delete-btn'>Delete</button>  
+                            <button type="submit" value="Update" className='update-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
+                            <button onClick={onDeleteHandler} className='delete-btn'><FontAwesomeIcon icon={faTrash}/>Delete</button>  
                         </div>
                     </Form>
                 </>

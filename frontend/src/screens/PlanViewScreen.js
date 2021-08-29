@@ -12,6 +12,8 @@ import { listProducts } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader2 from '../components/Loader2'
 import date from 'date-and-time'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 const PlanViewScreen = ({match}) => {
     const paymentPlanId = match.params.id
@@ -42,8 +44,11 @@ const PlanViewScreen = ({match}) => {
             ) : ( 
                 <>
                     <div className="section-wrapper">
-                        <div className="blue-bkg-title def-padding">
-                            <span>Payment Information</span>
+                        <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Payment Information</div>
+                            <div className="button-wrapper">
+                                <NavLink to={`/admin/plan/${paymentPlanId}/edit`} className="edit-btn"><FontAwesomeIcon icon={faPen}/>Edit</NavLink>
+                            </div>
                         </div>
                         <Row>
                             <Col md={2}>
@@ -91,10 +96,7 @@ const PlanViewScreen = ({match}) => {
                                     </div>
                                 </div>
                             </Col>
-                        </Row> 
-                        <div className="button-wrapper">
-                            <NavLink to={`/admin/plan/${paymentPlanId}/edit`} className="edit-btn">Edit</NavLink>
-                        </div> 
+                        </Row>
                     </div>
 
                     <PaymentProduct id={paymentPlanId} includeProducts={includeProducts} isAdmin={isAdmin}/>

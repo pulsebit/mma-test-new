@@ -6,6 +6,8 @@ import Loader2 from '../components/Loader2'
 import DashboardContainer from '../components/DashboardContainer'
 import { listSupports } from '../actions/supportActions'
 import date from 'date-and-time'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 const SupportsListScreen = () => {
@@ -22,10 +24,10 @@ const SupportsListScreen = () => {
         <div> 
             <DashboardContainer >
                 <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Supports List</span>
+                    <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Supports List</div>
                         <div className="button-wrapper">
-                            <NavLink to="/admin/add-support/" className="add-btn">Add</NavLink>
+                            <NavLink to="/admin/add-support/" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add New</NavLink>
                         </div>
                     </div>
                     <div className="table-wrapper def-padding">
@@ -38,7 +40,7 @@ const SupportsListScreen = () => {
                                     <th>Status</th>
                                     <th>Category</th>
                                     <th>Date Created</th>
-                                    <th>Action</th>
+                                    <th></th>
                                 </tr>	
                                 { loading ? (
                                      <Loader2 />
@@ -54,7 +56,8 @@ const SupportsListScreen = () => {
                                             <td>{support.category}</td>
                                             <td>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</td>
                                             <td>
-                                                <NavLink to={`/admin/supports/${support._id}`} className="view-btn">View</NavLink>
+                                                <NavLink to={`/admin/supports/${support._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
+                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
                                             </td>
                                         </tr>
                                     ))     
