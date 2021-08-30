@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { faPaperPlane, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+<<<<<<< HEAD:frontend/src/screens/admin/ProductEditScreen.js
 import DashboardContainer from '../../components/DashboardContainer'
 import Seo from '../../assets/images/seo.jpg'
 
@@ -15,6 +16,10 @@ import { deleteProduct, getProductDetails, updateProduct } from '../../actions/p
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PRODUCT_DELETE_RESET, PRODUCT_UPDATE_RESET }  from '../../constants/productConstants'
+=======
+import DashboardContainer from '../components/DashboardContainer'
+import Seo from '../assets/images/seo.jpg'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/ProductEditScreen.js
 
 
 
@@ -203,7 +208,11 @@ const ProductEditScreen = ({match, history}) => {
                                     {/* <div className="details-wrapper">
                                         <label>Created by:</label>
                                         <span><input type="text" /></span>
+<<<<<<< HEAD:frontend/src/screens/admin/ProductEditScreen.js
                                     </div> */}
+=======
+                                    </div>
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/ProductEditScreen.js
                                 </div>
                             </Col>
                         </Row>

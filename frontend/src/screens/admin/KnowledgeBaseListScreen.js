@@ -5,7 +5,11 @@ import Message from '../../components/Message'
 import Loader2 from '../../components/Loader2'
 import DashboardContainer from '../../components/DashboardContainer'
 import date from 'date-and-time'
+<<<<<<< HEAD:frontend/src/screens/admin/KnowledgeBaseListScreen.js
 import { listKnowledgeBase } from '../../actions/knowlegeBaseAction'
+=======
+import { listKnowledgeBase } from '../actions/knowlegeBaseAction'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/KnowledgeBaseListScreen.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 

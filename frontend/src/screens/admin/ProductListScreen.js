@@ -5,7 +5,11 @@ import Loader from '../../components/Loader'
 import { NavLink } from 'react-router-dom'
 import { listProducts } from '../../actions/productActions'
 
+<<<<<<< HEAD:frontend/src/screens/admin/ProductListScreen.js
 import DashboardContainer from '../../components/DashboardContainer'
+=======
+import DashboardContainer from '../components/DashboardContainer'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/ProductListScreen.js
 import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

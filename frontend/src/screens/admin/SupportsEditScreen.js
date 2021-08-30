@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Form, Row } from 'react-bootstrap'
 import DashboardContainer from '../../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
+<<<<<<< HEAD:frontend/src/screens/admin/SupportsEditScreen.js
 import { deleteSupport, getSupportDetails, updateSupport } from '../../actions/supportActions'
 import { listUsers } from '../../actions/userActions'
 import { SUPPORT_DELETE_RESET, SUPPORT_UPDATE_RESET } from '../../constants/supportConstants'
@@ -10,6 +11,14 @@ import { faPaperPlane, faSave, faTrash } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+=======
+import { deleteSupport, getSupportDetails, updateSupport } from '../actions/supportActions'
+import { listUsers } from '../actions/userActions'
+import { SUPPORT_UPDATE_RESET } from '../constants/supportConstants'
+import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
+import { faPaperPlane, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/SupportsEditScreen.js
 
 const SupportsEditScreen = ({match, history}) => {
     const supportId = match.params.id

@@ -4,9 +4,15 @@ import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import DashboardContainer from '../../components/DashboardContainer'
 import date from 'date-and-time'
+<<<<<<< HEAD:frontend/src/screens/admin/KnowledgeBaseViewScreen.js
 import Message from '../../components/Message'
 import Loader2 from '../../components/Loader2'
 import { getKnowledgeBaseDetails } from '../../actions/knowlegeBaseAction'
+=======
+import Message from '../components/Message'
+import Loader2 from '../components/Loader2'
+import { getKnowledgeBaseDetails } from '../actions/knowlegeBaseAction'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/KnowledgeBaseViewScreen.js
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

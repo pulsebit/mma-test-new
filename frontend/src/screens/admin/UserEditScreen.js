@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera, faPaperPlane, faSave, faTrash  } from '@fortawesome/free-solid-svg-icons'
+<<<<<<< HEAD:frontend/src/screens/admin/UserEditScreen.js
 import  { getUserDetails, updateUser, deleteUser } from '../../actions/userActions.js'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
@@ -11,6 +12,14 @@ import User from '../../assets/images/user.png'
 import { USER_DELETE_RESET, USER_UPDATE_RESET }  from '../../constants/userConstants'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+=======
+import  { getUserDetails, updateUser, deleteUser } from '../actions/userActions.js'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import DashboardContainer from '../components/DashboardContainer'
+import User from '../assets/images/user.png'
+import { USER_UPDATE_RESET }  from '../constants/userConstants'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/UserEditScreen.js
 
 
 const UserEditScreen = ({ match, history }) => {

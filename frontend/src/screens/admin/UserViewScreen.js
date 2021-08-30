@@ -3,10 +3,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getUserDetails }  from '../../actions/userActions'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
+<<<<<<< HEAD:frontend/src/screens/admin/UserViewScreen.js
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import DashboardContainer from '../../components/DashboardContainer'
 import defaultImage from '../../assets/images/user.png'
+=======
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import DashboardContainer from '../components/DashboardContainer'
+import defaultImage from '../assets/images/user.png'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/UserViewScreen.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,8 +23,12 @@ const UserViewScreen = ({ match }) => {
     const dispatch = useDispatch()
   
     const userDetails = useSelector(state => state.userDetails)
+<<<<<<< HEAD:frontend/src/screens/admin/UserViewScreen.js
     const { loading, error, user} = userDetails
     console.log(user)
+=======
+    const { loading, error, user } = userDetails
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/UserViewScreen.js
     
 
     useEffect(() => {
@@ -33,7 +44,11 @@ const UserViewScreen = ({ match }) => {
                 <Message variant='danger'>{error}</Message>
             ) : (
             <DashboardContainer>
+<<<<<<< HEAD:frontend/src/screens/admin/UserViewScreen.js
                 <div className="section-wrapper mar-b-50">
+=======
+                <div className="section-wrapper">
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/UserViewScreen.js
                 <div className="dashboard-title-wrapper">
                     <div className="dashboard-title">Basic Information</div>
                     <div className="button-wrapper">
@@ -93,7 +108,11 @@ const UserViewScreen = ({ match }) => {
                 </Row>
                 </div>
             
+<<<<<<< HEAD:frontend/src/screens/admin/UserViewScreen.js
                 <div className="section-wrapper mar-b-50">
+=======
+                <div className="section-wrapper">
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/UserViewScreen.js
                 <div className="dashboard-title-wrapper">
                             <div className="dashboard-title">Membership Information</div>
                     </div>

@@ -55,6 +55,10 @@ export const listSupports = () => async (dispatch, getState) => {
 
 export const getSupportListByCreator  = (id) => async (dispatch) => {
    try { 
+<<<<<<< HEAD
+=======
+      console.log(id)
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
       dispatch({ type: SUPPORT_LIST_BY_CREATOR_REQUEST })
 
       const { data } = await axios.get(`/api/client-supports/${id}` )

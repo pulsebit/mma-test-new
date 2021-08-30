@@ -10,6 +10,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SUPPORT_CREATE_RESET } from '../../constants/supportConstants'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
+
 
 const SupportsAddScreen = ({history}) => {
 
@@ -65,7 +68,11 @@ const SupportsAddScreen = ({history}) => {
                                             <Col md={6}>
                                                 <div className="details-wrapper">
                                                     <label>Ticket Number:</label>
+<<<<<<< HEAD:frontend/src/screens/admin/SupportsAddScreen.js
                                                     <input type="number" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/>
+=======
+                                                    <input type="text" value={ticket_no} onChange={(e)=>setTicket_no(e.target.value)}/>
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/SupportsAddScreen.js
                                                 </div>
                                                 <div className="details-wrapper">
                                                     <label>Select Client:</label>
@@ -148,7 +155,11 @@ const SupportsAddScreen = ({history}) => {
                             </Row>
                         </div>
 
+<<<<<<< HEAD:frontend/src/screens/admin/SupportsAddScreen.js
                         <div className="button-wrapper def-padding j-c-end">
+=======
+                        <div className="button-wrapper j-c-end">
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/SupportsAddScreen.js
                             <button type="submit" className='save-btn'><FontAwesomeIcon icon={faSave}/>Save</button>
                         </div>
                         <ToastContainer />

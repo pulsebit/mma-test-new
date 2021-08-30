@@ -282,8 +282,11 @@ button, a {
   background-color: #fcae17;
   border: none;
   position: relative;
+<<<<<<< HEAD
   height: -webkit-max-content;
   height: -moz-max-content;
+=======
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
   height: max-content;
   white-space: nowrap;
   text-transform: uppercase;
@@ -319,8 +322,6 @@ button, a {
   background-color: #b80000;
   border: none;
   position: relative;
-  height: -webkit-max-content;
-  height: -moz-max-content;
   height: max-content;
   white-space: nowrap;
   text-transform: uppercase;
@@ -345,8 +346,6 @@ button, a {
   background-color: #4CAF50;
   border: none;
   position: relative;
-  height: -webkit-max-content;
-  height: -moz-max-content;
   height: max-content;
   white-space: nowrap;
   text-transform: uppercase;
@@ -371,8 +370,6 @@ button, a {
   background-color: #fcae17;
   border: none;
   position: relative;
-  height: -webkit-max-content;
-  height: -moz-max-content;
   height: max-content;
   white-space: nowrap;
   text-transform: uppercase;
@@ -397,8 +394,11 @@ button, a {
   background-color: #1e7e34;
   border: none;
   position: relative;
+<<<<<<< HEAD
   height: -webkit-max-content;
   height: -moz-max-content;
+=======
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
   height: max-content;
   white-space: nowrap;
   text-transform: uppercase;
@@ -550,8 +550,6 @@ button, a {
   content: "|";
 }
 .site-footer .links {
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   margin-left: auto;
 }
@@ -626,7 +624,10 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   padding-right: 30px;
   background-color: #fff;
   min-height: calc(100vh - 130px);
+<<<<<<< HEAD
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+=======
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
 }
 .sidebar .sidebar-menu-label {
   text-transform: uppercase;
@@ -880,8 +881,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   .login-wrapper .row .custom-pos-outline {
     margin: 2px 0 0 -6rem;
     position: absolute;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
 @media only screen and (max-width: 575px) {
@@ -901,23 +901,19 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 @media only screen and (max-width: 767px) {
   .login-wrapper .row .login-image .image-wrapper {
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
   }
 }
 .login-wrapper .row .login-image .image-wrapper img {
   height: 500px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   overflow: hidden;
   border-radius: 25px 0 0 25px;
 }
 @media only screen and (max-width: 767px) {
   .login-wrapper .row .login-image .image-wrapper img {
     height: auto;
-    -o-object-fit: contain;
-       object-fit: contain;
+    object-fit: contain;
     overflow: hidden;
     border-radius: 25px;
     position: absolute;
@@ -979,12 +975,15 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   border-radius: 5px;
   outline: none;
 }
+<<<<<<< HEAD
 .edit-screen input::-moz-placeholder {
   border: 1px solid #b3b3b3;
 }
 .edit-screen input:-ms-input-placeholder {
   border: 1px solid #b3b3b3;
 }
+=======
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
 .edit-screen input::placeholder {
   border: 1px solid #b3b3b3;
 }
@@ -1000,12 +999,15 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   border-radius: 5px;
   outline: none;
 }
+<<<<<<< HEAD
 .edit-screen select::-moz-placeholder {
   border: 1px solid #b3b3b3;
 }
 .edit-screen select:-ms-input-placeholder {
   border: 1px solid #b3b3b3;
 }
+=======
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
 .edit-screen select::placeholder {
   border: 1px solid #b3b3b3;
 }
@@ -1098,4 +1100,10 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .view-screen .button-wrapper {
   text-align: right;
+<<<<<<< HEAD
 }/*# sourceMappingURL=index.css.map */
+=======
+}
+
+/*# sourceMappingURL=index.css.map */
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e

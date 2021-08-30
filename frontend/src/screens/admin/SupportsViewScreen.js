@@ -6,10 +6,17 @@ import DashboardContainer from '../../components/DashboardContainer'
 import User from '../../assets/images/user.png'
 import { getSupportDetails } from '../../actions/supportActions'
 import date from 'date-and-time'
+<<<<<<< HEAD:frontend/src/screens/admin/SupportsViewScreen.js
 import Message from '../../components/Message'
 import Loader2 from '../../components/Loader2'
 import AddNote from '../../components/AddNote'
 import { createKnowledgeBase } from '../../actions/knowlegeBaseAction'
+=======
+import Message from '../components/Message'
+import Loader2 from '../components/Loader2'
+import AddNote from '../components/AddNote'
+import { createKnowledgeBase } from '../actions/knowlegeBaseAction'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/SupportsViewScreen.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 

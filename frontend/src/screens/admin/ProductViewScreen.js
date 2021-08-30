@@ -13,6 +13,9 @@ import { getUserDetails } from '../../actions/userActions'
 import { faPaperPlane, faPen, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { faPaperPlane, faPen, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const ProductViewScreen = ({match}) => {
     const productId = match.params.id

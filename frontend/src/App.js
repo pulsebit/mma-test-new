@@ -150,6 +150,11 @@ function App() {
               <Route path='/admin/settings' component={Settings} />
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e
               {/* CLIENT */}
               <Route path='/portal' component={ClientPortal} exact />
 

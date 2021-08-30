@@ -8,12 +8,21 @@ import { NavLink } from 'react-router-dom'
 import { Row, Col, Form } from 'react-bootstrap'
 import DashboardContainer from '../../components/DashboardContainer'
 import { useDispatch, useSelector } from 'react-redux'
+<<<<<<< HEAD:frontend/src/screens/admin/PlanEditScreen.js
 import defaultImage from '../../assets/images/user.png'
 import { getPaymentPlanDetails, updatePaymentPlan, deletePaymentPlan } from '../../actions/paymentPlanAction'
 import { listProducts } from '../../actions/productActions'
 import Message from '../../components/Message'
 import { PAYMENTPLAN_UPDATE_RESET }  from '../../constants/paymentPlanConstant'
 import Loader2 from '../../components/Loader2';
+=======
+import defaultImage from '../assets/images/user.png'
+import { getPaymentPlanDetails, updatePaymentPlan, deletePaymentPlan } from '../actions/paymentPlanAction'
+import { listProducts } from '../actions/productActions'
+import Message from '../components/Message'
+import { PAYMENTPLAN_UPDATE_RESET }  from '../constants/paymentPlanConstant'
+import Loader2 from '../components/Loader2';
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/PlanEditScreen.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 

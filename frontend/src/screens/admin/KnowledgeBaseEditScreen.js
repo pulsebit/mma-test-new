@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
+
 const KnowledgeBaseViewScreen = ({match, history}) => {
     const knowledgeBaseId = match.params.id
 
@@ -148,6 +149,7 @@ const KnowledgeBaseViewScreen = ({match, history}) => {
                         <NavLink to="/admin/supports/">Cancel</NavLink> 
                     </div> 
                     <ToastContainer />
+
                 </DashboardContainer>
             </Form>
             )}

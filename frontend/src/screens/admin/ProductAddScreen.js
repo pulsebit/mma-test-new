@@ -13,6 +13,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
 
+<<<<<<< HEAD:frontend/src/screens/admin/ProductAddScreen.js
+=======
+import { createProduct } from '../actions/productActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/ProductAddScreen.js
 
 const ProductAddScreen = ({history}) => {
     const dispatch = useDispatch()
@@ -63,8 +69,13 @@ const ProductAddScreen = ({history}) => {
                                     <img className="" src="https://club.helsemin.dk/wp-content/themes/oria/images/placeholder.png" alt='' />
                                 </div>
                                 
+<<<<<<< HEAD:frontend/src/screens/admin/ProductAddScreen.js
                             </Col> */}
                             <Col md={12}>
+=======
+                            </Col>
+                            <Col md={10}>
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/ProductAddScreen.js
                                 <div className="user-details def-padding">
                                     <Row>
                                         <Col md={6}>

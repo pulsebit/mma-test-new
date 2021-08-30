@@ -9,8 +9,13 @@ import { listPaymentPlans } from '../../actions/paymentPlanAction'
 import { Row , Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAmbulance, faInfoCircle, faShoppingCart, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons'
+<<<<<<< HEAD:frontend/src/screens/admin/AdminDashboard.js
 import DashboardContainer from '../../components/DashboardContainer'
 import Loader2 from '../../components/Loader2'
+=======
+import DashboardContainer from '../components/DashboardContainer'
+import Loader2 from '../components/Loader2'
+>>>>>>> da15b425908059e45bde7ed0fc2f4c523c01104e:frontend/src/screens/AdminDashboard.js
 
 
 const AdminDashboard = () => {
