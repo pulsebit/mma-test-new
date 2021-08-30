@@ -24,8 +24,6 @@
 @import "./layout/DashboardContainer";
 @import "./layout/PermissionLayout";
 @import "./layout/sidebar";
-@import "./layout/ViewScreen";
-@import "./layout/EditScreen";
 @import './layout/Client';
 
 // @import "./pages/contact";
@@ -33,8 +31,8 @@
 
 // SCREENS
 @import "./screens/AdminDashboard";
+@import "./screens/ClientServiceList";
 @import "./screens/LoginScreen";
 @import "./screens/ClientServices";
-
-// @import "./themes/admin";
-// @import "./themes/theme";
+@import "./screens/EditScreen";
+@import "./screens/ViewScreen";

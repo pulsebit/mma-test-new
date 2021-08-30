@@ -48,19 +48,19 @@ const LoginScreen = () => {
 					<Form.Group>
 						<Form.Label>Email Address</Form.Label>
 						<Form.Control
-					type='email'
-					placeholder='Enter email'
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+							type='email'
+							placeholder='Enter email'
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						></Form.Control>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Password</Form.Label>
 						<Form.Control
-					type='password'
-					placeholder='Enter password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+							type='password'
+							placeholder='Enter password'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						></Form.Control>
 					</Form.Group>
 

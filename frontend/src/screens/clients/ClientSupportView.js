@@ -1,10 +1,33 @@
-import React from 'react'
+
+
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import ClientLayout from '../../components/ClientLayout'
 import User from '../../assets/images/user.png'
+import { getSupportDetails } from '../../actions/supportActions'
+import date from 'date-and-time'
+import Message from '../../components/Message'
+import Loader2 from '../../components/Loader2'
 
-const SupportsViewScreen = () => {
+const SupportsViewScreen = ({match}) => {
+    const supportId = match.params.id
+
+    const dispatch = useDispatch()
+
+    const { loading, error, support } = useSelector( state => state.supportDetails)
+    const { client = {} , created_by = {}, assignee = {} } = support || {}
+
+    console.log(support)
+
+    
+
+    useEffect(() => {
+        dispatch(getSupportDetails(supportId))
+        
+    },[dispatch])
+
     return (
         <div className="view-screen">
             <ClientLayout>
@@ -26,33 +49,33 @@ const SupportsViewScreen = () => {
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Ticket ID:</label>
-                                                <span>01</span>
+                                                <span>{support.ticket_no}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Full Name:</label>
-                                                <span>John Smith</span>
+                                                <span>{client.name}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Mobile number:</label>
-                                                <span>+61 7 7010 1111</span>
+                                                <span>{client.mobile_no}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Email:</label>
-                                                <span>user@gmail.com</span>
+                                                <span>{client.email}</span>
                                             </div>                                            
                                         </Col>
                                         <Col md={6}>
                                             <div className="details-wrapper">
                                                 <label>Issue:</label>
-                                                <span>Plan Issue</span>
+                                                <span><textarea value={support.problem_description} readOnly/></span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Priority:</label>
-                                                <span>Low</span>
+                                                <span>{support.priority}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Status:</label>
-                                                <span>Open</span>
+                                                <span>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</span>
                                             </div>
                                             <div className="details-wrapper">
                                                 <label>Date Created:</label>
@@ -79,14 +102,12 @@ const SupportsViewScreen = () => {
                                                 <th>Email</th>
                                                 <th>Department</th>
                                                 <th>Mobile Number</th>
-                                                <th>Date Assigned</th>
                                             </tr>				
                                             <tr>
-                                                <td>July</td>
-                                                <td>july@mma.com</td>
+                                                <td>{assignee.name}</td>
+                                                <td>{assignee.email}</td>
                                                 <td>Sample Dept.</td>
-                                                <td>+61 7 7010 1111</td>
-                                                <td>2/3/2021</td>
+                                                <td>{assignee.mobile_no}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -95,7 +116,7 @@ const SupportsViewScreen = () => {
                         </Row>
                     </div>
 
-                    <div className="section-wrapper">
+                    {/* <div className="section-wrapper">
                         <div className="blue-bkg-title def-padding">
                             <span>Notes</span>
                         </div>
@@ -122,10 +143,10 @@ const SupportsViewScreen = () => {
                                 </div> 
                             </Col>
                         </Row>
-                    </div>
+                    </div> */}
                         
                     <div className="button-wrapper def-padding">
-                        <NavLink to="/admin/supports/:id/edit" className="edit-btn">Edit</NavLink>
+                        <NavLink to={`/portal/support/${support._id}/edit`} className="edit-btn">Edit</NavLink>
                         <input type="submit" value="Delete" className="delete-btn"/>
                     </div>
             </ClientLayout>

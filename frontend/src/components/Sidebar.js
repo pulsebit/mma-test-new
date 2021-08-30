@@ -12,6 +12,7 @@ const Sidebar = () => {
     const pathname = window.location.pathname
     return (
       <>
+          <div className="sidebar-menu-label">Menu</div>
           <Navigation
             // you can use your own router's api to get pathname
             activeItemId={pathname}
@@ -41,12 +42,12 @@ const Sidebar = () => {
                 title: 'Products',
                 itemId: '/admin/productlist',
                 elemBefore: () => <FontAwesomeIcon icon={faBoxes} />,
-                subNav: [
-                  {
-                    title: 'Categories',
-                    itemId: '/admin/product-categories',
-                  },
-                ],
+                // subNav: [
+                //   {
+                //     title: 'Categories',
+                //     itemId: '/admin/product-categories',
+                //   },
+                // ],
               },
               {
                 title: 'Knowledge Base',

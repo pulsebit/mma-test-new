@@ -5,6 +5,8 @@ import { createNote, getSupportNotes } from '../actions/noteAction'
 import Loader2 from './Loader2'
 import Message from './Message'
 import date from 'date-and-time'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 
 const AddNote = ({supportInfo, clientInfo, assigneeInfo}) => {
@@ -34,10 +36,10 @@ const AddNote = ({supportInfo, clientInfo, assigneeInfo}) => {
                 <Row>
                     <Col md={6}>
                         <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Notes</span>
+                            <div className="dashboard-title-wrapper">
+                                <div className="dashboard-title">Notes</div>
                             </div>
-                            <div className="table-wrapper def-padding">
+                            <div className="table-wrapper">
                                 <table>
                                     <tbody>
                                         <tr>
@@ -70,7 +72,7 @@ const AddNote = ({supportInfo, clientInfo, assigneeInfo}) => {
                                 <label>Add Note:</label>
                                 <textarea value={note} onChange={(e)=>setNote(e.target.value)}/>
                                 <div className="button-wrapper def-padding">
-                                <button type="submit" className="update-btn">Save</button>
+                                <button type="submit" className="update-btn"><FontAwesomeIcon icon={faCheck}/>Save Note</button>
                                 </div>
                                 
                             </div>

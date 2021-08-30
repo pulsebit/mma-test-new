@@ -4,7 +4,7 @@ import {
     getPaymentPlansByCretorId
 } from '../controllers/paymentPlanController.js'
 
-router.route('/').get(getPaymentPlansByCretorId)
+router.route('/:id').get(getPaymentPlansByCretorId)
 
 
 export default router

@@ -58,7 +58,10 @@ const userSchema = mongoose.Schema({
    subscribedPlan: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'PaymentPlan'
-   }
+   },
+   dataStudioLink: {
+      type: String
+   },
 }, {
   timestamps: true
 })

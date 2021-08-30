@@ -35,7 +35,7 @@ const Header = () => {
   
 	return (
 		<header>
-		 	<Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
+		 	<Navbar expand='lg' collapseOnSelect>
 				<Container fluid>
 					<Row>
 					  <Col sm={4} md={3} lg={2}>
@@ -46,7 +46,6 @@ const Header = () => {
 						<Col sm={8} md={9} lg={10} className="response-nav">
 						    <Navbar.Toggle aria-controls='basic-navbar-nav' />
 						    <Navbar.Collapse id='basic-navbar-nav' className="justify-content-end">
-								<LinkContainer exact={true} to='/'><Nav.Link>Home</Nav.Link></LinkContainer>
 								{userInfo ? (	
 										<Dashboard/ >
 								) : (<div></div>) }
@@ -66,7 +65,7 @@ const Header = () => {
 											</NavDropdown.Item>
 										</NavDropdown>
 										) : (
-											<LinkContainer to='/login'><Nav.Link>Login</Nav.Link></LinkContainer>
+											<LinkContainer exact={true} to='/'><Nav.Link>Login</Nav.Link></LinkContainer>
 										)} 
 								</Navbar.Collapse>
 						</Col>	

@@ -2,59 +2,61 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { ToastContainer } from 'react-toastify';
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 
-import Profile from './screens/Profile'
-import ProfileEdit from './screens/ProfileEdit'
+import Profile from './screens/admin/Profile'
+import ProfileEdit from './screens/admin/ProfileEdit'
 
 
-import BillingHistory from './screens/BillingHistory'
-import PaymentMethod from './screens/PaymentMethod'
-import PaymentMethodAdd from './screens/PaymentMethodAdd'
+import BillingHistory from './screens/admin/BillingHistory'
+import PaymentMethod from './screens/admin/PaymentMethod'
+import PaymentMethodAdd from './screens/admin/PaymentMethodAdd'
 
-import Purchases from './screens/Purchases'
+import Purchases from './screens/admin/Purchases'
 
-import AdminDashboard from './screens/AdminDashboard'
+import AdminDashboard from './screens/admin/AdminDashboard'
 
-import SupportsListScreen from './screens/SupportsListScreen'
-import SupportsViewScreen from './screens/SupportsViewScreen'
-import SupportsEditScreen from './screens/SupportsEditScreen'
-import SupportsResolvedScreen from './screens/SupportsResolvedScreen'
-import SupportsAddScreen from './screens/SupportsAddScreen'
+import SupportsListScreen from './screens/admin/SupportsListScreen'
+import SupportsViewScreen from './screens/admin/SupportsViewScreen'
+import SupportsEditScreen from './screens/admin/SupportsEditScreen'
+import SupportsResolvedScreen from './screens/admin/SupportsResolvedScreen'
+import SupportsAddScreen from './screens/admin/SupportsAddScreen'
+
+import UserAddScreen from './screens/admin/UserAddScreen'
+import UserListScreen from './screens/admin/UserListScreen'
+import UserViewScreen from './screens/admin/UserViewScreen'
+import UserEditScreen from './screens/admin/UserEditScreen'
+
+import PerAllAdmin from './screens/admin/PerAllAdmin'
+import PerSuperAdmin from './screens/admin/PerSuperAdmin'
+
+import ProductAddScreen from './screens/admin/ProductAddScreen'
+import ProductListScreen from './screens/admin/ProductListScreen'
+import ProductViewScreen from './screens/admin/ProductViewScreen'
+import ProductEditScreen from './screens/admin/ProductEditScreen'
+import ProductCatList from './screens/admin/ProductCatList'
+import ProductCatViewScreen from './screens/admin/ProductCatViewScreen'
 
 
-import UserListScreen from './screens/UserListScreen'
-import UserViewScreen from './screens/UserViewScreen'
-import UserEditScreen from './screens/UserEditScreen'
+import ProductScreen from './screens/admin/ProductScreen'
 
-import PerAllAdmin from './screens/PerAllAdmin'
-import PerSuperAdmin from './screens/PerSuperAdmin'
+import KnowledgeBaseListScreen from './screens/admin/KnowledgeBaseListScreen'
+import KnowledgeBaseAddScreen from './screens/admin/KnowledgeBaseAddScreen'
+import KnowledgeBaseEditScreen from './screens/admin/KnowledgeBaseEditScreen'
+import KnowledgeBaseViewScreen from './screens/admin/KnowledgeBaseViewScreen'
 
-import ProductAddScreen from './screens/ProductAddScreen'
-import ProductListScreen from './screens/ProductListScreen'
-import ProductViewScreen from './screens/ProductViewScreen'
-import ProductEditScreen from './screens/ProductEditScreen'
-import ProductCatList from './screens/ProductCatList'
-import ProductCatViewScreen from './screens/ProductCatViewScreen'
+import PlanAddScreen from './screens/admin/PlanAddScreen'
+import PlanListScreen from './screens/admin/PlanListScreen'
+import PlanEditScreen from './screens/admin/PlanEditScreen'
+import PlanViewScreen from './screens/admin/PlanViewScreen'
 
-
-import ProductScreen from './screens/ProductScreen'
-
-import KnowledgeBaseListScreen from './screens/KnowledgeBaseListScreen'
-import KnowledgeBaseAddScreen from './screens/KnowledgeBaseAddScreen'
-import KnowledgeBaseEditScreen from './screens/KnowledgeBaseEditScreen'
-import KnowledgeBaseViewScreen from './screens/KnowledgeBaseViewScreen'
-
-import PlanAddScreen from './screens/PlanAddScreen'
-import PlanListScreen from './screens/PlanListScreen'
-import PlanEditScreen from './screens/PlanEditScreen'
-import PlanViewScreen from './screens/PlanViewScreen'
-
-import Settings from './screens/Settings'
+import Settings from './screens/admin/Settings'
 
 import ClientPortal from './screens/clients/ClientPortal'
-import ClientKnowledgebase from './screens/clients/ClientKnowledgebase'
+import ClientKnowledgebaseList from './screens/clients/ClientKnowledgebaseList'
+import ClientKnowledgebaseView from './screens/clients/ClientKnowledgebaseView'
 
 
 import ClientServiceList from './screens/clients/ClientServiceList'
@@ -88,9 +90,9 @@ function App() {
         <Header />
           <main>
 
-              <Route path='/' component={HomeScreen} exact />
+              {/* <Route path='/' component={HomeScreen} exact /> */}
               
-              <Route path='/login' component={LoginScreen} />
+              <Route path='/' component={LoginScreen} exact />
               <Route path='/profile' component={Profile} exact/>
               <Route path='/profile/edit' component={ProfileEdit} />
               
@@ -112,6 +114,7 @@ function App() {
 
               {/* USERS */}
               <Route path='/admin/users' component={UserListScreen} exact />
+              <Route path='/admin/user-add' component={UserAddScreen} />
               <Route path='/admin/users/:id/edit' component={UserEditScreen}  />
               <Route path='/admin/users-view/:id' component={UserViewScreen} />
 
@@ -145,10 +148,14 @@ function App() {
 
 
               <Route path='/admin/settings' component={Settings} />
-              
 
+
+              {/* CLIENT */}
               <Route path='/portal' component={ClientPortal} exact />
-              <Route path='/portal/knowlegebase' component={ClientKnowledgebase}  />
+
+
+              <Route path='/portal/knowledge-base' component={ClientKnowledgebaseList} exact />
+              <Route path='/portal/knowledge-base/:id' component={ClientKnowledgebaseView}  />
 
               
               <Route path='/portal/services/' component={ClientServiceList} exact />

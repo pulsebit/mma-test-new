@@ -7,6 +7,8 @@ import { listProducts } from '../actions/productActions'
 import { Row, Col } from 'react-bootstrap'
 
 import Loader from '../components/Loader'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 const PaymentProduct = ({id, includeProducts, isAdmin}) => {
@@ -20,18 +22,20 @@ const PaymentProduct = ({id, includeProducts, isAdmin}) => {
 
         if (isAdmin == true ) {
             return (
-                <div className="button-wrapper">
-                    <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
-                        <option value="">Select Product</option>
-                        {products ? (
-                            products.map((product) => (
-                                <option value={product._id} id={product.name}>{product.name}</option>
-                            ))
-                        ) : (
-                            <h3>No Products Available</h3>
-                        )}
-                    </select>
-                    <button onClick={addProductHandler} type="submit">+</button>
+                <div className="edit-screen">
+                    <div className="button-wrapper">
+                        <select id="listProducts" onChange={(e)=> setTempProduct(e.target.value)}>
+                            <option value="">Select Product</option>
+                            {products ? (
+                                products.map((product) => (
+                                    <option value={product._id} id={product.name}>{product.name}</option>
+                                ))
+                            ) : (
+                                <h3>No Products Available</h3>
+                            )}
+                        </select>
+                        <button onClick={addProductHandler} type="submit" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/></button>
+                    </div>
                 </div>
             )  
         } else {
@@ -65,7 +69,7 @@ const PaymentProduct = ({id, includeProducts, isAdmin}) => {
                                         <td>{product.createdAt}</td>
                                         <td>
                                             <div className="button-wrapper">
-                                                <button className='delete-btn'>Delete</button>  
+                                                <button className='delete-icon-btn'><FontAwesomeIcon icon={faTrash}/></button>  
                                             </div>  
                                         </td>
                                     </tr>
@@ -118,8 +122,8 @@ const PaymentProduct = ({id, includeProducts, isAdmin}) => {
     return (
         <> 
             <div className="section-wrapper">
-                <div className="blue-bkg-title def-padding">
-                    <span>Products Included</span>
+                <div className="dashboard-title-wrapper">
+                    <div className="dashboard-title">Products Included</div>
                         <ProductList />
                 </div>
                 <Row>

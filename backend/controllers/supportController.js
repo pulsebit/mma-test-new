@@ -35,8 +35,9 @@ const getSupportById = asyncHandler( async (req, res) => {
 })
 
 const getSupportsByCretorId = asyncHandler( async (req, res) => {
-  // const { creatorId } = req.body
-  const supports = await Support.find({ created_by: "611b1b00f7b94ece004d2ede" })
+  const userId = req.params.id
+  console.log(userId)
+  const supports = await Support.find({ "created_by": userId})
   
   if(supports) {
     res.json(supports)

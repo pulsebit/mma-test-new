@@ -40,7 +40,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @route  GET /api/users
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-   const { name, email, password } = req.body
+   const { name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink } = req.body
         console.log(name)
     const userExists = await User.findOne({ email })
 
@@ -49,11 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
     	 throw new Error('User already exists')
     } 
 
-    const user = await User.create({
-    	name, 
-    	email,
-    	password
-    })
+    const user = await User.create({name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink})
 
     if(user) {
     	 res.status(201).json({
@@ -171,22 +167,32 @@ const updateUser = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.params.id )
 
 	if(user) {
-			user.name = req.body.name || user.name
-			user.email = req.body.email || user.email
-			if(req.body.password) {
-				user.password = req.body.password
-			}
-      //user.isAdmin = req.body.isAdmin 
+		user.name = req.body.name || user.name
+		user.email = req.body.email || user.email
+		user.mobile_no = req.body.mobile_no || user.mobile_no
+		user.gender = req.body.gender || user.gender
+		user.birthdate = req.body.birthdate || user.birthdate
+		user.address = req.body.address || user.address
+		user.dataStudioLink = req.body.dataStudioLink || user.dataStudioLink
+		if(req.body.password) {
+			user.password = req.body.password
+		}
+		
 
-			const updatedUser = await user.save()
-      
+		const updatedUser = await user.save()
 
-			res.json({
-				_id: updatedUser._id,
-				name: updatedUser.name,
-			 email: updatedUser.email,
-		 isAdmin: updatedUser.isAdmin,
-			 })
+
+		res.json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+			mobile_no: user.mobile_no,
+			gender: user.gender,
+			birthdate: user.birthdate,
+			address: user.address,
+			dataStudioLink: user.dataStudioLink,
+		})
 
 	} else {
 			res.status(404)

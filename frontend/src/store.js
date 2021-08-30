@@ -2,7 +2,7 @@ import {createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension' 
 import { productCreateReducer, productListReducer, productDetailsReducer, productUpdateReducer, productDeleteReducer } from './reducers/productReducers'
-import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
+import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer, userCreateReducer } from './reducers/userReducers'
 import { supportCreateReducer, supportDeleteReducer, supportDetailsReducer, supportListByCreatorReducer, supportListReducer, suppportUpdateReducer } from './reducers/supportReducers'
 import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer, paymentPlanListByCreatorReducer} from './reducers/paymentPlanReducers'
 import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
@@ -17,6 +17,7 @@ const reducer = combineReducers({
 	productUpdate: productUpdateReducer,
 	productDelete: productDeleteReducer,
 	tempProducts: tempProductHolderReducer,
+	userCreate: userCreateReducer,
 	userLogin: userLoginReducer,
 	userList: userListReducer,
 	userDelete: userDeleteReducer,
@@ -26,7 +27,7 @@ const reducer = combineReducers({
 	supportList: supportListReducer,
 	supportListByCreator: supportListByCreatorReducer,
 	supportDetails: supportDetailsReducer,
-	suppportUpdate: suppportUpdateReducer,
+	supportUpdate: suppportUpdateReducer,
 	supportDelete: supportDeleteReducer,
 	noteCreate: noteCreateReducer,
 	supportNotes: supportNotesReducer,

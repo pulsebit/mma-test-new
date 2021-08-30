@@ -91,8 +91,9 @@ const getPaymentPlanById = asyncHandler( async (req, res) => {
 // @route    GET /api/services/
 // @access   Public
 const getPaymentPlansByCretorId = asyncHandler( async (req, res) => {
-  const { creatorId } = req.body
-  const paymentPlan = await PaymentPlan.find({ creator: creatorId })
+  const creatorId = req.params.id
+  console.log(creatorId)
+  const paymentPlan = await PaymentPlan.find({ "creator": creatorId })
   
   if(paymentPlan) {
     res.json(paymentPlan)

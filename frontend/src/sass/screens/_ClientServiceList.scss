@@ -1,0 +1,35 @@
+.plan-items {
+    width: calc(25% - 30px);
+    display: inline-block;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+    border: solid 1px #007bff00;
+
+    .img-wrapper {
+        margin: 0 auto;
+        padding-bottom: 30px;
+    }
+
+    .name {
+        text-align: left;
+        font-size: 18px;
+        padding-bottom: 15px;
+        font-weight: 400;
+    }
+
+    .price {
+        text-align: right;
+        font-size: 22px;
+        padding-bottom: 15px;
+        font-weight: 400;
+    }
+    
+    &:hover {
+        border: solid 1px #007bff;
+
+
+    }
+
+}

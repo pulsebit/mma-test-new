@@ -13,13 +13,22 @@ const ClientSupportAdd = () => {
     const [problem_description, setProblem_description] = useState('')
     const [priority, setPriority] = useState('')
 
+
+    
     const userLogin = useSelector((state) => state.userLogin)
     const {userInfo} = userLogin
 
     const { loading, user = {} } = useSelector(state => state.userDetails)
     const { creator = {} } = user || {}
+
+    console.log(user)
+
+    const client = userInfo._id
     const assignee = creator._id
-    console.log(assignee)
+    const status = "Open"
+    const category = "Not Set"
+
+    
 
     useEffect(() => {
         dispatch(listUsers())
@@ -28,13 +37,13 @@ const ClientSupportAdd = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-       dispatch(createSupport(ticket_no, problem_description, priority, assignee))
+       dispatch(createSupport(client, ticket_no, problem_description, status, priority, category, assignee))
     }
     return (
         <ClientLayout>
             <div className="edit-screen">
                 <Form onSubmit={onSubmitHandler}>
-                        <div className="section-wrapper">
+                    <div className="section-wrapper">
                             <div className="blue-bkg-title def-padding">
                                 <span>Add Support</span>
                             </div>

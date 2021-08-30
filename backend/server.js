@@ -12,6 +12,7 @@ import paymentPlanRoutes from './routes/paymentPlanRoutes.js'
 import serviceRoutes from './routes/serviceRoutes.js'
 import noteRoutes from './routes/noteRoutes.js'
 import knowledgeBaseRoutes from './routes/knowledgeBaseRoutes.js'
+import clientSupportRoutes from './routes/clientSupportRoutes.js'
 
 
 
@@ -31,7 +32,7 @@ app.get('/',(req, res) => {
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/supports', supportRoutes)
-app.use('/api/client-supports', supportRoutes)
+app.use('/api/client-supports', clientSupportRoutes)
 app.use('/api/paymentplans', paymentPlanRoutes)
 app.use('/api/services', serviceRoutes)
 app.use('/api/notes', noteRoutes)

@@ -17,8 +17,36 @@ import {
   USER_UPDATE_REQUEST, 
   USER_UPDATE_SUCCESS, 
   USER_UPDATE_FAIL,
+  USER_CREATE_REQUEST,
+  USER_CREATE_SUCCESS,
+  USER_CREATE_FAIL,
 } from '../constants/userConstants'
 
+
+export const createUser = (name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink) => async (dispatch, getState) => {
+	const {
+      userLogin: { userInfo }
+   } = getState()
+
+   const creator = userInfo._id
+
+   try {
+		dispatch({
+			type: USER_CREATE_REQUEST
+		})
+		await axios.post(`/api/users`, {name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink} )
+	
+		dispatch({type: USER_CREATE_SUCCESS})
+	
+	} catch( error ) {
+		dispatch({
+			type: USER_CREATE_FAIL,
+			payload: error.response && error.response.data.message 
+				? error.response.data.message 
+				: error.message 
+		})
+	}
+}
 
 export const login = (email, password) => async (dispatch) => {
  	try {

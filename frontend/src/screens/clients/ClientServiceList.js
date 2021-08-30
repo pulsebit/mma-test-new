@@ -9,14 +9,18 @@ import Loader2 from '../../components/Loader2'
 import Message from '../../components/Message'
 import date from 'date-and-time'
 import ReactHtmlParser from 'react-html-parser'
+import { NavLink } from 'react-router-dom'
+
 
 const ClientServiceList = () => {
 
     const dispatch = useDispatch()
 
     const {userInfo} = useSelector((state) => state.userLogin)
-    const {loading, user = {}, error } = useSelector(state => state.userDetails)
-    const { creator = {} } = user
+    
+    const userDetails = useSelector(state => state.userDetails)
+    const { loading, error, user = {} } = userDetails
+    const { creator = {} } = user || {}
 
     const { paymentPlan } = useSelector(state => state.paymentPlanListByCreator)
     console.log(paymentPlan)
@@ -29,9 +33,9 @@ const ClientServiceList = () => {
     return (
         <ClientLayout>
             <div className="client-services">
-                <div className="section-wrapper">
-                    <div className="blue-bkg-title def-padding">
-                        <span>Current Plan</span>
+                <div className="section-wrapper mar-b-50">
+                    <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Current Plan</div>
                     </div>
                     <div className="view-screen">
                         <div className="user-details">
@@ -83,35 +87,30 @@ const ClientServiceList = () => {
                     </div>
                 </div>
                 
-                <div className="section-wrapper pad-lr-60 mar-t-n-50 ">
-                    <h2>Available Plans</h2>
-                    { loading ? ( 
-                        <Loader2 /> 
-                    ) : error ? ( 
-                        <Message variant='danger'>{error}</Message>
-                    ) : (
-                        <>
-                            {paymentPlan.map((payment) => (
-                                <div className="plans">
-                                    <div className="plan-wrapper">
-                                        <div className="img-wrapper">
-                                            <img src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty-300x240.jpg" alt="" />
-                                        </div>
-
-                                        <div className="name">
-                                            {payment.name}
-                                        </div>
-                                        <div className="features">
-                                            {ReactHtmlParser(payment.features)}
-                                        </div>
-                                        <div className="price">
-                                            ${payment.price}
-                                        </div>
-                                    </div>
+                <div className="section-wrapper">
+                    <div className="dashboard-title-wrapper">
+                        <div className="dashboard-title">Available Plans</div>
+                    </div>
+                    
+                    <div className="plan-wrapper">
+                    {paymentPlan
+                    ? paymentPlan.map((payment) => (
+                        <NavLink key={payment._id} className="plan-items" to={`portal/services/:id`}>
+                            <div className="img-wrapper">
+                                <img src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty-300x240.jpg" alt="" />
+                            </div>
+                            <div className="details-wrapper">
+                                <div className="name">
+                                    {payment.name}
                                 </div>
-                            ))}
-                        </>
-                    )}
+                                <div className="price">
+                                    ${payment.price}
+                                </div>
+                            </div>
+                        </NavLink>
+                    ))
+                    : "Loading..."}
+                    </div>
                 </div>
             </div>
         </ClientLayout>
