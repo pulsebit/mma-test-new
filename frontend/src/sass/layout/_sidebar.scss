@@ -18,14 +18,13 @@
         .side-navigation-panel-select {
             .side-navigation-panel-select-wrap {
                 .side-navigation-panel-select-option-selected {
-                    background-color: transparent;
+                    background-color: #3777ff3b;
                     border-color: #3777ff;
-                    span.side-navigation-panel-select-option-text {
-                        font-weight: 700;
-                    }
                 }
                 .side-navigation-panel-select-option {
                     .side-navigation-panel-select-option-wrap {
+                        
+
                         span {
                             font-size: 15px;
                             white-space: nowrap;
@@ -63,75 +62,6 @@
 }
 
 
-
-// .dashboard-container{
-//     padding: 0;
-//     background-color: #f4f4f4;
-
-//     .dashboard{
-//         margin: 0;
-
-//         .sidebar {
-//             .side-navigation-panel {
-//                 @include resposive(sm-desktop){
-//                     display: flex;
-//                     justify-content: space-between;
-//                 }
-                
-//                 .side-navigation-panel-select {
-//                     padding: 10px 0;
-
-//                     .side-navigation-panel-select-wrap {
-//                         .side-navigation-panel-select-option {
-//                             @include resposive(tablet){
-//                                 padding: 0 5px !important;
-//                             }
-
-//                             .side-navigation-panel-select-option-wrap {
-//                                 span {
-//                                     @include resposive(sm-desktop){
-//                                         display: none;
-//                                     }
-//                                 }
-//                                 svg {
-//                                     @include resposive(custom-2){
-//                                         display: none;
-//                                     }
-        
-//                                     @include resposive(sm-desktop){
-//                                         display: inherit;
-//                                     }
-//                                 }
-//                             }
-//                         }
-
-                        
-
-//                         .side-navigation-panel-select-option-text {
-//                             line-height: 1.8;
-//                         }
-                        
-//                     }
-
-//                     .side-navigation-panel-select-inner {
-//                         .side-navigation-panel-select-inner-wrap {
-//                             .side-navigation-panel-select-inner-option  {
-//                                 @include resposive(sm-desktop){
-//                                     padding: 10px;
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-            
-//         .main-content {
-//             padding: 25px 0;
-//         }
-//     }
-// }
-
 // CLIENT
 .client-layout {
     .layout {
@@ -151,7 +81,7 @@
                     max-width: 150px;
                     margin: 0 auto;
                     padding-bottom: 10px;
-    
+                    
                     span {
                         display: block;
                         text-align: center;
@@ -185,58 +115,6 @@
             .des-sidebar {
                 @include resposive(sm-desktop){
                     display: none;
-                }
-            }
-
-
-            .side-navigation-panel {
-                @include resposive(sm-desktop){
-                    display: flex;
-                    justify-content: space-between;
-                }
-    
-                .side-navigation-panel-select {
-                    padding: 10px 0;
-    
-                    .side-navigation-panel-select-wrap {
-                        .side-navigation-panel-select-option {
-                            @include resposive(tablet){
-                                padding: 0 5px !important;
-                            }
-    
-                            .side-navigation-panel-select-option-wrap {
-                                span {
-                                    @include resposive(sm-desktop){
-                                        display: none;
-                                    }
-                                }
-                                svg {
-                                    @include resposive(custom-2){
-                                        display: none;
-                                    }
-        
-                                    @include resposive(sm-desktop){
-                                        display: inherit;
-                                    }
-                                }
-                            }
-                        }
-    
-                        .side-navigation-panel-select-option-text {
-                            line-height: 1.8;
-                        }
-                        
-                    }
-    
-                    .side-navigation-panel-select-inner {
-                        .side-navigation-panel-select-inner-wrap {
-                            .side-navigation-panel-select-inner-option  {
-                                @include resposive(sm-desktop){
-                                    padding: 10px;
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }

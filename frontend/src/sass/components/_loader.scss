@@ -1,6 +1,9 @@
 .loader-wrapper {
-    .loader2{
-        display: flex;
-        justify-content: center;
+    .loader{
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        bottom: 50%;
+        left: 50%;
     }
 }

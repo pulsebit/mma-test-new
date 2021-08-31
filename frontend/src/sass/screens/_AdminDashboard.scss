@@ -51,7 +51,8 @@
     .details {
         display: flex;
         align-items: center;
-        padding: 15px 0;
+        padding: 30px 15px;
+        justify-content: space-between;
 
         .icon-wrapper {
             font-size: 32px;
@@ -62,27 +63,28 @@
             font-size: 15px;
             text-transform: uppercase;
             font-weight: 900;
-        }
-    }
+            padding-bottom: 10px;
 
-    .content-wrapper {
-        
+            svg{
+                margin-right: 5px;
+            }
+        }
+
+        .sub-title{
+            font-size: 12px;
+        }
+
         .total{
             font-size: 45px;
             font-weight: 900;
         }
     }
 
+
 }
 //blue #3777ff;
 // green #4CAF50
 //red #b80000
 //yellow
-.users-icon {
-    color: #4CAF50;
-}
-.supports-icon {
-    color: #b80000; 
-}
 
 

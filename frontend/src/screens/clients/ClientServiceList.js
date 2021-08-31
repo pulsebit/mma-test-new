@@ -95,7 +95,7 @@ const ClientServiceList = () => {
                     <div className="plan-wrapper">
                     {paymentPlan
                     ? paymentPlan.map((payment) => (
-                        <NavLink key={payment._id} className="plan-items" to={`portal/services/:id`}>
+                        <NavLink key={payment._id} className="plan-items" to={`/portal/service/${payment._id}`}>
                             <div className="img-wrapper">
                                 <img src="https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty-300x240.jpg" alt="" />
                             </div>

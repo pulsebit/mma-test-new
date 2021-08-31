@@ -26,7 +26,7 @@ const AdminDashboard = () => {
     const countProducts = products.length
 
     const { paymentPlans = {} } = useSelector(state => state.paymentPlanList)
-    const  countPaymentPlans= paymentPlans.length
+    const  countPaymentPlans = paymentPlans.length
 
     useEffect(() => {
         dispatch(listUsers())
@@ -35,122 +35,96 @@ const AdminDashboard = () => {
         dispatch(listPaymentPlans())
          
     }, [dispatch])
-    
-    return (
-        <div className="adminDashboard"> 
-            <DashboardContainer>
-                <div className="c-mar-side-neg-15">
-                    <Row>
-                        <Col md={3}>
-                            <div className="section-wrapper mar-b-50">
-                                <div className="details">
-                                    <div className="icon-wrapper users-icon">
-                                        <FontAwesomeIcon icon={faUsers}/>
-                                    </div>
-                                    <div className="content-wrapper">
-                                        <div className="title">Total Clients</div>
+
+    if ( !countUsers || !countSupports || !countProducts || !countPaymentPlans ) {
+        return (
+            <div className="adminDashboard"> 
+                <DashboardContainer>
+                    <Loader2 />
+                </DashboardContainer>
+            </div>
+        )
+    } else {
+        return (
+            <div className="adminDashboard"> 
+                <DashboardContainer>
+                    <div className="c-mar-side-neg-15">
+                        <Row>
+                            <Col md={3}>
+                                <div className="section-wrapper mar-b-50">
+                                    <div className="details">
+                                        <div className="title-wrapper">
+                                            <div className="title">
+                                                <FontAwesomeIcon icon={faUsers}/>
+                                                <span>Clients</span>
+                                            </div>
+                                            <div className="sub-title">
+                                                <span>Total number of clients</span>
+                                            </div>
+                                        </div>
                                         <div className="total">
-                                        { !countUsers ? (
-                                            <Loader2 />
-                                        ) : (
-                                            countUsers
-                                        ) }
-                                    </div>
+                                            { countUsers}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Col>
-                        <Col md={3}>
-                            <div className="section-wrapper mar-b-50">
-                                <div className="details">
-                                    <div className="icon-wrapper supports-icon">
-                                        <FontAwesomeIcon icon={faInfoCircle}/>
-                                    </div>
-                                    <div className="content-wrapper">
-                                        <div className="title">Total Supports</div>
+                            </Col>
+                            <Col md={3}>
+                                <div className="section-wrapper mar-b-50">
+                                    <div className="details">
+                                        <div className="title-wrapper">
+                                            <div className="title">
+                                                <FontAwesomeIcon icon={faInfoCircle}/>
+                                                <span>Supports</span>
+                                            </div>
+                                            <div className="sub-title">
+                                                <span>Total number of supports</span>
+                                            </div>
+                                        </div>
                                         <div className="total">
-                                        { !countSupports ? (
-                                            <Loader2 />
-                                        ) : (
-                                            countSupports
-                                        ) }
-                                         </div>
+                                            { countSupports}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Col>
-                        <Col md={3}>
-                        <div className="section-wrapper mar-b-50">
-                                <div className="details">
-                                    <div className="icon-wrapper supports-icon">
-                                        <FontAwesomeIcon icon={faShoppingCart}/>
-                                    </div>
-                                    <div className="content-wrapper">
-                                        <div className="title">Total Products</div>
+                            </Col>
+                            <Col md={3}>
+                                <div className="section-wrapper mar-b-50">
+                                    <div className="details">
+                                        <div className="title-wrapper">
+                                            <div className="title">
+                                                <FontAwesomeIcon icon={faShoppingCart}/>
+                                                <span>Products</span>
+                                            </div>
+                                            <div className="sub-title">
+                                                <span>Total number of products</span>
+                                            </div>
+                                        </div>
                                         <div className="total">
-                                        { !countProducts ? (
-                                            <Loader2 />
-                                        ) : (
-                                            countProducts
-                                        ) }
-                                         </div>
+                                            { countProducts}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Col>
-                        <Col md={3}>
-                        <div className="section-wrapper mar-b-50">
-                                <div className="details">
-                                    <div className="icon-wrapper supports-icon">
-                                        <FontAwesomeIcon icon={faShoppingCart}/>
-                                    </div>
-                                    <div className="content-wrapper">
-                                        <div className="title">Total Payment Plans</div>
+                            </Col>
+                            <Col md={3}>
+                                <div className="section-wrapper mar-b-50">
+                                    <div className="details">
+                                        <div className="title-wrapper">
+                                            <div className="title">
+                                                <FontAwesomeIcon icon={faShoppingCart}/>
+                                                <span>Payment Plans</span>
+                                            </div>
+                                            <div className="sub-title">
+                                                <span>Total number of payment plans</span>
+                                            </div>
+                                        </div>
                                         <div className="total">
-                                        { !countPaymentPlans ? (
-                                            <Loader2 />
-                                        ) : (
-                                            countPaymentPlans
-                                        ) }
-                                         </div>
+                                            { countPaymentPlans}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                        </Col>
-                        <Col md={6}>
-                            <div className="section-wrapper mar-b-50">
-                                <div className="details">
-                                    <div className="icon-wrapper users-icon">
-                                        <FontAwesomeIcon icon={faUsers}/>
-                                    </div>
-                                    <div className="content-wrapper">
-                                        <div className="title">Total Tickets</div>
-                                        <div className="total">
-                                        1,054
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                        <div className="section-wrapper mar-b-50">
-                                <div className="details">
-                                    <div className="icon-wrapper users-icon">
-                                        <FontAwesomeIcon icon={faUsers}/>
-                                    </div>
-                                    <div className="content-wrapper">
-                                        <div className="title">Total Knowledge base</div>
-                                        <div className="total">
-                                        1,054
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
-                    
+                            </Col>
+                        </Row>
+                    </div>
+                        
                     <div className="section-wrapper mar-b-50">
                         <div className="blue-bkg-title def-padding">
                             <span>Recent Activities</span>
@@ -196,9 +170,10 @@ const AdminDashboard = () => {
                             </Row>
                         </div>
                     </div>
-            </DashboardContainer>
-        </div>
-    );
+                </DashboardContainer>
+            </div>
+        )
+    }
 }
 
 export default AdminDashboard

@@ -2,8 +2,6 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { ToastContainer } from 'react-toastify';
-import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 
 import Profile from './screens/admin/Profile'
@@ -60,12 +58,7 @@ import ClientKnowledgebaseView from './screens/clients/ClientKnowledgebaseView'
 
 
 import ClientServiceList from './screens/clients/ClientServiceList'
-import ClientServicesView from './screens/clients/ClientServicesView'
-
-import ClientServicesBasic from './screens/clients/ClientServicesBasic'
-import ClientServicesSilver from './screens/clients/ClientServicesSilver'
-import ClientServicesGold from './screens/clients/ClientServicesGold'
-import ClientServicesPlatinum from './screens/clients/ClientServicesPlatinum'
+import ClientServiceView from './screens/clients/ClientServiceView'
 
 import ClientReports from './screens/clients/ClientReports'
 import ClientMembers from './screens/clients/ClientMembers'
@@ -89,13 +82,10 @@ function App() {
     <Router>
         <Header />
           <main>
-
-              {/* <Route path='/' component={HomeScreen} exact /> */}
               
               <Route path='/' component={LoginScreen} exact />
               <Route path='/profile' component={Profile} exact/>
               <Route path='/profile/edit' component={ProfileEdit} />
-              
 
               
               <Route path='/billing-history' component={BillingHistory} />
@@ -159,13 +149,8 @@ function App() {
 
               
               <Route path='/portal/services/' component={ClientServiceList} exact />
-
-              <Route path='/portal/services/:id' component={ClientServicesView} exact />
+              <Route path='/portal/service/:id' component={ClientServiceView} />
               
-              <Route path='/portal/services/basic' component={ClientServicesBasic}  />
-              <Route path='/portal/services/silver' component={ClientServicesSilver}  />
-              <Route path='/portal/services/gold' component={ClientServicesGold}  />
-              <Route path='/portal/services/platinum' component={ClientServicesPlatinum}  />
               <Route path='/portal/reports' component={ClientReports}  />
 
               <Route path='/portal/membership-info' component={ClientMembers} exact />

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
+import StripeCheckout from 'react-stripe-checkout';
 import { useDispatch, useSelector } from 'react-redux'
 import { getPaymentPlanDetails } from '../../actions/paymentPlanAction'
 import ClientLayout from '../../components/ClientLayout'
@@ -9,9 +10,12 @@ import date from 'date-and-time'
 import ReactHtmlParser from 'react-html-parser'
 import PaymentProduct from '../../components/PaymentProduct'
 import { NavLink } from 'react-router-dom'
+import { loadStripe } from '@stripe/stripe-js'
+
+const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
 
 
-const ClientServicesView = ({match}) => {
+const ClientServiceView = ({match}) => {
     const paymentPlanId = match.params.id
     
     const dispatch = useDispatch()
@@ -27,6 +31,10 @@ const ClientServicesView = ({match}) => {
         dispatch(getPaymentPlanDetails(paymentPlanId))
 
     },[dispatch, paymentPlanId])
+
+    function handleToken(token, addresses) {
+        console.log({token, addresses})
+    }
     return (
         <div className="view-screen">
             <ClientLayout>
@@ -37,8 +45,8 @@ const ClientServicesView = ({match}) => {
                 ) : ( 
                     <>
                         <div className="section-wrapper">
-                            <div className="blue-bkg-title def-padding">
-                                <span>Payment Information</span>
+                            <div className="dashboard-title-wrapper">
+                                <div className="dashboard-title">Payment Information</div>
                             </div>
                             <Row>
                                 <Col md={2}>
@@ -90,7 +98,14 @@ const ClientServicesView = ({match}) => {
                         </div>
 
                         <PaymentProduct id={paymentPlanId} includeProducts={includeProducts} isAdmin={isAdmin}/>
-                        <div className="button-wrapper">
+                        <div className="button-wrapper def-padding">
+                            <StripeCheckout 
+                                stripeKey="pk_test_51Ix0jGDU4maXsdFI9A40zXo7KYYxElaakyASWOZtAZnjna1sVRCL14hlZIyAhmJkI9pp89W0IqpyqWBIDaYftzlD00lnHFM9f4"
+                                token={handleToken}
+                                billingAddress
+                                shippingAddress
+                                price={paymentPlan.price}
+                            />
                            <button className="add-btn">Upgrade</button>
                         </div> 
                     </>
@@ -100,4 +115,4 @@ const ClientServicesView = ({match}) => {
     )
 }
 
-export default ClientServicesView
+export default ClientServiceView
