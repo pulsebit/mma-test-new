@@ -21,6 +21,9 @@ import {
    PAYMENTPLAN_LIST_BY_CREATOR_REQUEST,
    PAYMENTPLAN_LIST_BY_CREATOR_SUCCESS,
    PAYMENTPLAN_LIST_BY_CREATOR_FAIL,
+   PAYMENTPLAN_PRODUCTS_REQUEST,
+   PAYMENTPLAN_PRODUCTS_SUCCESS,
+   PAYMENTPLAN_PRODUCTS_FAIL,
 } from '../constants/paymentPlanConstant'
 
 
@@ -59,6 +62,28 @@ export const getPaymentPlanDetails = (id) => async (dispatch) => {
    } catch (error) {
        dispatch({
             type: PAYMENTPLAN_DETAILS_FAIL,
+            payload: error.response && error.response.data.message 
+            ? error.response.data.message 
+            : error.message
+       })
+   }
+}
+
+export const getPaymentPlanProducts = (id) => async (dispatch) => {
+   try { 
+      
+      dispatch({ type: PAYMENTPLAN_PRODUCTS_REQUEST })
+
+      const { data } = await axios.get(`/api/paymentplans/${id}`)
+
+      dispatch({ 
+         type: PAYMENTPLAN_PRODUCTS_SUCCESS,
+         payload: data 
+      })
+
+   } catch (error) {
+       dispatch({
+            type: PAYMENTPLAN_PRODUCTS_FAIL,
             payload: error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message

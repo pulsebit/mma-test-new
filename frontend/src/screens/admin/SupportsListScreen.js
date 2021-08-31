@@ -15,7 +15,6 @@ const SupportsListScreen = () => {
     
     const supportList = useSelector( state => state.supportList)
     const {loading, error, supports } = supportList 
-    console.log(supports)
 
     useEffect(() => {
         dispatch(listSupports())

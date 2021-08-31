@@ -74,7 +74,6 @@ const AddNote = ({supportInfo, clientInfo, assigneeInfo}) => {
                                 <div className="button-wrapper def-padding">
                                 <button type="submit" className="update-btn"><FontAwesomeIcon icon={faCheck}/>Save Note</button>
                                 </div>
-                                
                             </div>
                         </Form>
                     </Col>

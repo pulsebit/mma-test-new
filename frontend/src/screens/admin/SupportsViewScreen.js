@@ -23,11 +23,7 @@ const SupportsViewScreen = ({match}) => {
 
     const { loading, error, support } = useSelector( state => state.supportDetails)
     const { client = {} , created_by = {}, assignee = {} } = support || {}
-
     
-
-    
-
     useEffect(() => {
         dispatch(getSupportDetails(supportId))
         

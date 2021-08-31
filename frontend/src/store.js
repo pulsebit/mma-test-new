@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { productCreateReducer, productListReducer, productDetailsReducer, productUpdateReducer, productDeleteReducer } from './reducers/productReducers'
 import { userLoginReducer, userListReducer, userDetailsReducer, userDeleteReducer, userUpdateReducer, userCreateReducer } from './reducers/userReducers'
 import { supportCreateReducer, supportDeleteReducer, supportDetailsReducer, supportListByCreatorReducer, supportListReducer, suppportUpdateReducer } from './reducers/supportReducers'
-import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer, paymentPlanListByCreatorReducer} from './reducers/paymentPlanReducers'
+import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteReducer, paymentPlanUpdateReducer, paymentPlanCreateReducer, paymentPlanProductUpdateReducer, paymentPlanListByCreatorReducer, paymentPlanProductsReducer} from './reducers/paymentPlanReducers'
 import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
 import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './reducers/noteReducers'
 import { knowledgeBaseCreateReducer, knowledgeBaseDeleteReducer, knowledgeBaseDetailsReducer, knowledgeBaseListReducer, knowledgeBaseUpdateReducer } from './reducers/knowledgeBaseReducers'
@@ -34,6 +34,7 @@ const reducer = combineReducers({
 	noteDelete: noteDeleteReducer,
 	paymentPlanList: paymentPlanListReducer,
 	paymentPlanDetails: paymentPlanDetailsReducer,
+	paymentPlanProducts: paymentPlanProductsReducer,
 	paymentPlanListByCreator: paymentPlanListByCreatorReducer,
 	paymentPlanDelete :paymentPlanDeleteReducer,
 	paymentPlanUpdate :paymentPlanUpdateReducer,

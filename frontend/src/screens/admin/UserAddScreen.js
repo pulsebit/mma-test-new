@@ -29,7 +29,6 @@ const UserAddScreen = () => {
             toast.success('Profile successfully added.',{
                 position: "bottom-right",});
         }
-         
     }, [dispatch, loadingCreate] )
 
     const onSubmitHandler = (e) => {

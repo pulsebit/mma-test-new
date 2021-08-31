@@ -21,6 +21,9 @@ import {
     PAYMENTPLAN_LIST_BY_CREATOR_REQUEST,
     PAYMENTPLAN_LIST_BY_CREATOR_SUCCESS,
     PAYMENTPLAN_LIST_BY_CREATOR_FAIL,
+    PAYMENTPLAN_PRODUCTS_REQUEST,
+    PAYMENTPLAN_PRODUCTS_SUCCESS,
+    PAYMENTPLAN_PRODUCTS_FAIL,
 } from '../constants/paymentPlanConstant'
 
 export const paymentPlanListReducer = (state = { paymentPlans: [] }, action) => {
@@ -51,17 +54,28 @@ export const paymentPlanDeleteReducer = (state = { }, action) => {
 
 export const paymentPlanDetailsReducer = (state = { paymentPlan: {} }, action) => {
     switch(action.type) {
-           case PAYMENTPLAN_DETAILS_REQUEST:
-              return { loading: true, paymentPlan: {} }
-           case PAYMENTPLAN_DETAILS_SUCCESS:   
-              return  { loading: false, paymentPlan: action.payload }
-           case PAYMENTPLAN_DETAILS_FAIL:
-              return { loading: false, error: action.payload }   
-           default:
-              return state   
+      case PAYMENTPLAN_DETAILS_REQUEST:
+         return { loading: true, paymentPlan: {} }
+      case PAYMENTPLAN_DETAILS_SUCCESS:   
+         return  { loading: false, paymentPlan: action.payload }
+      case PAYMENTPLAN_DETAILS_FAIL:
+         return { loading: false, error: action.payload }   
+      default:
+         return state   
     }
 }
-
+export const paymentPlanProductsReducer = (state = { paymentPlanProducts: {} }, action) => {
+   switch(action.type) {
+      case PAYMENTPLAN_PRODUCTS_REQUEST:
+         return { loading: true, paymentPlanProducts: {} }
+      case PAYMENTPLAN_PRODUCTS_SUCCESS:   
+         return  { loading: false, paymentPlanProducts: action.payload }
+      case PAYMENTPLAN_PRODUCTS_FAIL:
+         return { loading: false, error: action.payload }   
+      default:
+         return state   
+   }
+}
 export const paymentPlanListByCreatorReducer = (state = { paymentPlan: [] }, action) => {
    switch(action.type) {
           case PAYMENTPLAN_LIST_BY_CREATOR_REQUEST:

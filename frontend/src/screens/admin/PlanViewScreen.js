@@ -26,11 +26,11 @@ const PlanViewScreen = ({match}) => {
     
     const{ loading, paymentPlan = {} , error } = useSelector(state => state.paymentPlanDetails) || {}
     const includeProducts = paymentPlan.product
+    console.log(includeProducts)
 
     useEffect(() => {
-        dispatch(getPaymentPlanDetails(paymentPlanId))        
-        dispatch(listProducts())
-
+        dispatch(getPaymentPlanDetails(paymentPlanId)) 
+        console.log("refreshed")
     },[dispatch, paymentPlanId])
 
     
@@ -98,7 +98,6 @@ const PlanViewScreen = ({match}) => {
                             </Col>
                         </Row>
                     </div>
-
                     <PaymentProduct id={paymentPlanId} includeProducts={includeProducts} isAdmin={isAdmin}/>
                 </>
             )} 
