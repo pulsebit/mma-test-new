@@ -13,7 +13,6 @@ const createPaymentPlan = asyncHandler( async (req, res) => {
   const { creator, name, price, image, description, features } = req.body
  
   const paymentPlanExists = await PaymentPlan.findOne({ name })
-  console.log(paymentPlanExists)
 
   if(paymentPlanExists) {
     res.status(400)
@@ -92,7 +91,6 @@ const getPaymentPlanById = asyncHandler( async (req, res) => {
 // @access   Public
 const getPaymentPlansByCretorId = asyncHandler( async (req, res) => {
   const creatorId = req.params.id
-  console.log(creatorId)
   const paymentPlan = await PaymentPlan.find({ "creator": creatorId })
   
   if(paymentPlan) {

@@ -39,7 +39,7 @@ const LoginScreen = () => {
   } 
 
 	return (
-		<div className='login-wrapper dpa-tb-60'>
+		<div className='login-wrapper'>
 			<FormContainer>
 				<h1>Sign In</h1>
 				{error && <Message variant='danger'>{error}</Message>}
@@ -69,11 +69,14 @@ const LoginScreen = () => {
 					</Button>
 
 					<Row className='py-3'>
-				<Col>
-					New Customer ? {' '}
-					{/* <Link to={redirect ? `/register?redirect=${redirect}`: '/register'}></Link>	 */}
-				</Col>			
+						<Col>
+							New Customer ? {' '}
+							{/* <Link to={redirect ? `/register?redirect=${redirect}`: '/register'}></Link>	 */}
+						</Col>			
 					</Row>
+					<div className="divider">or</div>
+					<button className="log-fb-btn" >Sign in with Facebook</button>
+					<button className="log-gmail-btn" >Sign in with Google</button>
 				</Form>
 			</FormContainer>
 		</div>

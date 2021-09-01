@@ -1,4 +1,26 @@
 .login-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .log-gmail-btn{
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        margin-top: 10px;
+    margin-bottom: 10px;
+    }
+
+    .log-fb-btn{
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        margin-top: 10px;
+    margin-bottom: 10px;
+    }
+
     .row {
         align-items: center;
         box-shadow: 0 3px 10px #00000029;

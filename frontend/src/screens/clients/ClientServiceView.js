@@ -11,8 +11,7 @@ import ReactHtmlParser from 'react-html-parser'
 import PaymentProduct from '../../components/PaymentProduct'
 import { NavLink } from 'react-router-dom'
 import { loadStripe } from '@stripe/stripe-js'
-
-const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY)
+import { createCheckout } from '../../actions/checkoutAction'
 
 
 const ClientServiceView = ({match}) => {
@@ -32,9 +31,24 @@ const ClientServiceView = ({match}) => {
 
     },[dispatch, paymentPlanId])
 
-    function handleToken(token, addresses) {
-        console.log({token, addresses})
+    const handleToken = (token, addresses) => {
+       dispatch(createCheckout(token, paymentPlan))
     }
+
+    // async function handleToken(token, addresses) {
+    //     console.log({token, addresses})
+
+    //     const response = await axios.post(`api/checkout`, {
+    //         token, 
+    //         paymentPlan
+    //     })
+    //     const { status } = response.data
+    //     if (status  === 'success') {
+    //       console.log("success!")  
+    //     } else {
+    //         console.log("something went wrong!") 
+    //     }
+    // }
     return (
         <div className="view-screen">
             <ClientLayout>

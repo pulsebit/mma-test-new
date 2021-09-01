@@ -8,6 +8,7 @@ import { paymentPlanListReducer, paymentPlanDetailsReducer, paymentPlanDeleteRed
 import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
 import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './reducers/noteReducers'
 import { knowledgeBaseCreateReducer, knowledgeBaseDeleteReducer, knowledgeBaseDetailsReducer, knowledgeBaseListReducer, knowledgeBaseUpdateReducer } from './reducers/knowledgeBaseReducers'
+import { checkoutCreateReducer } from './reducers/checkoutReducers'
 
 
 const reducer = combineReducers({
@@ -44,7 +45,8 @@ const reducer = combineReducers({
 	knowledgeBaseCreate: knowledgeBaseCreateReducer,
 	knowledgeBaseUpdate: knowledgeBaseUpdateReducer,
 	knowledgeBaseDetails: knowledgeBaseDetailsReducer,
-	knowledgeBaseDelete: knowledgeBaseDeleteReducer
+	knowledgeBaseDelete: knowledgeBaseDeleteReducer,
+	checkoutCreate: checkoutCreateReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

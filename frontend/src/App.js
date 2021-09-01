@@ -1,7 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
+
 import LoginScreen from './screens/LoginScreen'
 
 import Profile from './screens/admin/Profile'
@@ -80,7 +79,7 @@ import ClientSupportView from './screens/clients/ClientSupportView'
 function App() {
   return (
     <Router>
-        <Header />
+        
           <main>
               
               <Route path='/' component={LoginScreen} exact />
@@ -168,11 +167,7 @@ function App() {
               <Route path='/portal/support/:id/edit' component={ClientSupportEdit} />
               <Route path='/portal/add-support/' component={ClientSupportAdd} />
               
-
-              
-              
           </main>
-        <Footer />
     </Router>
   );
 }
