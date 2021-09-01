@@ -82,7 +82,7 @@ function App() {
         
           <main>
               
-              <Route path='/' component={LoginScreen} exact />
+              <Route path='/' component={LoginScreen} exact />xs
               <Route path='/profile' component={Profile} exact/>
               <Route path='/profile/edit' component={ProfileEdit} />
 

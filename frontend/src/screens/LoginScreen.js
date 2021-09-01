@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import  { Link, useHistory } from 'react-router-dom'
+import { NavLink, useHistory} from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import facebook from '../assets/images/facebook-circle.png'
+import gmail from '../assets/images/gmail.png'
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('')
@@ -41,12 +45,16 @@ const LoginScreen = () => {
 	return (
 		<div className='login-wrapper'>
 			<FormContainer>
-				<h1>Sign In</h1>
+				<div className="reg-wrapper">
+					<span>Dont have an account yet?</span>
+					<NavLink to="/">Create Account</NavLink>
+				</div>
+				<h2>Sign In</h2>
 				{error && <Message variant='danger'>{error}</Message>}
 				{loading && <Loader />}
 				<Form onSubmit={submitHandler}> 
-					<Form.Group>
-						<Form.Label>Email Address</Form.Label>
+					<Form.Group >
+						<Form.Label ><FontAwesomeIcon icon={faUser}/></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -54,8 +62,8 @@ const LoginScreen = () => {
 							onChange={(e) => setEmail(e.target.value)}
 						></Form.Control>
 					</Form.Group>
-					<Form.Group>
-						<Form.Label>Password</Form.Label>
+					<Form.Group >
+						<Form.Label ><FontAwesomeIcon icon={faLock}/></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'
@@ -67,16 +75,19 @@ const LoginScreen = () => {
 					<Button type='submit' variant='primary'>
 						Sign In
 					</Button>
-
-					<Row className='py-3'>
-						<Col>
-							New Customer ? {' '}
-							{/* <Link to={redirect ? `/register?redirect=${redirect}`: '/register'}></Link>	 */}
-						</Col>			
-					</Row>
 					<div className="divider">or</div>
-					<button className="log-fb-btn" >Sign in with Facebook</button>
-					<button className="log-gmail-btn" >Sign in with Google</button>
+					<div className="social-btn-wrapper">
+						<button>
+							<div className="img-wrapper">
+								<img src={facebook} alt="" />
+							</div>
+						</button>
+						<button>
+							<div className="img-wrapper">
+								<img src={gmail} alt="" />
+							</div>
+					</button>
+					</div>
 				</Form>
 			</FormContainer>
 		</div>

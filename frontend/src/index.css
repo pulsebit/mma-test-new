@@ -791,26 +791,21 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   border: solid 1px #007bff;
 }
 
+.shadow-box-login {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
+}
+
+.pad-det {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 .login-wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.login-wrapper .log-gmail-btn {
-  display: block;
-  width: 100%;
-  padding: 8px 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.login-wrapper .log-fb-btn {
-  display: block;
-  width: 100%;
-  padding: 8px 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .login-wrapper .row {
   align-items: center;
@@ -868,7 +863,6 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .login-wrapper .row .login-image .image-wrapper {
   width: 100%;
-  height: 500px;
 }
 @media only screen and (max-width: 767px) {
   .login-wrapper .row .login-image .image-wrapper {
@@ -876,10 +870,11 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   }
 }
 .login-wrapper .row .login-image .image-wrapper img {
-  height: 500px;
   object-fit: cover;
   overflow: hidden;
   border-radius: 25px 0 0 25px;
+  height: 650px;
+  display: block;
 }
 @media only screen and (max-width: 767px) {
   .login-wrapper .row .login-image .image-wrapper img {
@@ -893,19 +888,49 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
     top: -23px;
   }
 }
-.login-wrapper .row h1 {
+.login-wrapper .row h2 {
   color: #3777FF;
-  font-weight: 700;
-  padding: 25px 20px;
+  padding: 50px 20px;
+  margin: 0;
+}
+.login-wrapper .row .divider {
+  text-align: center;
+  padding: 20px 0;
+}
+.login-wrapper .row .social-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-wrapper .row .social-btn-wrapper button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.login-wrapper .row .social-btn-wrapper button .img-wrapper {
+  max-width: 50px;
+  padding: 0;
+}
+.login-wrapper .row .social-btn-wrapper button .img-wrapper img {
+  display: block;
+}
+.login-wrapper .row .social-btn-wrapper button:hover {
+  cursor: pointer;
 }
 .login-wrapper .row form {
   padding: 0 20px;
 }
 .login-wrapper .row form .form-group {
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
 }
 .login-wrapper .row form .form-group label {
-  margin-bottom: 15px;
+  margin-right: 5px;
+  font-size: 17px;
+}
+.login-wrapper .row form .form-group label svg {
+  color: #7e7d7d;
 }
 .login-wrapper .row form .py-3 {
   box-shadow: none;
