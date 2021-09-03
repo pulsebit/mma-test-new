@@ -2,6 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
 
 import Profile from './screens/admin/Profile'
 import ProfileEdit from './screens/admin/ProfileEdit'
@@ -82,7 +83,9 @@ function App() {
         
           <main>
               
-              <Route path='/' component={LoginScreen} exact />xs
+              <Route path='/' component={LoginScreen} exact />
+              <Route path='/register' component={RegisterScreen} exact />
+              
               <Route path='/profile' component={Profile} exact/>
               <Route path='/profile/edit' component={ProfileEdit} />
 

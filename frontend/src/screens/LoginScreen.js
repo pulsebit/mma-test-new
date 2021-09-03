@@ -8,8 +8,8 @@ import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
-import facebook from '../assets/images/facebook-circle.png'
-import gmail from '../assets/images/gmail.png'
+// import facebook from '../assets/images/facebook-circle.png'
+// import gmail from '../assets/images/gmail.png'
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('')
@@ -47,7 +47,7 @@ const LoginScreen = () => {
 			<FormContainer>
 				<div className="reg-wrapper">
 					<span>Dont have an account yet?</span>
-					<NavLink to="/">Create Account</NavLink>
+					<NavLink to="/register">Create Account</NavLink>
 				</div>
 				<h2>Sign In</h2>
 				{error && <Message variant='danger'>{error}</Message>}
@@ -78,14 +78,16 @@ const LoginScreen = () => {
 					<div className="divider">or</div>
 					<div className="social-btn-wrapper">
 						<button>
-							<div className="img-wrapper">
+							F
+							{/* <div className="img-wrapper">
 								<img src={facebook} alt="" />
-							</div>
+							</div> */}
 						</button>
 						<button>
-							<div className="img-wrapper">
+							G
+							{/* <div className="img-wrapper">
 								<img src={gmail} alt="" />
-							</div>
+							</div> */}
 					</button>
 					</div>
 				</Form>

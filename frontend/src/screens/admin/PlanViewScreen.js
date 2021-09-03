@@ -21,12 +21,9 @@ const PlanViewScreen = ({match}) => {
     const dispatch = useDispatch()
 
     const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
-    const isAdmin = userInfo.isAdmin
+    const { userInfo } = userLogin  
     
     const{ loading, paymentPlan = {} , error } = useSelector(state => state.paymentPlanDetails) || {}
-    const includeProducts = paymentPlan.product
-    console.log(includeProducts)
 
     useEffect(() => {
         dispatch(getPaymentPlanDetails(paymentPlanId)) 
@@ -98,7 +95,7 @@ const PlanViewScreen = ({match}) => {
                             </Col>
                         </Row>
                     </div>
-                    <PaymentProduct id={paymentPlanId} includeProducts={includeProducts} isAdmin={isAdmin}/>
+                    <PaymentProduct id={paymentPlanId} />
                 </>
             )} 
             </DashboardContainer>
