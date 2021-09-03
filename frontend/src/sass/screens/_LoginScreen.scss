@@ -98,7 +98,7 @@
 
         h2{
             color: #3777FF;
-            padding: 50px 20px;
+            padding: 70px 15px;
             margin: 0;
         }
 
@@ -116,18 +116,25 @@
                 border: none;
                 outline: none;
                 background-color: transparent;
-
-                .img-wrapper{
-                    max-width: 50px;
-                    padding: 0;
-
-                    img{
-                        display: block;
-                    }
-                }
+                font-size: 45px;
 
                 &:hover{
                     cursor: pointer;
+                }
+            }
+
+            .fb-btn{
+                color: #4267B2;
+                &:hover {
+                    color: #6a96ec;
+                }
+            }
+
+            .gmail-btn{
+                color: #BB001B;
+
+                &:hover {
+                    color: #EA4335;
                 }
             }
         }

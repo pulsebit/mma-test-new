@@ -8,6 +8,7 @@ import date from 'date-and-time'
 import { listKnowledgeBase } from '../../actions/knowlegeBaseAction'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import Loader from 'react-loader-spinner'
 
 
 const KnowledgeBaseListScreen = () => {
@@ -18,6 +19,14 @@ const KnowledgeBaseListScreen = () => {
     useEffect(() => {
         dispatch(listKnowledgeBase())
     },[dispatch])
+    
+    if(loading) {
+        return (
+            <DashboardContainer >
+                <Loader2 />
+            </DashboardContainer>
+        )
+    }
 
     return (
         <div> 
@@ -41,12 +50,7 @@ const KnowledgeBaseListScreen = () => {
                                     <th>Date Created</th>
                                     <th>Action</th>
                                 </tr>	
-                                { loading ? (
-                                     <Loader2 />
-                                ) : error ? (
-                                    <Message variant='danger'>{error}</Message>
-                                ) : ( 		   
-                                    knowledgeBaseList.map((knowledgeBase) => (
+                                {knowledgeBaseList.map((knowledgeBase) => (
                                         <tr key={knowledgeBase._id}>
                                             <td><p>{knowledgeBase.problem_description}</p></td>
                                             <td><p>{knowledgeBase.solution}</p></td>
@@ -60,8 +64,7 @@ const KnowledgeBaseListScreen = () => {
                                                 <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
                                             </td>
                                         </tr>
-                                    ))     
-                                )}
+                                    ))}
                             </tbody>
                         </table>
                     </div>

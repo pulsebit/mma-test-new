@@ -22,18 +22,21 @@ const UserAddScreen = () => {
     const [country, setCountry] = useState('')
     const [dataStudioLink, setDataStudioLink] = useState('') 
 
+    const { userInfo } = useSelector(state => state.userLogin)
+    const isAdmin = userInfo.isAdmin
+
     const {loading: loadingCreate, success:ssuccessCreate} = useSelector(state => state.userCreate)
 
     useEffect(() => {
-        if(loadingCreate) {
+        if(ssuccessCreate) {
             toast.success('Profile successfully added.',{
                 position: "bottom-right",});
         }
-    }, [dispatch, loadingCreate] )
+    }, [dispatch, ssuccessCreate] )
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-       dispatch(createUser(name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
+       dispatch(createUser(isAdmin, name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
     }
 
     return (

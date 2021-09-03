@@ -20,55 +20,65 @@ const SupportsListScreen = () => {
         dispatch(listSupports())
     },[dispatch])
 
-    return (
-        <div> 
+    if (loading) {
+        return(
+            <div> 
             <DashboardContainer >
-                <div className="section-wrapper">
-                    <div className="dashboard-title-wrapper">
-                        <div className="dashboard-title">Supports List</div>
-                        <div className="button-wrapper">
-                            <NavLink to="/admin/add-support/" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add New</NavLink>
-                        </div>
-                    </div>
-                    <div className="table-wrapper def-padding">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Ticket No</th>
-                                    <th>Client</th>
-                                    <th>Priority</th>
-                                    <th>Status</th>
-                                    <th>Category</th>
-                                    <th>Date Created</th>
-                                    <th></th>
-                                </tr>	
-                                { loading ? (
-                                     <Loader2 />
-                                ) : error ? (
-                                    <Message variant='danger'>{error}</Message>
-                                ) : ( 		   
-                                    supports.map((support) => (
-                                        <tr key={support._id}>
-                                            <td>{support.ticket_no}</td>
-                                            <td>{support.client.name}</td>
-                                            <td>{support.priority}</td>
-                                            <td>{support.status}</td>
-                                            <td>{support.category}</td>
-                                            <td>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</td>
-                                            <td>
-                                                <NavLink to={`/admin/supports/${support._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
-                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
-                                            </td>
-                                        </tr>
-                                    ))     
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <Loader2 />
             </DashboardContainer>
         </div>
-    );
+        )
+    } else {
+        return (
+            <div> 
+                <DashboardContainer >
+                    <div className="section-wrapper">
+                        <div className="dashboard-title-wrapper">
+                            <div className="dashboard-title">Supports List</div>
+                            <div className="button-wrapper">
+                                <NavLink to="/admin/add-support/" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add New</NavLink>
+                            </div>
+                        </div>
+                        <div className="table-wrapper def-padding">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Ticket No</th>
+                                        <th>Client</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Category</th>
+                                        <th>Date Created</th>
+                                        <th></th>
+                                    </tr>	
+                                    { loading ? (
+                                         <Loader2 />
+                                    ) : error ? (
+                                        <Message variant='danger'>{error}</Message>
+                                    ) : ( 		   
+                                        supports.map((support) => (
+                                            <tr key={support._id}>
+                                                <td>{support.ticket_no}</td>
+                                                <td>{support.client.name}</td>
+                                                <td>{support.priority}</td>
+                                                <td>{support.status}</td>
+                                                <td>{support.category}</td>
+                                                <td>{date.format(new Date(support.createdAt), 'ddd, MMM DD YYYY')}</td>
+                                                <td>
+                                                    <NavLink to={`/admin/supports/${support._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
+                                                    <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
+                                                </td>
+                                            </tr>
+                                        ))     
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </DashboardContainer>
+            </div>
+        )
+    } 
 }
 
 export default SupportsListScreen

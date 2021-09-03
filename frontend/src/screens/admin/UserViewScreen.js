@@ -4,7 +4,7 @@ import { getUserDetails }  from '../../actions/userActions'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import Message from '../../components/Message'
-import Loader from '../../components/Loader'
+import Loader2 from '../../components/Loader2'
 import DashboardContainer from '../../components/DashboardContainer'
 import defaultImage from '../../assets/images/user.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,24 +14,21 @@ import { faEdit, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 const UserViewScreen = ({ match }) => {
     const userId = match.params.id
     const dispatch = useDispatch()
-  
     const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user} = userDetails
-    console.log(user)
-    
-
     useEffect(() => {
        dispatch(getUserDetails(userId))
     }, [dispatch, match])
-     
+    if ( loading ) {
+        return (
+            <DashboardContainer>
+                <Loader2 /> 
+            </DashboardContainer>
+        )
+    }    
     return (
         <>
         <div className="view-screen">
-        { loading ? ( 
-                <Loader /> 
-            ) : error ? ( 
-                <Message variant='danger'>{error}</Message>
-            ) : (
             <DashboardContainer>
                 <div className="section-wrapper mar-b-50">
                 <div className="dashboard-title-wrapper">
@@ -143,7 +140,6 @@ const UserViewScreen = ({ match }) => {
                     </div>
                 </div>
             </DashboardContainer>
-            )} 
             </div>
         </>
     )

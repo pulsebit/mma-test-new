@@ -1,16 +1,12 @@
 import React, {useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import {Row, Col, Container} from 'react-bootstrap'
+import {Row, Col} from 'react-bootstrap'
 import DashboardContainer from '../../components/DashboardContainer'
-import Seo from '../../assets/images/seo.jpg'
-import Product from '../../components/Product'
-import Message from '../../components/Message'
-import Loader from '../../components/Loader'
+import Loader2 from '../../components/Loader2'
 import { getProductDetails } from '../../actions/productActions'
-import { getUserDetails } from '../../actions/userActions'
 
-import { faPaperPlane, faPen, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -28,6 +24,14 @@ const ProductViewScreen = ({match}) => {
     
     function descriptionMarkup() {
         return {__html: product.description};
+    }
+
+    if (loading){
+        return(
+            <DashboardContainer>
+                <Loader2 />
+            </DashboardContainer>
+        )
     }
 
     return (

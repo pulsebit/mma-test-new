@@ -23,12 +23,16 @@ import {
 } from '../constants/userConstants'
 
 
-export const createUser = (name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink) => async (dispatch, getState) => {
-	const {
-      userLogin: { userInfo }
-   } = getState()
-
-   const creator = userInfo._id
+export const createUser = (isAdmin, name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink) => async (dispatch, getState) => {
+	
+   if ( isAdmin == true ){
+      const {
+         userLogin: { userInfo }
+      } = getState()
+   
+      var creator = userInfo._id
+   } 
+  
 
    try {
 		dispatch({

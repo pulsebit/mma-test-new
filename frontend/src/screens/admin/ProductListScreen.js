@@ -8,6 +8,7 @@ import { listProducts } from '../../actions/productActions'
 import DashboardContainer from '../../components/DashboardContainer'
 import { faEye, faPlusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Loader2 from '../../components/Loader2'
 
 const ProductListScreen = () => {
 
@@ -20,6 +21,14 @@ const ProductListScreen = () => {
         dispatch(listProducts()) 
     }, [dispatch])
 
+    if (loading){
+        return(
+            <DashboardContainer>
+                <Loader2 />
+            </DashboardContainer>
+        )
+    }
+
 
     return (
         <div> 
@@ -30,12 +39,7 @@ const ProductListScreen = () => {
                         <NavLink to="/admin/product-add" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add new</NavLink>
                     </div>
                     <div className="table-wrapper def-padding">
-                    { loading ? ( 
-                        <Loader /> 
-                    ) : error ? ( 
-                        <Message variant='danger'>{error}</Message>
-                    ) : (
-                        <table>
+                    <table>
                             <tbody>
                                 <tr>
                                     <th>Product Name</th>
@@ -58,7 +62,6 @@ const ProductListScreen = () => {
                                 ))}	
                             </tbody>
                         </table>
-                        )}
                     </div>
                 </div>
             </DashboardContainer>

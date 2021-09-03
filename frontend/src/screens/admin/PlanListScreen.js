@@ -20,6 +20,14 @@ const PlanListScreen = () => {
         dispatch(listPaymentPlans())
     },[dispatch])
 
+    if(loading) {
+        return (
+            <DashboardContainer >
+                <Loader2 />
+            </DashboardContainer>
+        )
+    }
+
     return (
         <div> 
             <DashboardContainer>
@@ -30,11 +38,6 @@ const PlanListScreen = () => {
                     </div>
                     <div className="table-wrapper def-padding">
                         <table>
-                        { loading ? ( 
-                            <Loader2 /> 
-                        ) : error ? ( 
-                            <Message variant='danger'>{error}</Message>
-                        ) : (
                             <tbody>
                                 <tr>
                                     <th>Name</th>
@@ -59,7 +62,6 @@ const PlanListScreen = () => {
                                     </tr>
                                ))}
                             </tbody>
-                            )}
                         </table>
                     </div>
                 </div>

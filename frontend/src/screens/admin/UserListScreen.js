@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import Message from '../../components/Message'
-import Loader from '../../components/Loader'
+import Loader2 from '../../components/Loader2'
 import DashboardContainer from '../../components/DashboardContainer'
 import { deleteUser, listUsers }  from '../../actions/userActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -33,6 +33,14 @@ const UserListScreen = ({ history }) => {
         // dispatch(deleteUser(userid))
     }
 
+    if ( loading ) {
+        return (
+            <DashboardContainer>
+                <Loader2 /> 
+            </DashboardContainer>
+        )
+    }
+
     
     return (
         <> 
@@ -56,7 +64,7 @@ const UserListScreen = ({ history }) => {
                                     <th>Action</th>
                                 </tr>
                                 { loading ? ( 
-                                  <Loader /> 
+                                  <Loader2 /> 
                                 ) : error ? ( 
                                   <Message variant='danger'>{error}</Message>
                                 ) : (

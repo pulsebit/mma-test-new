@@ -8,6 +8,8 @@ import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FaFacebook, FaGooglePlus } from 'react-icons/fa';
+
 // import facebook from '../assets/images/facebook-circle.png'
 // import gmail from '../assets/images/gmail.png'
 
@@ -77,17 +79,11 @@ const LoginScreen = () => {
 					</Button>
 					<div className="divider">or</div>
 					<div className="social-btn-wrapper">
-						<button>
-							F
-							{/* <div className="img-wrapper">
-								<img src={facebook} alt="" />
-							</div> */}
+						<button className="fb-btn">
+							<FaFacebook />
 						</button>
-						<button>
-							G
-							{/* <div className="img-wrapper">
-								<img src={gmail} alt="" />
-							</div> */}
+						<button className="gmail-btn">
+							<FaGooglePlus />
 					</button>
 					</div>
 				</Form>

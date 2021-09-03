@@ -563,7 +563,7 @@ header {
   background-color: #fff;
 }
 header nav.navbar.navbar-expand-lg.navbar-light {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
 }
 header .row .col-lg-2.col-md-3.col-sm-4 .navbar-brand .site-logo {
   max-width: 250px;
@@ -901,7 +901,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .login-wrapper .row h2 {
   color: #3777FF;
-  padding: 50px 20px;
+  padding: 70px 15px;
   margin: 0;
 }
 .login-wrapper .row .divider {
@@ -917,16 +917,22 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   border: none;
   outline: none;
   background-color: transparent;
-}
-.login-wrapper .row .social-btn-wrapper button .img-wrapper {
-  max-width: 50px;
-  padding: 0;
-}
-.login-wrapper .row .social-btn-wrapper button .img-wrapper img {
-  display: block;
+  font-size: 45px;
 }
 .login-wrapper .row .social-btn-wrapper button:hover {
   cursor: pointer;
+}
+.login-wrapper .row .social-btn-wrapper .fb-btn {
+  color: #4267B2;
+}
+.login-wrapper .row .social-btn-wrapper .fb-btn:hover {
+  color: #6a96ec;
+}
+.login-wrapper .row .social-btn-wrapper .gmail-btn {
+  color: #BB001B;
+}
+.login-wrapper .row .social-btn-wrapper .gmail-btn:hover {
+  color: #EA4335;
 }
 .login-wrapper .row form {
   padding: 0 20px;
@@ -945,33 +951,6 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .login-wrapper .row form .py-3 {
   box-shadow: none;
-}
-
-.register h2 {
-  padding: 0 20px 20px 20px !important;
-}
-.register .details-wrapper {
-  padding: 0 0 10px 0 !important;
-}
-.register .details-wrapper-flex {
-  display: flex;
-  align-items: center;
-  padding: 0 0 10px 0 !important;
-}
-.register .details-wrapper-flex label {
-  padding: 0 5px;
-}
-.register input {
-  padding: 5px !important;
-}
-.register select {
-  padding: 5px !important;
-}
-.register .row {
-  box-shadow: none;
-}
-.register .row .col-md-4 {
-  padding: 0 !important;
 }
 
 .client-services .plans {
