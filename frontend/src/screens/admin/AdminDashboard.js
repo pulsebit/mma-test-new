@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle, faShoppingCart, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons'
 import DashboardContainer from '../../components/DashboardContainer'
 import Loader2 from '../../components/Loader2'
+import { FiUsers, FiHeadphones, FiShoppingBag, FiLayers } from 'react-icons/fi';
+
 
 
 const AdminDashboard = () => {
@@ -55,7 +57,7 @@ const AdminDashboard = () => {
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
-                                                <FontAwesomeIcon icon={faUsers}/>
+                                                <FiUsers />
                                                 <span>Clients</span>
                                             </div>
                                             <div className="sub-title">
@@ -73,7 +75,7 @@ const AdminDashboard = () => {
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
-                                                <FontAwesomeIcon icon={faInfoCircle}/>
+                                                <FiHeadphones/>
                                                 <span>Supports</span>
                                             </div>
                                             <div className="sub-title">
@@ -91,7 +93,7 @@ const AdminDashboard = () => {
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
-                                                <FontAwesomeIcon icon={faShoppingCart}/>
+                                                <FiShoppingBag />
                                                 <span>Products</span>
                                             </div>
                                             <div className="sub-title">
@@ -109,7 +111,7 @@ const AdminDashboard = () => {
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
-                                                <FontAwesomeIcon icon={faShoppingCart}/>
+                                                <FiLayers />
                                                 <span>Payment Plans</span>
                                             </div>
                                             <div className="sub-title">

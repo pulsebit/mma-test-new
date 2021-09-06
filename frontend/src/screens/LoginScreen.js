@@ -8,8 +8,8 @@ import Facebook from '../components/Facebook'
 import Google from '../components/Google'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
+import { AiOutlineUser, AiOutlineUnlock } from 'react-icons/ai';
+
 
 
 
@@ -52,7 +52,7 @@ const LoginScreen = (social) => {
 				{loading && <Loader />}
 				<Form onSubmit={submitHandler}> 
 					<Form.Group >
-						<Form.Label ><FontAwesomeIcon icon={faUser}/></Form.Label>
+						<Form.Label ><AiOutlineUser /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -61,7 +61,7 @@ const LoginScreen = (social) => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><FontAwesomeIcon icon={faLock}/></Form.Label>
+						<Form.Label ><AiOutlineUnlock/></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

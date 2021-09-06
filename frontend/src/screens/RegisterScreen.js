@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { faEnvelopeOpen, faLock, faSave, faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AiOutlineUser, AiOutlineUnlock, AiOutlineMail } from 'react-icons/ai';
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { createUser } from '../actions/userActions'
@@ -52,7 +51,7 @@ const RegisterScreen = () => {
                 <h2>Sign up</h2>
                 <Form onSubmit={onSubmitHandler}>
                     <Form.Group >
-						<Form.Label ><FontAwesomeIcon icon={faUser}/></Form.Label>
+						<Form.Label ><AiOutlineUser /></Form.Label>
 						<Form.Control
 							type='text'
 							placeholder='Enter Name'
@@ -61,7 +60,7 @@ const RegisterScreen = () => {
 						></Form.Control>
 					</Form.Group>
                     <Form.Group >
-						<Form.Label ><FontAwesomeIcon icon={faEnvelopeOpen}/></Form.Label>
+						<Form.Label ><AiOutlineMail /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -70,7 +69,7 @@ const RegisterScreen = () => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><FontAwesomeIcon icon={faLock}/></Form.Label>
+						<Form.Label ><AiOutlineUnlock /></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

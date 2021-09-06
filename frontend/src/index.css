@@ -862,7 +862,6 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   border-bottom: 1px solid #3777FF;
 }
 .login-wrapper .row {
-  align-items: center;
   box-shadow: 0 3px 10px #00000029;
   background-color: #f8f9fa;
   border-radius: 25px;
