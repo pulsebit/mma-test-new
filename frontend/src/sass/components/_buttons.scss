@@ -167,3 +167,54 @@
         color: #fff;
     }
 }
+
+
+// socical media buttons
+
+.btnFacebook {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+    margin-bottom: 15px;
+    font-family: Roboto, sans-serif;
+    color: #0000008a;
+    font-size: 14px;
+    
+    svg {
+        margin-right: 5px;
+        color: #4267B2;
+        font-size: 18px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        color: #4267B2;
+    }
+}
+
+.btnGoogle {
+    width: 100%;
+    justify-content: center;
+    border-radius: 5px !important;
+    padding: 7px !important;
+
+    div {
+        padding: 0 !important;
+        margin-right: 5px !important;
+    }
+
+    span {
+        padding: 0 !important;
+    }
+
+    &:hover {
+        cursor: pointer;
+        color: #DB4437 !important;
+    }
+}

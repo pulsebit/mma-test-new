@@ -8,7 +8,7 @@ import { listPaymentPlans } from '../../actions/paymentPlanAction'
 
 import { Row , Col } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAmbulance, faInfoCircle, faShoppingCart, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faShoppingCart, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons'
 import DashboardContainer from '../../components/DashboardContainer'
 import Loader2 from '../../components/Loader2'
 

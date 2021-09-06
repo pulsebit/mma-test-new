@@ -15,7 +15,8 @@ const ClientLayout = ({ children }) => {
   
     const userLogin = useSelector((state) => state.userLogin)
     const {userInfo = {} } = userLogin || {}
-    const userID = userInfo._id
+    const { _id = {} } = userInfo || {}
+    const userID = _id  
 
     const { loading, user = {} } = useSelector(state => state.userDetails)
 

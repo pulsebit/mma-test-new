@@ -4,45 +4,41 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Facebook from '../components/Facebook'
+import Google from '../components/Google'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
-import { FaFacebook, FaGooglePlus } from 'react-icons/fa';
+import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
 
-// import facebook from '../assets/images/facebook-circle.png'
-// import gmail from '../assets/images/gmail.png'
 
-const LoginScreen = () => {
+
+const LoginScreen = (social) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const history = useHistory()
 
-  	const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-
-  const userLogin = useSelector(state => state.userLogin)
-  const { loading, error, userInfo = {} } = userLogin || {}
-  const { isAdmin = {} } = userInfo || {}
+	const userLogin = useSelector(state => state.userLogin)
+	const { loading, error, userInfo = {} } = userLogin || {}
+	const { isAdmin = {} } = userInfo || {}
   
-  
-  useEffect(() => {
-	  if (isAdmin == true) {
-		  console.log("true")
-		  history.push("/admin");
-	  } else if (isAdmin == false) {
-		  console.log("false")
-		  history.push("/portal/reports");
-	  }
-  	 
-  }, [history, userInfo])
+	useEffect(() => {
+		if (isAdmin == true) {
+			history.push("/admin");
+		} else if (isAdmin == false) {
+			history.push("/portal/reports");
+		}
 
-  const submitHandler = (e) => {
-  	e.preventDefault()
+	}, [history, userInfo])
 
-  	//Dispatch Login
-  	dispatch(login(email, password))
-  } 
+	const submitHandler = (e) => {
+		e.preventDefault()
+
+		//Dispatch Login
+		dispatch(login(email, password))
+	} 
 
 	return (
 		<div className='login-wrapper'>
@@ -78,13 +74,10 @@ const LoginScreen = () => {
 						Sign In
 					</Button>
 					<div className="divider">or</div>
+						<Facebook />
+						<Google />
 					<div className="social-btn-wrapper">
-						<button className="fb-btn">
-							<FaFacebook />
-						</button>
-						<button className="gmail-btn">
-							<FaGooglePlus />
-					</button>
+						
 					</div>
 				</Form>
 			</FormContainer>

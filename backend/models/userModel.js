@@ -62,6 +62,12 @@ const userSchema = mongoose.Schema({
    dataStudioLink: {
       type: String
    },
+   fbId: {
+      type: String
+   },
+   googleId: {
+      type: String
+   },
 }, {
   timestamps: true
 })

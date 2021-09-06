@@ -52,6 +52,11 @@ export const createUser = (isAdmin, name, email, password, mobile_no, gender ,bi
 	}
 }
 
+export const loginSocial = (response) => async (dispatch) => {
+      localStorage.setItem('userInfo', JSON.stringify(response))
+}
+
+
 export const login = (email, password) => async (dispatch) => {
  	try {
  		dispatch({

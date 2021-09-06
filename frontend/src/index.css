@@ -409,6 +409,49 @@ button, a {
   color: #fff;
 }
 
+.btnFacebook {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+  margin-bottom: 15px;
+  font-family: Roboto, sans-serif;
+  color: #0000008a;
+  font-size: 14px;
+}
+.btnFacebook svg {
+  margin-right: 5px;
+  color: #4267B2;
+  font-size: 18px;
+}
+.btnFacebook:hover {
+  cursor: pointer;
+  color: #4267B2;
+}
+
+.btnGoogle {
+  width: 100%;
+  justify-content: center;
+  border-radius: 5px !important;
+  padding: 7px !important;
+}
+.btnGoogle div {
+  padding: 0 !important;
+  margin-right: 5px !important;
+}
+.btnGoogle span {
+  padding: 0 !important;
+}
+.btnGoogle:hover {
+  cursor: pointer;
+  color: #DB4437 !important;
+}
+
 .box {
   padding: 40px 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
