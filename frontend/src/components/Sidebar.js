@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FcHome } from "react-icons/fc";
 import { faHome, faUserAlt, faTicketAlt, faKey, faBoxes, faCalendarAlt, faCogs, faBrain } from '@fortawesome/free-solid-svg-icons'
 
 

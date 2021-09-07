@@ -1,15 +1,37 @@
+import { EpsBankElement } from '@stripe/react-stripe-js';
 import React from 'react'
-import GoogleLogin from 'react-google-login';
-import { ImGooglePlus } from 'react-icons/im';
+import GoogleLogin from 'react-google-login'
 import { useDispatch } from 'react-redux';
-import { loginSocial } from '../actions/userActions';
+import { createUser, loginSocial } from '../actions/userActions';
 
 const Google = () => {
     const dispatch = useDispatch()
 
     const responseGoogle = (response) => {
-		if (response) {
-            dispatch(loginSocial(response))
+        console.log(response)
+        console.log(response[0])
+		const isAdmin = false
+        if (response.Rs) {
+            var name = response.Rs.Qe 
+            var email = response.Rs.Ct 
+        } else if (response.Ws) {
+            var name = response.Ws.Qe
+            var email = response.Ws.Ht
+        } 
+        const password = ""
+        const mobile_no = ""
+        const creator = ""
+        const gender = ""
+        const birthdate = ""
+        const address = ""
+        const state = ""
+        const zipcode = ""
+        const country = ""
+        const dataStudioLink = ""
+        const socialId = response.googleId
+            
+        if (response) {
+            dispatch(createUser(socialId, isAdmin, name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
         }
 	}
 

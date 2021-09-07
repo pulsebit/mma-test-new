@@ -21,6 +21,10 @@ import {
   USER_CREATE_SUCCESS,
   USER_CREATE_FAIL,
   USER_DELETE_RESET,
+  USER_LOGOUT_SOCIAL,
+  USER_LOGIN_SOCIAL_FAIL,
+  USER_LOGIN_SOCIAL_SUCCESS,
+  USER_LOGIN_SOCIAL_REQUEST,
 } from '../constants/userConstants'
 
 export const userCreateReducer = (state = {}, action) => {
@@ -31,6 +35,21 @@ export const userCreateReducer = (state = {}, action) => {
              return  { loading: false, success: true }
           case USER_CREATE_FAIL:
              return { loading: false, error: action.payload }  
+          default:
+             return state   
+   }
+}
+
+export const userLoginSocialReducer = (state = { }, action) => {
+   switch(action.type) {
+          case USER_LOGIN_SOCIAL_REQUEST:
+             return { loading: true }
+          case USER_LOGIN_SOCIAL_SUCCESS:   
+             return  { loading: false, userInfoSocial: action.payload }
+          case USER_LOGIN_SOCIAL_FAIL:
+             return { loading: false, error: action.payload }  
+          case USER_LOGOUT_SOCIAL:
+             return {  } 
           default:
              return state   
    }

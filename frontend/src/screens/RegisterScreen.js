@@ -25,19 +25,20 @@ const RegisterScreen = () => {
     // const [dataStudioLink, setDataStudioLink] = useState('') 
 
     const isAdmin = false
+    const socialId = ""
 
-    const {loading: loadingCreate, success:ssuccessCreate} = useSelector(state => state.userCreate)
+    const {loading: loadingCreate, success:successCreate} = useSelector(state => state.userCreate)
 
     useEffect(() => {
-        if(ssuccessCreate) {
+        if(successCreate) {
             toast.success('Profile successfully added.',{
                 position: "bottom-right",});
         }
-    }, [dispatch, ssuccessCreate] )
+    }, [dispatch, successCreate] )
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-       dispatch(createUser(isAdmin, name, email, password))
+       dispatch(createUser(socialId, isAdmin, name, email, password))
        //, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink
     }
 

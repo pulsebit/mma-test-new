@@ -24,6 +24,7 @@ const UserAddScreen = () => {
 
     const { userInfo } = useSelector(state => state.userLogin)
     const isAdmin = userInfo.isAdmin
+    const socialId = ""
 
     const {loading: loadingCreate, success:ssuccessCreate} = useSelector(state => state.userCreate)
 
@@ -36,7 +37,7 @@ const UserAddScreen = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-       dispatch(createUser(isAdmin, name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
+       dispatch(createUser(socialId, isAdmin, name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
     }
 
     return (

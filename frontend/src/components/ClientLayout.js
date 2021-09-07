@@ -12,12 +12,22 @@ import Footer from './Footer'
 
 const ClientLayout = ({ children }) => {
     const dispatch = useDispatch()
+    let userID =""
   
     const userLogin = useSelector((state) => state.userLogin)
     const {userInfo = {} } = userLogin || {}
     const { _id = {} } = userInfo || {}
-    const userID = _id  
 
+    const userLoginSocial = useSelector(state => state.userLoginSocial)
+    const { userInfoSocial = {} } = userLoginSocial || {}
+
+    if (userInfo) {
+        userID = _id  
+    } else if (userInfoSocial) {
+        userID = userInfoSocial._id 
+    }
+
+    
     const { loading, user = {} } = useSelector(state => state.userDetails)
 
     useEffect(() => {

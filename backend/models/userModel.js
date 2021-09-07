@@ -13,7 +13,6 @@ const userSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
   },
   mobile_no: {
      type: String
@@ -62,10 +61,7 @@ const userSchema = mongoose.Schema({
    dataStudioLink: {
       type: String
    },
-   fbId: {
-      type: String
-   },
-   googleId: {
+   socialId: {
       type: String
    },
 }, {

@@ -10,10 +10,7 @@ import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { AiOutlineUser, AiOutlineUnlock } from 'react-icons/ai';
 
-
-
-
-const LoginScreen = (social) => {
+const LoginScreen = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const history = useHistory()

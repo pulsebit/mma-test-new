@@ -35,13 +35,43 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
+const authUserSocial = asyncHandler(async (req, res) => {
+	const { email } = req.body
+
+	 const user = await User.findOne({ email })
+
+ 
+	 if(user) {
+		res.json({
+			_id: user._id,
+			name: user.name,
+			email: user.email, 
+			isAdmin: user.isAdmin, 
+			token: generateToken(user._id),
+			mobile_no: user.mobile_no,
+			gender: user.gender,
+			birthdate: user.birthdate,
+			address: user.address,
+			state: user.state,
+			zipcode: user.zipcode,
+			country: user.country,
+			business_name: user.business_name,
+			isAdmin: user.isAdmin,
+			planCreated: user.planCreated,
+			subscribedPlan: user.subscribedPlan
+		})
+	} else {
+		res.status(401)
+		throw new Error('Invalid Email')
+	}
+ })
+
 
 // @desc   Register new user
 // @route  GET /api/users
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-   const { name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink } = req.body
-        console.log(name)
+   const { name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink, socialId } = req.body
     const userExists = await User.findOne({ email })
 
     if(userExists) {
@@ -51,19 +81,19 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const user = await User.create({name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink})
 
-    if(user) {
-    	 res.status(201).json({
-     			_id: user._id,
-   				name: user.name,
-   				email: user.email, 
-   				isAdmin: user.isAdmin, 
-   				token: generateToken(user._id),
-
-    	 })
+    if(user && !user.socialId) {
+		res.status(201).json({
+			_id: user._id,
+			name: user.name,
+			email: user.email, 
+			isAdmin: user.isAdmin, 
+			token: generateToken(user._id),
+		})
     } else {
     	res.status(401)
     	throw new error('Invalid user data')
     }
+	
 })
 
 
@@ -227,6 +257,7 @@ const updateUserPassword = asyncHandler(async (req, res) => {
 
 export {
 	authUser, 
+	authUserSocial,
 	getUserProfile, 
 	registerUser, 
 	getUsers, 

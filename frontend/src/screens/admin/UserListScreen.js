@@ -29,7 +29,7 @@ const UserListScreen = ({ history }) => {
 
    const onDeleteHandler = ( userid) => {
         //e.preventDefault()
-        console.log(userid)
+        
         // dispatch(deleteUser(userid))
     }
 
