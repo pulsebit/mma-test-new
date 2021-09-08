@@ -7,21 +7,7 @@ import { createUser, loginSocial } from '../actions/userActions';
 
 const Facebook = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
 
-    const userLoginSocial = useSelector(state => state.userLoginSocial)
-    const { userInfoSocial  } = userLoginSocial
-    
-
-    const { success: successCreate } = useSelector(state => state.userCreate)
-
-    useEffect(() => {
-		if (userInfoSocial) {
-			history.push("/portal/reports");
-		}
-
-	}, [history, userInfoSocial])
-    
 	const responseFacebook = (response) => {
         if (response){
             const isAdmin = false
@@ -39,21 +25,7 @@ const Facebook = () => {
             const dataStudioLink = ""
             const socialId = response.id
 
-            dispatch(loginSocial(email))
-            if (userInfoSocial) {
-                history.push("/portal")
-            } else {
-                dispatch(createUser(isAdmin, socialId, name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink, socialId))
-            }
-            // if (userInfo) {
-            //     dispatch(loginSocial(email))
-            //     console.log("login already")
-            // } else {
-            //     if (response) {
-            //         dispatch(createUser(isAdmin, socialId, name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink, socialId))
-            //         history.push("/portal")
-            //     }
-            // }
+            dispatch(createUser(isAdmin, socialId, name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink, socialId))
         }
 	}
 

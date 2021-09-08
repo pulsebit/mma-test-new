@@ -20,7 +20,7 @@ const LoginScreen = () => {
 	const userLogin = useSelector(state => state.userLogin)
 	const { loading, error, userInfo = {} } = userLogin || {}
 	const { isAdmin = {} } = userInfo || {}
-  
+
 	useEffect(() => {
 		if (isAdmin == true) {
 			history.push("/admin");

@@ -15,6 +15,7 @@ const SupportsListScreen = () => {
     
     const supportList = useSelector( state => state.supportList)
     const {loading, error, supports } = supportList 
+     const { client = {} , created_by = {}, assignee = {} } = supports || {}
 
     useEffect(() => {
         dispatch(listSupports())
@@ -44,7 +45,6 @@ const SupportsListScreen = () => {
                                 <tbody>
                                     <tr>
                                         <th>Ticket No</th>
-                                        <th>Client</th>
                                         <th>Priority</th>
                                         <th>Status</th>
                                         <th>Category</th>
@@ -59,7 +59,6 @@ const SupportsListScreen = () => {
                                         supports.map((support) => (
                                             <tr key={support._id}>
                                                 <td>{support.ticket_no}</td>
-                                                <td>{support.client.name}</td>
                                                 <td>{support.priority}</td>
                                                 <td>{support.status}</td>
                                                 <td>{support.category}</td>

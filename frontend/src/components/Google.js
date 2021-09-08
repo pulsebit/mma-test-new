@@ -8,8 +8,6 @@ const Google = () => {
     const dispatch = useDispatch()
 
     const responseGoogle = (response) => {
-        console.log(response)
-        console.log(response[0])
 		const isAdmin = false
         if (response.Rs) {
             var name = response.Rs.Qe 
@@ -29,9 +27,11 @@ const Google = () => {
         const country = ""
         const dataStudioLink = ""
         const socialId = response.googleId
+
+        console.log(socialId)
             
         if (response) {
-            dispatch(createUser(socialId, isAdmin, name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
+            dispatch(createUser(isAdmin, socialId, name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink))
         }
 	}
 

@@ -53,7 +53,7 @@ const AdminDashboard = () => {
                     <div className="c-mar-side-neg-15">
                         <Row>
                             <Col md={3}>
-                                <div className="section-wrapper mar-b-50">
+                                <div className="section-wrapper section-clients mar-b-50">
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
@@ -71,7 +71,7 @@ const AdminDashboard = () => {
                                 </div>
                             </Col>
                             <Col md={3}>
-                                <div className="section-wrapper mar-b-50">
+                                <div className="section-wrapper section-supports mar-b-50">
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
                                 </div>
                             </Col>
                             <Col md={3}>
-                                <div className="section-wrapper mar-b-50">
+                                <div className="section-wrapper section-products mar-b-50">
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">
@@ -107,7 +107,7 @@ const AdminDashboard = () => {
                                 </div>
                             </Col>
                             <Col md={3}>
-                                <div className="section-wrapper mar-b-50">
+                                <div className="section-wrapper section-plans mar-b-50">
                                     <div className="details">
                                         <div className="title-wrapper">
                                             <div className="title">

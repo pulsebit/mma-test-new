@@ -781,6 +781,36 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   display: block;
 }
 
+.adminDashboard .section-clients {
+  background: #ee0979;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ff6a00, #ee0979);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.adminDashboard .section-supports {
+  background: #2193b0;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.adminDashboard .section-products {
+  background: #C33764;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1D2671, #C33764);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1D2671, #C33764);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.adminDashboard .section-plans {
+  background: #3494E6;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);
+  background: linear-gradient(to right, #EC6EAD, #3494E6);
+}
 .adminDashboard .details {
   display: flex;
   align-items: center;
@@ -792,7 +822,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   margin-right: 15px;
 }
 .adminDashboard .details .title {
-  color: #08080896;
+  color: #fff;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 900;
@@ -800,13 +830,16 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .adminDashboard .details .title svg {
   margin-right: 5px;
+  color: #fff;
 }
 .adminDashboard .details .sub-title {
   font-size: 12px;
+  color: #fff;
 }
 .adminDashboard .details .total {
   font-size: 45px;
   font-weight: 900;
+  color: #fff;
 }
 
 .plan-items {

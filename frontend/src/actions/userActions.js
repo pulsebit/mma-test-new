@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { 
   USER_LOGIN_REQUEST, 
   USER_LOGIN_SUCCESS, 
@@ -27,24 +28,10 @@ import {
 
 
 export const createUser = (isAdmin, socialId, name, email, password, mobile_no, gender ,birthdate, address, state, zipcode, country, dataStudioLink ) => async (dispatch, getState) => {
-	console.log("isAdmin:" , isAdmin)
-   console.log("socialId:", socialId)
-   console.log("name:", name)
-   console.log("email:", email)
-   console.log("password:", password)
-   console.log("mobile_no:", mobile_no)
-   console.log("gender:", gender)
-   console.log("birthdate:", birthdate)
-   console.log("address:", address)
-   console.log("state:", state)
-   console.log("zipcode:", zipcode)
-   console.log("country:", country)
-   console.log("dataStudioLink:", dataStudioLink)
    if ( isAdmin == true ){
       const { userLogin: { userInfo } } = getState()
       var creator = userInfo._id
    } 
-
    try {
 		dispatch({
 			type: USER_CREATE_REQUEST
@@ -52,32 +39,6 @@ export const createUser = (isAdmin, socialId, name, email, password, mobile_no, 
 		await axios.post(`/api/users`, {name, email, password, mobile_no, creator, gender ,birthdate, address, state, zipcode, country, dataStudioLink} )
 	
 		dispatch({type: USER_CREATE_SUCCESS})
-
-      try {
-         dispatch({ type: USER_LOGIN_SOCIAL_REQUEST })
-   
-         const config = {
-            headers: {
-               'Content-Type' : 'application/json'
-            }
-         }
-         const { data } = await axios.post('/api/users/login/social', {email}, config )
-   
-         dispatch({
-            type: USER_LOGIN_SOCIAL_SUCCESS,
-            payload: data
-         })
-   
-         localStorage.setItem('userInfo', JSON.stringify(data))
-         
-      } catch( error ) {
-       dispatch({
-           type: USER_LOGIN_SOCIAL_FAIL,
-           payload: error.response && error.response.data.message 
-                 ? error.response.data.message 
-                 : error.message 
-       })
-      }
 	
 	} catch( error ) {
 		dispatch({
@@ -87,11 +48,14 @@ export const createUser = (isAdmin, socialId, name, email, password, mobile_no, 
 				: error.message 
 		})
 	}
+   if (socialId) {
+      console.log("success")
+      dispatch(login(email, password, socialId))
+   }
 }
 
 export const loginSocial = (email) => async (dispatch) => {
 
-   console.log(email)
    try {
       dispatch({
           type: USER_LOGIN_SOCIAL_REQUEST
@@ -129,7 +93,7 @@ export const loginSocial = (email) => async (dispatch) => {
 }
 
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password, socialId,) => async (dispatch) => {
  	try {
  		dispatch({
  			 type: USER_LOGIN_REQUEST
@@ -141,11 +105,19 @@ export const login = (email, password) => async (dispatch) => {
  			 }
  		}
 
- 		const { data } = await axios.post(
- 			'/api/users/login',
- 			{email, password}, 
- 			config
- 		)
+      if (socialId) {
+         var { data } = await axios.post(
+            '/api/users/login/social',
+            {email}, 
+            config
+         )
+      } else {
+         var { data } = await axios.post(
+            '/api/users/login',
+            {email, password}, 
+            config
+         )
+      } 		
 
  		dispatch({
       type: USER_LOGIN_SUCCESS,
