@@ -8,7 +8,7 @@ import Facebook from '../components/Facebook'
 import Google from '../components/Google'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
-import { AiOutlineUser, AiOutlineUnlock } from 'react-icons/ai';
+import { FcInvite, FcUnlock } from 'react-icons/fc';
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('')
@@ -49,7 +49,7 @@ const LoginScreen = () => {
 				{loading && <Loader />}
 				<Form onSubmit={submitHandler}> 
 					<Form.Group >
-						<Form.Label ><AiOutlineUser /></Form.Label>
+						<Form.Label ><FcInvite /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -58,7 +58,7 @@ const LoginScreen = () => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><AiOutlineUnlock/></Form.Label>
+						<Form.Label ><FcUnlock/></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

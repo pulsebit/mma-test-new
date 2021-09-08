@@ -4,8 +4,7 @@ import { useHistory } from "react-router-dom";
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FcHome } from "react-icons/fc";
-import { faHome, faUserAlt, faTicketAlt, faKey, faBoxes, faCalendarAlt, faCogs, faBrain } from '@fortawesome/free-solid-svg-icons'
+import { FcHome, FcSupport, FcConferenceCall, FcPaid, FcGraduationCap, FcSettings , FcCalendar} from "react-icons/fc";
 
 
 const Sidebar = () => {
@@ -27,22 +26,22 @@ const Sidebar = () => {
                 itemId: '/admin',
                 // you can use your own custom Icon component as well
                 // icon is optional
-                elemBefore: () => <FontAwesomeIcon icon={faHome} />,
+                elemBefore: () => <FcHome/>,
               },
               {
                 title: 'Supports',
                 itemId: '/admin/supports',
-                elemBefore: () => <FontAwesomeIcon icon={faTicketAlt} />,
+                elemBefore: () => <FcSupport />,
               },
               {
                 title: 'User',
                 itemId: '/admin/users',
-                elemBefore: () => <FontAwesomeIcon icon={faUserAlt} />,
+                elemBefore: () => <FcConferenceCall />,
               },
               {
                 title: 'Products',
                 itemId: '/admin/productlist',
-                elemBefore: () => <FontAwesomeIcon icon={faBoxes} />,
+                elemBefore: () => <FcPaid />,
                 // subNav: [
                 //   {
                 //     title: 'Categories',
@@ -53,17 +52,17 @@ const Sidebar = () => {
               {
                 title: 'Knowledge Base',
                 itemId: '/admin/knowledge-base',
-                elemBefore: () => <FontAwesomeIcon icon={faBrain} />,
+                elemBefore: () => <FcGraduationCap />,
               },
               {
                 title: 'Payment Plans',
                 itemId: '/admin/plan',
-                elemBefore: () => <FontAwesomeIcon icon={faCalendarAlt} />,
+                elemBefore: () => <FcCalendar />,
               },
               {
                 title: 'Settings',
                 itemId: '/admin/settings/account',
-                elemBefore: () => <FontAwesomeIcon icon={faCogs} />,
+                elemBefore: () => <FcSettings />,
               },
             ]}
           />

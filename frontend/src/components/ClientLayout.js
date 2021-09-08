@@ -45,7 +45,7 @@ const ClientLayout = ({ children }) => {
                                     </div>
                                     <span>{userInfo.name}</span>
                                 </div>
-                        <div className="details-wrapper">
+                        {/* <div className="details-wrapper">
                             <FontAwesomeIcon icon={faPhone} />
                             <span>{userInfo.mobile_no}</span>
                         </div>
@@ -60,7 +60,7 @@ const ClientLayout = ({ children }) => {
                             <span>{userInfo.address}</span>
                         </div>
 
-                                {/* <div className="details-wrapper">
+                                <div className="details-wrapper">
                                     <FontAwesomeIcon icon={faUsers} />
                                     <span>100</span>
                                 </div> */}

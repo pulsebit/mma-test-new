@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FcCurrencyExchange, FcComboChart, FcSupport, FcConferenceCall, FcPaid, FcGraduationCap, FcServices} from "react-icons/fc";
 import { faUserAlt, faTicketAlt, faKey, faBrain, faFile, faUsers } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -23,27 +24,22 @@ const ClientSidebar = () => {
               {
                 title: 'Reports',
                 itemId: '/portal/reports',
-                elemBefore: () => <FontAwesomeIcon icon={faFile} />,
+                elemBefore: () => <FcComboChart />,
               },
               {
                 title: 'Services',
                 itemId: '/portal/services/',
-                elemBefore: () => <FontAwesomeIcon icon={faTicketAlt} />,
-              },
-              {
-                title: 'Members Portal',
-                itemId: '/portal/membership-info',
-                elemBefore: () => <FontAwesomeIcon icon={faUserAlt} />,
+                elemBefore: () => <FcServices />,
               },
               {
                 title: 'Support',
                 itemId: '/portal/support',
-                elemBefore: () => <FontAwesomeIcon icon={faKey} />,
+                elemBefore: () => <FcSupport />,
               },
               {
                 title: 'Knowledge Base',
                 itemId: '/portal/knowledge-base',
-                elemBefore: () => <FontAwesomeIcon icon={faBrain} />, 
+                elemBefore: () => <FcGraduationCap />, 
                 subNav: [
                   {
                     title: 'Categories',
@@ -54,7 +50,7 @@ const ClientSidebar = () => {
               {
                 title: 'Members',
                 itemId: '/portal/staff',
-                elemBefore: () => <FontAwesomeIcon icon={faUsers} />,
+                elemBefore: () => <FcConferenceCall />,
                 subNav: [
                   {
                     title: 'All staff',

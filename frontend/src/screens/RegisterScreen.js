@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { AiOutlineUser, AiOutlineUnlock, AiOutlineMail } from 'react-icons/ai';
+import { FcBusinessman, FcInvite, FcLock } from 'react-icons/fc';
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { createUser } from '../actions/userActions'
@@ -15,14 +15,6 @@ const RegisterScreen = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    // const [mobile_no, setMobile_no] = useState('')
-    // const [gender, setGender] = useState('')
-    // const [birthdate, setBirthdate] = useState('')
-    // const [address, setAddress] = useState('')
-    // const [state, setState] = useState('')
-    // const [zipcode, setZipcode] = useState('')
-    // const [country, setCountry] = useState('')
-    // const [dataStudioLink, setDataStudioLink] = useState('') 
 
     const isAdmin = false
     const socialId = ""
@@ -52,7 +44,7 @@ const RegisterScreen = () => {
                 <h2>Sign up</h2>
                 <Form onSubmit={onSubmitHandler}>
                     <Form.Group >
-						<Form.Label ><AiOutlineUser /></Form.Label>
+						<Form.Label ><FcBusinessman /></Form.Label>
 						<Form.Control
 							type='text'
 							placeholder='Enter Name'
@@ -61,7 +53,7 @@ const RegisterScreen = () => {
 						></Form.Control>
 					</Form.Group>
                     <Form.Group >
-						<Form.Label ><AiOutlineMail /></Form.Label>
+						<Form.Label ><FcInvite /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -70,7 +62,7 @@ const RegisterScreen = () => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><AiOutlineUnlock /></Form.Label>
+						<Form.Label ><FcLock /></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

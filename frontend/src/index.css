@@ -678,11 +678,11 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   border-color: #3777ff;
 }
 .sidebar .side-navigation-panel .side-navigation-panel-select .side-navigation-panel-select-wrap .side-navigation-panel-select-option .side-navigation-panel-select-option-wrap span {
-  font-size: 15px;
+  font-size: 12px;
   white-space: nowrap;
 }
 .sidebar .side-navigation-panel .side-navigation-panel-select .side-navigation-panel-select-wrap .side-navigation-panel-select-option .side-navigation-panel-select-option-wrap svg {
-  font-size: 12px;
+  font-size: 19px;
   color: #222222a6;
 }
 .sidebar .side-navigation-panel .side-navigation-panel-select .side-navigation-panel-select-wrap .side-navigation-panel-select-option:hover {
@@ -978,6 +978,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   color: #3777FF;
   padding: 70px 15px;
   margin: 0;
+  text-align: center;
 }
 .login-wrapper .row .divider {
   text-align: center;
@@ -1018,11 +1019,10 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   align-items: center;
 }
 .login-wrapper .row form .form-group label {
-  margin-right: 5px;
-  font-size: 17px;
+  margin-right: 10px;
 }
 .login-wrapper .row form .form-group label svg {
-  color: #7e7d7d;
+  font-size: 19px;
 }
 .login-wrapper .row form .py-3 {
   box-shadow: none;
@@ -1170,6 +1170,76 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .view-screen .button-wrapper {
   text-align: right;
+}
+
+.email-form-wrapper {
+  background-color: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.email-form-wrapper .title {
+  padding: 45px 60px 0 60px;
+  font-size: 30px;
+  font-weight: 700;
+}
+.email-form-wrapper .title .line {
+  width: 98px;
+  height: 3px;
+  background-color: #3777FF;
+  border-radius: 25px;
+}
+.email-form-wrapper .email-form {
+  display: flex;
+}
+.email-form-wrapper .email-form .left-part {
+  border-right: 1px solid #a2a2a2;
+}
+.email-form-wrapper .email-form .left-part, .email-form-wrapper .email-form .right-part {
+  width: 100%;
+  margin-top: 25px;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper, .email-form-wrapper .email-form .right-part .input-wrapper {
+  padding: 30px 60px 30px 60px;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper label, .email-form-wrapper .email-form .left-part .input-wrapper input, .email-form-wrapper .email-form .left-part .input-wrapper textarea, .email-form-wrapper .email-form .right-part .input-wrapper label, .email-form-wrapper .email-form .right-part .input-wrapper input, .email-form-wrapper .email-form .right-part .input-wrapper textarea {
+  display: block;
+  width: 100% !important;
+  margin: 0;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper input, .email-form-wrapper .email-form .right-part .input-wrapper input {
+  border-top: none;
+  border-bottom: 1px solid #a2a2a2;
+  border-left: none;
+  border-right: none;
+  line-height: 1.5;
+  padding: 7px;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper input:focus, .email-form-wrapper .email-form .right-part .input-wrapper input:focus {
+  outline: none;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper label, .email-form-wrapper .email-form .right-part .input-wrapper label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #767b7d;
+  margin-bottom: 15px;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper textarea, .email-form-wrapper .email-form .right-part .input-wrapper textarea {
+  border: none;
+  line-height: 1.5;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper textarea:focus, .email-form-wrapper .email-form .right-part .input-wrapper textarea:focus {
+  outline: none;
+}
+.email-form-wrapper .email-form .left-part .input-wrapper textarea, .email-form-wrapper .email-form .right-part .input-wrapper textarea {
+  height: calc(100vh - 28rem);
+}
+.email-form-wrapper .email-form .left-part button, .email-form-wrapper .email-form .right-part button {
+  display: block;
+  width: 100% !important;
+  margin: 0;
+  border: none;
+  background-color: #3777FF;
+  color: #fff;
+  padding: 12px;
 }
 
 /*# sourceMappingURL=index.css.map */

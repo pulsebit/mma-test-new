@@ -53,6 +53,8 @@ import PlanViewScreen from './screens/admin/PlanViewScreen'
 import Settings from './screens/admin/Settings'
 
 import ClientPortal from './screens/clients/ClientPortal'
+import EmailUs from './screens/clients/EmailUs'
+
 import ClientKnowledgebaseList from './screens/clients/ClientKnowledgebaseList'
 import ClientKnowledgebaseView from './screens/clients/ClientKnowledgebaseView'
 
@@ -144,6 +146,7 @@ function App() {
 
               {/* CLIENT */}
               <Route path='/portal' component={ClientPortal} exact />
+              <Route path='/portal/email-us' component={EmailUs} />
 
 
               <Route path='/portal/knowledge-base' component={ClientKnowledgebaseList} exact />
