@@ -1,6 +1,6 @@
 .email-form-wrapper{
     background-color: #fff;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
     
     .title {
         padding: 45px 60px 0 60px;
@@ -19,12 +19,12 @@
         display: flex;
 
         .left-part{
-            border-right: 1px solid #a2a2a2;
+            border-right: 1px solid #e7e7e7;
         }
 
         .left-part, .right-part{
             width: 100%;
-            margin-top: 25px;
+            margin: 25px 0;
             .input-wrapper {
                 padding: 30px 60px 30px 60px;
 
@@ -36,7 +36,7 @@
                 }
                 input {
                     border-top: none;
-                    border-bottom: 1px solid #a2a2a2;
+                    border-bottom: 1px solid #e7e7e7;
                     border-left: none;
                     border-right: none;
                     line-height: 1.5;

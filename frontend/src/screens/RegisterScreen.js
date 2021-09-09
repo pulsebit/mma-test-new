@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { FcBusinessman, FcInvite, FcLock } from 'react-icons/fc';
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { createUser } from '../actions/userActions'
+import { createUser, login } from '../actions/userActions'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormContainer from '../components/FormContainer'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 
 
 const RegisterScreen = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,11 +23,19 @@ const RegisterScreen = () => {
 
     const {loading: loadingCreate, success:successCreate} = useSelector(state => state.userCreate)
 
-    useEffect(() => {
+    const userLogin = useSelector(state => state.userLogin)
+
+	useEffect(() => {
         if(successCreate) {
             toast.success('Profile successfully added.',{
                 position: "bottom-right",});
-        }
+            dispatch(login(email, password, socialId,))
+        } 
+
+        if (userLogin) {
+			history.push("/portal/reports");
+		}
+
     }, [dispatch, successCreate] )
 
     const onSubmitHandler = (e) => {

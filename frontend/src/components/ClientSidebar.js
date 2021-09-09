@@ -35,6 +35,12 @@ const ClientSidebar = () => {
                 title: 'Support',
                 itemId: '/portal/support',
                 elemBefore: () => <FcSupport />,
+                subNav: [
+                  {
+                    title: 'Emails',
+                    itemId: '/portal/email-support/',
+                  },  
+                ],
               },
               {
                 title: 'Knowledge Base',

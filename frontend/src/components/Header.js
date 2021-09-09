@@ -60,7 +60,7 @@ const Header = () => {
 											<LinkContainer to='/admin/users'>
 												<NavDropdown.Item>Users</NavDropdown.Item>
 											</LinkContainer>
-											<LinkContainer to='/portal/email-us'>
+											<LinkContainer to='/portal/email-support/add'>
 												<NavDropdown.Item>Email Us</NavDropdown.Item>
 											</LinkContainer>
 											<NavDropdown.Item onClick={logoutHandler}>

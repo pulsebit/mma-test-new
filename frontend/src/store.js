@@ -9,6 +9,7 @@ import { tempProductHolderReducer } from './reducers/tempProductHolderReducer'
 import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './reducers/noteReducers'
 import { knowledgeBaseCreateReducer, knowledgeBaseDeleteReducer, knowledgeBaseDetailsReducer, knowledgeBaseListReducer, knowledgeBaseUpdateReducer } from './reducers/knowledgeBaseReducers'
 import { checkoutCreateReducer } from './reducers/checkoutReducers'
+import { emailSupportCreateReducer, emailSupportListReducer } from './reducers/emailSupportReducer'
 
 
 const reducer = combineReducers({
@@ -47,7 +48,9 @@ const reducer = combineReducers({
 	knowledgeBaseUpdate: knowledgeBaseUpdateReducer,
 	knowledgeBaseDetails: knowledgeBaseDetailsReducer,
 	knowledgeBaseDelete: knowledgeBaseDeleteReducer,
-	checkoutCreate: checkoutCreateReducer
+	checkoutCreate: checkoutCreateReducer,
+	emailSupportCreate: emailSupportCreateReducer,
+	emailSupportList: emailSupportListReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

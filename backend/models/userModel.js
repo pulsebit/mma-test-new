@@ -10,39 +10,39 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  },
-  password: {
-    type: String,
-  },
-  mobile_no: {
-     type: String
-  },
-  gender: {
-     type: String
-  },
-  birthdate: {
-     type: String
-  },
-  address: {
-     type: String
-  },
-  state: {
-     type: String
-  },
-  zipcode: {
-     type: String
-  },
-  country: {
-     type: String
-  },
-  business_name: {
-     type: String
-  },
-  isAdmin: {
-    type: Boolean,
-    required: true,
-    default: false
-  },
+   },
+   password: {
+      type: String,
+   },
+   mobile_no: {
+      type: String
+   },
+   gender: {
+      type: String
+   },
+   birthdate: {
+      type: String
+   },
+   address: {
+      type: String
+   },
+   state: {
+      type: String
+   },
+   zipcode: {
+      type: String
+   },
+   country: {
+      type: String
+   },
+   business_name: {
+      type: String
+   },
+   isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false
+   },
    creator: {
       type: mongoose.Schema.Types.ObjectId,
       required: false,
@@ -64,6 +64,10 @@ const userSchema = mongoose.Schema({
    socialId: {
       type: String
    },
+   emailSupports:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PaymentPlan'
+   }],
 }, {
   timestamps: true
 })

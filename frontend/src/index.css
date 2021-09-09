@@ -249,6 +249,10 @@ button, a {
   align-items: center;
 }
 
+.box-shadow-alone {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 .custom-link-button {
   background-color: #007bff;
   color: #fff;
@@ -1174,7 +1178,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 
 .email-form-wrapper {
   background-color: #fff;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .email-form-wrapper .title {
   padding: 45px 60px 0 60px;
@@ -1191,11 +1195,11 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   display: flex;
 }
 .email-form-wrapper .email-form .left-part {
-  border-right: 1px solid #a2a2a2;
+  border-right: 1px solid #e7e7e7;
 }
 .email-form-wrapper .email-form .left-part, .email-form-wrapper .email-form .right-part {
   width: 100%;
-  margin-top: 25px;
+  margin: 25px 0;
 }
 .email-form-wrapper .email-form .left-part .input-wrapper, .email-form-wrapper .email-form .right-part .input-wrapper {
   padding: 30px 60px 30px 60px;
@@ -1207,7 +1211,7 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 .email-form-wrapper .email-form .left-part .input-wrapper input, .email-form-wrapper .email-form .right-part .input-wrapper input {
   border-top: none;
-  border-bottom: 1px solid #a2a2a2;
+  border-bottom: 1px solid #e7e7e7;
   border-left: none;
   border-right: none;
   line-height: 1.5;
