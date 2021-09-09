@@ -13,6 +13,10 @@ const emailSupportSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  senderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
 }, {
   timestamps: true
 })

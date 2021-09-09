@@ -10,14 +10,18 @@ const createEmailSupport = asyncHandler( async (req, res) => {
   const { 
     senderName, 
     senderEmail,
-    emailContent
+    emailContent,
+    senderID,
   } = req.body
+
+  console.log(senderID)
 
 
   const emailSupport = await EmailSupport.create({
     senderName, 
     senderEmail,
-    emailContent
+    emailContent,
+    senderID,
   })
 
   if(emailSupport) {

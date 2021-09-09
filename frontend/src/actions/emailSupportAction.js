@@ -3,14 +3,14 @@ import { EMAIL_SUPPORT_CREATE_FAIL, EMAIL_SUPPORT_CREATE_REQUEST, EMAIL_SUPPORT_
 
 
 
-export const createEmailSupport = (senderName, senderEmail, emailContent) => async (dispatch) => {
-	console.log(senderName, senderEmail, emailContent )
+export const createEmailSupport = (senderID, senderName, senderEmail, emailContent) => async (dispatch) => {
+	console.log(senderID)
 	try {
 		dispatch({
 			type: EMAIL_SUPPORT_CREATE_REQUEST
 		})
 
-		await axios.post(`/api/email-supports/`, {senderName, senderEmail, emailContent} )
+		await axios.post(`/api/email-supports/`, {senderID,senderName, senderEmail, emailContent} )
 	
 		dispatch({type: EMAIL_SUPPORT_CREATE_SUCCESS})
 	

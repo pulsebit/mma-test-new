@@ -19,6 +19,7 @@ const ClientEmailSupportAdd = () => {
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
+    const senderId = userInfo._id
 
     useEffect(() => {
         setSenderName(userInfo.name)
@@ -37,7 +38,7 @@ const ClientEmailSupportAdd = () => {
                 console.log(error.text);
         });
 
-        dispatch(createEmailSupport(senderName, senderEmail, emailContent))
+        dispatch(createEmailSupport(senderId, senderName, senderEmail, emailContent))
     }
     
     return (
