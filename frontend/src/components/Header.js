@@ -22,7 +22,7 @@ const Header = () => {
 		  )
 	  } else if (isAdmin == false ){ 
 		  return (
-			<LinkContainer to='/portal/reports'><Nav.Link>Dashboard</Nav.Link></LinkContainer>
+			<LinkContainer to='/portal/reports'><Nav.Link>Reports</Nav.Link></LinkContainer>
 		)
 	  }
   }
@@ -59,9 +59,6 @@ const Header = () => {
 											</LinkContainer>
 											<LinkContainer to='/admin/users'>
 												<NavDropdown.Item>Users</NavDropdown.Item>
-											</LinkContainer>
-											<LinkContainer to='/portal/email-support/add'>
-												<NavDropdown.Item>Email Us</NavDropdown.Item>
 											</LinkContainer>
 											<NavDropdown.Item onClick={logoutHandler}>
 													Logout

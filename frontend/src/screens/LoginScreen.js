@@ -9,6 +9,8 @@ import Google from '../components/Google'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
 import { FcInvite, FcUnlock } from 'react-icons/fc';
+import { TiMail, TiLockOpenOutline, TiKeyOutline} from "react-icons/ti";
+
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('')
@@ -49,7 +51,7 @@ const LoginScreen = () => {
 				{loading && <Loader />}
 				<Form onSubmit={submitHandler}> 
 					<Form.Group >
-						<Form.Label ><FcInvite /></Form.Label>
+						<Form.Label ><TiMail /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -58,7 +60,7 @@ const LoginScreen = () => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><FcUnlock/></Form.Label>
+						<Form.Label ><TiKeyOutline/></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

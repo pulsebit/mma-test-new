@@ -36,6 +36,9 @@ const ClientEmailSupportList = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Date Created</th>
+                                    <th>Name</th>
+                                    <th>Subject</th>
+                                    <th>Department</th>
                                     <th>Message</th>
                                     <th>Action</th>
                                 </tr>	
@@ -48,6 +51,9 @@ const ClientEmailSupportList = () => {
                                         <tr key={emailSupport._id}>
                                             <td>{emailSupport._id}</td>
                                             <td>{date.format(new Date(emailSupport.createdAt), 'ddd, MMM DD YYYY')}</td>
+                                            <td>{emailSupport.senderName}</td>
+                                            <td>{emailSupport.department}</td>
+                                            <td>{emailSupport.subject}</td>
                                             <td>{emailSupport.emailContent}</td>
                                             <td>
                                                 <NavLink to={`/portal/knowledge-base/${emailSupport._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>

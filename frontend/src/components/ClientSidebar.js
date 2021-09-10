@@ -1,12 +1,8 @@
 import React from 'react';
 import { useHistory, useLocation } from "react-router-dom";
-
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FcCurrencyExchange, FcComboChart, FcSupport, FcConferenceCall, FcPaid, FcGraduationCap, FcServices} from "react-icons/fc";
-import { faUserAlt, faTicketAlt, faKey, faBrain, faFile, faUsers } from '@fortawesome/free-solid-svg-icons'
-
+import { TiChartPieOutline, TiTicket, TiGroupOutline, TiKeyOutline, TiCreditCard, TiUserOutline, TiMail, TiMortarBoard, TiDatabase, TiArrowSyncOutline} from "react-icons/ti";
 
 const ClientSidebar = () => {
     const history = useHistory();
@@ -24,39 +20,22 @@ const ClientSidebar = () => {
               {
                 title: 'Reports',
                 itemId: '/portal/reports',
-                elemBefore: () => <FcComboChart />,
+                elemBefore: () => <TiChartPieOutline />,
               },
-              {
-                title: 'Services',
-                itemId: '/portal/services/',
-                elemBefore: () => <FcServices />,
-              },
+              // {
+              //   title: 'Services',
+              //   itemId: '/portal/services/',
+              //   elemBefore: () => <FcServices />,
+              // },
               {
                 title: 'Support',
                 itemId: '/portal/support',
-                elemBefore: () => <FcSupport />,
-                subNav: [
-                  {
-                    title: 'Emails',
-                    itemId: '/portal/email-support/',
-                  },  
-                ],
+                elemBefore: () => <TiTicket />,
               },
               {
-                title: 'Knowledge Base',
-                itemId: '/portal/knowledge-base',
-                elemBefore: () => <FcGraduationCap />, 
-                subNav: [
-                  {
-                    title: 'Categories',
-                    itemId: '/portal/knowlegebase/categories',
-                  },
-                ],
-              },
-              {
-                title: 'Members',
+                title: 'Staff',
                 itemId: '/portal/staff',
-                elemBefore: () => <FcConferenceCall />,
+                elemBefore: () => <TiGroupOutline />,
                 subNav: [
                   {
                     title: 'All staff',
@@ -67,6 +46,47 @@ const ClientSidebar = () => {
                     itemId: '/portal/add-staff/',
                   },
                 ],
+              },
+              {
+                title: 'Access',
+                itemId: '/portal/access',
+                elemBefore: () => <TiKeyOutline />,
+              },
+              {
+                title: 'Knowledge Base',
+                itemId: '/portal/knowledge-base',
+                elemBefore: () => <TiMortarBoard />, 
+                subNav: [
+                  {
+                    title: 'Categories',
+                    itemId: '/portal/knowlegebase/categories',
+                  },
+                ],
+              },
+              {
+                title: 'Subscription Information',
+                itemId: '/',
+                elemBefore: () => <TiDatabase />, 
+              },
+              {
+                title: 'Billing History',
+                itemId: '/',
+                elemBefore: () => <TiArrowSyncOutline />, 
+              },
+              {
+                title: 'Payment Method',
+                itemId: '/',
+                elemBefore: () => <TiCreditCard />, 
+              },
+              {
+                title: 'Contact Us',
+                itemId: '/portal/email-support/',
+                elemBefore: () => <TiMail />, 
+              },
+              {
+                title: 'Your Profile',
+                itemId: '/',
+                elemBefore: () => <TiUserOutline />, 
               },
             ]}
           />

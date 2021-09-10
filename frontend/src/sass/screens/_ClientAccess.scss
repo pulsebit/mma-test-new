@@ -1,0 +1,28 @@
+.client-access {
+    .accesses-wrapper{
+        .inner-wrapper{            
+            .access{
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                padding: 15px ;
+                .detail-wrapper{
+                    padding: 7px 0;
+                    display: flex;
+                    align-items: center;
+                    overflow: hidden;
+                    label{
+                        font-size: 12px;
+                        color: #222;
+                        font-weight: 700;
+                        margin-right: 10px;
+                        display: block;
+                        white-space: nowrap;
+                    }
+                    span {
+                        white-space: nowrap;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -16,65 +16,48 @@
     }
 
     .email-form{
-        display: flex;
-
-        .left-part{
-            border-right: 1px solid #e7e7e7;
+        
+        .input-hide{
+            display: none;
         }
 
-        .left-part, .right-part{
-            width: 100%;
-            margin: 25px 0;
-            .input-wrapper {
-                padding: 30px 60px 30px 60px;
+        .input-wrapper {
+            padding: 30px 60px 30px 60px;
 
-                label, input, textarea{
-                    display: block;
-                    width: 100% !important;
-                    margin: 0;
-                   
-                }
-                input {
-                    border-top: none;
-                    border-bottom: 1px solid #e7e7e7;
-                    border-left: none;
-                    border-right: none;
-                    line-height: 1.5;
-                    padding: 7px;
-                    
-                    &:focus{
-                        outline: none;
-                    }
-                }
-                label {
-                    font-size: 12px;
-                    font-weight: 400;
-                    color: #767b7d;
-                    margin-bottom:  15px;
-                }
-                textarea{
-                    border: none;
-                    line-height: 1.5;
-                    
-                    &:focus{
-                        outline: none;
-                    }
-                }
-    
-                textarea {
-                    height: calc(100vh - 28rem);
-                }
-            }
-
-            button {
+            label, input, textarea, select{
                 display: block;
                 width: 100% !important;
                 margin: 0;
-                border: none;
-                background-color: #3777FF;
-                color: #fff;
-                padding: 12px;
+                
             }
+            input ,select, textarea {
+                line-height: 1.5;
+                padding: 7px;
+                border: 1px solid #d8d8d8;
+                
+                &:focus{
+                    outline: none;
+                }
+            }
+            textarea {
+                height: 12rem;
+            }
+            label {
+                font-size: 12px;
+                font-weight: 400;
+                color: #767b7d;
+                margin-bottom:  15px;
+            }
+        }
+
+        button {
+            display: block;
+            width: 100% !important;
+            margin: 0;
+            border: none;
+            background-color: #3777FF;
+            color: #fff;
+            padding: 12px;
         }
     }
 }

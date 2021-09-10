@@ -1,7 +1,5 @@
 // GENERAL
 .sidebar {
-    padding-left: 30px;
-    padding-right: 30px;
     background-color: #fff;
     min-height: calc(100vh - 130px);
     
@@ -85,8 +83,9 @@
                     span {
                         display: block;
                         text-align: center;
+                        font-size: 12px;
                         font-weight: 700;
-                        padding: 15px 0;
+                        padding-top: 10px;
                     }
                 }
     

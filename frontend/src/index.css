@@ -665,8 +665,6 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 }
 
 .sidebar {
-  padding-left: 30px;
-  padding-right: 30px;
   background-color: #fff;
   min-height: calc(100vh - 130px);
 }
@@ -714,8 +712,9 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
 .client-layout .layout .sidebar .basic-info .inner-img-wrapper span {
   display: block;
   text-align: center;
+  font-size: 12px;
   font-weight: 700;
-  padding: 15px 0;
+  padding-top: 10px;
 }
 .client-layout .layout .sidebar .basic-info .details-wrapper {
   padding: 10px 0;
@@ -1026,7 +1025,8 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   margin-right: 10px;
 }
 .login-wrapper .row form .form-group label svg {
-  font-size: 19px;
+  font-size: 26px;
+  color: #6c6c6c;
 }
 .login-wrapper .row form .py-3 {
   box-shadow: none;
@@ -1191,52 +1191,35 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   background-color: #3777FF;
   border-radius: 25px;
 }
-.email-form-wrapper .email-form {
-  display: flex;
+.email-form-wrapper .email-form .input-hide {
+  display: none;
 }
-.email-form-wrapper .email-form .left-part {
-  border-right: 1px solid #e7e7e7;
-}
-.email-form-wrapper .email-form .left-part, .email-form-wrapper .email-form .right-part {
-  width: 100%;
-  margin: 25px 0;
-}
-.email-form-wrapper .email-form .left-part .input-wrapper, .email-form-wrapper .email-form .right-part .input-wrapper {
+.email-form-wrapper .email-form .input-wrapper {
   padding: 30px 60px 30px 60px;
 }
-.email-form-wrapper .email-form .left-part .input-wrapper label, .email-form-wrapper .email-form .left-part .input-wrapper input, .email-form-wrapper .email-form .left-part .input-wrapper textarea, .email-form-wrapper .email-form .right-part .input-wrapper label, .email-form-wrapper .email-form .right-part .input-wrapper input, .email-form-wrapper .email-form .right-part .input-wrapper textarea {
+.email-form-wrapper .email-form .input-wrapper label, .email-form-wrapper .email-form .input-wrapper input, .email-form-wrapper .email-form .input-wrapper textarea, .email-form-wrapper .email-form .input-wrapper select {
   display: block;
   width: 100% !important;
   margin: 0;
 }
-.email-form-wrapper .email-form .left-part .input-wrapper input, .email-form-wrapper .email-form .right-part .input-wrapper input {
-  border-top: none;
-  border-bottom: 1px solid #e7e7e7;
-  border-left: none;
-  border-right: none;
+.email-form-wrapper .email-form .input-wrapper input, .email-form-wrapper .email-form .input-wrapper select, .email-form-wrapper .email-form .input-wrapper textarea {
   line-height: 1.5;
   padding: 7px;
+  border: 1px solid #d8d8d8;
 }
-.email-form-wrapper .email-form .left-part .input-wrapper input:focus, .email-form-wrapper .email-form .right-part .input-wrapper input:focus {
+.email-form-wrapper .email-form .input-wrapper input:focus, .email-form-wrapper .email-form .input-wrapper select:focus, .email-form-wrapper .email-form .input-wrapper textarea:focus {
   outline: none;
 }
-.email-form-wrapper .email-form .left-part .input-wrapper label, .email-form-wrapper .email-form .right-part .input-wrapper label {
+.email-form-wrapper .email-form .input-wrapper textarea {
+  height: 12rem;
+}
+.email-form-wrapper .email-form .input-wrapper label {
   font-size: 12px;
   font-weight: 400;
   color: #767b7d;
   margin-bottom: 15px;
 }
-.email-form-wrapper .email-form .left-part .input-wrapper textarea, .email-form-wrapper .email-form .right-part .input-wrapper textarea {
-  border: none;
-  line-height: 1.5;
-}
-.email-form-wrapper .email-form .left-part .input-wrapper textarea:focus, .email-form-wrapper .email-form .right-part .input-wrapper textarea:focus {
-  outline: none;
-}
-.email-form-wrapper .email-form .left-part .input-wrapper textarea, .email-form-wrapper .email-form .right-part .input-wrapper textarea {
-  height: calc(100vh - 28rem);
-}
-.email-form-wrapper .email-form .left-part button, .email-form-wrapper .email-form .right-part button {
+.email-form-wrapper .email-form button {
   display: block;
   width: 100% !important;
   margin: 0;
@@ -1244,6 +1227,29 @@ header .row .response-nav.col-lg-10.col-md-9.col-sm-8 #basic-navbar-nav .dropdow
   background-color: #3777FF;
   color: #fff;
   padding: 12px;
+}
+
+.client-access .accesses-wrapper .inner-wrapper .access {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 15px;
+}
+.client-access .accesses-wrapper .inner-wrapper .access .detail-wrapper {
+  padding: 7px 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.client-access .accesses-wrapper .inner-wrapper .access .detail-wrapper label {
+  font-size: 12px;
+  color: #222;
+  font-weight: 700;
+  margin-right: 10px;
+  display: block;
+  white-space: nowrap;
+}
+.client-access .accesses-wrapper .inner-wrapper .access .detail-wrapper span {
+  white-space: nowrap;
+  display: block;
 }
 
 /*# sourceMappingURL=index.css.map */

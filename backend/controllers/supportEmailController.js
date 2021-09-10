@@ -7,22 +7,8 @@ import EmailSupport from '../models/emailSupportModel.js'
 // @route  POST /api/product/
 // @access private
 const createEmailSupport = asyncHandler( async (req, res) => {
-  const { 
-    senderName, 
-    senderEmail,
-    emailContent,
-    senderID,
-  } = req.body
-
-  console.log(senderID)
-
-
-  const emailSupport = await EmailSupport.create({
-    senderName, 
-    senderEmail,
-    emailContent,
-    senderID,
-  })
+  const { senderId, senderName, senderEmail, subject, department, emailContent } = req.body
+  const emailSupport = await EmailSupport.create({ senderId, senderName, senderEmail, subject, department, emailContent })
 
   if(emailSupport) {
     res.status(201).json('Message successfully added')

@@ -15,6 +15,7 @@ import knowledgeBaseRoutes from './routes/knowledgeBaseRoutes.js'
 import clientSupportRoutes from './routes/clientSupportRoutes.js'
 import checkoutRoutes from './routes/checkoutRoutes.js'
 import emialSupportRoutes from './routes/emialSupportRoutes.js'
+import accessRoutes from './routes/accessRoutes.js'
 
 
 
@@ -42,6 +43,7 @@ app.use('/api/services', serviceRoutes)
 app.use('/api/notes', noteRoutes)
 app.use('/api/knowledge-base', knowledgeBaseRoutes)
 app.use('/api/checkout', checkoutRoutes)
+app.use('/api/access', accessRoutes)
 
 //404 handler
 app.use(notFound)

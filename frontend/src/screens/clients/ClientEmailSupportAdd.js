@@ -15,6 +15,8 @@ const ClientEmailSupportAdd = () => {
     
     const [senderName, setSenderName] = useState('')
     const [senderEmail, setSenderEmail] = useState('')
+    const [subject, setSubject] = useState('')
+    const [department, setDepartment] = useState('')
     const [emailContent, setEmailContent] = useState('')
 
     const userLogin = useSelector(state => state.userLogin)
@@ -37,8 +39,8 @@ const ClientEmailSupportAdd = () => {
             }, (error) => {
                 console.log(error.text);
         });
-
-        dispatch(createEmailSupport(senderId, senderName, senderEmail, emailContent))
+        e.target.reset()
+        dispatch(createEmailSupport(senderId, senderName, senderEmail, subject, department, emailContent))
     }
     
     return (
@@ -50,25 +52,29 @@ const ClientEmailSupportAdd = () => {
                         <div className="line"></div>
                     </div>
                     <form className="email-form" onSubmit={sendEmail}>
-                        
-                        <div className="left-part">
-                        
-                            <div className="input-wrapper">
-                                <label>Name</label>
-                                <input type="text" name="user_name" value={senderName} readOnly />
-                            </div>
-                            <div className="input-wrapper">
-                                <label>Email</label>
-                                <input type="email" name="user_email" value={senderEmail} readOnly />
-                            </div>
+                        <div className="input-hide">
+                            <input type="text" name="name" value={userInfo.name}/>
+                            <input type="text" name="email" value={userInfo.email}/>
                         </div>
-                        <div className="right-part">
-                            <div className="input-wrapper">
-                                <label>Message</label>
-                                <textarea name="message" onChange={(e)=>setEmailContent(e.target.value)}/>
-                            </div>
+                        <div className="input-wrapper">
+                            <label>Subject</label>
+                            <input type="text" name="subject" value={subject} onChange={(e)=>setSubject(e.target.value)}/>
+                        </div>
+                        <div className="input-wrapper">
+                            <label>Department</label>
+                            <select value={department} name="department" onChange={(e)=>setDepartment(e.target.value)}>
+                                <option value="N/A">Select Department</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Accounting">Accounting</option>
+                            </select>
+                        </div>
+                        <div className="input-wrapper">
+                            <label>Message</label>
+                            <textarea name="message" value={emailContent} onChange={(e)=>setEmailContent(e.target.value)}/>
+                        </div>
+                        <div className="input-wrapper">
                             <button type="submit">Send</button>
-                        </div>  
+                        </div>
                     </form>
                 </div>
                 <ToastContainer />

@@ -10,6 +10,7 @@ import { noteCreateReducer, noteDeleteReducer, supportNotesReducer } from './red
 import { knowledgeBaseCreateReducer, knowledgeBaseDeleteReducer, knowledgeBaseDetailsReducer, knowledgeBaseListReducer, knowledgeBaseUpdateReducer } from './reducers/knowledgeBaseReducers'
 import { checkoutCreateReducer } from './reducers/checkoutReducers'
 import { emailSupportCreateReducer, emailSupportListReducer } from './reducers/emailSupportReducer'
+import { accessCreateReducer, accessListByCreatorReducer } from './reducers/accessReducers'
 
 
 const reducer = combineReducers({
@@ -50,7 +51,9 @@ const reducer = combineReducers({
 	knowledgeBaseDelete: knowledgeBaseDeleteReducer,
 	checkoutCreate: checkoutCreateReducer,
 	emailSupportCreate: emailSupportCreateReducer,
-	emailSupportList: emailSupportListReducer
+	emailSupportList: emailSupportListReducer,
+	accessCreate: accessCreateReducer,
+	accessListByCreator: accessListByCreatorReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

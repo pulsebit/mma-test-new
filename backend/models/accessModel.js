@@ -1,27 +1,31 @@
 import mongoose from 'mongoose'
 
-const emailSupportSchema = mongoose.Schema({
-  senderId: {
+const accessSchema = mongoose.Schema({
+  creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  senderName: {
+  type: {
     type: String,
     required: true
   },
-  senderEmail: {
+  url: {
     type: String,
     required: true
   },
-  subject: {
+  loginUrl: {
     type: String,
     required: true
   },
-  department: {
+  username: {
     type: String,
     required: true
   },
-  emailContent: {
+  password: {
+    type: String,
+    required: true
+  },
+  notes: {
     type: String,
     required: true
   },
@@ -29,6 +33,6 @@ const emailSupportSchema = mongoose.Schema({
   timestamps: true
 })
 
-const EmailSupport = mongoose.model('Emailsupport', emailSupportSchema)
+const Access = mongoose.model('Access', accessSchema)
 
-export default EmailSupport
+export default Access

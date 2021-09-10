@@ -60,6 +60,8 @@ import ClientEmailSupportAdd from './screens/clients/ClientEmailSupportAdd'
 import ClientKnowledgebaseList from './screens/clients/ClientKnowledgebaseList'
 import ClientKnowledgebaseView from './screens/clients/ClientKnowledgebaseView'
 
+import ClientAccess from './screens/clients/ClientAccess'
+import ClientAccessAdd from './screens/clients/ClientAccessAdd'
 
 import ClientServiceList from './screens/clients/ClientServiceList'
 import ClientServiceView from './screens/clients/ClientServiceView'
@@ -156,6 +158,8 @@ function App() {
               <Route path='/portal/knowledge-base' component={ClientKnowledgebaseList} exact />
               <Route path='/portal/knowledge-base/:id' component={ClientKnowledgebaseView}  />
 
+              <Route path='/portal/access' component={ClientAccess} exact />
+              <Route path='/portal/access-add' component={ClientAccessAdd} exact />
               
               <Route path='/portal/services/' component={ClientServiceList} exact />
               <Route path='/portal/service/:id' component={ClientServiceView} />
