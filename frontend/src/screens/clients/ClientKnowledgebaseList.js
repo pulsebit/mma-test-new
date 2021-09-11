@@ -34,8 +34,6 @@ const ClientKnowledgebaseList = () => {
                                     <th>Issue</th>
                                     <th>Solution</th>
                                     <th>Category</th>
-                                    <th>Resolved By</th>
-                                    <th>Created By</th>
                                     <th>Date Created</th>
                                     <th>Action</th>
                                 </tr>	
@@ -49,13 +47,10 @@ const ClientKnowledgebaseList = () => {
                                             <td><p>{knowledgeBase.problem_description}</p></td>
                                             <td><p>{knowledgeBase.solution}</p></td>
                                             <td>{knowledgeBase.category}</td>
-                                            <td>{knowledgeBase.resolve_by.name}</td>
-                                            <td>{knowledgeBase.created_by.name}</td>
                                             <td>{date.format(new Date(knowledgeBase.createdAt), 'ddd, MMM DD YYYY')}</td>
                                             
                                             <td>
-                                                <NavLink to={`/portal/knowledge-base/${knowledgeBase._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
-                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
+                                                <NavLink to={`/portal/knowledge-base/${knowledgeBase._id}`} className="view-btn">View</NavLink>
                                             </td>
                                         </tr>
                                     ))     

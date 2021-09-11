@@ -17,12 +17,11 @@ const ClientSupportEdit = ({match, history}) => {
     const [assigneeInfo, setAssigneeInfo] = useState('')
     const [solution, setSolution] = useState('')
 
-    const { users } = useSelector( state => state.userList)
-
     const { support } = useSelector( state => state.supportDetails)
 
-    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = useSelector(state => state.suppportUpdate)
-    
+    const supportUpdate = useSelector(state => state.suppportUpdate)
+    const  { loading:loadingUpdate = {}, error:errorUpdate = {}, success:successUpdate = {} }  = supportUpdate || {}
+     
     const { client = {} , created_by = {}, assignee = {} } = support || {}
 
     console.log(support)

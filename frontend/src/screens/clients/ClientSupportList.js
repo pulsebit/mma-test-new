@@ -32,7 +32,7 @@ const ClientSupportList = () => {
                     <div className="dashboard-title-wrapper">
                         <div className="dashboard-title">Supports List</div>
                         <div className="button-wrapper">
-                            <NavLink to="/portal/add-support/" className="add-btn"><FontAwesomeIcon icon={faPlusSquare}/>Add New</NavLink>
+                            <NavLink to="/portal/add-support/" className="add-btn">Add New</NavLink>
                         </div>
                     </div>
                     <div className="table-wrapper def-padding">
@@ -58,8 +58,8 @@ const ClientSupportList = () => {
                                             <td>{support.createdAt}</td>
                                             
                                             <td>
-                                                <NavLink to={`/portal/support/${support._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
-                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
+                                                <NavLink to={`/portal/support/${support._id}`} className="view-btn">View</NavLink>
+                                                <button className="delete-btn">Trash</button>
                                             </td>
                                         </tr>
                                     ))

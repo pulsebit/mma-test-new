@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormContainer from '../components/FormContainer'
 import { NavLink, useHistory } from 'react-router-dom'
+import { BiUserCircle, BiEnvelopeOpen, BiKey } from "react-icons/bi";
 
 
 
@@ -54,7 +55,7 @@ const RegisterScreen = () => {
                 <h2>Sign up</h2>
                 <Form onSubmit={onSubmitHandler}>
                     <Form.Group >
-						<Form.Label ><FcBusinessman /></Form.Label>
+						<Form.Label ><BiUserCircle /></Form.Label>
 						<Form.Control
 							type='text'
 							placeholder='Enter Name'
@@ -63,7 +64,7 @@ const RegisterScreen = () => {
 						></Form.Control>
 					</Form.Group>
                     <Form.Group >
-						<Form.Label ><FcInvite /></Form.Label>
+						<Form.Label ><BiEnvelopeOpen /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -72,7 +73,7 @@ const RegisterScreen = () => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><FcLock /></Form.Label>
+						<Form.Label ><BiKey /></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

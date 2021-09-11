@@ -4,24 +4,108 @@
             .access{
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
                 padding: 15px ;
+                color: #08080896;
+
+                .icon-wrapper{
+                    padding-bottom: 20px;
+                    display: flex;
+                    
+                    .social-icon{
+                        display: block !important;
+                        width: 50px;
+                        height: 50px;
+                        position: relative;
+                        overflow: hidden;
+                        vertical-align: middle;
+
+                        .social-container{
+                            position: relative !important;
+                            top: inherit !important;
+                            left: inherit !important;
+                            width: inherit !important;
+                            height: inherit !important;
+                            svg{
+                                margin-right: 7px;
+                                display: block !important;
+                                font-size: 30px !important;
+                                position: relative !important;
+                                top: inherit !important;
+                                left: inherit !important;
+                                width: inherit !important;
+                                height: inherit !important;
+                            }
+                        }
+                    }
+                    span {
+                        font-weight: 400;
+                        display: block;
+                        width: 100%;
+                        text-align: right;
+                        padding: 0;
+                        border-bottom: 1px solid;
+                    }
+                }
                 .detail-wrapper{
                     padding: 7px 0;
-                    display: flex;
                     align-items: center;
                     overflow: hidden;
                     label{
                         font-size: 12px;
-                        color: #222;
-                        font-weight: 700;
+                        font-weight: 600;
                         margin-right: 10px;
                         display: block;
                         white-space: nowrap;
+                        text-transform: uppercase;
                     }
                     span {
                         white-space: nowrap;
                         display: block;
+                        font-weight: 400;
+                        font-size: 12px;
+                        padding: 7px;
                     }
                 }
+            }
+
+            .facebook{
+                // background: linear-gradient(120deg, #3b5998, #fff);
+                svg{
+                    color: #4267B2;;
+                }
+            }
+            .shopify{
+                svg{
+                    color: #96bf48;;
+                }
+            }
+            // .google-analytics{
+            //     svg {
+            //         color: #ea4335;
+            //     }
+            //     // background-color: #ea4335;
+            //     // background: linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            // }
+            .instagram{
+                svg {
+                    color: #833AB4;
+                }
+            }
+            .crm{
+                svg {
+                    color: #f953c6;
+                }
+            //     background: #f953c6;  /* fallback for old browsers */
+            //     background: -webkit-linear-gradient(to right, #b91d73, #f953c6);  /* Chrome 10-25, Safari 5.1-6 */
+            //     background: linear-gradient(to right, #b91d73, #f953c6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            }
+            .website, .not-define{
+                svg {
+                    color: #4286f4;
+                }
+                    
+                // background: #373B44;  /* fallback for old browsers */
+                // background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+                // background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             }
         }
     }

@@ -8,8 +8,8 @@ import Facebook from '../components/Facebook'
 import Google from '../components/Google'
 import { login } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
-import { FcInvite, FcUnlock } from 'react-icons/fc';
-import { TiMail, TiLockOpenOutline, TiKeyOutline} from "react-icons/ti";
+import { BiEnvelopeOpen , BiKey } from "react-icons/bi";
+
 
 
 const LoginScreen = () => {
@@ -51,7 +51,7 @@ const LoginScreen = () => {
 				{loading && <Loader />}
 				<Form onSubmit={submitHandler}> 
 					<Form.Group >
-						<Form.Label ><TiMail /></Form.Label>
+						<Form.Label ><BiEnvelopeOpen /></Form.Label>
 						<Form.Control
 							type='email'
 							placeholder='Enter email'
@@ -60,7 +60,7 @@ const LoginScreen = () => {
 						></Form.Control>
 					</Form.Group>
 					<Form.Group >
-						<Form.Label ><TiKeyOutline/></Form.Label>
+						<Form.Label ><BiKey /></Form.Label>
 						<Form.Control
 							type='password'
 							placeholder='Enter password'

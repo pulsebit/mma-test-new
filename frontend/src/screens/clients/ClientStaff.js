@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import ClientLayout from '../../components/ClientLayout'
-import Swal from 'sweetalert2'
 
 const ClientStaff = () => {
     return (

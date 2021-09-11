@@ -56,8 +56,8 @@ const ClientEmailSupportList = () => {
                                             <td>{emailSupport.subject}</td>
                                             <td>{emailSupport.emailContent}</td>
                                             <td>
-                                                <NavLink to={`/portal/knowledge-base/${emailSupport._id}`} className="view-icon-btn"><FontAwesomeIcon icon={faEye}/></NavLink>
-                                                <button className="delete-icon-btn"><FontAwesomeIcon icon={faTrash}/></button>
+                                                <NavLink to={`/portal/knowledge-base/${emailSupport._id}`} className="view-btn">View</NavLink>
+                                                <button className="delete-btn">Delete</button>
                                             </td>
                                         </tr>
                                     ))     

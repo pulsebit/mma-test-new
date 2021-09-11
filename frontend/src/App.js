@@ -62,6 +62,8 @@ import ClientKnowledgebaseView from './screens/clients/ClientKnowledgebaseView'
 
 import ClientAccess from './screens/clients/ClientAccess'
 import ClientAccessAdd from './screens/clients/ClientAccessAdd'
+import ClientAccessView from './screens/clients/ClientAccessView'
+import ClientAccessEdit from './screens/clients/ClientAccessEdit'
 
 import ClientServiceList from './screens/clients/ClientServiceList'
 import ClientServiceView from './screens/clients/ClientServiceView'
@@ -160,6 +162,8 @@ function App() {
 
               <Route path='/portal/access' component={ClientAccess} exact />
               <Route path='/portal/access-add' component={ClientAccessAdd} exact />
+              <Route path='/portal/access/:id' component={ClientAccessView} exact />
+              <Route path='/portal/access/:id/edit' component={ClientAccessEdit} exact />
               
               <Route path='/portal/services/' component={ClientServiceList} exact />
               <Route path='/portal/service/:id' component={ClientServiceView} />

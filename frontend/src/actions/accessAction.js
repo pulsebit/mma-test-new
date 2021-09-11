@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ACCESS_CREATE_FAIL, ACCESS_CREATE_REQUEST, ACCESS_CREATE_SUCCESS, ACCESS_LIST_BY_CREATOR_FAIL, ACCESS_LIST_BY_CREATOR_REQUEST, ACCESS_LIST_BY_CREATOR_SUCCESS } from '../constants/accessConstants'
+import { ACCESS_CREATE_FAIL, ACCESS_CREATE_REQUEST, ACCESS_CREATE_SUCCESS, ACCESS_DETAILS_FAIL, ACCESS_DETAILS_REQUEST, ACCESS_DETAILS_SUCCESS, ACCESS_LIST_BY_CREATOR_FAIL, ACCESS_LIST_BY_CREATOR_REQUEST, ACCESS_LIST_BY_CREATOR_SUCCESS } from '../constants/accessConstants'
 
 export const createAccess = ( type, url, loginUrl, username, password, notes ) => async (dispatch, getState) => {
     
@@ -49,22 +49,24 @@ export const getAccessListByCreator  = (id) => async (dispatch) => {
     }
  }
 
-// export const deleteNote = (note) => async (dispatch, getState) => {
-// 	try {
-// 		dispatch({
-// 			type: NOTE_DELETE_REQUEST
-// 		})
+ export const getAccessDetails = (id) => async (dispatch) => {
+   try { 
+      
+      dispatch({ type: ACCESS_DETAILS_REQUEST })
 
-// 		await axios.delete(`/api/notes/${note._id}`)
+      const { data } = await axios.get(`/api/access/${id}`)
 
-// 		dispatch({type: NOTE_DELETE_SUCCESS})
+      dispatch({ 
+         type: ACCESS_DETAILS_SUCCESS,
+         payload: data 
+      })
 
-// 	} catch( error ) {
-// 		dispatch({
-// 			type: NOTE_DELETE_FAIL,
-// 			payload: error.response && error.response.data.message 
-// 				? error.response.data.message 
-// 				: error.message 
-// 		})
-// 	}
-// }
+   } catch (error) {
+       dispatch({
+            type: ACCESS_DETAILS_FAIL,
+            payload: error.response && error.response.data.message 
+            ? error.response.data.message 
+            : error.message
+       })
+   }
+}
