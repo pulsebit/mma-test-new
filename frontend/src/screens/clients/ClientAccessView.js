@@ -9,12 +9,11 @@ const ClientAccessView = ({match}) => {
     const accessId = match.params.id
     const dispatch = useDispatch()
 
-    const { loading, error, access } = useSelector( state => state.accessDetails)
+    const { loading, access } = useSelector( state => state.accessDetails)
     console.log(access)
 
     useEffect(() => {
         dispatch(getAccessDetails(accessId))
-        
     },[dispatch, accessId])
     
     return (

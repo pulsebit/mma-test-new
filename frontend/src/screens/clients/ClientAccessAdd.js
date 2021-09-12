@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import ClientLayout from '../../components/ClientLayout'
 import { Form } from 'react-bootstrap'
 import { createAccess } from '../../actions/accessAction'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { ACCESS_CREATE_RESET } from '../../constants/accessConstants'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const ClientAccessAdd = () => {
+const ClientAccessAdd = ({history}) => {
     const dispatch = useDispatch()
     const [type, setType] = useState('')
     const [url, setUrl] = useState('')
@@ -12,6 +15,21 @@ const ClientAccessAdd = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [notes, setNotes] = useState('')
+
+    
+    const { success: successCreate } = useSelector( state => state.accessCreate)
+
+    useEffect (() => {
+        if(successCreate) {
+            toast.success('Adding Access..',{
+            position: "bottom-right",});
+            setTimeout(() => {
+                history.push(`/portal/access`)
+                }, 5000);
+            dispatch({ type: ACCESS_CREATE_RESET})
+        }
+        
+    }, [dispatch, successCreate ])
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -62,6 +80,7 @@ const ClientAccessAdd = () => {
                         <div className="button-wrapper">
                             <button type="submit" className='update-btn'>Save</button>
                         </div>
+                        <ToastContainer />
                     </div>
                 </Form>
             </ClientLayout>

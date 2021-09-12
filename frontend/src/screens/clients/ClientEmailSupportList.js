@@ -57,7 +57,7 @@ const ClientEmailSupportList = () => {
                                             <td>{emailSupport.emailContent}</td>
                                             <td>
                                                 <NavLink to={`/portal/knowledge-base/${emailSupport._id}`} className="view-btn">View</NavLink>
-                                                <button className="delete-btn">Delete</button>
+                                                <button className="delete-btn">Trash</button>
                                             </td>
                                         </tr>
                                     ))     

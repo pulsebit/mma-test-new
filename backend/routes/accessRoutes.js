@@ -1,9 +1,9 @@
 import express from 'express'
-import { createAccess, getAccessListByCretorId, getAccessById } from '../controllers/accessController.js'
+import { createAccess, getAccessListByCretorId, getAccessById, updateAccess, deleteAccess } from '../controllers/accessController.js'
 const router = express.Router()
 
 router.route('/').post(createAccess)
-router.route('/:id').get(getAccessById)
+router.route('/:id').get(getAccessById).put(updateAccess).delete(deleteAccess)
 router.route('/creator/:id').get(getAccessListByCretorId)
 
 export default router

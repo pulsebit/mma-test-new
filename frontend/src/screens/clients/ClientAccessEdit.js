@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import ClientLayout from '../../components/ClientLayout'
 import { Form } from 'react-bootstrap'
-import { createAccess } from '../../actions/accessAction'
-import { useDispatch } from 'react-redux'
+import { createAccess, deleteAccess, getAccessDetails, updateAccess } from '../../actions/accessAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { ACCESS_DELETE_RESET, ACCESS_UPDATE_RESET } from '../../constants/accessConstants'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ClientAccessEdit = ({match, history}) => {
+    const accessId = match.params.id
     const dispatch = useDispatch()
     const [type, setType] = useState('')
     const [url, setUrl] = useState('')
@@ -13,12 +17,53 @@ const ClientAccessEdit = ({match, history}) => {
     const [password, setPassword] = useState('')
     const [notes, setNotes] = useState('')
 
+    console.log(accessId)
+
+    const { access } = useSelector( state => state.accessDetails)
+    const { success: successUpdate } = useSelector( state => state.accessUpdate)
+     const { success: successDelete } = useSelector( state => state.accessDelete)
+	
+
+    useEffect (() => {
+        if(successUpdate) {
+            toast.success('Updating Access..',{
+            position: "bottom-right",});
+            setTimeout(() => {
+                history.push(`/portal/access`)
+                }, 5000);
+            dispatch({ type: ACCESS_UPDATE_RESET})
+        } 
+        else if(successDelete) {
+            toast.error('Deleting Acces..',{
+            position: "bottom-right",});
+            setTimeout(() => {
+                history.push(`/portal/Access`)
+                }, 5000);
+            dispatch({type: ACCESS_DELETE_RESET})
+        } else {
+            if (!access) {
+                dispatch(getAccessDetails(accessId))
+            } else {
+                setType(access.type)
+                setUrl(access.url)
+                setLoginUrl(access.loginUrl)
+                setUsername(access.username)
+                setPassword(access.password)
+                setNotes(access.notes)
+            }
+        }
+        
+    }, [dispatch, accessId,access, match, history, successUpdate, successDelete ])
+
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        dispatch(createAccess(type, url, loginUrl, username, password, notes))
-    }   
+        dispatch(updateAccess({_id: accessId, type, url, loginUrl, username, password, notes}))
+    }
 
-    //GiWorld
+    const onDeleteHandler = (e) => {
+        e.preventDefault()
+        dispatch(deleteAccess(accessId))
+    }
     
     return (
         <div className="edit-screen">
@@ -61,8 +106,10 @@ const ClientAccessEdit = ({match, history}) => {
                         </div>
                         <div className="button-wrapper">
                             <button type="submit" className='update-btn'>Save</button>
+                            <button onClick={onDeleteHandler} className='delete-btn'>Trash</button>
                         </div>
                     </div>
+                    <ToastContainer />
                 </Form>
             </ClientLayout>
         </div>
